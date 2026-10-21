@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DYFI Karnataka — Central Admin Management Suite</title>
+  <link rel="icon" type="image/png" href="images/logo.jpg">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+
+  <!-- ==================== LOGIN OVERLAY ==================== -->
+  <div class="login-overlay active" id="loginOverlay">
+    <div class="login-card">
+      <div class="login-header">
+        <div class="login-brand-icon">🚩</div>
+        <h2>DYFI KARNATAKA</h2>
+        <p>State Committee Central Admin Suite</p>
+      </div>
+      <form id="adminLoginForm">
+        <div class="form-group">
+          <label class="form-label">Admin Username</label>
+          <input type="text" id="adminUser" class="form-control" placeholder="Enter username (admin)" required autocomplete="username">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Admin Password</label>
+          <input type="password" id="adminPass" class="form-control" placeholder="••••••••••••" required autocomplete="current-password">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Secure Login ➔</button>
+        <button type="button" class="btn btn-demo btn-block" id="btnQuickDemo">Quick Demo Login (Pre-filled)</button>
+        <div class="login-hint">Default: <code>admin</code> / <code>dyfi@karnataka2026</code></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== MAIN ADMIN CONTAINER ==================== -->
+  <div class="admin-wrapper" id="adminWrapper">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar" id="adminSidebar">
+      <div class="sidebar-brand">
+        <div class="brand-logo-wrap">
+          <img src="images/logo.jpg" alt="DYFI Logo">
+        </div>
+        <div class="brand-info">
+          <div class="brand-name">DYFI KARNATAKA</div>
+          <div class="brand-tag">Central Management</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-tab="dashboard">
+          <span class="nav-icon">📊</span>
+          <span>Dashboard</span>
+        </button>
+        <button class="nav-item" data-tab="ticker">
+          <span class="nav-icon">📢</span>
+          <span>Announcement Ticker</span>
+        </button>
+        <button class="nav-item" data-tab="siteContent">
+          <span class="nav-icon">🏛️</span>
+          <span>Hero &amp; Site Content</span>
+        </button>
+        <button class="nav-item" data-tab="news">
+          <span class="nav-icon">📰</span>
+          <span>News &amp; Events</span>
+        </button>
+        <button class="nav-item" data-tab="campaigns">
+          <span class="nav-icon">🚩</span>
+          <span>Active Campaigns</span>
+        </button>
+        <button class="nav-item" data-tab="statements">
+          <span class="nav-icon">📜</span>
+          <span>Press Statements</span>
+        </button>
+        <button class="nav-item" data-tab="martyrs">
+          <span class="nav-icon">🕊️</span>
+          <span>Martyrs Memorial</span>
+        </button>
+        <button class="nav-item" data-tab="leaders">
+          <span class="nav-icon">👥</span>
+          <span>Leadership Team</span>
+        </button>
+        <button class="nav-item" data-tab="gallery">
+          <span class="nav-icon">🖼️</span>
+          <span>Gallery Media</span>
+        </button>
+        <button class="nav-item" data-tab="bloodDonors">
+          <span class="nav-icon">🩸</span>
+          <span>Blood Donors Registry</span>
+        </button>
+        <button class="nav-item" data-tab="messages">
+          <span class="nav-icon">📩</span>
+          <span>Contact Enquiries</span>
+          <span class="badge-count" id="badgeMsgCount">0</span>
+        </button>
+        <button class="nav-item" data-tab="settings">
+          <span class="nav-icon">⚙️</span>
+          <span>Backup &amp; Reset</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a href="index.html" target="_blank" class="btn btn-outline-white btn-sm btn-block">🌐 View Live Website</a>
+        <button class="btn btn-logout btn-sm btn-block" id="btnLogout">Sign Out</button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="admin-main">
+      <header class="admin-topbar">
+        <div class="topbar-left">
+          <button class="mobile-nav-toggle" id="mobileNavToggle">☰</button>
+          <h1 class="page-heading" id="topbarTitle">Dashboard Overview</h1>
+        </div>
+        <div class="topbar-right">
+          <a href="index.html" target="_blank" class="btn btn-sm btn-outline-primary">Visit Public Site ➔</a>
+          <div class="admin-user-pill">
+            <span class="user-avatar">🛡️</span>
+            <span class="user-name">State Admin</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="admin-content-inner">
+        <!-- ================= TAB: DASHBOARD ================= -->
+        <section class="tab-pane active" id="pane-dashboard">
+          <div class="stats-overview-grid">
+            <div class="stat-card">
+              <div class="stat-icon red">📰</div>
+              <div class="stat-meta">
+                <div class="stat-value" id="statNews">0</div>
+                <div class="stat-label">Published News</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon red">🚩</div>
+              <div class="stat-meta">
+                <div class="stat-value" id="statCampaigns">0</div>
+                <div class="stat-label">Active Campaigns</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon blue">📜</div>
+              <div class="stat-meta">
+                <div class="stat-value" id="statStatements">0</div>
+                <div class="stat-label">Official Statements</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon dark">🕊️</div>
+              <div class="stat-meta">
+                <div class="stat-value" id="statMartyrs">0</div>
+                <div class="stat-label">Martyrs Honored</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon red">🩸</div>
+              <div class="stat-meta">
+                <div class="stat-value" id="statDonors">0</div>
+                <div class="stat-label">Registered Donors</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-icon amber">📩</div>
+              <div class="stat-meta">
+                <div class="stat-value" id="statMessages">0</div>
+                <div class="stat-label">Contact Enquiries</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="dashboard-panels-grid">
+            <div class="card dashboard-card">
+              <div class="card-header">
+                <h3>⚡ Quick Actions</h3>
+              </div>
+              <div class="card-body quick-actions-grid">
+                <button class="btn btn-outline-primary" onclick="window.adminApp.switchTab('news', true)">+ Add Breaking News</button>
+                <button class="btn btn-outline-primary" onclick="window.adminApp.switchTab('statements', true)">+ Release Statement</button>
+                <button class="btn btn-outline-primary" onclick="window.adminApp.switchTab('campaigns', true)">+ Launch Campaign</button>
+                <button class="btn btn-outline-primary" onclick="window.adminApp.switchTab('martyrs', true)">+ Add Martyr Tribute</button>
+                <button class="btn btn-outline-primary" onclick="window.adminApp.switchTab('ticker')">Edit Top Ticker</button>
+                <button class="btn btn-outline-primary" onclick="window.adminApp.switchTab('bloodDonors')">Browse Donors</button>
+              </div>
+            </div>
+
+            <div class="card dashboard-card">
+              <div class="card-header">
+                <h3>📢 Current Live Ticker</h3>
+              </div>
+              <div class="card-body">
+                <ul class="ticker-preview-list" id="dashTickerList"></ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB: TICKER ================= -->
+        <section class="tab-pane" id="pane-ticker">
+          <div class="card">
+            <div class="card-header flex-between">
+              <div>
+                <h3>Running Announcement Ticker</h3>
+                <p class="card-subtitle">Manage headlines displayed in the header announcement bar across all pages.</p>
+              </div>
+              <button class="btn btn-primary" id="btnOpenAddTicker">+ Add Ticker Headline</button>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th width="45%">Headline (English)</th>
+                      <th width="45%">Headline (ಕನ್ನಡ)</th>
+                      <th width="10%">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tickerTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB: SITE CONTENT ================= -->
+        <section class="tab-pane" id="pane-siteContent">
+          <div class="card">
+            <div class="card-header">
+              <h3>Global Site Content &amp; Contact Details</h3>
+              <p class="card-subtitle">Update hero titles, Che Guevara quotes, office addresses, emergency helpline numbers, and social media handles.</p>
+            </div>
+            <div class="card-body">
+              <form id="formSiteContent">
+                <h4 class="form-section-title">Hero Banner Headlines</h4>
+                <div class="form-row">
+                  <div class="form-group col-6">
+                    <label class="form-label">Hero Title (English)</label>
+                    <textarea id="scHeroTitleEn" class="form-control" rows="2" required></textarea>
+                  </div>
+                  <div class="form-group col-6">
+                    <label class="form-label">Hero Title (ಕನ್ನಡ)</label>
+                    <textarea id="scHeroTitleKn" class="form-control" rows="2" required></textarea>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-6">
+                    <label class="form-label">Hero Subtitle (English)</label>
+                    <textarea id="scHeroSubEn" class="form-control" rows="3" required></textarea>
+                  </div>
+                  <div class="form-group col-6">
+                    <label class="form-label">Hero Subtitle (ಕನ್ನಡ)</label>
+                    <textarea id="scHeroSubKn" class="form-control" rows="3" required></textarea>
+                  </div>
+                </div>
+
+                <h4 class="form-section-title">Che Guevara Revolutionary Banner</h4>
+                <div class="form-row">
+                  <div class="form-group col-6">
+                    <label class="form-label">Revolutionary Quote (English)</label>
+                    <input type="text" id="scQuoteEn" class="form-control" required>
+                  </div>
+                  <div class="form-group col-6">
+                    <label class="form-label">Revolutionary Quote (ಕನ್ನಡ)</label>
+                    <input type="text" id="scQuoteKn" class="form-control" required>
+                  </div>
+                </div>
+
+                <h4 class="form-section-title">Headquarters &amp; Contact Helplines</h4>
+                <div class="form-row">
+                  <div class="form-group col-6">
+                    <label class="form-label">Office Address (English)</label>
+                    <textarea id="scAddressEn" class="form-control" rows="2" required></textarea>
+                  </div>
+                  <div class="form-group col-6">
+                    <label class="form-label">Office Address (ಕನ್ನಡ)</label>
+                    <textarea id="scAddressKn" class="form-control" rows="2" required></textarea>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-4">
+                    <label class="form-label">Primary Mobile</label>
+                    <input type="text" id="scPhone1" class="form-control" required>
+                  </div>
+                  <div class="form-group col-4">
+                    <label class="form-label">Secondary Mobile / WhatsApp</label>
+                    <input type="text" id="scPhone2" class="form-control" required>
+                  </div>
+                  <div class="form-group col-4">
+                    <label class="form-label">Official Email</label>
+                    <input type="email" id="scEmail" class="form-control" required>
+                  </div>
+                </div>
+
+                <h4 class="form-section-title">Official Social Media Links</h4>
+                <div class="form-row">
+                  <div class="form-group col-3">
+                    <label class="form-label">Facebook Page URL</label>
+                    <input type="url" id="scSocialFb" class="form-control">
+                  </div>
+                  <div class="form-group col-3">
+                    <label class="form-label">Instagram Handle URL</label>
+                    <input type="url" id="scSocialInsta" class="form-control">
+                  </div>
+                  <div class="form-group col-3">
+                    <label class="form-label">YouTube Channel URL</label>
+                    <input type="url" id="scSocialYt" class="form-control">
+                  </div>
+                  <div class="form-group col-3">
+                    <label class="form-label">X (Twitter) URL</label>
+                    <input type="url" id="scSocialX" class="form-control">
+                  </div>
+                </div>
+
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-primary btn-lg">💾 Save Global Content</button>
+                  <span class="save-status-msg" id="scSaveStatus"></span>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB: NEWS ================= -->
+        <section class="tab-pane" id="pane-news">
+          <div class="card">
+            <div class="card-header flex-between">
+              <div>
+                <h3>News &amp; Events Publisher</h3>
+                <p class="card-subtitle">Publish breaking updates, convention reports, and protest news.</p>
+              </div>
+              <button class="btn btn-primary" id="btnOpenAddNews">+ Add News Article</button>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th width="10%">Image</th>
+                      <th width="30%">Title</th>
+                      <th width="15%">Category</th>
+                      <th width="15%">Date</th>
+                      <th width="20%">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="newsTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB: CAMPAIGNS ================= -->
+        <section class="tab-pane" id="pane-campaigns">
+          <div class="card">
+            <div class="card-header flex-between">
+              <div>
+                <h3>Active Statewide Campaigns</h3>
+                <p class="card-subtitle">Manage progressive campaigns, goals, progress meters, and descriptions.</p>
+              </div>
+              <button class="btn btn-primary" id="btnOpenAddCampaign">+ Launch New Campaign</button>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th width="30%">Campaign Title</th>
+                      <th width="20%">Category</th>
+                      <th width="20%">Progress</th>
+                      <th width="10%">Status</th>
+                      <th width="20%">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="campaignsTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB: STATEMENTS ================= -->
+        <section class="tab-pane" id="pane-statements">
+          <div class="card">
+            <div class="card-header flex-between">
+              <div>
+                <h3>Official Press Statements &amp; Releases</h3>
+                <p class="card-subtitle">Publish official state committee statements, policy critiques, and press notes.</p>
+              </div>
+              <button class="btn btn-primary" id="btnOpenAddStatement">+ Release Statement</button>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th width="15%">Ref No</th>
+                      <th width="40%">Title</th>
+                      <th width="15%">Category</th>
+                      <th width="15%">Date</th>
+                      <th width="15%">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="statementsTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB: MARTYRS ================= -->
+        <section class="tab-pane" id="pane-martyrs">
+          <div class="card">
+            <div class="card-header flex-between">
+              <div>
+                <h3>Martyrs Memorial Hub (ಹುತಾತ್ಮರ ಸ್ಮರಣೆ)</h3>
+                <p class="card-subtitle">Pay homage to courageous comrades who sacrificed their lives in struggles.</p>
+              </div>
+              <button class="btn btn-primary" id="btnOpenAddMartyr">+ Add Martyr Homage</button>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th width="12%">Photo</th>
+                      <th width="25%">Martyr Name</th>
+                      <th width="15%">Year / Date</th>
+                      <th width="20%">District</th>
+                      <th width="28%">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="martyrsTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB: LEADERS ================= -->
+        <section class="tab-pane" id="pane-leaders">
+          <div class="card">
+            <div class="card-header flex-between">
+              <div>
+                <h3>State Leadership Team</h3>
+                <p class="card-subtitle">Manage office bearers shown in the State Leadership section.</p>
+              </div>
+              <button class="btn btn-primary" id="btnOpenAddLeader">+ Add Leader</button>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th width="12%">Avatar</th>
+                      <th width="30%">Leader Name</th>
+                      <th width="28%">Designation / Role</th>
+                      <th width="15%">Committee</th>
+                      <th width="15%">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="leadersTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB: GALLERY ================= -->
+        <section class="tab-pane" id="pane-gallery">
+          <div class="card">
+            <div class="card-header flex-between">
+              <div>
+                <h3>Photo &amp; Video Media Gallery</h3>
+                <p class="card-subtitle">Upload and showcase photos and video recordings of state rallies.</p>
+              </div>
+              <button class="btn btn-primary" id="btnOpenAddGallery">+ Add Media Item</button>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th width="15%">Preview</th>
+                      <th width="15%">Type</th>
+                      <th width="15%">Category</th>
+                      <th width="35%">Caption</th>
+                      <th width="20%">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="galleryTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB: BLOOD DONORS ================= -->
+        <section class="tab-pane" id="pane-bloodDonors">
+          <div class="card">
+            <div class="card-header flex-between">
+              <div>
+                <h3>Volunteer Blood Donors Directory</h3>
+                <p class="card-subtitle">Browse and filter voluntary youth donors registered across Karnataka.</p>
+              </div>
+              <div class="flex gap-sm">
+                <button class="btn btn-outline-primary" id="btnExportDonors">📥 Export CSV</button>
+                <button class="btn btn-primary" id="btnOpenAddDonor">+ Register Donor</button>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="filter-bar">
+                <input type="text" id="filterDonorQuery" class="form-control" placeholder="Search by donor name or phone...">
+                <select id="filterDonorGroup" class="form-control">
+                  <option value="">All Blood Groups</option>
+                  <option value="A+">A +ve</option>
+                  <option value="A-">A -ve</option>
+                  <option value="B+">B +ve</option>
+                  <option value="B-">B -ve</option>
+                  <option value="O+">O +ve</option>
+                  <option value="O-">O -ve</option>
+                  <option value="AB+">AB +ve</option>
+                  <option value="AB-">AB -ve</option>
+                </select>
+                <select id="filterDonorDistrict" class="form-control">
+                  <option value="">All Districts</option>
+                  <option value="Bengaluru">Bengaluru</option>
+                  <option value="Dakshina Kannada">Dakshina Kannada</option>
+                  <option value="Udupi">Udupi</option>
+                  <option value="Mysuru">Mysuru</option>
+                  <option value="Dharwad">Dharwad</option>
+                  <option value="Belagavi">Belagavi</option>
+                  <option value="Kalaburagi">Kalaburagi</option>
+                  <option value="Shivamogga">Shivamogga</option>
+                </select>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th width="25%">Donor Name</th>
+                      <th width="20%">Contact Phone</th>
+                      <th width="15%">Blood Group</th>
+                      <th width="20%">District</th>
+                      <th width="10%">Registered</th>
+                      <th width="10%">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="donorsTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB: MESSAGES ================= -->
+        <section class="tab-pane" id="pane-messages">
+          <div class="card">
+            <div class="card-header flex-between">
+              <div>
+                <h3>Contact &amp; Helpline Enquiries</h3>
+                <p class="card-subtitle">Submissions from citizens and youth via the public contact form.</p>
+              </div>
+              <button class="btn btn-outline-danger" id="btnClearMessages">Clear All</button>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th width="18%">Sender Name</th>
+                      <th width="15%">Phone</th>
+                      <th width="15%">District</th>
+                      <th width="32%">Message</th>
+                      <th width="10%">Status</th>
+                      <th width="10%">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="messagesTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB: SETTINGS ================= -->
+        <section class="tab-pane" id="pane-settings">
+          <div class="card">
+            <div class="card-header">
+              <h3>System Data Backup &amp; Reset Hub</h3>
+              <p class="card-subtitle">Export state backup as JSON or reset site to defaults.</p>
+            </div>
+            <div class="card-body">
+              <div class="settings-actions-grid">
+                <div class="settings-action-card">
+                  <h4>📥 Export Full Data Backup</h4>
+                  <p>Download a complete JSON snapshot of all news, campaigns, statements, martyrs, donors, and content.</p>
+                  <button class="btn btn-primary" id="btnExportBackup">Download JSON Backup</button>
+                </div>
+                <div class="settings-action-card">
+                  <h4>📤 Restore from Backup</h4>
+                  <p>Restore entire site data from a previously exported JSON backup file.</p>
+                  <input type="file" id="fileImportBackup" accept=".json" style="display:none">
+                  <button class="btn btn-outline-primary" onclick="document.getElementById('fileImportBackup').click()">Select JSON File to Restore</button>
+                </div>
+                <div class="settings-action-card border-danger">
+                  <h4 class="text-danger">⚠️ Reset Site to Default State</h4>
+                  <p>Revert all contents, news, martyrs, and settings to the default official dataset.</p>
+                  <button class="btn btn-danger" id="btnResetDefaults">Reset to Default Data</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- ==================== UNIVERSAL EDIT MODAL ==================== -->
+  <div class="admin-modal-overlay" id="adminModalOverlay">
+    <div class="admin-modal-box">
+      <div class="admin-modal-header">
+        <h3 id="modalTitle">Edit Item</h3>
+        <button class="modal-close" id="modalCloseBtn">&times;</button>
+      </div>
+      <div class="admin-modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="admin-toast-container" id="adminToastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="js/data-store.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

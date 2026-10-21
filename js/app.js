@@ -1,0 +1,1603 @@
+/**
+ * DYFI KARNATAKA — STATE COMMITTEE OFFICIAL JAVASCRIPT
+ * Democratic Youth Federation of India — Karnataka
+ */
+
+/* ========================================================
+   1. DISTRICT UNITS DATABASE (Taluks, Counts & Leaders)
+   ======================================================== */
+const districtUnitsData = [
+  {
+    id: 'dk',
+    zone: 'coastal',
+    zone_en: 'Coastal Zone',
+    zone_kn: 'ಕರಾವಳಿ ವಿಭಾಗ',
+    name_en: 'Dakshina Kannada',
+    name_kn: 'ದಕ್ಷಿಣ ಕನ್ನಡ',
+    taluks_count: 7,
+    units_count: '140+',
+    taluks_en: ['Mangaluru City', 'Ullal', 'Bantwal', 'Belthangady', 'Puttur', 'Sullia', 'Kadaba', 'Moodbidri'],
+    taluks_kn: ['ಮಂಗಳೂರು ನಗರ', 'ಉಳ್ಳಾಲ', 'ಬಂಟ್ವಾಳ', 'ಬೆಳ್ತಂಗಡಿ', 'ಪುತ್ತೂರು', 'ಸುಳ್ಯ', 'ಕಡಬ', 'ಮೂಡುಬಿದಿರೆ'],
+    office_en: 'DYFI District Office, B.V. Kakkillaya Bhavana, Near Rao & Rao Circle, Mangaluru - 575001',
+    office_kn: 'ಡಿವೈಎಫ್ಐ ಜಿಲ್ಲಾ ಕಚೇರಿ, ಬಿ.ವಿ. ಕಕ್ಕಿಲ್ಲಾಯ ಭವನ, ರಾವ್ & ರಾವ್ ವೃತ್ತದ ಬಳಿ, ಮಂಗಳೂರು - 575001',
+    phone: '+91 824 2440123 / +91 9448123456',
+    leaders: [
+      {
+        name_en: 'Comrade B.K. Imthiyaz',
+        name_kn: 'ಕಾಮ್ರೇಡ್ ಬಿ.ಕೆ ಇಮ್ತಿಯಾಝ್',
+        post_en: 'District President',
+        post_kn: 'ಜಿಲ್ಲಾ ಅಧ್ಯಕ್ಷರು',
+        image: 'images/leader-1.jpg',
+        phone: '+91 9448123456',
+        area_en: 'Mangaluru',
+        area_kn: 'ಮಂಗಳೂರು'
+      },
+      {
+        name_en: 'Comrade Santhosh Bajal',
+        name_kn: 'ಕಾಮ್ರೇಡ್ ಸಂತೋಷ್ ಬಜಾಲ್',
+        post_en: 'District Secretary',
+        post_kn: 'ಜಿಲ್ಲಾ ಕಾರ್ಯದರ್ಶಿ',
+        image: 'images/santosh_bajal.jpg',
+        phone: '+91 9880123456',
+        area_en: 'Bajal / Ullal',
+        area_kn: 'ಬಜಾಲ್ / ಉಳ್ಳಾಲ'
+      },
+      {
+        name_en: 'Comrade Manoj Vamanjoor',
+        name_kn: 'ಕಾಮ್ರೇಡ್ ಮನೋಜ್ ವಾಮಂಜೂರು',
+        post_en: 'District Vice President',
+        post_kn: 'ಜಿಲ್ಲಾ ಉಪಾಧ್ಯಕ್ಷರು',
+        image: 'images/shivappa.jpg',
+        phone: '+91 9741234567',
+        area_en: 'Mangaluru Rural',
+        area_kn: 'ಮಂಗಳೂರು ಗ್ರಾಮಾಂತರ'
+      },
+      {
+        name_en: 'Comrade Razak Ullal',
+        name_kn: 'ಕಾಮ್ರೇಡ್ ರಜಾಕ್ ಉಳ್ಳಾಲ',
+        post_en: 'District Joint Secretary',
+        post_kn: 'ಜಿಲ್ಲಾ ಜಂಟಿ ಕಾರ್ಯದರ್ಶಿ',
+        image: 'images/rejvana.jpg',
+        phone: '+91 9632123456',
+        area_en: 'Ullal',
+        area_kn: 'ಉಳ್ಳಾಲ'
+      }
+    ]
+  },
+  {
+    id: 'bengaluru-urban',
+    zone: 'bengaluru',
+    zone_en: 'Bengaluru Region',
+    zone_kn: 'ಬೆಂಗಳೂರು ವಿಭಾಗ',
+    name_en: 'Bengaluru Urban',
+    name_kn: 'ಬೆಂಗಳೂರು ನಗರ',
+    taluks_count: 5,
+    units_count: '160+',
+    taluks_en: ['Bengaluru North', 'Bengaluru South', 'Bengaluru East', 'Anekal', 'Yelahanka'],
+    taluks_kn: ['ಬೆಂಗಳೂರು ಉತ್ತರ', 'ಬೆಂಗಳೂರು ದಕ್ಷಿಣ', 'ಬೆಂಗಳೂರು ಪೂರ್ವ', 'ಆನೇಕಲ್', 'ಯಲಹಂಕ'],
+    office_en: 'DYFI Bengaluru District Committee, No. 45, Gandhinagar, Bengaluru - 560009',
+    office_kn: 'ಡಿವೈಎಫ್ಐ ಬೆಂಗಳೂರು ಜಿಲ್ಲಾ ಸಮಿತಿ, ನಂ. 45, ಗಾಂಧಿನಗರ, ಬೆಂಗಳೂರು - 560009',
+    phone: '+91 80 22874521 / +91 9448123456',
+    leaders: [
+      {
+        name_en: 'Comrade M. Munikrishna',
+        name_kn: 'ಕಾಮ್ರೇಡ್ ಎಂ. ಮುನಿಕೃಷ್ಣ',
+        post_en: 'District President',
+        post_kn: 'ಜಿಲ್ಲಾ ಅಧ್ಯಕ್ಷರು',
+        image: 'images/lavitra_president.jpg',
+        phone: '+91 9845012345',
+        area_en: 'Yelahanka / City',
+        area_kn: 'ಯಲಹಂಕ / ನಗರ'
+      },
+      {
+        name_en: 'Comrade Chethan Kumar',
+        name_kn: 'ಕಾಮ್ರೇಡ್ ಚೇತನ್ ಕುಮಾರ್',
+        post_en: 'District Secretary',
+        post_kn: 'ಜಿಲ್ಲಾ ಕಾರ್ಯದರ್ಶಿ',
+        image: 'images/santosh_bajal.jpg',
+        phone: '+91 9845123456',
+        area_en: 'Bengaluru South',
+        area_kn: 'ಬೆಂಗಳೂರು ದಕ್ಷಿಣ'
+      },
+      {
+        name_en: 'Comrade Sowmya K.',
+        name_kn: 'ಕಾಮ್ರೇಡ್ ಸೌಮ್ಯಾ ಕೆ.',
+        post_en: 'District Vice President',
+        post_kn: 'ಜಿಲ್ಲಾ ಉಪಾಧ್ಯಕ್ಷರು',
+        image: 'images/rejvana.jpg',
+        phone: '+91 9980123456',
+        area_en: 'Malleshwaram',
+        area_kn: 'ಮಲ್ಲೇಶ್ವರಂ'
+      },
+      {
+        name_en: 'Comrade Venkatesh B.',
+        name_kn: 'ಕಾಮ್ರೇಡ್ ವೆಂಕಟೇಶ್ ಬಿ.',
+        post_en: 'District Treasurer',
+        post_kn: 'ಜಿಲ್ಲಾ ಖಜಾಂಚಿ',
+        image: 'images/shivappa.jpg',
+        phone: '+91 9740123456',
+        area_en: 'K.R. Puram',
+        area_kn: 'ಕೆ.ಆರ್. ಪುರಂ'
+      }
+    ]
+  },
+  {
+    id: 'mysuru',
+    zone: 'mysuru',
+    zone_en: 'Mysuru Region',
+    zone_kn: 'ಮೈಸೂರು ವಿಭಾಗ',
+    name_en: 'Mysuru District',
+    name_kn: 'ಮೈಸೂರು ಜಿಲ್ಲೆ',
+    taluks_count: 7,
+    units_count: '110+',
+    taluks_en: ['Mysuru Taluk', 'Nanjangud', 'Hunsur', 'Piriyapatna', 'K.R. Nagar', 'T. Narasipura', 'Saragur'],
+    taluks_kn: ['ಮೈಸೂರು ತಾಲ್ಲೂಕು', 'ನಂಜನಗೂಡು', 'ಹುಣಸೂರು', 'ಪಿರಿಯಾಪಟ್ಟಣ', 'ಕೆ.ಆರ್. ನಗರ', 'ಟಿ. ನರಸೀಪುರ', 'ಸರಗೂರು'],
+    office_en: 'DYFI District Office, JLB Road, Chamarajapuram, Mysuru - 570005',
+    office_kn: 'ಡಿವೈಎಫ್ಐ ಜಿಲ್ಲಾ ಕಚೇರಿ, ಜೆಎಲ್‌ಬಿ ರಸ್ತೆ, ಚಾಮರಾಜಪುರಂ, ಮೈಸೂರು - 570005',
+    phone: '+91 821 2420123',
+    leaders: [
+      {
+        name_en: 'Comrade Jagadish Surya',
+        name_kn: 'ಕಾಮ್ರೇಡ್ ಜಗದೀಶ್ ಸೂರ್ಯ',
+        post_en: 'District President',
+        post_kn: 'ಜಿಲ್ಲಾ ಅಧ್ಯಕ್ಷರು',
+        image: 'images/leader-1.jpg',
+        phone: '+91 9844123456',
+        area_en: 'Mysuru City',
+        area_kn: 'ಮೈಸೂರು ನಗರ'
+      },
+      {
+        name_en: 'Comrade Vijay Kumar',
+        name_kn: 'ಕಾಮ್ರೇಡ್ ವಿಜಯ್ ಕುಮಾರ್',
+        post_en: 'District Secretary',
+        post_kn: 'ಜಿಲ್ಲಾ ಕಾರ್ಯದರ್ಶಿ',
+        image: 'images/santosh_bajal.jpg',
+        phone: '+91 9900123456',
+        area_en: 'Nanjangud',
+        area_kn: 'ನಂಜನಗೂಡು'
+      }
+    ]
+  },
+  {
+    id: 'udupi',
+    zone: 'coastal',
+    zone_en: 'Coastal Zone',
+    zone_kn: 'ಕರಾವಳಿ ವಿಭಾಗ',
+    name_en: 'Udupi District',
+    name_kn: 'ಉಡುಪಿ ಜಿಲ್ಲೆ',
+    taluks_count: 5,
+    units_count: '95+',
+    taluks_en: ['Udupi', 'Kundapura', 'Karkala', 'Brahmavara', 'Byndoor', 'Kaup', 'Hebri'],
+    taluks_kn: ['ಉಡುಪಿ', 'ಕುಂದಾಪುರ', 'ಕಾರ್ಕಳ', 'ಬ್ರಹ್ಮಾವರ', 'ಬೈಂದೂರು', 'ಕಾಪು', 'ಹೆಬ್ರಿ'],
+    office_en: 'DYFI District Committee Office, Kavi Mudhdhana Marg, Udupi - 576101',
+    office_kn: 'ಡಿವೈಎಫ್ಐ ಜಿಲ್ಲಾ ಸಮಿತಿ ಕಚೇರಿ, ಕವಿ ಮುದ್ದಣ ಮಾರ್ಗ, ಉಡುಪಿ - 576101',
+    phone: '+91 820 2520123',
+    leaders: [
+      {
+        name_en: 'Comrade Venkatesh Koni',
+        name_kn: 'ಕಾಮ್ರೇಡ್ ವೆಂಕಟೇಶ್ ಕೋಣಿ',
+        post_en: 'District President',
+        post_kn: 'ಜಿಲ್ಲಾ ಅಧ್ಯಕ್ಷರು',
+        image: 'images/shivappa.jpg',
+        phone: '+91 9845987654',
+        area_en: 'Kundapura',
+        area_kn: 'ಕುಂದಾಪುರ'
+      },
+      {
+        name_en: 'Comrade Santhosh Hemmady',
+        name_kn: 'ಕಾಮ್ರೇಡ್ ಸಂತೋಷ್ ಹೆಮ್ಮಾಡಿ',
+        post_en: 'District Secretary',
+        post_kn: 'ಜಿಲ್ಲಾ ಕಾರ್ಯದರ್ಶಿ',
+        image: 'images/leader-1.jpg',
+        phone: '+91 9741543210',
+        area_en: 'Byndoor',
+        area_kn: 'ಬೈಂದೂರು'
+      }
+    ]
+  },
+  {
+    id: 'kalaburagi',
+    zone: 'kalyana',
+    zone_en: 'Kalyana Karnataka',
+    zone_kn: 'ಕಲ್ಯಾಣ ಕರ್ನಾಟಕ',
+    name_en: 'Kalaburagi District',
+    name_kn: 'ಕಲಬುರಗಿ ಜಿಲ್ಲೆ',
+    taluks_count: 7,
+    units_count: '130+',
+    taluks_en: ['Kalaburagi', 'Aland', 'Afzalpur', 'Jevargi', 'Sedam', 'Chittapur', 'Chincholi'],
+    taluks_kn: ['ಕಲಬುರಗಿ', 'ಆಳಂದ', 'ಅಫಜಲಪುರ', 'ಜೇವರ್ಗಿ', 'ಸೇಡಂ', 'ಚಿತ್ತಾಪುರ', 'ಚಿಂಚೋಳಿ'],
+    office_en: 'DYFI District Office, Sardar Vallabhbhai Patel Chowk, Kalaburagi - 585102',
+    office_kn: 'ಡಿವೈಎಫ್ಐ ಜಿಲ್ಲಾ ಕಚೇರಿ, ಸರ್ದಾರ್ ವಲ್ಲಭಭಾಯಿ ಪಟೇಲ್ ಚೌಕ್, ಕಲಬುರಗಿ - 585102',
+    phone: '+91 8472 265432',
+    leaders: [
+      {
+        name_en: 'Comrade Sharanu Heroor',
+        name_kn: 'ಕಾಮ್ರೇಡ್ ಶರಣು ಹೀರೂರು',
+        post_en: 'District President',
+        post_kn: 'ಜಿಲ್ಲಾ ಅಧ್ಯಕ್ಷರು',
+        image: 'images/lavitra_president.jpg',
+        phone: '+91 9449876543',
+        area_en: 'Aland',
+        area_kn: 'ಆಳಂದ'
+      },
+      {
+        name_en: 'Comrade Mallikarjun Halli',
+        name_kn: 'ಕಾಮ್ರೇಡ್ ಮಲ್ಲಿಕಾರ್ಜುನ ಹಳ್ಳಿ',
+        post_en: 'District Secretary',
+        post_kn: 'ಜಿಲ್ಲಾ ಕಾರ್ಯದರ್ಶಿ',
+        image: 'images/shivappa.jpg',
+        phone: '+91 9880987654',
+        area_en: 'Kalaburagi City',
+        area_kn: 'ಕಲಬುರಗಿ ನಗರ'
+      }
+    ]
+  },
+  {
+    id: 'belagavi',
+    zone: 'kittur',
+    zone_en: 'Kittur Karnataka',
+    zone_kn: 'ಕಿತ್ತೂರು ಕರ್ನಾಟಕ',
+    name_en: 'Belagavi District',
+    name_kn: 'ಬೆಳಗಾವಿ ಜಿಲ್ಲೆ',
+    taluks_count: 14,
+    units_count: '180+',
+    taluks_en: ['Belagavi', 'Chikkodi', 'Gokak', 'Athani', 'Bailhongal', 'Saundatti', 'Ramdurg', 'Hukkeri', 'Khanapur', 'Raybag'],
+    taluks_kn: ['ಬೆಳಗಾವಿ', 'ಚಿಕ್ಕೋಡಿ', 'ಗೋಕಾಕ್', 'ಅಥಣಿ', 'ಬೈಲಹೊಂಗಲ', 'ಸವದತ್ತಿ', 'ರಾಮದುರ್ಗ', 'ಹುಕ್ಕೇರಿ', 'ಖಾನಾಪುರ', 'ರಾಯಭಾಗ'],
+    office_en: 'DYFI District Committee Office, College Road, Belagavi - 590001',
+    office_kn: 'ಡಿವೈಎಫ್ಐ ಜಿಲ್ಲಾ ಸಮಿತಿ ಕಚೇರಿ, ಕಾಲೇಜ್ ರಸ್ತೆ, ಬೆಳಗಾವಿ - 590001',
+    phone: '+91 831 2401234',
+    leaders: [
+      {
+        name_en: 'Comrade G.M. Jain',
+        name_kn: 'ಕಾಮ್ರೇಡ್ ಜಿ.ಎಂ. ಜೈನ್',
+        post_en: 'District President',
+        post_kn: 'ಜಿಲ್ಲಾ ಅಧ್ಯಕ್ಷರು',
+        image: 'images/leader-1.jpg',
+        phone: '+91 9448345678',
+        area_en: 'Belagavi City',
+        area_kn: 'ಬೆಳಗಾವಿ ನಗರ'
+      },
+      {
+        name_en: 'Comrade Basavaraj Pattar',
+        name_kn: 'ಕಾಮ್ರೇಡ್ ಬಸವರಾಜ ಪತ್ತಾರ',
+        post_en: 'District Secretary',
+        post_kn: 'ಜಿಲ್ಲಾ ಕಾರ್ಯದರ್ಶಿ',
+        image: 'images/santosh_bajal.jpg',
+        phone: '+91 9886543210',
+        area_en: 'Chikkodi',
+        area_kn: 'ಚಿಕ್ಕೋಡಿ'
+      }
+    ]
+  },
+  {
+    id: 'dharwad',
+    zone: 'kittur',
+    zone_en: 'Kittur Karnataka',
+    zone_kn: 'ಕಿತ್ತೂರು ಕರ್ನಾಟಕ',
+    name_en: 'Dharwad - Hubballi',
+    name_kn: 'ಧಾರವಾಡ - ಹುಬ್ಬಳ್ಳಿ',
+    taluks_count: 5,
+    units_count: '105+',
+    taluks_en: ['Hubballi Urban', 'Dharwad Rural', 'Kalghatgi', 'Navalgund', 'Kundgol'],
+    taluks_kn: ['ಹುಬ್ಬಳ್ಳಿ ನಗರ', 'ಧಾರವಾಡ ಗ್ರಾಮೀಣ', 'ಕಲಘಟಗಿ', 'ನವಲಗುಂದ', 'ಕುಂದಗೋಳ'],
+    office_en: 'DYFI District Office, Station Road, Hubballi - 580020',
+    office_kn: 'ಡಿವೈಎಫ್ಐ ಜಿಲ್ಲಾ ಕಚೇರಿ, ಸ್ಟೇಷನ್ ರಸ್ತೆ, ಹುಬ್ಬಳ್ಳಿ - 580020',
+    phone: '+91 836 2365432',
+    leaders: [
+      {
+        name_en: 'Comrade Lavitra Vastrad',
+        name_kn: 'ಕಾಮ್ರೇಡ್ ಲವಿತ್ರ ವಸ್ತ್ರದ',
+        post_en: 'District In-charge / State President',
+        post_kn: 'ಜಿಲ್ಲಾ ಉಸ್ತುವಾರಿ / ರಾಜ್ಯಾಧ್ಯಕ್ಷರು',
+        image: 'images/lavitra_president.jpg',
+        phone: '+91 9448123456',
+        area_en: 'Hubballi',
+        area_kn: 'ಹುಬ್ಬಳ್ಳಿ'
+      },
+      {
+        name_en: 'Comrade Ramesh Gadag',
+        name_kn: 'ಕಾಮ್ರೇಡ್ ರಮೇಶ್ ಗದಗ',
+        post_en: 'District Secretary',
+        post_kn: 'ಜಿಲ್ಲಾ ಕಾರ್ಯದರ್ಶಿ',
+        image: 'images/shivappa.jpg',
+        phone: '+91 9900876543',
+        area_en: 'Dharwad',
+        area_kn: 'ಧಾರವಾಡ'
+      }
+    ]
+  },
+  {
+    id: 'shivamogga',
+    zone: 'coastal',
+    zone_en: 'Malnad Region',
+    zone_kn: 'ಮಲೆನಾಡು ವಿಭಾಗ',
+    name_en: 'Shivamogga District',
+    name_kn: 'ಶಿವಮೊಗ್ಗ ಜಿಲ್ಲೆ',
+    taluks_count: 7,
+    units_count: '115+',
+    taluks_en: ['Shivamogga', 'Bhadravathi', 'Sagara', 'Shikaripura', 'Soraba', 'Thirthahalli', 'Hosanagara'],
+    taluks_kn: ['ಶಿವಮೊಗ್ಗ', 'ಭದ್ರಾವತಿ', 'ಸಾಗರ', 'ಶಿಕಾರಿಪುರ', 'ಸೊರಬ', 'ತೀರ್ಥಹಳ್ಳಿ', 'ಹೊಸನಗರ'],
+    office_en: 'DYFI District Office, B.H. Road, Shivamogga - 577201',
+    office_kn: 'ಡಿವೈಎಫ್ಐ ಜಿಲ್ಲಾ ಕಚೇರಿ, ಬಿ.ಎಚ್. ರಸ್ತೆ, ಶಿವಮೊಗ್ಗ - 577201',
+    phone: '+91 8182 223344',
+    leaders: [
+      {
+        name_en: 'Comrade Prashanth Sagara',
+        name_kn: 'ಕಾಮ್ರೇಡ್ ಪ್ರಶಾಂತ್ ಸಾಗರ',
+        post_en: 'District President',
+        post_kn: 'ಜಿಲ್ಲಾ ಅಧ್ಯಕ್ಷರು',
+        image: 'images/leader-1.jpg',
+        phone: '+91 9845765432',
+        area_en: 'Sagara',
+        area_kn: 'ಸಾಗರ'
+      },
+      {
+        name_en: 'Comrade Suresh Bhadravathi',
+        name_kn: 'ಕಾಮ್ರೇಡ್ ಸುರೇಶ್ ಭದ್ರಾವತಿ',
+        post_en: 'District Secretary',
+        post_kn: 'ಜಿಲ್ಲಾ ಕಾರ್ಯದರ್ಶಿ',
+        image: 'images/santosh_bajal.jpg',
+        phone: '+91 9448654321',
+        area_en: 'Bhadravathi',
+        area_kn: 'ಭದ್ರಾವತಿ'
+      }
+    ]
+  },
+  {
+    id: 'ballari',
+    zone: 'kalyana',
+    zone_en: 'Kalyana Karnataka',
+    zone_kn: 'ಕಲ್ಯಾಣ ಕರ್ನಾಟಕ',
+    name_en: 'Ballari - Vijayanagara',
+    name_kn: 'ಬಳ್ಳಾರಿ - ವಿಜಯನಗರ',
+    taluks_count: 6,
+    units_count: '100+',
+    taluks_en: ['Ballari', 'Sandur', 'Siruguppa', 'Hosapete', 'Kudligi', 'Hagaribommanahalli'],
+    taluks_kn: ['ಬಳ್ಳಾರಿ', 'ಸಂಡೂರು', 'ಸಿರುಗುಪ್ಪ', 'ಹೊಸಪೇಟೆ', 'ಕೂಡ್ಲಿಗಿ', 'ಹಗರಿಬೊಮ್ಮನಹಳ್ಳಿ'],
+    office_en: 'DYFI District Office, Royal Circle, Ballari - 583101',
+    office_kn: 'ಡಿವೈಎಫ್ಐ ಜಿಲ್ಲಾ ಕಚೇರಿ, ರಾಯಲ್ ಸರ್ಕಲ್, ಬಳ್ಳಾರಿ - 583101',
+    phone: '+91 8392 270123',
+    leaders: [
+      {
+        name_en: 'Comrade Shivakumar Ballari',
+        name_kn: 'ಕಾಮ್ರೇಡ್ ಶಿವಕುಮಾರ್ ಬಳ್ಳಾರಿ',
+        post_en: 'District President',
+        post_kn: 'ಜಿಲ್ಲಾ ಅಧ್ಯಕ್ಷರು',
+        image: 'images/shivappa.jpg',
+        phone: '+91 9880129876',
+        area_en: 'Ballari City',
+        area_kn: 'ಬಳ್ಳಾರಿ ನಗರ'
+      },
+      {
+        name_en: 'Comrade Manjunath Sandur',
+        name_kn: 'ಕಾಮ್ರೇಡ್ ಮಂಜುನಾಥ್ ಸಂಡೂರು',
+        post_en: 'District Secretary',
+        post_kn: 'ಜಿಲ್ಲಾ ಕಾರ್ಯದರ್ಶಿ',
+        image: 'images/leader-1.jpg',
+        phone: '+91 9741098765',
+        area_en: 'Sandur',
+        area_kn: 'ಸಂಡೂರು'
+      }
+    ]
+  }
+];
+
+/* ========================================================
+   2. BILINGUAL TRANSLATION DICTIONARY
+   ======================================================== */
+const i18nData = {
+  en: {
+    langBtn: 'ಕನ್ನಡ',
+    brandTitle: 'DYFI <span class="red-text">KARNATAKA</span>',
+    brandSubtitle: 'Karnataka State Committee',
+    navHome: 'Home',
+    navAbout: 'About Us',
+    navHistory: 'History & Background',
+    navIdeology: 'Ideology & Objectives',
+    navLeadership: 'State Leadership',
+    navDistricts: 'District Units',
+    navCampaigns: 'Campaigns',
+    navActivities: 'Activities',
+    navGallery: 'Gallery',
+    navNews: 'News',
+    navBlood: 'Blood Donation',
+    navContactBtn: 'Contact Us',
+    
+    tickerTitle: 'Official Circular',
+    tickerText: 'Statewide Youth Convention against Unemployment — All District Committees advised to mobilize.',
+    tickerHelp: 'Emergency Blood Helpline:',
+    
+    heroTag: '★ Democratic Youth Federation of India — Karnataka',
+    heroTitle: 'United Youth, <span class="highlight-red">Secular Karnataka</span> — Building a Better Tomorrow',
+    heroDesc: 'DYFI Karnataka State Committee stands at the forefront of progressive youth struggles, advocating for employment, quality free education, communal harmony, and social justice across Karnataka.',
+    heroBtnJoin: 'Get Involved »',
+    heroBtnMission: 'Our Ideology & Mission',
+    
+    aboutHeadline: 'Empowering Youth, Safeguarding Secularism — <span class="highlight-red">DYFI Karnataka State Committee</span> Leading Progressive Movements',
+    aboutSubtext: 'Employment for all, quality free education, communal harmony, scientific temper, and an egalitarian society free from injustice and discrimination are our supreme guiding principles.',
+    btnReadMore: 'Read More ↗',
+    
+    stat1: 'Active Youth Members',
+    stat2: 'District Committees',
+    stat3: 'Blood Requests Met',
+    stat4: 'State Campaigns',
+    
+    campSectionTitle: 'Our <span class="highlight-red">Campaigns</span>',
+    btnViewAll: 'View All ↗',
+    
+    camp1Title: 'Karnataka Youth Employment Rights Movement',
+    camp1Desc: 'Demanding immediate recruitment for 2.5 lakh vacant government posts, fair employment, and local reservation in industries.',
+    camp2Title: 'Secular Harmony & Unity Campaign',
+    camp2Desc: 'Statewide mass awareness rallies across all 31 districts to defend secularism, composite culture, and fraternity.',
+    camp3Title: 'Free & Equal Quality Education',
+    camp3Desc: 'Continuous resistance against privatization of education, demanding prompt release of student scholarships and hostel facilities.',
+    
+    quoteMain: 'True <span class="highlight-red">transformation</span> begins when the youth unite to challenge injustice and build equality.',
+    quoteMotto: '“Struggle is our path, equality is our goal — Che Guevara”',
+    btnMovement: 'Join the Movement ✊',
+    
+    actSectionTitle: 'Recent <span class="highlight-red">Activities</span>',
+    act1Title: 'Bengaluru State Youth Convention',
+    act1Desc: 'Thousands of young delegates from all 31 Karnataka districts assembled to formulate proactive youth policies.',
+    act2Title: 'Flood Relief & Volunteer Taskforce',
+    act2Desc: 'DYFI volunteer squads deployed to distribute relief kits and rehabilitate flood-affected villages in North Karnataka.',
+    act3Title: 'Free Public Health Diagnostics Camps',
+    act3Desc: 'Preventive wellness camps organized in underprivileged areas in collaboration with progressive doctors and institutions.',
+    
+    annSectionTitle: 'Official <span class="highlight-red">Announcements</span>',
+    ann1Title: 'Taluk Assembly Review Report Submission',
+    ann1Text: 'All Local Unit committees must submit their youth survey reports to the respective taluk centers by September 15.',
+    ann2Title: 'Monsoon Natural Disaster Task Force',
+    ann2Text: 'Circular advising all coastal and river basin units to mobilize emergency volunteer groups for monsoon assistance.',
+    
+    districtsSectionTitle: 'Karnataka <span class="highlight-red">District Units</span>',
+    districtsSectionSub: 'Organizing grassroots youth committees across all 31 districts of Karnataka.',
+    filterAllDistricts: 'All Districts',
+    filterCoastal: 'Coastal & Malnad',
+    filterBengaluru: 'Bengaluru Region',
+    filterMysuru: 'Mysuru Region',
+    filterKalyana: 'Kalyana Karnataka',
+    filterKittur: 'Kittur Karnataka',
+    
+    bloodTitle: 'A drop of blood, a lifetime for someone!',
+    bloodSub: 'Connecting patients in critical emergencies across Karnataka with voluntary youth blood donors round the clock.',
+    bloodHelplineLabel: '24/7 State Emergency Blood Helpline',
+    btnBloodReg: 'Register as Volunteer Donor ❤️',
+    
+    galleryTitle: 'Photo <span class="highlight-red">Gallery</span>',
+    filterAll: 'All',
+    filterRally: 'Rallies',
+    filterConf: 'Conferences',
+    filterRelief: 'Relief Work',
+    filterHealth: 'Health Camps',
+    
+    newsSectionTitle: 'Latest <span class="highlight-red">News</span>',
+    news1Title: 'DYFI Launches Comprehensive Karnataka Youth Survey',
+    news1Desc: 'A statewide initiative mapping employment needs and vocational skills among youth across all regions.',
+    news2Title: 'Protest March Demanding Modernization of District Hospitals',
+    news2Desc: 'Youth delegation submits memorandum to Deputy Commissioner demanding advanced ICUs and free medicines.',
+    news3Title: 'Karnataka Youth Sports & Cultural Festival Concludes',
+    news3Desc: 'Fostering camaraderie, athletic skills, and progressive cultural consciousness among thousands of youth.',
+    
+    
+    navStatements: 'Statements',
+    navMartyrs: 'Martyrs',
+    navJoinRev: 'Join The Revolution',
+    stSectionTitle: 'Official <span class="highlight-red">Statements &amp; Press Notes</span>',
+    martyrsSectionTitle: 'Immortal <span class="highlight-red">Martyrs of Struggle</span>',
+    martyrsIntro: 'Revolutionary homage to the immortal comrades who laid down their lives fighting for secularism, employment, social justice, and student rights across Karnataka.',
+    videoSectionTitle: 'Youth <span class="highlight-red">Rallies &amp; Video Streams</span>',
+    videoMainTitle: 'Moments of Struggle: Highlights from State Youth Conventions',
+    videoMainSub: 'Live footage capturing thousands of energetic youth, college students, and progressive citizens demanding employment guarantee and public welfare.',
+    bloodSearchHeading: 'Emergency Blood Donor Finder',
+    joinModalTitle: 'Join The Revolution (ಸದಸ್ಯತ್ವ)',
+    joinModalSub: 'Become part of India\'s vanguard progressive democratic youth movement fighting for equality, education, and social harmony.',
+    btnDownloadStatement: 'Download Statement PDF ⬇',
+    adminLink: 'Admin Portal',
+    leadSectionTitle: 'State <span class="highlight-red">Leadership</span>',
+    lead1Name: 'Comrade Lavitra Vastrad',
+    lead1Role: 'State President',
+    lead2Name: 'Comrade Santosh Bajal',
+    lead2Role: 'State General Secretary',
+    lead3Name: 'Comrade Dilip Bangalore',
+    lead3Role: 'State Treasurer',
+    
+    contactTitle: 'Contact & <span class="highlight-red">District Network</span>',
+    officeLabel: 'State Headquarters Address',
+    officeVal: 'DYFI Karnataka State Committee, No. 45, City Railway Station Road, Gandhinagar, Bengaluru - 560009.',
+    phoneLabel: 'Phone / Helpline',
+    phoneVal: '+91 80 2287 4521 / +91 94481 23456',
+    emailLabel: 'Email Address',
+    emailVal: 'dyfikarnataka@gmail.com',
+    formName: 'Your Full Name',
+    formPhone: 'Mobile Number',
+    formDistrict: 'Your District',
+    formMsg: 'Your Message or Inquiry',
+    formSubmit: 'Send Message 🚀',
+    
+    footerDesc: 'Democratic Youth Federation of India (DYFI) — Leading the progressive youth movement for employment, education, secularism, and democracy.',
+    footerQuick: 'Quick Links',
+    footerDistricts: 'Key Districts',
+    footerLegal: 'State Secretariat',
+    footerTerms: 'Gandhinagar, Bengaluru - 560009',
+    footerPrivacy: 'Helpline: +91 9448123456',
+    footerRights: '© 2026 — DYFI Karnataka State Committee. All Rights Reserved.'
+  },
+  
+  kn: {
+    langBtn: 'English',
+    brandTitle: 'ಡಿವೈಎಫ್ಐ <span class="red-text">ಕರ್ನಾಟಕ</span>',
+    brandSubtitle: 'ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಮಿತಿ',
+    navHome: 'ಮುಖಪುಟ',
+    navAbout: 'ನಮ್ಮ ಬಗ್ಗೆ',
+    navHistory: 'ಇತಿಹಾಸ ಮತ್ತು ಹಿನ್ನೆಲೆ',
+    navIdeology: 'ಧ್ಯೇಯ ಮತ್ತು ಸಂವಿಧಾನ',
+    navLeadership: 'ರಾಜ್ಯ ನಾಯಕತ್ವ',
+    navDistricts: 'ಜಿಲ್ಲಾ ಘಟಕಗಳು',
+    navCampaigns: 'ಅಭಿಯಾನಗಳು',
+    navActivities: 'ಚಟುವಟಿಕೆಗಳು',
+    navGallery: 'ಚಿತ್ರ ಗ್ಯಾಲರಿ',
+    navNews: 'ಸುದ್ದಿಗಳು',
+    navBlood: 'ರಕ್ತದಾನ ಸೇವೆ',
+    navContactBtn: 'ಸಂಪರ್ಕಿಸಿ',
+    
+    tickerTitle: 'ಅಧಿಕೃತ ಸುತ್ತೋಲೆ',
+    tickerText: 'ರಾಜ್ಯವ್ಯಾಪಿ ನಿರುದ್ಯೋಗ ವಿರುದ್ಧ ಬೃಹತ್ ಯುವ ಜಾಗೃತಿ ಸಮಾವೇಶ — ಎಲ್ಲಾ ಜಿಲ್ಲಾ ಘಟಕಗಳು ಸಿದ್ಧತೆ ಕೈಗೊಳ್ಳಲು ಕರೆ.',
+    tickerHelp: 'ತುರ್ತು ರಕ್ತದಾನ ಸಹಾಯವಾಣಿ:',
+    
+    heroTag: '★ ಭಾರತ ಪ್ರಜಾಸತ್ತಾತ್ಮಕ ಯುವಜನ ಒಕ್ಕೂಟ — ಕರ್ನಾಟಕ',
+    heroTitle: 'ಒಗ್ಗಟ್ಟಾದ ಯುವಜನತೆ, <span class="highlight-red">ಜಾತ್ಯತೀತ ಕರ್ನಾಟಕ</span> — ಉಜ್ವಲ ಭವಿಷ್ಯದೆಡೆಗೆ',
+    heroDesc: 'DYFI ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಮಿತಿಯು ಯುವಜನರ ಉದ್ಯೋಗ, ಶಿಕ್ಷಣ, ಜಾತ್ಯತೀತ ಮೌಲ್ಯಗಳು ಹಾಗೂ ಸಾಮಾಜಿಕ ನ್ಯಾಯಕ್ಕಾಗಿ ನಿರಂತರ ಹೋರಾಟ ಮುನ್ನಡೆಸುತ್ತಿರುವ ಪ್ರಗತಿಪರ ಯುವ ಸಂಘಟನೆ.',
+    heroBtnJoin: 'ಹೋರಾಟದಲ್ಲಿ ಕೈಜೋಡಿಸಿ »',
+    heroBtnMission: 'ನಮ್ಮ ಧ್ಯೇಯೋದ್ದೇಶಗಳು',
+    
+    aboutHeadline: 'ಯುವಜನರ ಸಬಲೀಕರಣ, ಜಾತ್ಯತೀತತೆಯ ರಕ್ಷಣೆ — <span class="highlight-red">ಡಿವೈಎಫ್ಐ ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಮಿತಿ</span> ಮುಂಚೂಣಿ ಹೋರಾಟ',
+    aboutSubtext: 'ಸರ್ವರಿಗೂ ಉದ್ಯೋಗ, ಎಲ್ಲರಿಗೂ ಗುಣಮಟ್ಟದ ಶಿಕ್ಷಣ, ಕೋಮು ಸೌಹಾರ್ದ ಹಾಗೂ ಜಾತಿ-ಧರ್ಮ ಭೇದವಿಲ್ಲದ ಸಮಾನತೆಯ ಸಮಾಜ ನಿರ್ಮಾಣವೇ ನಮ್ಮ ಮೂಲ ಉದ್ದೇಶ.',
+    btnReadMore: 'ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ ↗',
+    
+    stat1: 'ಸಕ್ರಿಯ ಯುವ ಸದಸ್ಯರು',
+    stat2: 'ಜಿಲ್ಲಾ ಸಮಿತಿಗಳು',
+    stat3: 'ರಕ್ತದಾನ ನೆರವು ಪೂರೈಕೆ',
+    stat4: 'ಸಾಮಾಜಿಕ ಚಳುವಳಿಗಳು',
+    
+    campSectionTitle: 'ನಮ್ಮ <span class="highlight-red">ಅಭಿಯಾನಗಳು</span>',
+    btnViewAll: 'ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ ↗',
+    
+    camp1Title: 'ರಾಜ್ಯ ಯುವ ಉದ್ಯೋಗ ಹಕ್ಕು ಚಳುವಳಿ',
+    camp1Desc: 'ಕರ್ನಾಟಕದ ಸರ್ಕಾರಿ ಇಲಾಖೆಗಳಲ್ಲಿ ಖಾಲಿ ಇರುವ 2.5 ಲಕ್ಷ ಹುದ್ದೆಗಳ ಭರ್ತಿ ಹಾಗೂ ಸ್ಥಳೀಯ ಯುವಕರಿಗೆ ಉದ್ಯೋಗ ಮೀಸಲಾತಿಗೆ ಆಗ್ರಹ.',
+    camp2Title: 'ಕೋಮು ಸೌಹಾರ್ದ ಹಾಗೂ ಏಕತೆ ಅಭಿಯಾನ',
+    camp2Desc: 'ದ್ವೇಷ ರಾಜಕಾರಣದ ವಿರುದ್ಧ ಶಾಂತಿ, ಸೌಹಾರ್ದತೆ ಮತ್ತು ಭ್ರಾತೃತ್ವ ಕಾಪಾಡಲು ರಾಜ್ಯದ ಎಲ್ಲಾ ಜಿಲ್ಲೆಗಳಲ್ಲಿ ಜಾಗೃತಿ ಜಾತಾಗಳು.',
+    camp3Title: 'ಉಚಿತ ಮತ್ತು ಸಮಾನ ಗುಣಮಟ್ಟದ ಶಿಕ್ಷಣ',
+    camp3Desc: 'ಶಿಕ್ಷಣದ ಖಾಸಗೀಕರಣ ತಡೆ, ವಿದ್ಯಾರ್ಥಿ ವೇತನ ಹಾಗೂ ಹಾಸ್ಟೆಲ್ ಸೌಲಭ್ಯಗಳ ಸಕಾಲಿಕ ಬಿಡುಗಡೆಗಾಗಿ ನಿರಂತರ ಪ್ರತಿಭಟನೆ.',
+    
+    quoteMain: 'ಯುವಜನರು ಅನ್ಯಾಯದ ವಿರುದ್ಧ ಒಗ್ಗೂಡಿ <span class="highlight-red">ಸಮಾನತೆ ಮತ್ತು ಸಾಮಾಜಿಕ ನ್ಯಾಯ</span> ಕಟ್ಟಲು ನಿಂತಾಗ ಮಾತ್ರ ಬದಲಾವಣೆ ಸಾಧ್ಯ.',
+    quoteMotto: '“ಹೋರಾಟವೇ ನಮ್ಮ ಹಾದಿ, ಸಮಾನತೆಯೇ ನಮ್ಮ ಗುರಿ — ಚೇ ಗುವಾರಾ”',
+    btnMovement: 'ಹೋರಾಟದಲ್ಲಿ ಕೈಜೋಡಿಸಿ ✊',
+    
+    actSectionTitle: 'ಇತ್ತೀಚಿನ <span class="highlight-red">ಚಟುವಟಿಕೆಗಳು</span>',
+    act1Title: 'ಬೆಂಗಳೂರು ರಾಜ್ಯ ಮಟ್ಟದ ಯುವ ಸಮಾವೇಶ',
+    act1Desc: 'ಕರ್ನಾಟಕದ 31 ಜಿಲ್ಲೆಗಳಿಂದ ಸಹಸ್ರಾರು ಯುವ ಪ್ರತಿನಿಧಿಗಳು ಪಾಲ್ಗೊಂಡು ಯುವ ನೀತಿ ಕುರಿತು ಚರ್ಚಿಸಿದ ಐತಿಹಾಸಿಕ ಸಮಾವೇಶ.',
+    act2Title: 'ಪ್ರವಾಹ ಸಂತ್ರಸ್ತರ ಪುನರ್ವಸತಿ ನೆರವು',
+    act2Desc: 'ಉತ್ತರ ಕರ್ನಾಟಕ ಮತ್ತು ಮಲೆನಾಡು ಭಾಗದ ಪ್ರವಾಹ ಪೀಡಿತ ಗ್ರಾಮಗಳಲ್ಲಿ ಡಿವೈಎಫ್ಐ ಸ್ವಯಂಸೇವಕರಿಂದ ಪರಿಹಾರ ಸಾಮಗ್ರಿ ವಿತರಣೆ.',
+    act3Title: 'ಉಚಿತ ಸಾರ್ವಜನಿಕ ಆರೋಗ್ಯ ಮತ್ತು ತಪಾಸಣೆ ಶಿಬಿರ',
+    act3Desc: 'ಹಿಂದುಳಿದ ಪ್ರದೇಶಗಳ ಜನರಿಗಾಗಿ ನುರಿತ ವೈದ್ಯರ ಸಹಯೋಗದೊಂದಿಗೆ ಉಚಿತ ತಪಾಸಣೆ ಹಾಗೂ ಔಷಧ ವಿತರಣಾ ಶಿಬಿರಗಳು.',
+    
+    annSectionTitle: 'ಅಧಿಕೃತ <span class="highlight-red">ಸುತ್ತೋಲೆಗಳು</span>',
+    ann1Title: 'ರಾಜ್ಯ ವ್ಯಾಪಿ ತಾಲ್ಲೂಕು ಸಮಾವೇಶಗಳ ವರದಿ ಸಲ್ಲಿಕೆ',
+    ann1Text: 'ಎಲ್ಲಾ ಜಿಲ್ಲಾ ಮತ್ತು ತಾಲ್ಲೂಕು ಘಟಕಗಳು ತಮ್ಮ ವಾರ್ಷಿಕ ಸದಸ್ಯತ್ವ ಹಾಗೂ ಹೋರಾಟದ ವರದಿಯನ್ನು ರಾಜ್ಯ ಕೇಂದ್ರಕ್ಕೆ ಸೆಪ್ಟೆಂಬರ್ 15ರೊಳಗೆ ಸಲ್ಲಿಸುವುದು.',
+    ann2Title: 'ಮುಂಗಾರು ನೈಸರ್ಗಿಕ ವಿಕೋಪ ಪರಿಹಾರ ಕಾರ್ಯಪಡೆ ರಚನೆ',
+    ann2Text: 'ಮಳೆ ಹಾನಿ ಪೀಡಿತ ಪ್ರದೇಶಗಳಲ್ಲಿ ತುರ್ತು ನೆರವಿಗಾಗಿ ಡಿವೈಎಫ್ಐ ಯುವ ಕಾರ್ಯಪಡೆಗಳನ್ನು ಸನ್ನದ್ಧ ಸ್ಥಿತಿಯಲ್ಲಿಡಲು ಸುತ್ತೋಲೆ.',
+    
+    districtsSectionTitle: 'ಕರ್ನಾಟಕ <span class="highlight-red">ಜಿಲ್ಲಾ ಘಟಕಗಳು</span>',
+    districtsSectionSub: 'ಕರ್ನಾಟಕದ 31 ಜಿಲ್ಲೆಗಳಲ್ಲಿ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತಿರುವ ಡಿವೈಎಫ್ಐ ಜಿಲ್ಲಾ ಸಮಿತಿಗಳು.',
+    filterAllDistricts: 'ಎಲ್ಲಾ ಜಿಲ್ಲೆಗಳು',
+    filterCoastal: 'ಕರಾವಳಿ ಮತ್ತು ಮಲೆನಾಡು',
+    filterBengaluru: 'ಬೆಂಗಳೂರು ವಿಭಾಗ',
+    filterMysuru: 'ಮೈಸೂರು ವಿಭಾಗ',
+    filterKalyana: 'ಕಲ್ಯಾಣ ಕರ್ನಾಟಕ',
+    filterKittur: 'ಕಿತ್ತೂರು ಕರ್ನಾಟಕ',
+    
+    bloodTitle: 'ರಕ್ತದ ಹನಿ — ಜೀವದ ಚಿಗುರು!',
+    bloodSub: 'ಕರ್ನಾಟಕ ರಾಜ್ಯಾದ್ಯಂತ ತುರ್ತು ರಕ್ತದ ಅಗತ್ಯವಿರುವ ರೋಗಿಗಳಿಗೆ ಉಚಿತವಾಗಿ ರಕ್ತ ಒದಗಿಸುವ ಡಿವೈಎಫ್ಐ ಯುವಜನ ರಕ್ತದಾನ ಜಾಲ.',
+    bloodHelplineLabel: '24/7 ತುರ್ತು ರಾಜ್ಯ ರಕ್ತದಾನ ಸಹಾಯವಾಣಿ',
+    btnBloodReg: 'ಸ್ವಯಂಸೇವಕ ರಕ್ತದಾನಿ ನೋಂದಣಿ ❤️',
+    
+    galleryTitle: 'ಚಿತ್ರ <span class="highlight-red">ಗ್ಯಾಲರಿ</span>',
+    filterAll: 'ಎಲ್ಲವೂ',
+    filterRally: 'ರ್ಯಾಲಿಗಳು',
+    filterConf: 'ಸಮಾವೇಶಗಳು',
+    filterRelief: 'ಪರಿಹಾರ ಕಾರ್ಯ',
+    filterHealth: 'ಆರೋಗ್ಯ ಶಿಬಿರ',
+    
+    newsSectionTitle: 'ತಾಜಾ <span class="highlight-red">ಸುದ್ದಿಗಳು</span>',
+    news1Title: 'ಕರ್ನಾಟಕದಲ್ಲಿ ನಿರುದ್ಯೋಗ ಸಮೀಕ್ಷೆ ಬಿಡುಗಡೆ ಮಾಡಿದ ಡಿವೈಎಫ್ಐ',
+    news1Desc: 'ಗ್ರಾಮೀಣ ಹಾಗೂ ನಗರ ಪ್ರದೇಶದ ಯುವಕರ ನೈಜ ಸ್ಥಿತಿಗತಿ ಬಿಂಬಿಸುವ ಸಮಗ್ರ ಉದ್ಯೋಗ ಸಮೀಕ್ಷಾ ವರದಿ ಬಿಡುಗಡೆ.',
+    news2Title: 'ಸರ್ಕಾರಿ ಆಸ್ಪತ್ರೆಗಳ ಉನ್ನತೀಕರಣಕ್ಕೆ ಆಗ್ರಹಿಸಿ ಜಿಲ್ಲಾಧಿಕಾರಿ ಕಚೇರಿ ಚಲೋ',
+    news2Desc: 'ಬಡವರಿಗೆ ಗುಣಮಟ್ಟದ ಚಿಕಿತ್ಸೆ ದೊರೆಯುವಂತೆ ಜಿಲ್ಲಾ ಆಸ್ಪತ್ರೆಗಳಲ್ಲಿ ಸೌಲಭ್ಯ ಹೆಚ್ಚಿಸಲು ಆಗ್ರಹಿಸಿ ಹೋರಾಟ.',
+    news3Title: 'ಯುವ ಜನೋತ್ಸವ ಮತ್ತು ಕ್ರೀಡಾ ಕೂಟ ಯಶಸ್ವಿ ಸಮಾರೋಪ',
+    news3Desc: 'ಯುವಜನರಲ್ಲಿ ಕ್ರೀಡಾ ಮನೋಭಾವ ಮತ್ತು ಸಾಂಸ್ಕೃತಿಕ ಒಗ್ಗಟ್ಟು ಬೆಳೆಸಲು ರಾಜ್ಯವ್ಯಾಪಿ ಯುವ ಉತ್ಸವ.',
+    
+    
+    navStatements: 'ಹೇಳಿಕೆಗಳು',
+    navMartyrs: 'ಹುತಾತ್ಮರು',
+    navJoinRev: 'ಕ್ರಾಂತಿಯಲ್ಲಿ ಕೈಜೋಡಿಸಿ',
+    stSectionTitle: 'ಅಧಿಕೃತ <span class="highlight-red">ಹೇಳಿಕೆಗಳು &amp; ಪ್ರಕಟಣೆಗಳು</span>',
+    martyrsSectionTitle: 'ಹೋರಾಟದ <span class="highlight-red">ಅಮರ ಹುತಾತ್ಮರು</span>',
+    martyrsIntro: 'ಯುವಜನರ ಹಕ್ಕುಗಳು, ಸಾಮಾಜಿಕ ನ್ಯಾಯ, ಸಮಾನತೆ ಮತ್ತು ಕೋಮು ಸೌಹಾರ್ದತೆಯ ಉದಾತ್ತ ಧ್ಯೇಯಕ್ಕಾಗಿ ತಮ್ಮ ಜೀವನವನ್ನೇ ಬಲಿದಾನ ಮಾಡಿದ ಕ್ರಾಂತಿಕಾರಿ ಹುತಾತ್ಮರಿಗೆ ನಮ್ಮ ಕ್ರಾಂತಿಕಾರಿ ನಮನಗಳು.',
+    videoSectionTitle: 'ಯುವಜನ <span class="highlight-red">ರ‍್ಯಾಲಿಗಳು &amp; ವೀಡಿಯೋಗಳು</span>',
+    videoMainTitle: 'ಡಿವೈಎಫ್ಐ ಕರ್ನಾಟಕ ರಾಜ್ಯ ಯುವ ಸಮಾವೇಶದ ಪ್ರಮುಖ ಕ್ಷಣಗಳು',
+    videoMainSub: 'ಲಕ್ಷಾಂತರ ವಿದ್ಯಾರ್ಥಿಗಳು ಮತ್ತು ಯುವಜನರನ್ನು ಒಗ್ಗೂಡಿಸಿ ಉದ್ಯೋಗ ಮತ್ತು ಶಿಕ್ಷಣಕ್ಕಾಗಿ ನಡೆದ ಬೃಹತ್ ಸಮಾವೇಶದ ನೇರ ದೃಶ್ಯಾವಳಿಗಳು.',
+    bloodSearchHeading: 'ತುರ್ತು ರಕ್ತದಾನಿ ಹುಡುಕಾಟ (Emergency Blood Finder)',
+    joinModalTitle: 'ಕ್ರಾಂತಿಯಲ್ಲಿ ಕೈಜೋಡಿಸಿ (Join The Revolution)',
+    joinModalSub: 'ಯುವಜನರ ಹಕ್ಕುಗಳು, ಶಿಕ್ಷಣ ಮತ್ತು ಸಮಾನ ಸಮಾಜ ನಿರ್ಮಾಣದ ಐತಿಹಾಸಿಕ ಚಳವಳಿಯ ಭಾಗವಾಗಿ. ಸದಸ್ಯತ್ವಕ್ಕಾಗಿ ವಿವರಗಳನ್ನು ಭರ್ತಿ ಮಾಡಿ.',
+    btnDownloadStatement: 'ಹೇಳಿಕೆ PDF ಡೌನ್‌ಲೋಡ್ ⬇',
+    adminLink: 'ಅಡ್ಮಿನ್ ಪೋರ್ಟಲ್',
+    leadSectionTitle: 'ರಾಜ್ಯ <span class="highlight-red">ಮುಖಂಡರು</span>',
+    lead1Name: 'ಕಾಮ್ರೇಡ್ ಲವಿತ್ರ ವಸ್ತ್ರದ',
+    lead1Role: 'ರಾಜ್ಯ ಅಧ್ಯಕ್ಷರು',
+    lead2Name: 'ಕಾಮ್ರೇಡ್ ಸಂತೋಷ್ ಬಜಾಲ್',
+    lead2Role: 'ರಾಜ್ಯ ಪ್ರಧಾನ ಕಾರ್ಯದರ್ಶಿ',
+    lead3Name: 'ಕಾಮ್ರೇಡ್ ದಿಲೀಪ್ (ಬೆಂಗಳೂರು)',
+    lead3Role: 'ರಾಜ್ಯ ಖಜಾಂಚಿ',
+    
+    contactTitle: 'ಸಂಪರ್ಕಿಸಿ & <span class="highlight-red">ಜಿಲ್ಲಾ ಜಾಲ</span>',
+    officeLabel: 'ರಾಜ್ಯ ಕೇಂದ್ರ ಕಚೇರಿ ವಿಳಾಸ',
+    officeVal: 'ಡಿವೈಎಫ್ಐ ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಮಿತಿ, ನಂ. 45, ಸಿಟಿ ರೈಲ್ವೆ ಸ್ಟೇಷನ್ ರಸ್ತೆ, ಗಾಂಧಿನಗರ, ಬೆಂಗಳೂರು - 560009.',
+    phoneLabel: 'ದೂರವಾಣಿ / ಮೊಬೈಲ್',
+    phoneVal: '+91 80 2287 4521 / +91 94481 23456',
+    emailLabel: 'ಇಮೇಲ್ ವಿಳಾಸ',
+    emailVal: 'dyfikarnataka@gmail.com',
+    formName: 'ನಿಮ್ಮ ಪೂರ್ಣ ಹೆಸರು',
+    formPhone: 'ಮೊಬೈಲ್ ಸಂಖ್ಯೆ',
+    formDistrict: 'ನಿಮ್ಮ ಜಿಲ್ಲೆ',
+    formMsg: 'ನಿಮ್ಮ ಸಂದೇಶ ಅಥವಾ ಪ್ರಶ್ನೆ',
+    formSubmit: 'ಸಂದೇಶ ಕಳುಹಿಸಿ 🚀',
+    
+    footerDesc: 'ಭಾರತ ಪ್ರಜಾಸತ್ತಾತ್ಮಕ ಯುವಜನ ಒಕ್ಕೂಟ (DYFI) — ಯುವಜನರ ಹಕ್ಕುಗಳು, ಶಿಕ್ಷಣ, ಉದ್ಯೋಗ ಮತ್ತು ಸಾಮಾಜಿಕ ನ್ಯಾಯಕ್ಕಾಗಿ ಹೋರಾಡುವ ಪ್ರಮುಖ ಸಂಘಟನೆ.',
+    footerQuick: 'ತ್ವರಿತ ಲಿಂಕ್‌ಗಳು',
+    footerDistricts: 'ಪ್ರಮುಖ ಜಿಲ್ಲೆಗಳು',
+    footerLegal: 'ರಾಜ್ಯ ಸಚಿವಾಲಯ',
+    footerTerms: 'ಗಾಂಧಿನಗರ, ಬೆಂಗಳೂರು - 560009',
+    footerPrivacy: 'ಸಹಾಯವಾಣಿ: +91 9448123456',
+    footerRights: '© 2026 — ಡಿವೈಎಫ್ಐ ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಮಿತಿ. ಸರ್ವ ಹಕ್ಕುಗಳೂ ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ.'
+  }
+};
+
+// Current language: defaults to 'en' as requested by the user
+let currentLang = localStorage.getItem('dyfi_lang') || 'en';
+
+document.addEventListener('DOMContentLoaded', () => {
+  initLanguageSwitcher();
+  initDistrictUnits();
+  initHeroCarousel();
+  initCounters();
+  initModals();
+  initGallery();
+  initContactForm();
+  initMobileDrawer();
+  initScrollEffects();
+});
+
+/* ========================================================
+   3. LANGUAGE SWITCHER LOGIC
+   ======================================================== */
+function initLanguageSwitcher() {
+  const langBtn = document.getElementById('langToggleBtn');
+  if (!langBtn) return;
+  
+  applyLanguage(currentLang);
+  
+  langBtn.addEventListener('click', () => {
+    currentLang = currentLang === 'en' ? 'kn' : 'en';
+    localStorage.setItem('dyfi_lang', currentLang);
+    applyLanguage(currentLang);
+    renderDistrictCards();
+    showToast(currentLang === 'kn' ? 'ಭಾಷೆಯನ್ನು ಕನ್ನಡಕ್ಕೆ ಬದಲಾಯಿಸಲಾಗಿದೆ' : 'Language switched to English');
+  });
+}
+
+function applyLanguage(lang) {
+  const data = i18nData[lang];
+  if (!data) return;
+  
+  // Update lang attribute on html
+  document.documentElement.lang = lang;
+  
+  const langBtn = document.getElementById('langToggleBtn');
+  if (langBtn) {
+    langBtn.innerHTML = `<span class="lang-icon">🌐</span> <span class="lang-text">${data.langBtn}</span>`;
+  }
+  
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (data[key]) {
+      el.innerHTML = data[key];
+    }
+  });
+
+  // Re-apply live customized admin content so admin changes always take priority
+  if (typeof renderDynamicDataStoreContent === 'function') {
+    renderDynamicDataStoreContent(lang);
+  }
+}
+
+/* ========================================================
+   4. DISTRICT UNITS EXPLORER & MODAL
+   ======================================================== */
+let currentDistrictFilter = 'all';
+
+function initDistrictUnits() {
+  renderDistrictCards();
+  
+  const filterBtns = document.querySelectorAll('.district-filter-btn');
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentDistrictFilter = btn.getAttribute('data-filter');
+      renderDistrictCards();
+    });
+  });
+  
+  // Modal Close
+  const closeBtn = document.getElementById('closeDistrictModal');
+  const modal = document.getElementById('districtDetailsModal');
+  if (closeBtn && modal) {
+    closeBtn.addEventListener('click', () => {
+      modal.classList.remove('active');
+    });
+  }
+}
+
+function renderDistrictCards() {
+  const container = document.getElementById('districtsGridContainer');
+  if (!container) return;
+  
+  const isKn = currentLang === 'kn';
+  const filtered = currentDistrictFilter === 'all' 
+    ? districtUnitsData 
+    : districtUnitsData.filter(d => d.zone === currentDistrictFilter);
+    
+  container.innerHTML = filtered.map(d => {
+    const dName = isKn ? d.name_kn : d.name_en;
+    const dZone = isKn ? d.zone_kn : d.zone_en;
+    const talukLabel = isKn ? `${d.taluks_count} ತಾಲ್ಲೂಕುಗಳು` : `${d.taluks_count} Taluks`;
+    const unitsLabel = isKn ? `${d.units_count} ಗ್ರಾಮ/ನಗರ ಘಟಕಗಳು` : `${d.units_count} Local Units`;
+    const btnText = isKn ? 'ಸಮಿತಿ ಮತ್ತು ತಾಲ್ಲೂಕುಗಳು ವೀಕ್ಷಿಸಿ ➔' : 'View Committee & Taluks ➔';
+    
+    // Preview top 2 leaders
+    const leadersHtml = d.leaders.slice(0, 2).map(l => `
+      <div class="preview-leader-item">
+        <img src="${l.image}" alt="${isKn ? l.name_kn : l.name_en}" class="preview-avatar">
+        <div class="preview-info">
+          <span class="preview-name">${isKn ? l.name_kn : l.name_en}</span>
+          <span class="preview-post">${isKn ? l.post_kn : l.post_en}</span>
+        </div>
+      </div>
+    `).join('');
+    
+    return `
+      <div class="district-card" data-id="${d.id}">
+        <div class="district-card-header">
+          <h3 class="district-name">${dName}</h3>
+          <span class="district-zone-badge">${dZone}</span>
+        </div>
+        
+        <div class="district-stats-row">
+          <span class="taluk-count-pill">🏛️ ${talukLabel}</span>
+          <span class="units-count-pill">🚩 ${unitsLabel}</span>
+        </div>
+        
+        <div class="district-leaders-preview">
+          ${leadersHtml}
+        </div>
+        
+        <button type="button" class="btn-open-district" onclick="openDistrictModal('${d.id}')">
+          ${btnText}
+        </button>
+      </div>
+    `;
+  }).join('');
+}
+
+window.openDistrictModal = function(districtId) {
+  const d = districtUnitsData.find(item => item.id === districtId);
+  if (!d) return;
+  
+  const modal = document.getElementById('districtDetailsModal');
+  if (!modal) return;
+  
+  const isKn = currentLang === 'kn';
+  const dName = isKn ? d.name_kn : d.name_en;
+  const dZone = isKn ? d.zone_kn : d.zone_en;
+  const taluksList = isKn ? d.taluks_kn : d.taluks_en;
+  const dOffice = isKn ? d.office_kn : d.office_en;
+  
+  // Set Modal Title
+  const modalTitle = document.getElementById('districtModalTitle');
+  if (modalTitle) {
+    modalTitle.innerHTML = `<span style="color: #dc2626;">🚩</span> ${dName} (${dZone})`;
+  }
+  
+  // Set Taluks list
+  const taluksWrap = document.getElementById('districtModalTaluks');
+  if (taluksWrap) {
+    taluksWrap.innerHTML = `
+      <div class="modal-section-title">
+        <span>🏛️</span> ${isKn ? `ಒಟ್ಟು ತಾಲ್ಲೂಕುಗಳು (${d.taluks_count}):` : `Total Taluks (${d.taluks_count}):`}
+      </div>
+      <div class="taluk-tags-container">
+        ${taluksList.map(t => `<span class="taluk-badge-item">${t}</span>`).join('')}
+      </div>
+    `;
+  }
+  
+  // Set Committee Members Grid
+  const membersWrap = document.getElementById('districtModalMembers');
+  if (membersWrap) {
+    membersWrap.innerHTML = `
+      <div class="modal-section-title">
+        <span>👥</span> ${isKn ? 'ಜಿಲ್ಲಾ ಪದಾಧಿಕಾರಿಗಳು & ಮುಖಂಡರು (Office Bearers):' : 'District Committee Office Bearers:'}
+      </div>
+      <div class="district-members-grid">
+        ${d.leaders.map(l => `
+          <div class="district-member-card">
+            <img src="${l.image}" alt="${isKn ? l.name_kn : l.name_en}" class="member-card-avatar">
+            <div class="member-card-details">
+              <span class="member-card-name">${isKn ? l.name_kn : l.name_en}</span>
+              <span class="member-card-role">${isKn ? l.post_kn : l.post_en}</span>
+              <span class="member-card-contact">📍 ${isKn ? l.area_kn : l.area_en} | 📞 ${l.phone}</span>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+  }
+  
+  // Office info
+  const officeWrap = document.getElementById('districtModalOffice');
+  if (officeWrap) {
+    officeWrap.innerHTML = `
+      <div style="background: #f1f5f9; padding: 1rem; border-radius: 8px; font-size: 0.88rem; border-left: 4px solid var(--primary);">
+        <strong>${isKn ? 'ಜಿಲ್ಲಾ ಕಚೇರಿ ವಿಳಾಸ:' : 'District Office:'}</strong> ${dOffice}<br>
+        <strong>${isKn ? 'ದೂರವಾಣಿ / ಸಹಾಯವಾಣಿ:' : 'Helpline:'}</strong> <a href="tel:${d.phone}" style="color: #dc2626; font-weight: 700;">${d.phone}</a>
+      </div>
+    `;
+  }
+  
+  modal.classList.add('active');
+};
+
+/* ========================================================
+   5. HERO CAROUSEL ENGINE
+   ======================================================== */
+function initHeroCarousel() {
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('.carousel-dots .dot');
+  const prevBtn = document.getElementById('carouselPrev');
+  const nextBtn = document.getElementById('carouselNext');
+  
+  if (slides.length === 0) return;
+  
+  let currentIndex = 0;
+  let timer = null;
+  
+  function goToSlide(index) {
+    slides[currentIndex].classList.remove('active');
+    dots[currentIndex]?.classList.remove('active');
+    
+    currentIndex = (index + slides.length) % slides.length;
+    
+    slides[currentIndex].classList.add('active');
+    dots[currentIndex]?.classList.add('active');
+  }
+  
+  function startAutoplay() {
+    stopAutoplay();
+    timer = setInterval(() => {
+      goToSlide(currentIndex + 1);
+    }, 6000);
+  }
+  
+  function stopAutoplay() {
+    if (timer) clearInterval(timer);
+  }
+  
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      goToSlide(currentIndex + 1);
+      startAutoplay();
+    });
+  }
+  
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      goToSlide(currentIndex - 1);
+      startAutoplay();
+    });
+  }
+  
+  dots.forEach((dot, idx) => {
+    dot.addEventListener('click', () => {
+      goToSlide(idx);
+      startAutoplay();
+    });
+  });
+  
+  const heroSection = document.querySelector('.hero-section');
+  if (heroSection) {
+    heroSection.addEventListener('mouseenter', stopAutoplay);
+    heroSection.addEventListener('mouseleave', startAutoplay);
+  }
+  
+  startAutoplay();
+}
+
+/* ========================================================
+   6. ANIMATED STATISTICS COUNTER
+   ======================================================== */
+function initCounters() {
+  const stats = document.querySelectorAll('.stat-number');
+  if (stats.length === 0) return;
+  
+  let animated = false;
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !animated) {
+        animated = true;
+        stats.forEach(counter => {
+          const target = parseInt(counter.getAttribute('data-target'), 10) || 0;
+          const suffix = counter.getAttribute('data-suffix') || '';
+          let current = 0;
+          const step = Math.max(1, Math.floor(target / 60));
+          
+          const interval = setInterval(() => {
+            current += step;
+            if (current >= target) {
+              current = target;
+              clearInterval(interval);
+            }
+            counter.innerText = current.toLocaleString('en-IN') + suffix;
+          }, 25);
+        });
+      }
+    });
+  }, { threshold: 0.3 });
+  
+  const statsSection = document.querySelector('.stats-section');
+  if (statsSection) observer.observe(statsSection);
+}
+
+/* ========================================================
+   7. MODALS & BLOOD DONOR REGISTRATION
+   ======================================================== */
+function initModals() {
+  const bloodRegBtn = document.getElementById('openBloodModalBtn');
+  const bloodModal = document.getElementById('bloodModal');
+  const closeBloodModal = document.getElementById('closeBloodModal');
+  const bloodForm = document.getElementById('bloodDonorForm');
+  
+  if (bloodRegBtn && bloodModal) {
+    bloodRegBtn.addEventListener('click', () => {
+      bloodModal.classList.add('active');
+    });
+  }
+  
+  if (closeBloodModal && bloodModal) {
+    closeBloodModal.addEventListener('click', () => {
+      bloodModal.classList.remove('active');
+    });
+  }
+  
+  if (bloodForm) {
+    bloodForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('donorName').value;
+      const phone = document.getElementById('donorPhone').value;
+      const bloodGroup = document.getElementById('donorGroup').value;
+      const district = document.getElementById('donorDistrict').value;
+      
+      const donor = { name, phone, bloodGroup, district, date: new Date().toISOString() };
+      const donors = JSON.parse(localStorage.getItem('dyfi_donors') || '[]');
+      donors.push(donor);
+      localStorage.setItem('dyfi_donors', JSON.stringify(donors));
+      
+      const isKn = currentLang === 'kn';
+      const modalBody = bloodModal.querySelector('.modal-body');
+      modalBody.innerHTML = `
+        <div class="success-checkmark-box">
+          <div class="checkmark-circle">✓</div>
+          <h3 style="font-size: 1.4rem; color: #15803d; margin-bottom: 0.6rem;">
+            ${isKn ? 'ಧನ್ಯವಾದಗಳು! ನೋಂದಣಿ ಯಶಸ್ವಿಯಾಗಿದೆ' : 'Thank You! Registration Successful'}
+          </h3>
+          <p style="color: #64748b; font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6;">
+            ${isKn 
+              ? 'ನಿಮ್ಮ ವಿವರಗಳನ್ನು ಡಿವೈಎಫ್ಐ ಕರ್ನಾಟಕ ರಕ್ತದಾನಿ ಡೈರೆಕ್ಟರಿಗೆ ಸೇರಿಸಲಾಗಿದೆ. ತುರ್ತು ಸಂದರ್ಭದಲ್ಲಿ ಸಂಪರ್ಕಿಸಲಾಗುವುದು.' 
+              : 'Your details have been successfully registered to the DYFI Karnataka Volunteer Blood Directory.'}
+          </p>
+          <div style="background: #fef2f2; border: 1px dashed #ef4444; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem;">
+            <p style="color: #991b1b; font-weight: 700; font-size: 0.85rem; margin-bottom: 0.2rem;">
+              ${isKn ? 'ತುರ್ತು ರಕ್ತದ ನೆರವಿಗೆ ಸಂಪರ್ಕಿಸಿ:' : 'FOR IMMEDIATE BLOOD EMERGENCY:'}
+            </p>
+            <p style="color: #dc2626; font-size: 1.2rem; font-weight: 800;">+91 9448123456</p>
+          </div>
+          <button type="button" class="btn-primary" style="width: 100%; justify-content: center;" onclick="document.getElementById('bloodModal').classList.remove('active')">
+            ${isKn ? 'ಮುಚ್ಚಿ' : 'Close'}
+          </button>
+        </div>
+      `;
+    });
+  }
+  
+  // Close modals clicking outside
+  document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        overlay.classList.remove('active');
+      }
+    });
+  });
+}
+
+/* ========================================================
+   8. PHOTO GALLERY FILTER & LIGHTBOX
+   ======================================================== */
+function initGallery() {
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const items = document.querySelectorAll('.gallery-item');
+  const lightbox = document.getElementById('lightboxModal');
+  const lightboxImg = document.getElementById('lightboxImage');
+  const lightboxClose = document.getElementById('lightboxClose');
+  
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const cat = btn.getAttribute('data-filter');
+      
+      items.forEach(item => {
+        if (cat === 'all' || item.getAttribute('data-cat') === cat) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+  
+  items.forEach(item => {
+    item.addEventListener('click', () => {
+      const img = item.querySelector('img');
+      if (img && lightbox && lightboxImg) {
+        lightboxImg.src = img.src;
+        lightbox.classList.add('active');
+      }
+    });
+  });
+  
+  if (lightboxClose && lightbox) {
+    lightboxClose.addEventListener('click', () => {
+      lightbox.classList.remove('active');
+    });
+  }
+  
+  if (lightbox) {
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.remove('active');
+      }
+    });
+  }
+}
+
+/* ========================================================
+   9. CONTACT FORM
+   ======================================================== */
+function initContactForm() {
+  const form = document.getElementById('mainContactForm');
+  if (!form) return;
+  
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('.btn-submit-form');
+    const originalText = btn.innerHTML;
+    
+    btn.innerHTML = `<span>⏳ ${currentLang === 'kn' ? 'ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ...' : 'Sending...'}</span>`;
+    btn.disabled = true;
+    
+    setTimeout(() => {
+      btn.innerHTML = originalText;
+      btn.disabled = false;
+      form.reset();
+      showToast(currentLang === 'kn' ? 'ನಿಮ್ಮ ಸಂದೇಶವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಕಳುಹಿಸಲಾಗಿದೆ!' : 'Your message has been sent successfully!');
+    }, 900);
+  });
+}
+
+/* ========================================================
+   10. MOBILE DRAWER NAVIGATION
+   ======================================================== */
+function initMobileDrawer() {
+  const toggleBtn = document.getElementById('mobileToggleBtn');
+  const drawer = document.getElementById('mobileDrawer');
+  const overlay = document.getElementById('mobileDrawerOverlay');
+  const closeBtn = document.getElementById('closeMobileDrawer');
+  
+  function openDrawer() {
+    drawer?.classList.add('active');
+    overlay?.classList.add('active');
+  }
+  
+  function closeDrawer() {
+    drawer?.classList.remove('active');
+    overlay?.classList.remove('active');
+  }
+  
+  if (toggleBtn) toggleBtn.addEventListener('click', openDrawer);
+  if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+  if (overlay) overlay.addEventListener('click', closeDrawer);
+  
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', closeDrawer);
+  });
+}
+
+/* ========================================================
+   11. SCROLL EFFECTS & NAVBAR
+   ======================================================== */
+function initScrollEffects() {
+  const header = document.querySelector('.site-header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 40) {
+      header?.classList.add('scrolled');
+    } else {
+      header?.classList.remove('scrolled');
+    }
+  });
+}
+
+/* ========================================================
+   12. TOAST NOTIFICATIONS
+   ======================================================== */
+function showToast(message) {
+  let toast = document.getElementById('toastNotice');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'toastNotice';
+    toast.className = 'toast-notice';
+    document.body.appendChild(toast);
+  }
+  
+  toast.innerHTML = `<span>✨ ${message}</span>`;
+  toast.classList.add('show');
+  
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 3500);
+}
+
+  
+  // ========================================================
+  // DYNAMIC DATASTORE SYNC & RENDERING (Full Admin Management)
+  // ========================================================
+
+  function renderDynamicDataStoreContent(optionalLang) {
+    if (typeof DyfiDataStore === 'undefined') return;
+
+    const currentLang = optionalLang || localStorage.getItem('dyfi_lang') || 'kn';
+    const isKn = currentLang === 'kn';
+
+    // 1. Ticker headlines
+    try {
+      const tickerData = DyfiDataStore.get(DYFI_DATA_KEYS.TICKER) || [];
+      const tickerTextEl = document.querySelector('.ticker-text');
+      if (tickerTextEl && tickerData.length > 0) {
+        const activeItems = tickerData.filter(t => t.active !== false);
+        const itemToUse = activeItems[0] || tickerData[0];
+        if (itemToUse) {
+          tickerTextEl.innerText = isKn ? itemToUse.text_kn : itemToUse.text_en;
+        }
+      }
+    } catch (e) {
+      console.warn('Ticker sync error:', e);
+    }
+
+    // 2. Site Content & Hero
+    try {
+      const sc = DyfiDataStore.get(DYFI_DATA_KEYS.SITE_CONTENT);
+      if (sc) {
+        const heroTitleEl = document.querySelector('.hero-title');
+        if (heroTitleEl) {
+          heroTitleEl.innerHTML = isKn ? sc.heroTitle_kn : sc.heroTitle_en;
+        }
+
+        const heroSubEl = document.querySelector('.hero-description');
+        if (heroSubEl) {
+          heroSubEl.innerText = isKn ? sc.heroSub_kn : sc.heroSub_en;
+        }
+
+        const quoteMainEl = document.querySelector('.quote-main-text');
+        if (quoteMainEl) {
+          quoteMainEl.innerText = isKn ? sc.quoteText_kn : sc.quoteText_en;
+        }
+
+        const quoteAuthorEl = document.querySelector('.quote-author-name');
+        if (quoteAuthorEl && sc.quoteAuthor) {
+          quoteAuthorEl.innerText = sc.quoteAuthor;
+        }
+
+        const officeValEl = document.querySelector('[data-i18n="officeVal"]');
+        if (officeValEl) {
+          officeValEl.innerText = isKn ? sc.officeAddress_kn : sc.officeAddress_en;
+        }
+
+        const phoneValEl = document.querySelector('[data-i18n="phoneVal"]');
+        if (phoneValEl) {
+          phoneValEl.innerText = `${sc.phone1} / ${sc.phone2}`;
+        }
+
+        const emailValEl = document.querySelector('[data-i18n="emailVal"]');
+        if (emailValEl) {
+          emailValEl.innerText = sc.email;
+        }
+
+        // Update footer contact values too
+        const footerContactBox = document.querySelector('.footer-col:last-child');
+        if (footerContactBox) {
+          const items = footerContactBox.querySelectorAll('.footer-contact-item span:last-child');
+          if (items.length >= 3) {
+            items[0].innerText = isKn ? sc.officeAddress_kn : sc.officeAddress_en;
+            items[1].innerText = `${sc.phone1} / ${sc.phone2}`;
+            items[2].innerText = ` ${sc.email}`;
+          }
+        }
+      }
+    } catch (e) {
+      console.warn('Site content sync error:', e);
+    }
+
+    // 3. Render Campaigns (Admin Dynamic)
+    try {
+      const campaignsGrid = document.querySelector('.campaigns-grid');
+      if (campaignsGrid) {
+        const campaigns = DyfiDataStore.get(DYFI_DATA_KEYS.CAMPAIGNS) || [];
+        if (campaigns.length > 0) {
+          campaignsGrid.innerHTML = campaigns.map((c, idx) => `
+            <article class="campaign-card">
+              <div class="card-img-wrap">
+                <img src="${c.image || (idx === 0 ? 'images/hero-banner-1.jpg' : idx === 1 ? 'images/hero-banner-2.jpg' : 'images/hero-banner-3.jpg')}" alt="${c.title_en}" loading="lazy">
+                <div class="card-badges">
+                  <span class="badge-date">${c.date || '2026-10-15'}</span>
+                  <span class="badge-status">${c.status || 'Active'}</span>
+                </div>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">${isKn ? c.title_kn : c.title_en}</h3>
+                <p class="card-desc">${isKn ? c.desc_kn : c.desc_en}</p>
+                <a href="#contact" class="card-link">${isKn ? 'ಭಾಗವಹಿಸಿ →' : 'View Campaign →'}</a>
+              </div>
+            </article>
+          `).join('');
+        }
+      }
+    } catch (e) {
+      console.warn('Campaigns sync error:', e);
+    }
+
+    // 4. Render News & Updates (Admin Dynamic)
+    try {
+      const newsGrid = document.querySelector('.news-grid');
+      if (newsGrid) {
+        const newsList = DyfiDataStore.get(DYFI_DATA_KEYS.NEWS) || [];
+        if (newsList.length > 0) {
+          newsGrid.innerHTML = newsList.map((n, idx) => `
+            <article class="news-card">
+              <div class="news-img-wrap">
+                <img src="${n.image || (idx === 0 ? 'images/hero-banner-1.jpg' : idx === 1 ? 'images/hero-banner-2.jpg' : 'images/hero-banner-3.jpg')}" alt="${n.title_en}" loading="lazy">
+              </div>
+              <div class="news-body">
+                <div class="news-meta">
+                  <span>📅 ${n.date || '2026-10-15'}</span>
+                  <span>🏷️ ${n.category || 'News'}</span>
+                </div>
+                <h3 class="news-title">${isKn ? n.title_kn : n.title_en}</h3>
+                <p class="news-excerpt">${isKn ? n.desc_kn : n.desc_en}</p>
+                <a href="#contact" class="btn-read-article">${isKn ? 'ಪೂರ್ಣ ವಿವರ ಓದಿ →' : 'Read Article →'}</a>
+              </div>
+            </article>
+          `).join('');
+        }
+      }
+    } catch (e) {
+      console.warn('News sync error:', e);
+    }
+
+    // 5. Render Statements (Admin Dynamic)
+    try {
+      const stContainer = document.getElementById('statementsContainer');
+      if (stContainer) {
+        const statements = DyfiDataStore.get(DYFI_DATA_KEYS.STATEMENTS) || [];
+        if (statements.length > 0) {
+          stContainer.innerHTML = statements.map(st => `
+            <article class="statement-card">
+              <div class="statement-meta-row">
+                <span class="statement-badge">${st.category}</span>
+                <span class="statement-date">${st.date}</span>
+              </div>
+              <div class="statement-ref">${st.refNo || 'DYFI-KAR-ST'}</div>
+              <h3 class="statement-title">${isKn ? st.title_kn : st.title_en}</h3>
+              <a href="${st.fileUrl || '#'}" class="statement-download-btn" onclick="alert('${isKn ? 'ಅಧಿಕೃತ ಹೇಳಿಕೆ PDF ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ...' : 'Downloading Official Statement PDF...'}')">
+                <span>${isKn ? 'ಹೇಳಿಕೆ PDF ಡೌನ್‌ಲೋಡ್' : 'Download Statement PDF'}</span> ➔
+              </a>
+            </article>
+          `).join('');
+        }
+      }
+    } catch (e) {
+      console.warn('Statements sync error:', e);
+    }
+
+    // 6. Render Martyrs (Admin Dynamic)
+    try {
+      const martyrsContainer = document.getElementById('martyrsContainer');
+      if (martyrsContainer) {
+        const martyrs = DyfiDataStore.get(DYFI_DATA_KEYS.MARTYRS) || [];
+        if (martyrs.length > 0) {
+          martyrsContainer.innerHTML = martyrs.map(m => `
+            <div class="martyr-card">
+              <div class="martyr-avatar-wrap">
+                <img src="${m.photo || 'images/shivappa.jpg'}" alt="${m.name_en}" loading="lazy">
+              </div>
+              <h3 class="martyr-name">${isKn ? m.name_kn : m.name_en}</h3>
+              <span class="martyr-badge-date">${m.date}</span>
+              <div class="martyr-district">🚩 ${m.district}</div>
+              <p class="martyr-tribute">"${isKn ? m.tribute_kn : m.tribute_en}"</p>
+            </div>
+          `).join('');
+        }
+      }
+    } catch (e) {
+      console.warn('Martyrs sync error:', e);
+    }
+
+    // 7. Render Leaders (Admin Dynamic)
+    try {
+      const leaderGrid = document.querySelector('.leadership-grid');
+      if (leaderGrid) {
+        const leaders = DyfiDataStore.get(DYFI_DATA_KEYS.LEADERS) || [];
+        if (leaders.length > 0) {
+          leaderGrid.innerHTML = leaders.map(l => `
+            <div class="leader-card">
+              <div class="leader-avatar-wrap">
+                <img src="${l.photo || 'images/santosh_bajal.jpg'}" alt="${l.name_en}" loading="lazy">
+              </div>
+              <h3 class="leader-name">${isKn ? l.name_kn : l.name_en}</h3>
+              <div class="leader-role">${isKn ? l.role_kn : l.role_en}</div>
+              <div class="leader-region">${l.region || 'Karnataka State Committee'}</div>
+            </div>
+          `).join('');
+        }
+      }
+    } catch (e) {
+      console.warn('Leaders sync error:', e);
+    }
+
+    // 8. Render Gallery (Admin Dynamic)
+    try {
+      const galleryGrid = document.querySelector('.gallery-grid');
+      if (galleryGrid) {
+        const galleryItems = DyfiDataStore.get(DYFI_DATA_KEYS.GALLERY) || [];
+        if (galleryItems.length > 0) {
+          galleryGrid.innerHTML = galleryItems.map(g => `
+            <div class="gallery-item" data-category="${g.category || 'protests'}">
+              <img src="${g.src || 'images/hero-banner-1.jpg'}" alt="${g.caption_en || 'DYFI Karnataka'}" loading="lazy">
+              <div class="gallery-overlay">
+                <p class="gallery-caption">${isKn ? (g.caption_kn || g.caption_en) : (g.caption_en || g.caption_kn)}</p>
+              </div>
+            </div>
+          `).join('');
+        }
+      }
+    } catch (e) {
+      console.warn('Gallery sync error:', e);
+    }
+  }
+
+  // Cross-tab real-time storage event listener
+  window.addEventListener('storage', (e) => {
+    if (e.key && e.key.startsWith('dyfi_kar_')) {
+      renderDynamicDataStoreContent();
+    }
+  });
+
+  // Local event listener when updated within same tab
+  window.addEventListener('dyfi_data_updated', () => renderDynamicDataStoreContent());
+
+  // Discrete administrator shortcut: Ctrl + Shift + A to open Admin Suite
+  // Secret double click on footer copyright to open admin
+  const footerRightsEl = document.querySelector('[data-i18n="footerRights"]');
+  if (footerRightsEl) {
+    footerRightsEl.style.cursor = 'default';
+    footerRightsEl.addEventListener('dblclick', () => {
+      window.open('admin.html', '_blank');
+    });
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+      e.preventDefault();
+      window.open('admin.html', '_blank');
+    }
+  });
+
+
+  // 6. Emergency Blood Donor Search
+  function initBloodDonorSearch() {
+    const btnFind = document.getElementById('btnFindDonors');
+    const resList = document.getElementById('bloodResultsList');
+    if (!btnFind || !resList) return;
+
+    function doSearch() {
+      const grp = document.getElementById('quickSearchGroup').value;
+      const dist = document.getElementById('quickSearchDistrict').value;
+      const donors = (typeof DyfiDataStore !== 'undefined') ? DyfiDataStore.get(DYFI_DATA_KEYS.BLOOD_DONORS) || [] : [];
+
+      const filtered = donors.filter(d => {
+        const mG = !grp || d.group === grp;
+        const mD = !dist || d.district === dist;
+        return mG && mD;
+      });
+
+      if (filtered.length === 0) {
+        resList.innerHTML = '<div style="grid-column: 1/-1; padding:1rem; text-align:center; color:#94a3b8; font-weight:600;">ಯಾವುದೇ ದಾನಿಗಳು ಕಂಡುಬಂದಿಲ್ಲ. ತುರ್ತು ಸಹಾಯವಾಣಿಗೆ ಕರೆ ಮಾಡಿ: +91 9448123456</div>';
+      } else {
+        resList.innerHTML = filtered.map(d => `
+          <div class="donor-result-card">
+            <div>
+              <strong style="color:#0f172a; font-size:0.95rem;">${d.name}</strong><br>
+              <small style="color:#64748b;">${d.district} • ${d.date || 'Active'}</small>
+            </div>
+            <div style="display:flex; align-items:center; gap:0.6rem;">
+              <span class="donor-badge-group">${d.group}</span>
+              <a href="tel:${d.phone}" class="btn-primary" style="padding:0.4rem 0.8rem; font-size:0.8rem; text-decoration:none;">📞 ಕರೆ</a>
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+
+    btnFind.addEventListener('click', (e) => {
+      e.preventDefault();
+      doSearch();
+    });
+
+    // Initial search show
+    doSearch();
+  }
+
+  // 7. Join The Revolution Modal & Form
+  function initJoinModal() {
+    const modal = document.getElementById('joinModal');
+    const closeBtn = document.getElementById('closeJoinModal');
+    const openItem = document.getElementById('navJoinRevItem');
+    const quoteBtn = document.querySelector('[data-i18n="btnMovement"]');
+    const heroJoinBtn = document.querySelector('.hero-actions .btn-primary');
+
+    function openJoin() {
+      if (modal) modal.classList.add('active');
+    }
+    function closeJoin() {
+      if (modal) modal.classList.remove('active');
+    }
+
+    if (openItem) openItem.addEventListener('click', (e) => { e.preventDefault(); openJoin(); });
+    if (quoteBtn) quoteBtn.addEventListener('click', (e) => { e.preventDefault(); openJoin(); });
+    if (heroJoinBtn) heroJoinBtn.addEventListener('click', (e) => { e.preventDefault(); openJoin(); });
+    if (closeBtn) closeBtn.addEventListener('click', closeJoin);
+    if (modal) {
+      modal.addEventListener('click', (e) => { if (e.target === modal) closeJoin(); });
+    }
+
+    const form = document.getElementById('joinRevolutionForm');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('joinName').value.trim();
+        const phone = document.getElementById('joinPhone').value.trim();
+        const dist = document.getElementById('joinDistrict').value;
+        const interest = document.getElementById('joinInterest').value;
+
+        // Auto save to DyfiDataStore messages/volunteers
+        if (typeof DyfiDataStore !== 'undefined') {
+          const msgs = DyfiDataStore.get(DYFI_DATA_KEYS.MESSAGES) || [];
+          msgs.unshift({
+            id: 'vol_' + Date.now(),
+            name,
+            phone,
+            district: dist,
+            message: `[NEW MEMBERSHIP] Area of Interest: ${interest}`,
+            date: new Date().toISOString().split('T')[0],
+            status: 'Unread'
+          });
+          DyfiDataStore.set(DYFI_DATA_KEYS.MESSAGES, msgs);
+        }
+
+        alert('ಕ್ರಾಂತಿಕಾರಿ ಧನ್ಯವಾದಗಳು ಒಡನಾಡಿ! ನಿಮ್ಮ ಸದಸ್ಯತ್ವ ನೋಂದಣಿ ಯಶಸ್ವಿಯಾಗಿದೆ. ಸ್ಥಳೀಯ ಘಟಕದಿಂದ ಶೀಘ್ರದಲ್ಲೇ ಸಂಪರ್ಕಿಸಲಾಗುವುದು.');
+        form.reset();
+        closeJoin();
+      });
+    }
+  }
+
+  // 8. Video Player Modal
+  function initVideoPlayer() {
+    const playBtn = document.getElementById('btnPlayMainVideo');
+    if (playBtn) {
+      playBtn.addEventListener('click', () => {
+        const lightbox = document.getElementById('lightboxModal');
+        const imgWrap = lightbox ? lightbox.querySelector('.lightbox-img-wrap') : null;
+        if (lightbox && imgWrap) {
+          imgWrap.innerHTML = `<iframe width="100%" height="450" src="https://www.youtube.com/embed/fA71Q8b6528?autoplay=1" title="DYFI Convention" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border-radius:12px; border:none;"></iframe>`;
+          lightbox.classList.add('active');
+        }
+      });
+    }
+  }
+
+  // Hook into Blood Donor form submission to persist in DyfiDataStore
+  const originalDonorForm = document.getElementById('bloodDonorForm');
+  if (originalDonorForm) {
+    originalDonorForm.addEventListener('submit', (e) => {
+      const name = document.getElementById('donorName').value.trim();
+      const phone = document.getElementById('donorPhone').value.trim();
+      const group = document.getElementById('donorGroup').value;
+      const district = document.getElementById('donorDistrict').value;
+
+      if (typeof DyfiDataStore !== 'undefined') {
+        const list = DyfiDataStore.get(DYFI_DATA_KEYS.BLOOD_DONORS) || [];
+        list.unshift({
+          id: 'bd_' + Date.now(),
+          name,
+          phone,
+          group,
+          district,
+          date: new Date().toISOString().split('T')[0]
+        });
+        DyfiDataStore.set(DYFI_DATA_KEYS.BLOOD_DONORS, list);
+      }
+    });
+  }
+
+  // Hook into Contact Form submission to persist in DyfiDataStore
+  const mainContactForm = document.getElementById('mainContactForm');
+  if (mainContactForm) {
+    mainContactForm.addEventListener('submit', (e) => {
+      const name = mainContactForm.querySelector('input[type="text"]').value.trim();
+      const phone = mainContactForm.querySelector('input[type="tel"]').value.trim();
+      const district = mainContactForm.querySelector('select').value;
+      const message = mainContactForm.querySelector('textarea').value.trim();
+
+      if (typeof DyfiDataStore !== 'undefined') {
+        const msgs = DyfiDataStore.get(DYFI_DATA_KEYS.MESSAGES) || [];
+        msgs.unshift({
+          id: 'msg_' + Date.now(),
+          name,
+          phone,
+          district,
+          message,
+          date: new Date().toISOString().split('T')[0],
+          status: 'Unread'
+        });
+        DyfiDataStore.set(DYFI_DATA_KEYS.MESSAGES, msgs);
+      }
+    });
+  }
+
+  // Initial call on load
+  setTimeout(() => {
+    renderDynamicDataStoreContent();
+    initBloodDonorSearch();
+    initJoinModal();
+    initVideoPlayer();
+  }, 50);
