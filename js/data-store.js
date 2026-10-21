@@ -22,7 +22,7 @@ const DEFAULT_DYFI_DATA = {
     heroTitle_en: 'United Youth, <span class="highlight-red">Secular Karnataka</span> — Building a Better Tomorrow',
     heroTitle_kn: 'ಒಗ್ಗಟ್ಟಾದ ಯುವಜನತೆ, <span class="highlight-red">ಜಾತ್ಯತೀತ ಕರ್ನಾಟಕ</span> — ಉಜ್ವಲ ಭವಿಷ್ಯದೆಡೆಗೆ',
     heroSub_en: 'Democratic Youth Federation of India (DYFI) Karnataka State Committee — Mobilizing progressive youth across all 31 districts of Karnataka against unemployment, inequality, and hatred.',
-    heroSub_kn: 'ಭಾರತ ಪ್ರಜಾಸತ್ತಾತ್ಮಕ ಯುವಜನ ಒಕ್ಕೂಟ (ಡಿವೈಎಫ್ಐ) ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಮಿತಿ — ನಿರುದ್ಯೋಗ, ಅಸಮಾನತೆ ಹಾಗೂ ಕೋಮುವಾದದ ವಿರುದ್ಧ ರಾಜ್ಯದ 31 ಜಿಲ್ಲೆಗಳಲ್ಲಿ ಸಾಗುತ್ತಿರುವ ಯುವಜನರ ಹೋರಾಟದ ದನಿ.',
+    heroSub_kn: 'ಭಾರತ ಪ್ರಜಾಸತ್ತಾತ್ಮಕ ಯುವಜನ ಫೆಡರೇಶನ್ (DYFI) ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಮಿತಿ — ನಿರುದ್ಯೋಗ, ಅಸಮಾನತೆ ಹಾಗೂ ಕೋಮುವಾದದ ವಿರುದ್ಧ ರಾಜ್ಯದ 31 ಜಿಲ್ಲೆಗಳಲ್ಲಿ ಸಾಗುತ್ತಿರುವ ಯುವಜನರ ಹೋರಾಟದ ಧ್ವನಿ.',
     quoteText_en: 'The revolution is not an apple that falls when it is ripe. You have to make it fall.',
     quoteText_kn: 'ಕ್ರಾಂತಿಯು ಮಾಗಿದಾಗ ಉದುರುವ ಸೇಬಲ್ಲ, ಅದನ್ನು ನೀವೇ ಉದುರಿಸಬೇಕು.',
     quoteAuthor: 'Comrade Che Guevara',
@@ -279,6 +279,23 @@ class DyfiDataStore {
         }
       }
     });
+
+    // Auto-normalize site content to ensure Kannada corrections take effect immediately
+    const sc = this.get(DYFI_DATA_KEYS.SITE_CONTENT);
+    if (sc && sc.heroSub_kn) {
+      let updated = false;
+      if (sc.heroSub_kn.includes('ದನಿ')) {
+        sc.heroSub_kn = sc.heroSub_kn.replace(/ದನಿ/g, 'ಧ್ವನಿ');
+        updated = true;
+      }
+      if (sc.heroSub_kn.includes('ಒಕ್ಕೂಟ')) {
+        sc.heroSub_kn = sc.heroSub_kn.replace(/ಒಕ್ಕೂಟ/g, 'ಫೆಡರೇಶನ್');
+        updated = true;
+      }
+      if (updated) {
+        this.set(DYFI_DATA_KEYS.SITE_CONTENT, sc);
+      }
+    }
   }
 
   static resetToDefaults() {

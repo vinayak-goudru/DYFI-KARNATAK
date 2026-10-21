@@ -545,9 +545,9 @@ const i18nData = {
     tickerText: 'ರಾಜ್ಯವ್ಯಾಪಿ ನಿರುದ್ಯೋಗ ವಿರುದ್ಧ ಬೃಹತ್ ಯುವ ಜಾಗೃತಿ ಸಮಾವೇಶ — ಎಲ್ಲಾ ಜಿಲ್ಲಾ ಘಟಕಗಳು ಸಿದ್ಧತೆ ಕೈಗೊಳ್ಳಲು ಕರೆ.',
     tickerHelp: 'ತುರ್ತು ರಕ್ತದಾನ ಸಹಾಯವಾಣಿ:',
     
-    heroTag: '★ ಭಾರತ ಪ್ರಜಾಸತ್ತಾತ್ಮಕ ಯುವಜನ ಒಕ್ಕೂಟ — ಕರ್ನಾಟಕ',
+    heroTag: '★ ಭಾರತ ಪ್ರಜಾಸತ್ತಾತ್ಮಕ ಯುವಜನ ಫೆಡರೇಶನ್ — ಕರ್ನಾಟಕ',
     heroTitle: 'ಒಗ್ಗಟ್ಟಾದ ಯುವಜನತೆ, <span class="highlight-red">ಜಾತ್ಯತೀತ ಕರ್ನಾಟಕ</span> — ಉಜ್ವಲ ಭವಿಷ್ಯದೆಡೆಗೆ',
-    heroDesc: 'DYFI ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಮಿತಿಯು ಯುವಜನರ ಉದ್ಯೋಗ, ಶಿಕ್ಷಣ, ಜಾತ್ಯತೀತ ಮೌಲ್ಯಗಳು ಹಾಗೂ ಸಾಮಾಜಿಕ ನ್ಯಾಯಕ್ಕಾಗಿ ನಿರಂತರ ಹೋರಾಟ ಮುನ್ನಡೆಸುತ್ತಿರುವ ಪ್ರಗತಿಪರ ಯುವ ಸಂಘಟನೆ.',
+    heroDesc: 'ಭಾರತ ಪ್ರಜಾಸತ್ತಾತ್ಮಕ ಯುವಜನ ಫೆಡರೇಶನ್ (DYFI) ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಮಿತಿ — ನಿರುದ್ಯೋಗ, ಅಸಮಾನತೆ ಹಾಗೂ ಕೋಮುವಾದದ ವಿರುದ್ಧ ರಾಜ್ಯದ 31 ಜಿಲ್ಲೆಗಳಲ್ಲಿ ಸಾಗುತ್ತಿರುವ ಯುವಜನರ ಹೋರಾಟದ ಧ್ವನಿ.',
     heroBtnJoin: 'ಹೋರಾಟದಲ್ಲಿ ಕೈಜೋಡಿಸಿ »',
     heroBtnMission: 'ನಮ್ಮ ಧ್ಯೇಯೋದ್ದೇಶಗಳು',
     
@@ -653,7 +653,7 @@ const i18nData = {
     formMsg: 'ನಿಮ್ಮ ಸಂದೇಶ ಅಥವಾ ಪ್ರಶ್ನೆ',
     formSubmit: 'ಸಂದೇಶ ಕಳುಹಿಸಿ 🚀',
     
-    footerDesc: 'ಭಾರತ ಪ್ರಜಾಸತ್ತಾತ್ಮಕ ಯುವಜನ ಒಕ್ಕೂಟ (DYFI) — ಯುವಜನರ ಹಕ್ಕುಗಳು, ಶಿಕ್ಷಣ, ಉದ್ಯೋಗ ಮತ್ತು ಸಾಮಾಜಿಕ ನ್ಯಾಯಕ್ಕಾಗಿ ಹೋರಾಡುವ ಪ್ರಮುಖ ಸಂಘಟನೆ.',
+    footerDesc: 'ಭಾರತ ಪ್ರಜಾಸತ್ತಾತ್ಮಕ ಯುವಜನ ಫೆಡರೇಶನ್ (DYFI) — ಯುವಜನರ ಹಕ್ಕುಗಳು, ಶಿಕ್ಷಣ, ಉದ್ಯೋಗ ಮತ್ತು ಸಾಮಾಜಿಕ ನ್ಯಾಯಕ್ಕಾಗಿ ಹೋರಾಡುವ ಪ್ರಮುಖ ಸಂಘಟನೆ.',
     footerQuick: 'ತ್ವರಿತ ಲಿಂಕ್‌ಗಳು',
     footerDistricts: 'ಪ್ರಮುಖ ಜಿಲ್ಲೆಗಳು',
     footerLegal: 'ರಾಜ್ಯ ಸಚಿವಾಲಯ',
@@ -663,10 +663,12 @@ const i18nData = {
   }
 };
 
-// Current language: defaults to 'en' as requested by the user
-let currentLang = localStorage.getItem('dyfi_lang') || 'en';
+// Current language and theme preferences
+let currentLang = localStorage.getItem('dyfi_lang') || 'kn';
+let currentTheme = localStorage.getItem('dyfi_theme') || 'dark';
 
 document.addEventListener('DOMContentLoaded', () => {
+  initThemeSwitcher();
   initLanguageSwitcher();
   initDistrictUnits();
   initHeroCarousel();
@@ -677,6 +679,66 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileDrawer();
   initScrollEffects();
 });
+
+/* ========================================================
+   2.5 THEME SWITCHER (DARK / LIGHT MODE)
+   ======================================================== */
+function initThemeSwitcher() {
+  applyTheme(currentTheme);
+
+  const desktopBtn = document.getElementById('themeToggleBtn');
+  const mobileBtn = document.getElementById('mobileThemeToggleBtn');
+
+  const toggleHandler = () => {
+    currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('dyfi_theme', currentTheme);
+    applyTheme(currentTheme);
+    const msg = currentTheme === 'light'
+      ? (currentLang === 'kn' ? 'ಬೆಳಕಿನ ಥೀಮ್ (Light Mode) ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ' : 'Switched to Light Mode')
+      : (currentLang === 'kn' ? 'ಡಾರ್ಕ್ ಥೀಮ್ (Dark Mode) ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ' : 'Switched to Dark Mode');
+    showToast(msg);
+  };
+
+  if (desktopBtn) {
+    desktopBtn.addEventListener('click', toggleHandler);
+  }
+  if (mobileBtn) {
+    mobileBtn.addEventListener('click', toggleHandler);
+  }
+}
+
+function applyTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  const isDark = theme === 'dark';
+
+  // Desktop Toggle Button
+  const desktopBtn = document.getElementById('themeToggleBtn');
+  const themeIcon = document.getElementById('themeIcon');
+  if (themeIcon) {
+    themeIcon.textContent = isDark ? '☀️' : '🌙';
+  }
+  if (desktopBtn) {
+    const label = isDark
+      ? (currentLang === 'kn' ? 'ಬೆಳಕಿನ ಮೋಡ್‌ಗೆ ಬದಲಾಯಿಸಿ' : 'Switch to Light Mode')
+      : (currentLang === 'kn' ? 'ಡಾರ್ಕ್ ಮೋಡ್‌ಗೆ ಬದಲಾಯಿಸಿ' : 'Switch to Dark Mode');
+    desktopBtn.setAttribute('title', label);
+    desktopBtn.setAttribute('aria-label', label);
+  }
+
+  // Mobile Drawer Toggle Button
+  const mobileThemeIcon = document.getElementById('mobileThemeIcon');
+  const mobileThemeText = document.getElementById('mobileThemeText');
+  if (mobileThemeIcon) {
+    mobileThemeIcon.textContent = isDark ? '☀️' : '🌙';
+  }
+  if (mobileThemeText) {
+    if (isDark) {
+      mobileThemeText.textContent = currentLang === 'kn' ? 'ಬೆಳಕಿನ ಥೀಮ್ (Light Mode)' : 'Light Mode';
+    } else {
+      mobileThemeText.textContent = currentLang === 'kn' ? 'ಡಾರ್ಕ್ ಥೀಮ್ (Dark Mode)' : 'Dark Mode';
+    }
+  }
+}
 
 /* ========================================================
    3. LANGUAGE SWITCHER LOGIC
@@ -714,6 +776,9 @@ function applyLanguage(lang) {
       el.innerHTML = data[key];
     }
   });
+
+  // Keep theme switcher button text in sync with active language
+  applyTheme(currentTheme);
 
   // Re-apply live customized admin content so admin changes always take priority
   if (typeof renderDynamicDataStoreContent === 'function') {
