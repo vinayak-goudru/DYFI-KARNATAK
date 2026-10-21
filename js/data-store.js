@@ -62,7 +62,9 @@ const DEFAULT_DYFI_DATA = {
       date: '2026-10-14',
       image: 'images/hero-banner-1.jpg',
       desc_en: 'Hundreds of delegates from 31 districts gathered at Bengaluru to pass crucial resolutions demanding fill-up of 2.5 lakh vacant government posts.',
-      desc_kn: 'ರಾಜ್ಯ ಸರ್ಕಾರದ 2.5 ಲಕ್ಷ ಖಾಲಿ ಹುದ್ದೆಗಳನ್ನು ತಕ್ಷಣ ಭರ್ತಿ ಮಾಡಲು ಮತ್ತು ಯುವಜನರಿಗೆ ಗೌರವಯುತ ಉದ್ಯೋಗ ಸೃಷ್ಟಿಗೆ ಆಗ್ರಹಿಸಿ ಬೆಂಗಳೂರಿನಲ್ಲಿ ಬೃಹತ್ ಸಮಾವೇಶ.'
+      desc_kn: 'ರಾಜ್ಯ ಸರ್ಕಾರದ 2.5 ಲಕ್ಷ ಖಾಲಿ ಹುದ್ದೆಗಳನ್ನು ತಕ್ಷಣ ಭರ್ತಿ ಮಾಡಲು ಮತ್ತು ಯುವಜನರಿಗೆ ಗೌರವಯುತ ಉದ್ಯೋಗ ಸೃಷ್ಟಿಗೆ ಆಗ್ರಹಿಸಿ ಬೆಂಗಳೂರಿನಲ್ಲಿ ಬೃಹತ್ ಸಮಾವೇಶ.',
+      full_en: 'The Karnataka State Convention of the Democratic Youth Federation of India (DYFI) concluded with a fiery call for an uncompromising struggle against growing youth unemployment and the relentless commercialization of higher education. Delegates representing all 31 district committees participated in the two-day plenary session. The convention unanimously adopted a 10-point Youth Charter of Demands, including immediate recruitment for 2.5 lakh vacant posts in Karnataka government departments, strict criminal penalties for exam paper leak syndicates, affordable bus passes for students, and 80% reservation for local youth in Karnataka industrial corridors. State President Comrade Lavitra Vastrad and State Secretary Comrade Santosh Bajal addressed the massive rally, pledging to take the movement to every village and college campus across Karnataka.',
+      full_kn: 'ಬೆಂಗಳೂರಿನಲ್ಲಿ ಯಶಸ್ವಿಯಾಗಿ ಸಮಾರೋಪಗೊಂಡ ಭಾರತ ಪ್ರಜಾಸತ್ತಾತ್ಮಕ ಯುವಜನ ಫೆಡರೇಶನ್ (DYFI) ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಮಾವೇಶವು, ರಾಜ್ಯದಲ್ಲಿ ಹೆಚ್ಚುತ್ತಿರುವ ನಿರುದ್ಯೋಗ ಮತ್ತು ಶಿಕ್ಷಣದ ವಾಣಿಜ್ಯೀಕರಣದ ವಿರುದ್ಧ ನಿರ್ಣಾಯಕ ಹೋರಾಟಕ್ಕೆ ಕರೆ ನೀಡಿದೆ. ರಾಜ್ಯದ ಎಲ್ಲಾ 31 ಜಿಲ್ಲಾ ಘಟಕಗಳಿಂದ ಆಗಮಿಸಿದ್ದ ನೂರಾರು ಯುವ ಪ್ರತಿನಿಧಿಗಳು ಈ ಐತಿಹಾಸಿಕ ಸಮಾವೇಶದಲ್ಲಿ ಪಾಲ್ಗೊಂಡರು. ರಾಜ್ಯ ಸರ್ಕಾರದ ವಿವಿಧ ಇಲಾಖೆಗಳಲ್ಲಿ ಖಾಲಿ ಇರುವ 2.5 ಲಕ್ಷ ಹುದ್ದೆಗಳನ್ನು ತ್ವರಿತವಾಗಿ ಭರ್ತಿ ಮಾಡುವುದು, ಪ್ರಶ್ನೆಪತ್ರಿಕೆ ಸೋರಿಕೆ ಜಾಲಗಳ ವಿರುದ್ಧ ಕಠಿಣ ಕಾನೂನು ಜಾರಿ, ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ಉಚಿತ ಬಸ್ ಪಾಸ್ ಮತ್ತು ಗ್ರಾಮೀಣ ಯುವಕರಿಗೆ ಕೈಗಾರಿಕಾ ಪ್ರದೇಶಗಳಲ್ಲಿ ಸ್ಥಳೀಯ ಉದ್ಯೋಗ ಮೀಸಲಾತಿಗೆ ಆಗ್ರಹಿಸಿ 10 ಅಂಶಗಳ ಯುವಜನ ಹಕ್ಕುಗಳ ಪ್ರಣಾಳಿಕೆಯನ್ನು ಅಂಗೀಕರಿಸಲಾಯಿತು. ರಾಜ್ಯ ಅಧ್ಯಕ್ಷರಾದ ಕಾಮ್ರೇಡ್ ಲವಿತ್ರ ವಸ್ತ್ರದ ಹಾಗೂ ರಾಜ್ಯ ಕಾರ್ಯದರ್ಶಿ ಕಾಮ್ರೇಡ್ ಸಂತೋಷ್ ಬಜಾಲ್ ಸಮಾವೇಶ ಉದ್ದೇಶಿಸಿ ಮಾತನಾಡಿದರು.'
     },
     {
       id: 'n2',
@@ -72,7 +74,9 @@ const DEFAULT_DYFI_DATA = {
       date: '2026-10-08',
       image: 'images/hero-banner-2.jpg',
       desc_en: 'Students and youth united to submit an urgent memorandum to the authorities demanding immediate hostel allocation and bus frequency.',
-      desc_kn: 'ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ಸಮರ್ಪಕ ಹಾಸ್ಟೆಲ್ ಸೌಲಭ್ಯ ಹಾಗೂ ಗ್ರಾಮೀಣ ಭಾಗಗಳಿಗೆ ಬಸ್ ಸೌಲಭ್ಯ ಒದಗಿಸಲು ಆಗ್ರಹಿಸಿ ಜಿಲ್ಲಾಧಿಕಾರಿಗಳ ಕಚೇರಿ ಎದುರು ಪ್ರತಿಭಟನೆ.'
+      desc_kn: 'ವಿದ್ಯಾರ್ಥಿಗಳಿಗೆ ಸಮರ್ಪಕ ಹಾಸ್ಟೆಲ್ ಸೌಲಭ್ಯ ಹಾಗೂ ಗ್ರಾಮೀಣ ಭಾಗಗಳಿಗೆ ಬಸ್ ಸೌಲಭ್ಯ ಒದಗಿಸಲು ಆಗ್ರಹಿಸಿ ಜಿಲ್ಲಾಧಿಕಾರಿಗಳ ಕಚೇರಿ ಎದುರು ಪ್ರತಿಭಟನೆ.',
+      full_en: 'In response to acute accommodation crises faced by rural students, the DYFI Kalaburagi District Committee organized a massive youth rally marching to the District Commissioner office. Students raised slogans demanding an immediate increase in government BCM and Social Welfare hostel intake, timely disbursement of student scholarships, and restoration of rural KSRTC student bus routes that were curtailed. District Secretary Comrade Mallikarjun Halli and President Comrade Sharanu Heroor led the delegation and submitted a detailed memorandum to the Deputy Commissioner, warning of a statewide indefinite hunger strike if demands are ignored.',
+      full_kn: 'ಕಲಬುರಗಿ ನಗರದಲ್ಲಿ ಗ್ರಾಮೀಣ ವಿದ್ಯಾರ್ಥಿಗಳು ಎದುರಿಸುತ್ತಿರುವ ಹಾಸ್ಟೆಲ್ ಕೊರತೆ ಮತ್ತು ಬಸ್ ಪಾಸ್ ಸಮಸ್ಯೆಗಳನ್ನು ಖಂಡಿಸಿ ಡಿವೈಎಫ್ಐ ಕಲಬುರಗಿ ಜಿಲ್ಲಾ ಸಮಿತಿಯು ಜಿಲ್ಲಾಧಿಕಾರಿಗಳ ಕಚೇರಿಯ ವರೆಗೆ ಬೃಹತ್ ಪ್ರತಿಭಟನಾ ಮೆರವಣಿಗೆ ನಡೆಸಿತು. ಹಿಂದುಳಿದ ವರ್ಗಗಳ ಕಲ್ಯಾಣ ಮತ್ತು ಸಮಾಜ ಕಲ್ಯಾಣ ಇಲಾಖೆಯ ಹಾಸ್ಟೆಲ್‌ಗಳಲ್ಲಿ ಸೀಟುಗಳ ಸಂಖ್ಯೆ ಹೆಚ್ಚಿಸುವುದು, ವಿದ್ಯಾರ್ಥಿ ವೇತನ ತಕ್ಷಣ ಬಿಡುಗಡೆ ಮಾಡುವುದು ಹಾಗೂ ಗ್ರಾಮೀಣ ಪ್ರದೇಶಗಳಿಗೆ ನಿಯಮಿತ ಕೆಎಸ್‌ಆರ್‌ಟಿಸಿ ಬಸ್ ಓಡಿಸಲು ಆಗ್ರಹಿಸಲಾಯಿತು. ಜಿಲ್ಲಾ ಕಾರ್ಯದರ್ಶಿ ಕಾಮ್ರೇಡ್ ಮಲ್ಲಿಕಾರ್ಜುನ ಹಳ್ಳಿ ಹಾಗೂ ಜಿಲ್ಲಾಧ್ಯಕ್ಷ ಕಾಮ್ರೇಡ್ ಶರಣು ಹೀರೂರು ಪ್ರತಿಭಟನೆಯ ನೇತೃತ್ವ ವಹಿಸಿ ಜಿಲ್ಲಾಡಳಿತಕ್ಕೆ ಮನವಿ ಸಲ್ಲಿಸಿದರು.'
     },
     {
       id: 'n3',
@@ -82,7 +86,9 @@ const DEFAULT_DYFI_DATA = {
       date: '2026-09-28',
       image: 'images/blood-donation-bg.jpg',
       desc_en: 'Empowering local hospitals with over 5,000 ready voluntary donors during seasonal emergency periods.',
-      desc_kn: 'ತುರ್ತು ಪರಿಸ್ಥಿತಿಗಳಲ್ಲಿ ರೋಗಿಗಳಿಗೆ ಉಚಿತ ಹಾಗೂ ತ್ವರಿತ ರಕ್ತ ಒದಗಿಸಲು 5,000ಕ್ಕೂ ಹೆಚ್ಚು ನೋಂದಾಯಿತ ಸ್ವಯಂಸೇವಕರ ನೆಟ್‌ವರ್ಕ್ ಕಾರ್ಯಾಚರಣೆ.'
+      desc_kn: 'ತುರ್ತು ಪರಿಸ್ಥಿತಿಗಳಲ್ಲಿ ರೋಗಿಗಳಿಗೆ ಉಚಿತ ಹಾಗೂ ತ್ವರಿತ ರಕ್ತ ಒದಗಿಸಲು 5,000ಕ್ಕೂ ಹೆಚ್ಚು ನೋಂದಾಯಿತ ಸ್ವಯಂಸೇವಕರ ನೆಟ್‌ವರ್ಕ್ ಕಾರ್ಯಾಚರಣೆ.',
+      full_en: 'To eliminate commercial exploitation and shortages in blood banks during critical medical emergencies, the DYFI Karnataka Health Cell announced the nationwide expansion of its verified Blood Volunteer Registry. Over 5,000 trained youth volunteers from government and private colleges have registered across 31 districts. Through a dedicated 24/7 central telephone hotline (+91 9448123456), patients and their families can obtain voluntary donors within 30 minutes without paying any mediator fees. The helpline has successfully coordinated over 450 emergency transfusions in coastal and northern Karnataka over the last quarter alone.',
+      full_kn: 'ತುರ್ತು ವೈದ್ಯಕೀಯ ಚಿಕಿತ್ಸೆ ಮತ್ತು ಅಪಘಾತಗಳ ಸಂದರ್ಭದಲ್ಲಿ ರೋಗಿಗಳಿಗೆ ಸಕಾಲದಲ್ಲಿ ರಕ್ತ ಒದಗಿಸುವ ಸದುದ್ದೇಶದಿಂದ ಡಿವೈಎಫ್ಐ ಕರ್ನಾಟಕ ಆರೋಗ್ಯ ಘಟಕವು ತನ್ನ ಡಿಜಿಟಲ್ ಸ್ವಯಂಪ್ರೇರಿತ ರಕ್ತದಾನ ಜಾಲವನ್ನು ರಾಜ್ಯಾದ್ಯಂತ ವಿಸ್ತರಿಸಿದೆ. ರಾಜ್ಯದ 31 ಜಿಲ್ಲೆಗಳಿಂದ 5,000ಕ್ಕೂ ಹೆಚ್ಚು ವಿದ್ಯಾರ್ಥಿಗಳು ಮತ್ತು ಯುವಜನರು ನೋಂದಣಿ ಮಾಡಿಕೊಂಡಿದ್ದಾರೆ. ದಿನದ 24 ಗಂಟೆಯೂ ಕಾರ್ಯಾಚರಿಸುವ ತುರ್ತು ಸಹಾಯವಾಣಿ (+91 9448123456) ಮೂಲಕ ಯಾವುದೇ ರೋಗಿಗೂ ಅರ್ಧ ಗಂಟೆಯೊಳಗೆ ಸಂಪೂರ್ಣ ಉಚಿತವಾಗಿ ರಕ್ತದಾನಿಗಳನ್ನು ಒದಗಿಸಲಾಗುತ್ತಿದೆ. ಕಳೆದ ಮೂರು ತಿಂಗಳಲ್ಲಿ ಕರಾವಳಿ ಮತ್ತು ಉತ್ತರ ಕರ್ನಾಟಕ ಭಾಗದಲ್ಲಿ 450ಕ್ಕೂ ಹೆಚ್ಚು ತುರ್ತು ರಕ್ತದಾನ ಪ್ರಕರಣಗಳನ್ನು ಈ ನೆಟ್‌ವರ್ಕ್ ಯಶಸ್ವಿಯಾಗಿ ನಿರ್ವಹಿಸಿದೆ.'
     }
   ],
 
@@ -93,18 +99,24 @@ const DEFAULT_DYFI_DATA = {
       title_kn: 'ಕೋಮುವಾದದ ವಿರುದ್ಧ ಯುವಜನರ ಐಕ್ಯತಾ ಅಭಿಯಾನ',
       category: 'Social Justice',
       progress: 85,
+      image: 'images/hero-banner-1.jpg',
       desc_en: 'Organizing street theater, peace rallies, and youth brotherhood camps across sensitive zones.',
       desc_kn: 'ಕೋಮು ಸೌಹಾರ್ದತೆ ಮತ್ತು ಭ್ರಾತೃತ್ವವನ್ನು ಎತ್ತಿಹಿಡಿಯಲು ರಾಜ್ಯದಾದ್ಯಂತ ಬೀದಿನಾಟಕ, ಸೌಹಾರ್ದ ಕೂಟ ಮತ್ತು ಸಾಂಸ್ಕೃತಿಕ ಜಥಾಗಳು.',
+      full_en: 'DYFI Karnataka is conducting an extensive grassroots awareness campaign against divisive politics and hate-mongering. The campaign organizes street plays, secular cultural festivals, and community friendship dialogues in sensitive taluks of coastal and malnad regions. Youth from all communities pledge solidarity to defend the Constitution, uphold interfaith harmony, and safeguard democratic freedoms.',
+      full_kn: 'ದ್ವೇಷ ರಾಜಕಾರಣ ಮತ್ತು ಕೋಮುವಾದಿ ಶಕ್ತಿಗಳ ವಿರುದ್ಧ ಯುವಜನತೆಯನ್ನು ಸಂಘಟಿಸಲು ಡಿವೈಎಫ್ಐ ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಮಿತಿಯು ನಿರಂತರ ಜಾಗೃತಿ ಅಭಿಯಾನ ನಡೆಸುತ್ತಿದೆ. ಕರಾವಳಿ ಹಾಗೂ ಮಲೆನಾಡಿನ ಸೂಕ್ಷ್ಮ ಪ್ರದೇಶಗಳಲ್ಲಿ ಬೀದಿನಾಟಕಗಳು, ಸೌಹಾರ್ದ ಯುವ ಸಮ್ಮೇಳನಗಳು ಹಾಗೂ ಭ್ರಾತೃತ್ವ ಜಾತಾಗಳನ್ನು ಆಯೋಜಿಸುವ ಮೂಲಕ ಸಂವಿಧಾನದ ಮೌಲ್ಯಗಳು, ಜಾತ್ಯತೀತತೆ ಮತ್ತು ಸಹಬಾಳ್ವೆಯನ್ನು ರಕ್ಷಿಸಲು ಯುವಪಡೆಯನ್ನು ಒಗ್ಗೂಡಿಸಲಾಗುತ್ತಿದೆ.',
       status: 'Active'
     },
     {
       id: 'c2',
-      title_en: 'Jobs for All — Right to Work',
+      title_en: 'Jobs for All — Right to Work Movement',
       title_kn: 'ಉದ್ಯೋಗ ನಮ್ಮ ಹಕ್ಕು — ಖಾಲಿ ಹುದ್ದೆಗಳ ಭರ್ತಿಗೆ ಹೋರಾಟ',
       category: 'Employment',
       progress: 90,
+      image: 'images/hero-banner-2.jpg',
       desc_en: 'Demanding legal guarantee for employment and unconditional unemployment allowance for job seekers.',
       desc_kn: 'ಸರ್ಕಾರಿ ಖಾಲಿ ಹುದ್ದೆಗಳ ತ್ವರಿತ ನೇಮಕಾತಿ ಹಾಗೂ ನಿರುದ್ಯೋಗಿ ಯುವಕರಿಗೆ ಮಾಸಿಕ ನಿರುದ್ಯೋಗ ಭತ್ಯೆಗೆ ಆಗ್ರಹ.',
+      full_en: 'With over 2.5 lakh government posts remaining vacant in Karnataka schools, hospitals, and administrative departments, DYFI has launched a historic statewide movement for employment rights. Demands include timely recruitment calendars, local reservation in industries, abolishment of contract labor for perennial jobs, and monthly unemployment allowance for educated youth seeking jobs.',
+      full_kn: 'ಕರ್ನಾಟಕದ ಶಿಕ್ಷಣ, ಆರೋಗ್ಯ ಮತ್ತು ಕಂದಾಯ ಇಲಾಖೆಗಳಲ್ಲಿ ಖಾಲಿ ಇರುವ 2.5 ಲಕ್ಷ ಹುದ್ದೆಗಳನ್ನು ವಿಳಂಬವಿಲ್ಲದೆ ಭರ್ತಿ ಮಾಡಲು ಮತ್ತು ಯುವಜನರಿಗೆ ಉದ್ಯೋಗದ ಹಕ್ಕನ್ನು ಶಾಸನಬದ್ಧವಾಗಿ ಖಾತರಿಪಡಿಸಲು ಡಿವೈಎಫ್ಐ ನಡೆಸುತ್ತಿರುವ ಬೃಹತ್ ಚಳವಳಿ. ಗುತ್ತಿಗೆ ಪದ್ಧತಿ ರದ್ದತಿ, ಸ್ಥಳೀಯ ಯುವಕರಿಗೆ ಕೈಗಾರಿಕೆಗಳಲ್ಲಿ ಮೀಸಲಾತಿ ಹಾಗೂ ಉದ್ಯೋಗ ಸಿಗುವವರೆಗೆ ಗೌರವಯುತ ನಿರುದ್ಯೋಗ ಭತ್ಯೆ ನೀಡಲು ಈ ಅಭಿಯಾನದ ಮೂಲಕ ಸರ್ಕಾರಕ್ಕೆ ಆಗ್ರಹಿಸಲಾಗುತ್ತಿದೆ.',
       status: 'Active'
     },
     {
@@ -113,8 +125,11 @@ const DEFAULT_DYFI_DATA = {
       title_kn: 'ಮಾದಕ ದ್ರವ್ಯ ಮುಕ್ತ ಸಮಾಜಕ್ಕಾಗಿ ಯುವ ಕಾವಲು',
       category: 'Health & Youth',
       progress: 75,
+      image: 'images/hero-banner-3.jpg',
       desc_en: 'Partnering with educational institutions to raise awareness, counsel victims, and shut illegal outlets.',
       desc_kn: 'ಕಾಲೇಜು ಆವರಣಗಳಲ್ಲಿ ಡ್ರಗ್ಸ್ ಮಾಫಿಯಾ ವಿರುದ್ಧ ಜಾಗೃತಿ ಹಾಗೂ ವ್ಯಸನಮುಕ್ತ ಕೌನ್ಸೆಲಿಂಗ್ ಶಿಬಿರಗಳು.',
+      full_en: 'Protecting students from the menace of narcotics and organized drug rackets. DYFI youth vigilance committees operate near colleges and hostels, conducting interactive de-addiction awareness sessions, sports tournaments, and providing psychological counseling for recovering victims with full confidentiality.',
+      full_kn: 'ಶಾಲಾ-ಕಾಲೇಜು ವಿದ್ಯಾರ್ಥಿಗಳನ್ನು ಮಾದಕ ದ್ರವ್ಯ ವ್ಯಸನದಿಂದ ರಕ್ಷಿಸಲು ಮತ್ತು ಡ್ರಗ್ಸ್ ಮಾಫಿಯಾವನ್ನು ಬುಡಸಮೇತ ಕಿತ್ತೊಗೆಯಲು ಡಿವೈಎಫ್ಐ ಯುವ ಕಾವಲು ಪಡೆಗಳು ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತಿವೆ. ವಿದ್ಯಾರ್ಥಿಗಳಲ್ಲಿ ಜಾಗೃತಿ ಮೂಡಿಸಲು ಕ್ರೀಡಾಕೂಟಗಳು, ಸಾಂಸ್ಕೃತಿಕ ಕಾರ್ಯಕ್ರಮಗಳು ಹಾಗೂ ಉಚಿತ ಕೌನ್ಸೆಲಿಂಗ್ ಶಿಬಿರಗಳನ್ನು ಕಾಲೇಜುಗಳ ಸಹಯೋಗದೊಂದಿಗೆ ನಿರಂತರವಾಗಿ ನಡೆಸಲಾಗುತ್ತಿದೆ.',
       status: 'Active'
     }
   ],
@@ -204,10 +219,13 @@ const DEFAULT_DYFI_DATA = {
 
   gallery: [
     { id: 'g1', type: 'image', category: 'rally', src: 'images/gallery-1.jpg', caption_en: 'State Youth Conference Rally', caption_kn: 'ರಾಜ್ಯ ಯುವಜನ ಸಮಾವೇಶದ ಬೃಹತ್ ರ‍್ಯಾಲಿ' },
-    { id: 'g2', type: 'image', category: 'health', src: 'images/blood-donation-bg.jpg', caption_en: 'Blood Donation Camp', caption_kn: 'ಸ್ವಯಂಪ್ರೇರಿತ ರಕ್ತದಾನ ಶಿಬಿರ' },
-    { id: 'g3', type: 'image', category: 'rally', src: 'images/hero-banner-1.jpg', caption_en: 'Jobs for All March', caption_kn: 'ಉದ್ಯೋಗಕ್ಕಾಗಿ ರಾಜ್ಯಮಟ್ಟದ ಯುವಜನ ಜಾಥಾ' },
+    { id: 'g2', type: 'image', category: 'health', src: 'images/blood-donation-bg.jpg', caption_en: 'Voluntary Blood Donation Camp', caption_kn: 'ಸ್ವಯಂಪ್ರೇರಿತ ರಕ್ತದಾನ ಶಿಬಿರ' },
+    { id: 'g3', type: 'image', category: 'rally', src: 'images/hero-banner-1.jpg', caption_en: 'Jobs for All Youth March', caption_kn: 'ಉದ್ಯೋಗಕ್ಕಾಗಿ ರಾಜ್ಯಮಟ್ಟದ ಯುವಜನ ಜಾಥಾ' },
     { id: 'g4', type: 'image', category: 'conf', src: 'images/hero-banner-2.jpg', caption_en: 'State Committee Session', caption_kn: 'ರಾಜ್ಯ ಸಮಿತಿ ಪ್ರತಿನಿಧಿಗಳ ಸಭೆ' },
-    { id: 'g5', type: 'video', category: 'video', src: 'https://www.youtube.com/embed/fA71Q8b6528', caption_en: 'DYFI State Convention Highlights', caption_kn: 'ಡಿವೈಎಫ್ಐ ರಾಜ್ಯ ಸಮ್ಮೇಳನದ ಪ್ರಮುಖ ದೃಶ್ಯಗಳು' }
+    { id: 'g5', type: 'image', category: 'relief', src: 'images/hero-banner-3.jpg', caption_en: 'Volunteer Relief Operations', caption_kn: 'ಸ್ವಯಂಸೇವಕ ಪ್ರವಾಹ ಪರಿಹಾರ ಕಾರ್ಯ' },
+    { id: 'g6', type: 'image', category: 'conf', src: 'images/leader-1.jpg', caption_en: 'Youth Assembly Address', caption_kn: 'ಯುವಜನ ಸಮಾವೇಶದ ಸಾರ್ವಜನಿಕ ಭಾಷಣ' },
+    { id: 'g7', type: 'image', category: 'rally', src: 'images/lavitra_president.jpg', caption_en: 'Constitutional Rights Rally', caption_kn: 'ಸಂವಿಧಾನ ರಕ್ಷಣಾ ಜಾಗೃತಿ ಜಾಥಾ' },
+    { id: 'g8', type: 'image', category: 'conf', src: 'images/santosh_bajal.jpg', caption_en: 'District Office Bearers Conference', caption_kn: 'ಜಿಲ್ಲಾ ಪದಾಧಿಕಾರಿಗಳ ಸಮ್ಮೇಳನ' }
   ],
 
   bloodDonors: [
@@ -295,6 +313,12 @@ class DyfiDataStore {
       if (updated) {
         this.set(DYFI_DATA_KEYS.SITE_CONTENT, sc);
       }
+    }
+
+    // Auto-fix any broken youtube gallery image in existing localStorage
+    const gal = this.get(DYFI_DATA_KEYS.GALLERY);
+    if (Array.isArray(gal) && (gal.length < 8 || gal.some(g => !g.src || g.src.includes('youtube')))) {
+      this.set(DYFI_DATA_KEYS.GALLERY, DEFAULT_DYFI_DATA.gallery);
     }
   }
 

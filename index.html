@@ -65,8 +65,20 @@
               <li><a href="#about" class="dropdown-item" data-i18n="navHistory">ಇತಿಹಾಸ ಮತ್ತು ಹಿನ್ನೆಲೆ</a></li>
               <li><a href="#about" class="dropdown-item" data-i18n="navIdeology">ಧ್ಯೇಯ ಮತ್ತು ಸಂವಿಧಾನ</a></li>
               <li><a href="#leadership" class="dropdown-item" data-i18n="navLeadership">ರಾಜ್ಯ ನಾಯಕತ್ವ</a></li>
-              <li><a href="#districts" class="dropdown-item" data-i18n="navDistricts">ಜಿಲ್ಲಾ ಘಟಕಗಳು</a></li>
               <li><a href="#joinRevolution" class="dropdown-item" id="navJoinRevItem" data-i18n="navJoinRev">ಕ್ರಾಂತಿಯಲ್ಲಿ ಕೈಜೋಡಿಸಿ</a></li>
+            </ul>
+          </li>
+
+          <!-- Dedicated Committees Nav Dropdown with Dist / Taluk / Area -->
+          <li class="nav-item-dropdown">
+            <a href="#districts" class="nav-link dropdown-toggle">
+              <span data-i18n="navCommittees">ಸಮಿತಿಗಳು &amp; ಘಟಕಗಳು</span>
+              <span class="dropdown-chevron">▼</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li><a href="#districts" class="dropdown-item" data-i18n="navDistrictCommittees">🚩 ಜಿಲ್ಲಾ ಸಮಿತಿಗಳು (District Committees)</a></li>
+              <li><a href="#districts" class="dropdown-item" data-i18n="navTalukCommittees">🏛️ ತಾಲ್ಲೂಕು ಸಮಿತಿಗಳು (Taluk Committees)</a></li>
+              <li><a href="#districts" class="dropdown-item" data-i18n="navAreaCommittees">👥 ಗ್ರಾಮ &amp; ಏರಿಯಾ ಸಮಿತಿಗಳು (Area Units)</a></li>
             </ul>
           </li>
 
@@ -698,8 +710,34 @@
   </section>
 
   <!-- ========================================================
-       CONTACT & DISTRICT NETWORK
+       DISTRICT, TALUK & AREA COMMITTEES EXPLORER
        ======================================================== -->
+  <section class="districts-section" id="districts">
+    <div class="container">
+      <div class="section-header-row" style="flex-direction: column; align-items: flex-start; gap: 0.5rem;">
+        <span class="section-tag" data-i18n="districtsTag">ORGANIZATIONAL NETWORK</span>
+        <h2 class="section-title" data-i18n="districtsSectionTitle">ಕರ್ನಾಟಕ <span class="highlight-red">ಜಿಲ್ಲಾ &amp; ತಾಲ್ಲೂಕು ಸಮಿತಿಗಳು</span></h2>
+        <p class="section-subtitle" data-i18n="districtsSectionSub" style="margin-top: 0.35rem; color: var(--text-muted); font-size: 1rem; max-width: 850px; line-height: 1.6;">
+          ಕರ್ನಾಟಕದ 31 ಜಿಲ್ಲೆಗಳು ಹಾಗೂ ತಾಲ್ಲೂಕುಗಳ ಅಧ್ಯಕ್ಷರು, ಕಾರ್ಯದರ್ಶಿಗಳು ಮತ್ತು ಪದಾಧಿಕಾರಿಗಳ ವಿವರ (District &amp; Taluk Presidents &amp; Secretaries)
+        </p>
+      </div>
+
+      <!-- District Zone Filter Bar -->
+      <div class="districts-filter-bar">
+        <button type="button" class="district-filter-btn active" data-filter="all" data-i18n="filterAllDistricts">ಎಲ್ಲಾ ಜಿಲ್ಲೆಗಳು (All)</button>
+        <button type="button" class="district-filter-btn" data-filter="coastal" data-i18n="filterCoastal">ಕರಾವಳಿ ಮತ್ತು ಮಲೆನಾಡು</button>
+        <button type="button" class="district-filter-btn" data-filter="bengaluru" data-i18n="filterBengaluru">ಬೆಂಗಳೂರು ವಿಭಾಗ</button>
+        <button type="button" class="district-filter-btn" data-filter="mysuru" data-i18n="filterMysuru">ಮೈಸೂರು ವಿಭಾಗ</button>
+        <button type="button" class="district-filter-btn" data-filter="kalyana" data-i18n="filterKalyana">ಕಲ್ಯಾಣ ಕರ್ನಾಟಕ</button>
+        <button type="button" class="district-filter-btn" data-filter="kittur" data-i18n="filterKittur">ಕಿತ್ತೂರು ಕರ್ನಾಟಕ</button>
+      </div>
+
+      <!-- Districts Grid Container -->
+      <div class="districts-grid" id="districtsGridContainer">
+        <!-- Rendered dynamically by JavaScript with President & Secretary info -->
+      </div>
+    </div>
+  </section>
   
   <!-- ========================================================
        MARTYRS MEMORIAL SECTION (DYFI Kerala Style)
@@ -1020,12 +1058,69 @@
   </div>
 
   <!-- ========================================================
+       DISTRICT, TALUK & AREA DETAILS MODAL
+       ======================================================== -->
+  <div class="modal-overlay" id="districtDetailsModal">
+    <div class="modal-box district-modal-box">
+      <div class="modal-header">
+        <h3 class="modal-header-title" id="districtModalTitle">
+          <span>🚩</span> ಜಿಲ್ಲಾ ಮತ್ತು ತಾಲ್ಲೂಕು ಸಮಿತಿ ವಿವರ
+        </h3>
+        <button class="modal-close-btn" id="closeDistrictModal" aria-label="Close District Modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <!-- District Committee Office Bearers (President & Secretary) -->
+        <div class="district-modal-members-wrap" id="districtModalMembers"></div>
+
+        <!-- Taluk Committees & Leaders (President & Secretary for each Taluk) -->
+        <div class="district-modal-taluks-wrap" id="districtModalTaluks"></div>
+
+        <!-- Village & Area Units Information -->
+        <div class="district-modal-units-wrap" id="districtModalUnits"></div>
+
+        <!-- District Office & Helpline -->
+        <div class="district-modal-office-wrap" id="districtModalOffice"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       UNIVERSAL FULL CONTENT DETAILS MODAL (Pop-up on Click)
+       ======================================================== -->
+  <div class="modal-overlay" id="contentDetailsModal">
+    <div class="modal-box content-details-box">
+      <div class="modal-header">
+        <div class="modal-header-title" id="contentModalHeaderTitle">
+          <span id="contentModalCategoryBadge" class="content-badge">🚩 ಡಿವೈಎಫ್ಐ ಕರ್ನಾಟಕ</span>
+        </div>
+        <button class="modal-close-btn" id="closeContentModal" aria-label="Close Details Modal">&times;</button>
+      </div>
+      <div class="modal-body content-modal-body">
+        <div class="content-modal-img-wrap" id="contentModalImgWrap">
+          <img id="contentModalImg" src="" alt="Full Details Image" onerror="this.onerror=null; this.src='images/hero-banner-1.jpg';">
+        </div>
+        <div class="content-modal-meta" id="contentModalMeta">
+          <span id="contentModalDate"></span>
+          <span id="contentModalExtra"></span>
+        </div>
+        <h2 class="content-modal-title" id="contentModalTitle"></h2>
+        <div class="content-modal-desc" id="contentModalDesc"></div>
+        <div class="content-modal-action-row" id="contentModalActions">
+          <button type="button" class="btn-primary" id="contentModalPrimaryBtn">ಭಾಗವಹಿಸಿ / Get Involved ➔</button>
+          <button type="button" class="btn-secondary" id="contentModalCloseBtn">ಮುಚ್ಚಿ / Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
        LIGHTBOX IMAGE MODAL
        ======================================================== -->
   <div class="lightbox-overlay" id="lightboxModal">
     <div class="lightbox-close" id="lightboxClose">&times;</div>
     <div class="lightbox-img-wrap">
-      <img id="lightboxImage" src="" alt="Enlarged Gallery Photo">
+      <img id="lightboxImage" src="" alt="Enlarged Gallery Photo" onerror="this.onerror=null; this.src='images/hero-banner-1.jpg';">
+      <div class="lightbox-caption" id="lightboxCaption"></div>
     </div>
   </div>
 
@@ -1045,12 +1140,15 @@
     <ul class="mobile-nav-links">
       <li><a href="#home" class="mobile-nav-link" data-i18n="navHome">ಮುಖಪುಟ</a></li>
       <li><a href="#about" class="mobile-nav-link" data-i18n="navAbout">ನಮ್ಮ ಬಗ್ಗೆ</a></li>
+      <li><a href="#leadership" class="mobile-nav-link" data-i18n="navLeadership">ರಾಜ್ಯ ನಾಯಕತ್ವ</a></li>
+      <li><a href="#districts" class="mobile-nav-link" data-i18n="navDistricts">🚩 ಜಿಲ್ಲಾ &amp; ತಾಲ್ಲೂಕು ಸಮಿತಿಗಳು</a></li>
       <li><a href="#campaigns" class="mobile-nav-link" data-i18n="navCampaigns">ಅಭಿಯಾನಗಳು</a></li>
       <li><a href="#activities" class="mobile-nav-link" data-i18n="navActivities">ಚಟುವಟಿಕೆಗಳು</a></li>
-      <li><a href="#gallery" class="mobile-nav-link" data-i18n="navGallery">ಚಿತ್ರ ಗ್ಯಾಲರಿ</a></li>
+      <li><a href="#statements" class="mobile-nav-link" data-i18n="navStatements">ಹೇಳಿಕೆಗಳು</a></li>
       <li><a href="#news" class="mobile-nav-link" data-i18n="navNews">ಸುದ್ದಿಗಳು</a></li>
+      <li><a href="#gallery" class="mobile-nav-link" data-i18n="navGallery">ಚಿತ್ರ ಗ್ಯಾಲರಿ</a></li>
+      <li><a href="#martyrs" class="mobile-nav-link" data-i18n="navMartyrs">ಹುತಾತ್ಮರು</a></li>
       <li><a href="#bloodDonation" class="mobile-nav-link" data-i18n="navBlood">ರಕ್ತದಾನ ಸೇವೆ</a></li>
-      <li><a href="#leadership" class="mobile-nav-link" data-i18n="navLeadership">ರಾಜ್ಯ ನಾಯಕತ್ವ</a></li>
       <li><a href="#contact" class="mobile-nav-link" data-i18n="navContactBtn">ಸಂಪರ್ಕಿಸಿ</a></li>
     </ul>
 
