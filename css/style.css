@@ -100,39 +100,69 @@ img {
   padding: 0.45rem 1rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  gap: 0.9rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
   position: relative;
   z-index: 101;
+  overflow: hidden;
 }
 
-.ticker-content {
+.ticker-badge-wrap {
+  flex-shrink: 0;
   display: flex;
   align-items: center;
-  gap: 0.8rem;
-  overflow: hidden;
-  white-space: nowrap;
+  position: relative;
+  z-index: 2;
+  box-shadow: 4px 0 10px rgba(127, 29, 29, 0.95);
 }
 
 .ticker-badge {
-  background: var(--primary);
-  color: #fff;
+  background: #dc2626;
+  color: #ffffff;
   font-weight: 700;
   text-transform: uppercase;
   font-size: 0.7rem;
-  padding: 0.15rem 0.5rem;
+  padding: 0.22rem 0.65rem;
   border-radius: var(--radius-sm);
-  letter-spacing: 0.5px;
+  letter-spacing: 0.6px;
   flex-shrink: 0;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.ticker-scroll-window {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  mask-image: linear-gradient(to right, transparent 0%, black 15px, black calc(100% - 15px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15px, black calc(100% - 15px), transparent 100%);
+}
+
+.ticker-track {
+  display: inline-block;
+  white-space: nowrap;
+  will-change: transform;
+  animation: marquee-smooth 28s linear infinite;
+}
+
+.ticker-track:hover {
+  animation-play-state: paused;
 }
 
 .ticker-text {
-  animation: marquee 25s linear infinite;
   display: inline-block;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  color: #ffffff;
+  padding-left: 20px;
 }
 
-@keyframes marquee {
-  0% { transform: translateX(10%); }
+@keyframes marquee-smooth {
+  0% { transform: translateX(100%); }
   100% { transform: translateX(-100%); }
 }
 
@@ -143,11 +173,21 @@ img {
   font-weight: 600;
   color: #fff;
   flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+  padding-left: 0.6rem;
+  background: #7f1d1d;
+  box-shadow: -4px 0 10px rgba(127, 29, 29, 0.95);
 }
 
 .ticker-helpline a {
   color: #fef08a;
   text-decoration: underline;
+  transition: var(--transition);
+}
+
+.ticker-helpline a:hover {
+  color: #ffffff;
 }
 
 /* ========================================================
@@ -189,8 +229,12 @@ img {
 .brand-logo-img {
   width: 44px;
   height: 44px;
-  object-fit: contain;
-  filter: drop-shadow(0 2px 6px rgba(220, 38, 38, 0.4));
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid rgba(239, 68, 68, 0.7);
+  box-shadow: 0 0 12px rgba(220, 38, 38, 0.4);
+  background: #ffffff;
+  flex-shrink: 0;
 }
 
 .brand-text-block {

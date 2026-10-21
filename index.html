@@ -23,10 +23,13 @@
        TOP ANNOUNCEMENT TICKER
        ======================================================== -->
   <aside class="announcement-ticker" aria-label="Official Announcement">
-    <div class="ticker-content">
+    <div class="ticker-badge-wrap">
       <span class="ticker-badge" data-i18n="tickerTitle">ಅಧಿಕೃತ ಸುತ್ತೋಲೆ</span>
-      <span class="ticker-text" data-i18n="tickerText">ರಾಜ್ಯವ್ಯಾಪಿ ನಿರುದ್ಯೋಗ ವಿರುದ್ಧ ಬೃಹತ್ ಯುವ ಜಾಗೃತಿ ಸಮಾವೇಶ — ಎಲ್ಲಾ
-        ಜಿಲ್ಲಾ ಘಟಕಗಳು ಸಿದ್ಧತೆ ಕೈಗೊಳ್ಳಲು ಕರೆ.</span>
+    </div>
+    <div class="ticker-scroll-window">
+      <div class="ticker-track">
+        <span class="ticker-text" data-i18n="tickerText">ರಾಜ್ಯವ್ಯಾಪಿ ನಿರುದ್ಯೋಗ ವಿರುದ್ಧ ಬೃಹತ್ ಯುವ ಜಾಗೃತಿ ಸಮಾವೇಶ — ಎಲ್ಲಾ ಜಿಲ್ಲಾ ಘಟಕಗಳು ಸಿದ್ಧತೆ ಕೈಗೊಳ್ಳಲು ಕರೆ.</span>
+      </div>
     </div>
     <div class="ticker-helpline">
       <span data-i18n="tickerHelp">ತುರ್ತು ರಕ್ತದಾನ ಸಹಾಯವಾಣಿ:</span>
@@ -41,7 +44,7 @@
     <div class="container header-container">
       <!-- Brand Logo -->
       <a href="#home" class="brand-link" aria-label="DYFI Karnataka Home">
-        <img src="images/logo.png" alt="DYFI Red Star Logo" class="brand-logo-img">
+        <img src="images/logo.jpg" alt="DYFI Red Star Logo" class="brand-logo-img" onerror="this.src='images/logo.jpg'">
         <div class="brand-text-block">
           <span class="brand-title" data-i18n="brandTitle">ಡಿವೈಎಫ್ಐ <span class="red-text">ಕರ್ನಾಟಕ</span></span>
           <span class="brand-subtitle" data-i18n="brandSubtitle">ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಮಿತಿ</span>
@@ -1028,7 +1031,8 @@
   <div class="mobile-drawer-overlay" id="mobileDrawerOverlay"></div>
   <aside class="mobile-drawer" id="mobileDrawer">
     <div class="mobile-drawer-header">
-      <div style="color: #fff; font-weight: 800; font-size: 1.1rem;">
+      <div style="display: flex; align-items: center; gap: 0.6rem; color: #fff; font-weight: 800; font-size: 1.1rem;">
+        <img src="images/logo.jpg" alt="DYFI Logo" style="width: 28px; height: 28px; border-radius: 50%; object-fit: cover;">
         DYFI <span style="color: #ef4444;">KARNATAKA</span>
       </div>
       <button class="mobile-drawer-close" id="closeMobileDrawer">&times;</button>

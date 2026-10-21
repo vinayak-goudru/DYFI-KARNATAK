@@ -125,6 +125,202 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.target === modalOverlay) closeModal();
   });
 
+  // ================= IMAGE UPLOAD & OPTIMIZATION UTILITY =================
+  function compressImage(file, maxWidth = 1200, maxHeight = 900, quality = 0.84) {
+    return new Promise((resolve, reject) => {
+      if (!file || !file.type.startsWith('image/')) {
+        return reject(new Error('Selected file is not an image'));
+      }
+      const reader = new FileReader();
+      reader.onerror = () => reject(new Error('Failed to read image file'));
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onerror = () => reject(new Error('Failed to parse image data'));
+        img.onload = () => {
+          let width = img.width;
+          let height = img.height;
+
+          if (width > maxWidth || height > maxHeight) {
+            const ratio = Math.min(maxWidth / width, maxHeight / height);
+            width = Math.round(width * ratio);
+            height = Math.round(height * ratio);
+          }
+
+          const canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+
+          // Get compressed JPEG data URL
+          const dataUrl = canvas.toDataURL('image/jpeg', quality);
+          resolve({
+            dataUrl,
+            name: file.name,
+            width,
+            height,
+            sizeKb: Math.round((dataUrl.length * 3) / 4 / 1024)
+          });
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function renderImagePickerHTML(inputId, labelText, initialValue = '', placeholderImg = 'images/hero-banner-1.jpg') {
+    const val = initialValue || '';
+    const hasImg = Boolean(val);
+    const displayImg = val || placeholderImg;
+
+    return `
+      <div class="form-group">
+        <label class="form-label">${labelText}</label>
+        <div class="image-uploader-control" id="${inputId}_wrapper">
+          <!-- Hidden storage input holding the actual image data/path -->
+          <input type="hidden" id="${inputId}" value="${val.replace(/"/g, '&quot;')}">
+
+          <!-- Hidden native file input -->
+          <input type="file" id="${inputId}_file" class="upload-hidden-input" accept="image/png, image/jpeg, image/webp, image/gif, image/svg+xml">
+
+          <!-- Dropzone area (shown when no image is selected) -->
+          <div class="upload-dropzone" id="${inputId}_dropzone" style="${hasImg ? 'display:none;' : ''}">
+            <span class="upload-dropzone-icon">📷</span>
+            <span class="upload-dropzone-title">Click to Choose Photo from Device</span>
+            <span class="upload-dropzone-subtitle">or drag and drop an image here (JPG, PNG, WEBP)</span>
+          </div>
+
+          <!-- Preview Card (shown when an image is present) -->
+          <div class="image-preview-card ${hasImg ? 'has-image' : ''}" id="${inputId}_previewCard" style="${hasImg ? '' : 'display:none;'}">
+            <img src="${displayImg}" class="preview-thumb-img" id="${inputId}_previewImg" alt="Preview" onerror="this.src='${placeholderImg}'">
+            <div class="preview-info">
+              <div class="preview-status" id="${inputId}_status">
+                <span>✓</span> <span id="${inputId}_statusText">${hasImg ? 'Image Ready' : 'Selected'}</span>
+              </div>
+              <div class="preview-name" id="${inputId}_fileName">${val ? (val.startsWith('data:') ? 'Uploaded Device Image' : val.split('/').pop()) : 'No file selected'}</div>
+              <div class="preview-meta" id="${inputId}_meta">Optimized for website display</div>
+            </div>
+            <div class="preview-actions">
+              <button type="button" class="btn btn-sm btn-outline-primary" id="${inputId}_btnChange">Change</button>
+              <button type="button" class="btn btn-sm btn-outline-danger" id="${inputId}_btnRemove">Remove</button>
+            </div>
+          </div>
+
+          <!-- Optional URL fallback toggle -->
+          <div>
+            <button type="button" class="url-fallback-toggle" id="${inputId}_toggleUrl">
+              🔗 Or enter image URL / existing path manually
+            </button>
+            <div class="url-fallback-wrap" id="${inputId}_urlWrap">
+              <input type="text" id="${inputId}_urlInput" class="form-control" placeholder="https://... or images/photo.jpg" value="${val.startsWith('data:') ? '' : val.replace(/"/g, '&quot;')}">
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  function initImagePicker(inputId) {
+    const hiddenInput = document.getElementById(inputId);
+    const fileInput = document.getElementById(inputId + '_file');
+    const dropzone = document.getElementById(inputId + '_dropzone');
+    const previewCard = document.getElementById(inputId + '_previewCard');
+    const previewImg = document.getElementById(inputId + '_previewImg');
+    const fileName = document.getElementById(inputId + '_fileName');
+    const statusText = document.getElementById(inputId + '_statusText');
+    const meta = document.getElementById(inputId + '_meta');
+    const btnChange = document.getElementById(inputId + '_btnChange');
+    const btnRemove = document.getElementById(inputId + '_btnRemove');
+    const toggleUrl = document.getElementById(inputId + '_toggleUrl');
+    const urlWrap = document.getElementById(inputId + '_urlWrap');
+    const urlInput = document.getElementById(inputId + '_urlInput');
+
+    if (!hiddenInput || !fileInput) return;
+
+    function applyImage(dataUrl, name, details = '') {
+      hiddenInput.value = dataUrl;
+      previewImg.src = dataUrl;
+      fileName.innerText = name || 'Uploaded Photo';
+      statusText.innerText = 'Photo Attached';
+      meta.innerText = details || 'Ready for website';
+      dropzone.style.display = 'none';
+      previewCard.style.display = 'flex';
+      previewCard.classList.add('has-image');
+      if (urlInput) urlInput.value = dataUrl.startsWith('data:') ? '' : dataUrl;
+    }
+
+    function clearImage() {
+      hiddenInput.value = '';
+      previewImg.src = '';
+      dropzone.style.display = 'block';
+      previewCard.style.display = 'none';
+      previewCard.classList.remove('has-image');
+      fileInput.value = '';
+      if (urlInput) urlInput.value = '';
+    }
+
+    async function handleFile(file) {
+      if (!file) return;
+      if (!file.type.startsWith('image/')) {
+        alert('Please select a valid image file (JPG, PNG, WebP).');
+        return;
+      }
+      try {
+        statusText.innerText = 'Optimizing photo...';
+        const result = await compressImage(file, 1200, 900, 0.84);
+        applyImage(result.dataUrl, result.name, `${result.width}x${result.height} px • ~${result.sizeKb} KB`);
+        showToast('Photo uploaded and optimized successfully!');
+      } catch (err) {
+        alert('Could not load image: ' + err.message);
+      }
+    }
+
+    if (dropzone) {
+      dropzone.addEventListener('click', () => fileInput.click());
+      dropzone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropzone.classList.add('dragover');
+      });
+      dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+      dropzone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropzone.classList.remove('dragover');
+        if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+          handleFile(e.dataTransfer.files[0]);
+        }
+      });
+    }
+
+    fileInput.addEventListener('change', () => {
+      if (fileInput.files && fileInput.files[0]) {
+        handleFile(fileInput.files[0]);
+      }
+    });
+
+    if (btnChange) {
+      btnChange.addEventListener('click', () => fileInput.click());
+    }
+
+    if (btnRemove) {
+      btnRemove.addEventListener('click', clearImage);
+    }
+
+    if (toggleUrl && urlWrap) {
+      toggleUrl.addEventListener('click', () => {
+        urlWrap.classList.toggle('open');
+      });
+    }
+
+    if (urlInput) {
+      urlInput.addEventListener('input', () => {
+        const u = urlInput.value.trim();
+        if (u) {
+          applyImage(u, u.split('/').pop() || 'Remote Image', 'URL source');
+        }
+      });
+    }
+  }
+
   // ================= RENDER ENGINES =================
 
   function renderDashboard() {
@@ -161,11 +357,45 @@ document.addEventListener('DOMContentLoaded', () => {
         <td>${t.text_en}</td>
         <td>${t.text_kn}</td>
         <td>
-          <button class="btn btn-sm btn-outline-danger" onclick="deleteTicker(${idx})">Delete</button>
+          <div class="table-actions-cell">
+            <button class="btn btn-table-action btn-outline-warning" onclick="editTicker(${idx})">✏️ Edit</button>
+            <button class="btn btn-table-action btn-outline-danger" onclick="deleteTicker(${idx})">🗑️ Delete</button>
+          </div>
         </td>
       </tr>
     `).join('');
   }
+
+  window.editTicker = function(index) {
+    const ticker = DyfiDataStore.get(DYFI_DATA_KEYS.TICKER) || [];
+    const item = ticker[index];
+    if (!item) return;
+
+    openModal('Edit Running Ticker Headline', `
+      <form id="modalFormTickerEdit">
+        <div class="form-group">
+          <label class="form-label">Headline Text (English)</label>
+          <textarea id="inpTickerEn" class="form-control" rows="2" required>${item.text_en || ''}</textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Headline Text (ಕನ್ನಡ)</label>
+          <textarea id="inpTickerKn" class="form-control" rows="2" required>${item.text_kn || ''}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Update Ticker Headline</button>
+      </form>
+    `);
+
+    document.getElementById('modalFormTickerEdit').onsubmit = (e) => {
+      e.preventDefault();
+      item.text_en = document.getElementById('inpTickerEn').value.trim();
+      item.text_kn = document.getElementById('inpTickerKn').value.trim();
+      DyfiDataStore.set(DYFI_DATA_KEYS.TICKER, ticker);
+      closeModal();
+      renderTicker();
+      renderDashboard();
+      showToast('Ticker updated successfully');
+    };
+  };
 
   window.deleteTicker = function(index) {
     if (confirm('Delete this ticker headline?')) {
@@ -206,7 +436,7 @@ document.addEventListener('DOMContentLoaded', () => {
       closeModal();
       renderTicker();
       renderDashboard();
-      showToast('Ticker updated successfully');
+      showToast('Ticker added successfully');
     };
   });
 
@@ -264,7 +494,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const tbody = document.getElementById('newsTableBody');
     tbody.innerHTML = news.map((n, idx) => `
       <tr>
-        <td><img src="${n.image || 'images/hero-banner-1.jpg'}" class="table-thumb" alt="News"></td>
+        <td><img src="${n.image || 'images/hero-banner-1.jpg'}" class="table-thumb" alt="News" onerror="this.src='images/hero-banner-1.jpg'"></td>
         <td>
           <strong>${n.title_en}</strong><br>
           <span style="color:#f87171; font-size:0.85rem;">${n.title_kn}</span>
@@ -272,11 +502,72 @@ document.addEventListener('DOMContentLoaded', () => {
         <td><span class="badge-tag">${n.category}</span></td>
         <td>${n.date}</td>
         <td>
-          <button class="btn btn-sm btn-outline-danger" onclick="deleteNews(${idx})">Delete</button>
+          <div class="table-actions-cell">
+            <button class="btn btn-table-action btn-outline-warning" onclick="editNews(${idx})">✏️ Edit</button>
+            <button class="btn btn-table-action btn-outline-danger" onclick="deleteNews(${idx})">🗑️ Delete</button>
+          </div>
         </td>
       </tr>
     `).join('');
   }
+
+  window.editNews = function(index) {
+    const news = DyfiDataStore.get(DYFI_DATA_KEYS.NEWS) || [];
+    const item = news[index];
+    if (!item) return;
+
+    openModal('Edit News Article', `
+      <form id="modalFormNewsEdit">
+        <div class="form-group">
+          <label class="form-label">Headline (English)</label>
+          <input type="text" id="inpNewsTitleEn" class="form-control" required value="${(item.title_en || '').replace(/"/g, '&quot;')}">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Headline (ಕನ್ನಡ)</label>
+          <input type="text" id="inpNewsTitleKn" class="form-control" required value="${(item.title_kn || '').replace(/"/g, '&quot;')}">
+        </div>
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label class="form-label">Category</label>
+            <input type="text" id="inpNewsCat" class="form-control" required value="${(item.category || '').replace(/"/g, '&quot;')}">
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label">Date</label>
+            <input type="date" id="inpNewsDate" class="form-control" required value="${item.date || ''}">
+          </div>
+        </div>
+        ${renderImagePickerHTML('inpNewsImg', 'News Article Image (ಚಿತ್ರ ಆಯ್ಕೆಮಾಡಿ)', item.image || '', 'images/hero-banner-1.jpg')}
+        <div class="form-group">
+          <label class="form-label">Description (English)</label>
+          <textarea id="inpNewsDescEn" class="form-control" rows="3" required>${item.desc_en || ''}</textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Description (ಕನ್ನಡ)</label>
+          <textarea id="inpNewsDescKn" class="form-control" rows="3" required>${item.desc_kn || ''}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Update News Article</button>
+      </form>
+    `);
+
+    initImagePicker('inpNewsImg');
+
+    document.getElementById('modalFormNewsEdit').onsubmit = (e) => {
+      e.preventDefault();
+      item.title_en = document.getElementById('inpNewsTitleEn').value.trim();
+      item.title_kn = document.getElementById('inpNewsTitleKn').value.trim();
+      item.category = document.getElementById('inpNewsCat').value.trim();
+      item.date = document.getElementById('inpNewsDate').value;
+      item.image = document.getElementById('inpNewsImg').value.trim() || 'images/hero-banner-1.jpg';
+      item.desc_en = document.getElementById('inpNewsDescEn').value.trim();
+      item.desc_kn = document.getElementById('inpNewsDescKn').value.trim();
+
+      DyfiDataStore.set(DYFI_DATA_KEYS.NEWS, news);
+      closeModal();
+      renderNews();
+      renderDashboard();
+      showToast('News article updated successfully');
+    };
+  };
 
   window.deleteNews = function(index) {
     if (confirm('Delete this news item?')) {
@@ -310,10 +601,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <input type="date" id="inpNewsDate" class="form-control" required value="${new Date().toISOString().split('T')[0]}">
           </div>
         </div>
-        <div class="form-group">
-          <label class="form-label">Image Path / URL</label>
-          <input type="text" id="inpNewsImg" class="form-control" value="images/hero-banner-1.jpg" required>
-        </div>
+        ${renderImagePickerHTML('inpNewsImg', 'News Article Image (ಚಿತ್ರ ಆಯ್ಕೆಮಾಡಿ)', '', 'images/hero-banner-1.jpg')}
         <div class="form-group">
           <label class="form-label">Description (English)</label>
           <textarea id="inpNewsDescEn" class="form-control" rows="2" required></textarea>
@@ -326,6 +614,8 @@ document.addEventListener('DOMContentLoaded', () => {
       </form>
     `);
 
+    initImagePicker('inpNewsImg');
+
     document.getElementById('modalFormNews').onsubmit = (e) => {
       e.preventDefault();
       const news = DyfiDataStore.get(DYFI_DATA_KEYS.NEWS) || [];
@@ -335,7 +625,7 @@ document.addEventListener('DOMContentLoaded', () => {
         title_kn: document.getElementById('inpNewsTitleKn').value.trim(),
         category: document.getElementById('inpNewsCat').value.trim(),
         date: document.getElementById('inpNewsDate').value,
-        image: document.getElementById('inpNewsImg').value.trim(),
+        image: document.getElementById('inpNewsImg').value.trim() || 'images/hero-banner-1.jpg',
         desc_en: document.getElementById('inpNewsDescEn').value.trim(),
         desc_kn: document.getElementById('inpNewsDescKn').value.trim()
       });
@@ -366,11 +656,68 @@ document.addEventListener('DOMContentLoaded', () => {
         </td>
         <td><span class="badge-status-active">${c.status || 'Active'}</span></td>
         <td>
-          <button class="btn btn-sm btn-outline-danger" onclick="deleteCampaign(${idx})">Delete</button>
+          <div class="table-actions-cell">
+            <button class="btn btn-table-action btn-outline-warning" onclick="editCampaign(${idx})">✏️ Edit</button>
+            <button class="btn btn-table-action btn-outline-danger" onclick="deleteCampaign(${idx})">🗑️ Delete</button>
+          </div>
         </td>
       </tr>
     `).join('');
   }
+
+  window.editCampaign = function(index) {
+    const list = DyfiDataStore.get(DYFI_DATA_KEYS.CAMPAIGNS) || [];
+    const item = list[index];
+    if (!item) return;
+
+    openModal('Edit Statewide Campaign', `
+      <form id="modalFormCampaignEdit">
+        <div class="form-group">
+          <label class="form-label">Campaign Title (English)</label>
+          <input type="text" id="inpCampTitleEn" class="form-control" required value="${(item.title_en || '').replace(/"/g, '&quot;')}">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Campaign Title (ಕನ್ನಡ)</label>
+          <input type="text" id="inpCampTitleKn" class="form-control" required value="${(item.title_kn || '').replace(/"/g, '&quot;')}">
+        </div>
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label class="form-label">Category</label>
+            <input type="text" id="inpCampCat" class="form-control" required value="${(item.category || '').replace(/"/g, '&quot;')}">
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label">Mobilization Progress (%)</label>
+            <input type="number" id="inpCampProg" class="form-control" min="1" max="100" value="${item.progress || 75}" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Description (English)</label>
+          <textarea id="inpCampDescEn" class="form-control" rows="3" required>${item.desc_en || ''}</textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Description (ಕನ್ನಡ)</label>
+          <textarea id="inpCampDescKn" class="form-control" rows="3" required>${item.desc_kn || ''}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Update Campaign</button>
+      </form>
+    `);
+
+    document.getElementById('modalFormCampaignEdit').onsubmit = (e) => {
+      e.preventDefault();
+      item.title_en = document.getElementById('inpCampTitleEn').value.trim();
+      item.title_kn = document.getElementById('inpCampTitleKn').value.trim();
+      item.category = document.getElementById('inpCampCat').value.trim();
+      item.progress = parseInt(document.getElementById('inpCampProg').value);
+      item.desc_en = document.getElementById('inpCampDescEn').value.trim();
+      item.desc_kn = document.getElementById('inpCampDescKn').value.trim();
+
+      DyfiDataStore.set(DYFI_DATA_KEYS.CAMPAIGNS, list);
+      closeModal();
+      renderCampaigns();
+      renderDashboard();
+      showToast('Campaign updated successfully');
+    };
+  };
 
   window.deleteCampaign = function(index) {
     if (confirm('Delete this campaign?')) {
@@ -451,11 +798,63 @@ document.addEventListener('DOMContentLoaded', () => {
         <td><span class="badge-tag">${s.category}</span></td>
         <td>${s.date}</td>
         <td>
-          <button class="btn btn-sm btn-outline-danger" onclick="deleteStatement(${idx})">Delete</button>
+          <div class="table-actions-cell">
+            <button class="btn btn-table-action btn-outline-warning" onclick="editStatement(${idx})">✏️ Edit</button>
+            <button class="btn btn-table-action btn-outline-danger" onclick="deleteStatement(${idx})">🗑️ Delete</button>
+          </div>
         </td>
       </tr>
     `).join('');
   }
+
+  window.editStatement = function(index) {
+    const list = DyfiDataStore.get(DYFI_DATA_KEYS.STATEMENTS) || [];
+    const item = list[index];
+    if (!item) return;
+
+    openModal('Edit Press Statement', `
+      <form id="modalFormStatementEdit">
+        <div class="form-group">
+          <label class="form-label">Reference Number</label>
+          <input type="text" id="inpStRef" class="form-control" required value="${(item.refNo || '').replace(/"/g, '&quot;')}">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Statement Title (English)</label>
+          <input type="text" id="inpStTitleEn" class="form-control" required value="${(item.title_en || '').replace(/"/g, '&quot;')}">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Statement Title (ಕನ್ನಡ)</label>
+          <input type="text" id="inpStTitleKn" class="form-control" required value="${(item.title_kn || '').replace(/"/g, '&quot;')}">
+        </div>
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label class="form-label">Category</label>
+            <input type="text" id="inpStCat" class="form-control" required value="${(item.category || '').replace(/"/g, '&quot;')}">
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label">Release Date</label>
+            <input type="date" id="inpStDate" class="form-control" required value="${item.date || ''}">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Update Statement</button>
+      </form>
+    `);
+
+    document.getElementById('modalFormStatementEdit').onsubmit = (e) => {
+      e.preventDefault();
+      item.refNo = document.getElementById('inpStRef').value.trim();
+      item.title_en = document.getElementById('inpStTitleEn').value.trim();
+      item.title_kn = document.getElementById('inpStTitleKn').value.trim();
+      item.category = document.getElementById('inpStCat').value.trim();
+      item.date = document.getElementById('inpStDate').value;
+
+      DyfiDataStore.set(DYFI_DATA_KEYS.STATEMENTS, list);
+      closeModal();
+      renderStatements();
+      renderDashboard();
+      showToast('Statement updated successfully');
+    };
+  };
 
   window.deleteStatement = function(index) {
     if (confirm('Delete this statement?')) {
@@ -523,7 +922,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const tbody = document.getElementById('martyrsTableBody');
     tbody.innerHTML = list.map((m, idx) => `
       <tr>
-        <td><img src="${m.photo || 'images/shivappa.jpg'}" class="table-avatar" alt="Martyr"></td>
+        <td><img src="${m.photo || 'images/shivappa.jpg'}" class="table-avatar" alt="Martyr" onerror="this.src='images/shivappa.jpg'"></td>
         <td>
           <strong>${m.name_en}</strong><br>
           <span style="color:#ef4444;">${m.name_kn}</span>
@@ -531,11 +930,74 @@ document.addEventListener('DOMContentLoaded', () => {
         <td>${m.date}</td>
         <td>${m.district}</td>
         <td>
-          <button class="btn btn-sm btn-outline-danger" onclick="deleteMartyr(${idx})">Delete</button>
+          <div class="table-actions-cell">
+            <button class="btn btn-table-action btn-outline-warning" onclick="editMartyr(${idx})">✏️ Edit</button>
+            <button class="btn btn-table-action btn-outline-danger" onclick="deleteMartyr(${idx})">🗑️ Delete</button>
+          </div>
         </td>
       </tr>
     `).join('');
   }
+
+  window.editMartyr = function(index) {
+    const list = DyfiDataStore.get(DYFI_DATA_KEYS.MARTYRS) || [];
+    const item = list[index];
+    if (!item) return;
+
+    openModal('Edit Martyr Memorial Record', `
+      <form id="modalFormMartyrEdit">
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label class="form-label">Comrade Name (English)</label>
+            <input type="text" id="inpMNameEn" class="form-control" required value="${(item.name_en || '').replace(/"/g, '&quot;')}">
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label">Comrade Name (ಕನ್ನಡ)</label>
+            <input type="text" id="inpMNameKn" class="form-control" required value="${(item.name_kn || '').replace(/"/g, '&quot;')}">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label class="form-label">Martyrdom Year / Date</label>
+            <input type="text" id="inpMDate" class="form-control" required value="${(item.date || '').replace(/"/g, '&quot;')}">
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label">District / Region</label>
+            <input type="text" id="inpMDistrict" class="form-control" required value="${(item.district || '').replace(/"/g, '&quot;')}">
+          </div>
+        </div>
+        ${renderImagePickerHTML('inpMPhoto', 'Comrade Memorial Photo (ಭಾವಚಿತ್ರ ಆಯ್ಕೆಮಾಡಿ)', item.photo || '', 'images/shivappa.jpg')}
+        <div class="form-group">
+          <label class="form-label">Tribute Bio (English)</label>
+          <textarea id="inpMTribEn" class="form-control" rows="2" required>${item.tribute_en || ''}</textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tribute Bio (ಕನ್ನಡ)</label>
+          <textarea id="inpMTribKn" class="form-control" rows="2" required>${item.tribute_kn || ''}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Update Martyr Memorial Record</button>
+      </form>
+    `);
+
+    initImagePicker('inpMPhoto');
+
+    document.getElementById('modalFormMartyrEdit').onsubmit = (e) => {
+      e.preventDefault();
+      item.name_en = document.getElementById('inpMNameEn').value.trim();
+      item.name_kn = document.getElementById('inpMNameKn').value.trim();
+      item.date = document.getElementById('inpMDate').value.trim();
+      item.district = document.getElementById('inpMDistrict').value.trim();
+      item.photo = document.getElementById('inpMPhoto').value.trim() || 'images/shivappa.jpg';
+      item.tribute_en = document.getElementById('inpMTribEn').value.trim();
+      item.tribute_kn = document.getElementById('inpMTribKn').value.trim();
+
+      DyfiDataStore.set(DYFI_DATA_KEYS.MARTYRS, list);
+      closeModal();
+      renderMartyrs();
+      renderDashboard();
+      showToast('Martyr record updated successfully');
+    };
+  };
 
   window.deleteMartyr = function(index) {
     if (confirm('Delete this martyr homage record?')) {
@@ -571,10 +1033,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <input type="text" id="inpMDistrict" class="form-control" placeholder="Dakshina Kannada" required>
           </div>
         </div>
-        <div class="form-group">
-          <label class="form-label">Photo Image Path / URL</label>
-          <input type="text" id="inpMPhoto" class="form-control" value="images/shivappa.jpg" required>
-        </div>
+        ${renderImagePickerHTML('inpMPhoto', 'Comrade Memorial Photo (ಭಾವಚಿತ್ರ ಆಯ್ಕೆಮಾಡಿ)', '', 'images/shivappa.jpg')}
         <div class="form-group">
           <label class="form-label">Tribute Bio (English)</label>
           <textarea id="inpMTribEn" class="form-control" rows="2" required></textarea>
@@ -587,6 +1046,8 @@ document.addEventListener('DOMContentLoaded', () => {
       </form>
     `);
 
+    initImagePicker('inpMPhoto');
+
     document.getElementById('modalFormMartyr').onsubmit = (e) => {
       e.preventDefault();
       const list = DyfiDataStore.get(DYFI_DATA_KEYS.MARTYRS) || [];
@@ -596,7 +1057,7 @@ document.addEventListener('DOMContentLoaded', () => {
         name_kn: document.getElementById('inpMNameKn').value.trim(),
         date: document.getElementById('inpMDate').value.trim(),
         district: document.getElementById('inpMDistrict').value.trim(),
-        photo: document.getElementById('inpMPhoto').value.trim(),
+        photo: document.getElementById('inpMPhoto').value.trim() || 'images/shivappa.jpg',
         tribute_en: document.getElementById('inpMTribEn').value.trim(),
         tribute_kn: document.getElementById('inpMTribKn').value.trim()
       });
@@ -614,7 +1075,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const tbody = document.getElementById('leadersTableBody');
     tbody.innerHTML = list.map((l, idx) => `
       <tr>
-        <td><img src="${l.photo || 'images/leader-1.jpg'}" class="table-avatar" alt="Leader"></td>
+        <td><img src="${l.photo || 'images/leader-1.jpg'}" class="table-avatar" alt="Leader" onerror="this.src='images/leader-1.jpg'"></td>
         <td>
           <strong>${l.name_en}</strong><br>
           <span style="color:#ef4444;">${l.name_kn}</span>
@@ -625,11 +1086,64 @@ document.addEventListener('DOMContentLoaded', () => {
         </td>
         <td>${l.region}</td>
         <td>
-          <button class="btn btn-sm btn-outline-danger" onclick="deleteLeader(${idx})">Delete</button>
+          <div class="table-actions-cell">
+            <button class="btn btn-table-action btn-outline-warning" onclick="editLeader(${idx})">✏️ Edit</button>
+            <button class="btn btn-table-action btn-outline-danger" onclick="deleteLeader(${idx})">🗑️ Delete</button>
+          </div>
         </td>
       </tr>
     `).join('');
   }
+
+  window.editLeader = function(index) {
+    const list = DyfiDataStore.get(DYFI_DATA_KEYS.LEADERS) || [];
+    const item = list[index];
+    if (!item) return;
+
+    openModal('Edit State Committee Leader', `
+      <form id="modalFormLeaderEdit">
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label class="form-label">Leader Name (English)</label>
+            <input type="text" id="inpLNameEn" class="form-control" required value="${(item.name_en || '').replace(/"/g, '&quot;')}">
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label">Leader Name (ಕನ್ನಡ)</label>
+            <input type="text" id="inpLNameKn" class="form-control" required value="${(item.name_kn || '').replace(/"/g, '&quot;')}">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label class="form-label">Designation / Role (English)</label>
+            <input type="text" id="inpLRoleEn" class="form-control" required value="${(item.role_en || '').replace(/"/g, '&quot;')}">
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label">Designation / Role (ಕನ್ನಡ)</label>
+            <input type="text" id="inpLRoleKn" class="form-control" required value="${(item.role_kn || '').replace(/"/g, '&quot;')}">
+          </div>
+        </div>
+        ${renderImagePickerHTML('inpLPhoto', 'Leader Avatar Photo (ಭಾವಚಿತ್ರ ಆಯ್ಕೆಮಾಡಿ)', item.photo || '', 'images/santosh_bajal.jpg')}
+        <button type="submit" class="btn btn-primary btn-block">Update Leader Information</button>
+      </form>
+    `);
+
+    initImagePicker('inpLPhoto');
+
+    document.getElementById('modalFormLeaderEdit').onsubmit = (e) => {
+      e.preventDefault();
+      item.name_en = document.getElementById('inpLNameEn').value.trim();
+      item.name_kn = document.getElementById('inpLNameKn').value.trim();
+      item.role_en = document.getElementById('inpLRoleEn').value.trim();
+      item.role_kn = document.getElementById('inpLRoleKn').value.trim();
+      item.photo = document.getElementById('inpLPhoto').value.trim() || 'images/santosh_bajal.jpg';
+
+      DyfiDataStore.set(DYFI_DATA_KEYS.LEADERS, list);
+      closeModal();
+      renderLeaders();
+      renderDashboard();
+      showToast('Leader information updated successfully');
+    };
+  };
 
   window.deleteLeader = function(index) {
     if (confirm('Delete this leader?')) {
@@ -665,13 +1179,12 @@ document.addEventListener('DOMContentLoaded', () => {
             <input type="text" id="inpLRoleKn" class="form-control" required placeholder="ರಾಜ್ಯ ಅಧ್ಯಕ್ಷರು / ಪ್ರಧಾನ ಕಾರ್ಯದರ್ಶಿ">
           </div>
         </div>
-        <div class="form-group">
-          <label class="form-label">Avatar Photo Path / URL</label>
-          <input type="text" id="inpLPhoto" class="form-control" value="images/santosh_bajal.jpg" required>
-        </div>
+        ${renderImagePickerHTML('inpLPhoto', 'Leader Avatar Photo (ಭಾವಚಿತ್ರ ಆಯ್ಕೆಮಾಡಿ)', '', 'images/santosh_bajal.jpg')}
         <button type="submit" class="btn btn-primary btn-block">Add Leader</button>
       </form>
     `);
+
+    initImagePicker('inpLPhoto');
 
     document.getElementById('modalFormLeader').onsubmit = (e) => {
       e.preventDefault();
@@ -683,7 +1196,7 @@ document.addEventListener('DOMContentLoaded', () => {
         role_en: document.getElementById('inpLRoleEn').value.trim(),
         role_kn: document.getElementById('inpLRoleKn').value.trim(),
         region: 'Karnataka State Committee',
-        photo: document.getElementById('inpLPhoto').value.trim()
+        photo: document.getElementById('inpLPhoto').value.trim() || 'images/santosh_bajal.jpg'
       });
       DyfiDataStore.set(DYFI_DATA_KEYS.LEADERS, list);
       closeModal();
@@ -700,17 +1213,101 @@ document.addEventListener('DOMContentLoaded', () => {
     tbody.innerHTML = list.map((g, idx) => `
       <tr>
         <td>
-          ${g.type === 'video' ? '🎬 Video Embed' : `<img src="${g.src}" class="table-thumb" alt="Gallery">`}
+          ${g.type === 'video' ? '🎬 Video Embed' : `<img src="${g.src}" class="table-thumb" alt="Gallery" onerror="this.src='images/gallery-1.jpg'">`}
         </td>
         <td><span class="badge-tag">${g.type.toUpperCase()}</span></td>
         <td>${g.category}</td>
         <td>${g.caption_en || g.caption_kn || 'Media'}</td>
         <td>
-          <button class="btn btn-sm btn-outline-danger" onclick="deleteGallery(${idx})">Delete</button>
+          <div class="table-actions-cell">
+            <button class="btn btn-table-action btn-outline-warning" onclick="editGallery(${idx})">✏️ Edit</button>
+            <button class="btn btn-table-action btn-outline-danger" onclick="deleteGallery(${idx})">🗑️ Delete</button>
+          </div>
         </td>
       </tr>
     `).join('');
   }
+
+  window.editGallery = function(index) {
+    const list = DyfiDataStore.get(DYFI_DATA_KEYS.GALLERY) || [];
+    const item = list[index];
+    if (!item) return;
+
+    openModal('Edit Gallery Media', `
+      <form id="modalFormGalleryEdit">
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label class="form-label">Media Type</label>
+            <select id="inpGType" class="form-control">
+              <option value="image" ${item.type === 'image' ? 'selected' : ''}>Photo / Image</option>
+              <option value="video" ${item.type === 'video' ? 'selected' : ''}>YouTube Video Embed</option>
+            </select>
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label">Category</label>
+            <select id="inpGCat" class="form-control">
+              <option value="rally" ${item.category === 'rally' ? 'selected' : ''}>Rallies</option>
+              <option value="conf" ${item.category === 'conf' ? 'selected' : ''}>Conferences</option>
+              <option value="health" ${item.category === 'health' ? 'selected' : ''}>Health & Blood</option>
+              <option value="relief" ${item.category === 'relief' ? 'selected' : ''}>Relief Work</option>
+              <option value="video" ${item.category === 'video' ? 'selected' : ''}>Video Stream</option>
+            </select>
+          </div>
+        </div>
+        <div id="galleryImagePickerWrap" style="${item.type === 'video' ? 'display:none;' : ''}">
+          ${renderImagePickerHTML('inpGSrc', 'Gallery Image (ಫೋಟೋ ಆಯ್ಕೆಮಾಡಿ)', item.type === 'image' ? item.src : '', 'images/gallery-1.jpg')}
+        </div>
+        <div id="galleryVideoInputWrap" class="form-group" style="${item.type === 'video' ? '' : 'display:none;'}">
+          <label class="form-label">YouTube Video Embed URL</label>
+          <input type="text" id="inpGVideoSrc" class="form-control" value="${item.type === 'video' ? (item.src || '').replace(/"/g, '&quot;') : ''}" placeholder="https://www.youtube.com/embed/...">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Caption (English)</label>
+          <input type="text" id="inpGCaptionEn" class="form-control" required value="${(item.caption_en || '').replace(/"/g, '&quot;')}">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Caption (ಕನ್ನಡ)</label>
+          <input type="text" id="inpGCaptionKn" class="form-control" required value="${(item.caption_kn || '').replace(/"/g, '&quot;')}">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Update Gallery Media</button>
+      </form>
+    `);
+
+    initImagePicker('inpGSrc');
+
+    const typeSelect = document.getElementById('inpGType');
+    const imgWrap = document.getElementById('galleryImagePickerWrap');
+    const vidWrap = document.getElementById('galleryVideoInputWrap');
+
+    typeSelect.addEventListener('change', () => {
+      if (typeSelect.value === 'video') {
+        imgWrap.style.display = 'none';
+        vidWrap.style.display = 'block';
+      } else {
+        imgWrap.style.display = 'block';
+        vidWrap.style.display = 'none';
+      }
+    });
+
+    document.getElementById('modalFormGalleryEdit').onsubmit = (e) => {
+      e.preventDefault();
+      const type = typeSelect.value;
+      const src = type === 'video' 
+        ? document.getElementById('inpGVideoSrc').value.trim() 
+        : (document.getElementById('inpGSrc').value.trim() || 'images/gallery-1.jpg');
+
+      item.type = type;
+      item.category = document.getElementById('inpGCat').value;
+      item.src = src;
+      item.caption_en = document.getElementById('inpGCaptionEn').value.trim();
+      item.caption_kn = document.getElementById('inpGCaptionKn').value.trim();
+
+      DyfiDataStore.set(DYFI_DATA_KEYS.GALLERY, list);
+      closeModal();
+      renderGallery();
+      showToast('Gallery media updated successfully');
+    };
+  };
 
   window.deleteGallery = function(index) {
     if (confirm('Delete this gallery item?')) {
@@ -744,9 +1341,12 @@ document.addEventListener('DOMContentLoaded', () => {
             </select>
           </div>
         </div>
-        <div class="form-group">
-          <label class="form-label">Media Source (Image path / YouTube Embed URL)</label>
-          <input type="text" id="inpGSrc" class="form-control" value="images/gallery-1.jpg" required>
+        <div id="galleryImagePickerWrap">
+          ${renderImagePickerHTML('inpGSrc', 'Gallery Image (ಫೋಟೋ ಆಯ್ಕೆಮಾಡಿ)', '', 'images/gallery-1.jpg')}
+        </div>
+        <div id="galleryVideoInputWrap" class="form-group" style="display:none;">
+          <label class="form-label">YouTube Video Embed URL</label>
+          <input type="text" id="inpGVideoSrc" class="form-control" placeholder="https://www.youtube.com/embed/...">
         </div>
         <div class="form-group">
           <label class="form-label">Caption (English)</label>
@@ -760,14 +1360,35 @@ document.addEventListener('DOMContentLoaded', () => {
       </form>
     `);
 
+    initImagePicker('inpGSrc');
+
+    const typeSelect = document.getElementById('inpGType');
+    const imgWrap = document.getElementById('galleryImagePickerWrap');
+    const vidWrap = document.getElementById('galleryVideoInputWrap');
+
+    typeSelect.addEventListener('change', () => {
+      if (typeSelect.value === 'video') {
+        imgWrap.style.display = 'none';
+        vidWrap.style.display = 'block';
+      } else {
+        imgWrap.style.display = 'block';
+        vidWrap.style.display = 'none';
+      }
+    });
+
     document.getElementById('modalFormGallery').onsubmit = (e) => {
       e.preventDefault();
+      const type = typeSelect.value;
+      const src = type === 'video'
+        ? document.getElementById('inpGVideoSrc').value.trim()
+        : (document.getElementById('inpGSrc').value.trim() || 'images/gallery-1.jpg');
+
       const list = DyfiDataStore.get(DYFI_DATA_KEYS.GALLERY) || [];
       list.push({
         id: 'g_' + Date.now(),
-        type: document.getElementById('inpGType').value,
+        type: type,
         category: document.getElementById('inpGCat').value,
-        src: document.getElementById('inpGSrc').value.trim(),
+        src: src,
         caption_en: document.getElementById('inpGCaptionEn').value.trim(),
         caption_kn: document.getElementById('inpGCaptionKn').value.trim()
       });
