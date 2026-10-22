@@ -180,6 +180,13 @@
                 <div class="stat-label">District Units</div>
               </div>
             </div>
+            <div class="stat-card">
+              <div class="stat-icon dark">👥</div>
+              <div class="stat-meta">
+                <div class="stat-value" id="statLeaders">0</div>
+                <div class="stat-label">Leadership Team</div>
+              </div>
+            </div>
           </div>
 
           <div class="dashboard-panels-grid">
@@ -192,6 +199,7 @@
                 <button class="btn btn-outline-primary" onclick="window.adminApp.switchTab('statements', true)">+ Release Statement</button>
                 <button class="btn btn-outline-primary" onclick="window.adminApp.switchTab('campaigns', true)">+ Launch Campaign</button>
                 <button class="btn btn-outline-primary" onclick="window.adminApp.switchTab('martyrs', true)">+ Add Martyr Tribute</button>
+                <button class="btn btn-outline-primary" onclick="window.adminApp.switchTab('leaders', true)">+ Add Leader</button>
                 <button class="btn btn-outline-primary" onclick="window.adminApp.switchTab('districts', true)">+ Add District Committee</button>
                 <button class="btn btn-outline-primary" onclick="window.adminApp.switchTab('ticker')">Edit Top Ticker</button>
                 <button class="btn btn-outline-primary" onclick="window.adminApp.switchTab('bloodDonors')">Browse Donors</button>
@@ -457,8 +465,8 @@
           <div class="card">
             <div class="card-header flex-between">
               <div>
-                <h3>State Leadership Team</h3>
-                <p class="card-subtitle">Manage office bearers shown in the State Leadership section.</p>
+                <h3>National &amp; State Leadership Team (ರಾಷ್ಟ್ರೀಯ &amp; ರಾಜ್ಯ ಮುಖಂಡರು)</h3>
+                <p class="card-subtitle">Manage office bearers shown in the All India National &amp; Karnataka State Leadership sections.</p>
               </div>
               <button class="btn btn-primary" id="btnOpenAddLeader">+ Add Leader</button>
             </div>
@@ -468,10 +476,10 @@
                   <thead>
                     <tr>
                       <th width="12%">Avatar</th>
-                      <th width="30%">Leader Name</th>
-                      <th width="28%">Designation / Role</th>
-                      <th width="15%">Committee</th>
-                      <th width="15%">Actions</th>
+                      <th width="28%">Leader Name</th>
+                      <th width="24%">Designation / Role</th>
+                      <th width="20%">Committee &amp; Tier</th>
+                      <th width="16%">Actions</th>
                     </tr>
                   </thead>
                   <tbody id="leadersTableBody"></tbody>

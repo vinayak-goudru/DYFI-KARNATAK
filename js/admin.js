@@ -84,6 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (tabId === 'statements') document.getElementById('btnOpenAddStatement').click();
         if (tabId === 'campaigns') document.getElementById('btnOpenAddCampaign').click();
         if (tabId === 'martyrs') document.getElementById('btnOpenAddMartyr').click();
+        if (tabId === 'leaders') document.getElementById('btnOpenAddLeader').click();
         if (tabId === 'districts') document.getElementById('btnOpenAddDistrict').click();
       }, 100);
     }
@@ -350,6 +351,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (statDistricts) statDistricts.innerText = districts.length;
     const badgeDistricts = document.getElementById('badgeDistrictsCount');
     if (badgeDistricts) badgeDistricts.innerText = districts.length;
+
+    const statLeaders = document.getElementById('statLeaders');
+    if (statLeaders) statLeaders.innerText = (DyfiDataStore.get(DYFI_DATA_KEYS.LEADERS) || []).length;
 
     const dashTickerList = document.getElementById('dashTickerList');
     dashTickerList.innerHTML = ticker.map(t => `
@@ -1080,30 +1084,46 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   });
 
-  // Leaders
+  // Leaders (National & State Leadership Management)
   function renderLeaders() {
     const list = DyfiDataStore.get(DYFI_DATA_KEYS.LEADERS) || [];
     const tbody = document.getElementById('leadersTableBody');
-    tbody.innerHTML = list.map((l, idx) => `
-      <tr>
-        <td><img src="${l.photo || 'images/leader-1.jpg'}" class="table-avatar" alt="Leader" onerror="this.src='images/leader-1.jpg'"></td>
-        <td>
-          <strong>${l.name_en}</strong><br>
-          <span style="color:#ef4444;">${l.name_kn}</span>
-        </td>
-        <td>
-          ${l.role_en}<br>
-          <small style="color:#94a3b8;">${l.role_kn}</small>
-        </td>
-        <td>${l.region}</td>
-        <td>
-          <div class="table-actions-cell">
-            <button class="btn btn-table-action btn-outline-warning" onclick="editLeader(${idx})">✏️ Edit</button>
-            <button class="btn btn-table-action btn-outline-danger" onclick="deleteLeader(${idx})">🗑️ Delete</button>
-          </div>
-        </td>
-      </tr>
-    `).join('');
+    if (!tbody) return;
+
+    tbody.innerHTML = list.map((l, idx) => {
+      const isNational = l.tier === 'national' || (l.id && l.id.startsWith('nl'));
+      const tierBadge = isNational
+        ? '<span class="badge" style="background:#b91c1c; color:#fff; font-size:0.75rem; padding:0.2rem 0.55rem; border-radius:4px; font-weight:700;">🇮🇳 National / All India</span>'
+        : '<span class="badge" style="background:#1e3a8a; color:#fff; font-size:0.75rem; padding:0.2rem 0.55rem; border-radius:4px; font-weight:700;">🚩 Karnataka State</span>';
+
+      const avatarHtml = l.photo
+        ? `<img src="${l.photo}" class="table-avatar" alt="Leader" onerror="this.outerHTML='<div class=\\'table-avatar placeholder-avatar\\' style=\\'display:inline-flex; align-items:center; justify-content:center; background:#1e293b; color:#94a3b8; font-size:1.1rem; width:44px; height:44px; border-radius:50%; border:2px solid rgba(220,38,38,0.3);\\'>👤</div>'">`
+        : `<div class="table-avatar placeholder-avatar" style="display:inline-flex; align-items:center; justify-content:center; background:#1e293b; color:#94a3b8; font-size:1.1rem; width:44px; height:44px; border-radius:50%; border:2px solid rgba(220,38,38,0.3);">👤</div>`;
+
+      return `
+        <tr>
+          <td>${avatarHtml}</td>
+          <td>
+            <strong>${l.name_en || '<em style="color:#94a3b8;">(Blank / ಖಾಲಿ)</em>'}</strong><br>
+            <span style="color:#ef4444;">${l.name_kn || ''}</span>
+          </td>
+          <td>
+            <strong>${l.role_en || 'Leader'}</strong><br>
+            <small style="color:#94a3b8;">${l.role_kn || ''}</small>
+          </td>
+          <td>
+            ${tierBadge}<br>
+            <small style="color:#94a3b8;">${l.region || (isNational ? 'DYFI All India Centre' : 'Karnataka State Committee')}</small>
+          </td>
+          <td>
+            <div class="table-actions-cell">
+              <button class="btn btn-table-action btn-outline-warning" onclick="editLeader(${idx})">✏️ Edit</button>
+              <button class="btn btn-table-action btn-outline-danger" onclick="deleteLeader(${idx})">🗑️ Delete</button>
+            </div>
+          </td>
+        </tr>
+      `;
+    }).join('');
   }
 
   window.editLeader = function(index) {
@@ -1111,29 +1131,44 @@ document.addEventListener('DOMContentLoaded', () => {
     const item = list[index];
     if (!item) return;
 
-    openModal('Edit State Committee Leader', `
+    const isNational = item.tier === 'national' || (item.id && item.id.startsWith('nl'));
+
+    openModal('Edit Leader (ಮುಖಂಡರ ವಿವರ ತಿದ್ದುಪಡಿ)', `
       <form id="modalFormLeaderEdit">
         <div class="form-row">
           <div class="form-group col-6">
+            <label class="form-label">Leadership Level / Tier (ನಾಯಕತ್ವ ಹಂತ)</label>
+            <select id="inpLTier" class="form-control" required>
+              <option value="national" ${isNational ? 'selected' : ''}>🇮🇳 All India / National Leadership (ರಾಷ್ಟ್ರೀಯ ನಾಯಕತ್ವ)</option>
+              <option value="state" ${!isNational ? 'selected' : ''}>🚩 Karnataka State Leadership (ರಾಜ್ಯ ನಾಯಕತ್ವ)</option>
+            </select>
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label">Committee / Region Name</label>
+            <input type="text" id="inpLRegion" class="form-control" value="${(item.region || (isNational ? 'DYFI All India Centre' : 'Karnataka State Committee')).replace(/"/g, '&quot;')}">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-6">
             <label class="form-label">Leader Name (English)</label>
-            <input type="text" id="inpLNameEn" class="form-control" required value="${(item.name_en || '').replace(/"/g, '&quot;')}">
+            <input type="text" id="inpLNameEn" class="form-control" value="${(item.name_en || '').replace(/"/g, '&quot;')}" placeholder="e.g. Comrade A. A. Rahim">
           </div>
           <div class="form-group col-6">
             <label class="form-label">Leader Name (ಕನ್ನಡ)</label>
-            <input type="text" id="inpLNameKn" class="form-control" required value="${(item.name_kn || '').replace(/"/g, '&quot;')}">
+            <input type="text" id="inpLNameKn" class="form-control" value="${(item.name_kn || '').replace(/"/g, '&quot;')}" placeholder="ಉದಾ: ಕಾಮ್ರೇಡ್ ಎ. ಎ. ರಹೀಮ್">
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-6">
             <label class="form-label">Designation / Role (English)</label>
-            <input type="text" id="inpLRoleEn" class="form-control" required value="${(item.role_en || '').replace(/"/g, '&quot;')}">
+            <input type="text" id="inpLRoleEn" class="form-control" required value="${(item.role_en || '').replace(/"/g, '&quot;')}" placeholder="e.g. All India President / State President">
           </div>
           <div class="form-group col-6">
             <label class="form-label">Designation / Role (ಕನ್ನಡ)</label>
-            <input type="text" id="inpLRoleKn" class="form-control" required value="${(item.role_kn || '').replace(/"/g, '&quot;')}">
+            <input type="text" id="inpLRoleKn" class="form-control" required value="${(item.role_kn || '').replace(/"/g, '&quot;')}" placeholder="ಉದಾ: ಅಖಿಲ ಭಾರತ ಅಧ್ಯಕ್ಷರು / ರಾಜ್ಯ ಅಧ್ಯಕ್ಷರು">
           </div>
         </div>
-        ${renderImagePickerHTML('inpLPhoto', 'Leader Avatar Photo (ಭಾವಚಿತ್ರ ಆಯ್ಕೆಮಾಡಿ)', item.photo || '', 'images/santosh_bajal.jpg')}
+        ${renderImagePickerHTML('inpLPhoto', 'Leader Photo (ಭಾವಚಿತ್ರ - ಐಚ್ಛಿಕ/Optional, ಖಾಲಿ ಬಿಟ್ಟರೆ 👤 ಕಾಣಿಸುತ್ತದೆ)', item.photo || '', '')}
         <button type="submit" class="btn btn-primary btn-block">Update Leader Information</button>
       </form>
     `);
@@ -1142,11 +1177,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('modalFormLeaderEdit').onsubmit = (e) => {
       e.preventDefault();
+      item.tier = document.getElementById('inpLTier').value;
+      item.region = document.getElementById('inpLRegion').value.trim() || (item.tier === 'national' ? 'DYFI All India Centre' : 'Karnataka State Committee');
       item.name_en = document.getElementById('inpLNameEn').value.trim();
       item.name_kn = document.getElementById('inpLNameKn').value.trim();
       item.role_en = document.getElementById('inpLRoleEn').value.trim();
       item.role_kn = document.getElementById('inpLRoleKn').value.trim();
-      item.photo = document.getElementById('inpLPhoto').value.trim() || 'images/santosh_bajal.jpg';
+      item.photo = document.getElementById('inpLPhoto').value.trim();
 
       DyfiDataStore.set(DYFI_DATA_KEYS.LEADERS, list);
       closeModal();
@@ -1168,52 +1205,74 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   document.getElementById('btnOpenAddLeader').addEventListener('click', () => {
-    openModal('Add State Committee Leader', `
+    openModal('Add Leader (ಹೊಸ ಮುಖಂಡರ ಸೇರ್ಪಡೆ)', `
       <form id="modalFormLeader">
         <div class="form-row">
           <div class="form-group col-6">
+            <label class="form-label">Leadership Level / Tier (ನಾಯಕತ್ವ ಹಂತ)</label>
+            <select id="inpLTier" class="form-control" required>
+              <option value="national">🇮🇳 All India / National Leadership (ರಾಷ್ಟ್ರೀಯ ನಾಯಕತ್ವ)</option>
+              <option value="state" selected>🚩 Karnataka State Leadership (ರಾಜ್ಯ ನಾಯಕತ್ವ)</option>
+            </select>
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label">Committee / Region Name</label>
+            <input type="text" id="inpLRegion" class="form-control" value="Karnataka State Committee" placeholder="e.g. DYFI All India Centre">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-6">
             <label class="form-label">Leader Name (English)</label>
-            <input type="text" id="inpLNameEn" class="form-control" required placeholder="Comrade Name">
+            <input type="text" id="inpLNameEn" class="form-control" placeholder="Comrade Name">
           </div>
           <div class="form-group col-6">
             <label class="form-label">Leader Name (ಕನ್ನಡ)</label>
-            <input type="text" id="inpLNameKn" class="form-control" required placeholder="ಕಾಮ್ರೇಡ್ ಹೆಸರು">
+            <input type="text" id="inpLNameKn" class="form-control" placeholder="ಕಾಮ್ರೇಡ್ ಹೆಸರು">
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-6">
             <label class="form-label">Designation / Role (English)</label>
-            <input type="text" id="inpLRoleEn" class="form-control" required placeholder="State President / Secretary">
+            <input type="text" id="inpLRoleEn" class="form-control" required placeholder="All India President / State President">
           </div>
           <div class="form-group col-6">
             <label class="form-label">Designation / Role (ಕನ್ನಡ)</label>
-            <input type="text" id="inpLRoleKn" class="form-control" required placeholder="ರಾಜ್ಯ ಅಧ್ಯಕ್ಷರು / ಪ್ರಧಾನ ಕಾರ್ಯದರ್ಶಿ">
+            <input type="text" id="inpLRoleKn" class="form-control" required placeholder="ಅಖಿಲ ಭಾರತ ಅಧ್ಯಕ್ಷರು / ರಾಜ್ಯ ಅಧ್ಯಕ್ಷರು">
           </div>
         </div>
-        ${renderImagePickerHTML('inpLPhoto', 'Leader Avatar Photo (ಭಾವಚಿತ್ರ ಆಯ್ಕೆಮಾಡಿ)', '', 'images/santosh_bajal.jpg')}
+        ${renderImagePickerHTML('inpLPhoto', 'Leader Photo (ಭಾವಚಿತ್ರ - ಐಚ್ಛಿಕ/Optional, ಖಾಲಿ ಬಿಟ್ಟರೆ 👤 ಕಾಣಿಸುತ್ತದೆ)', '', '')}
         <button type="submit" class="btn btn-primary btn-block">Add Leader</button>
       </form>
     `);
 
     initImagePicker('inpLPhoto');
 
+    const tierSelect = document.getElementById('inpLTier');
+    const regionInput = document.getElementById('inpLRegion');
+    if (tierSelect && regionInput) {
+      tierSelect.addEventListener('change', () => {
+        regionInput.value = tierSelect.value === 'national' ? 'DYFI All India Centre' : 'Karnataka State Committee';
+      });
+    }
+
     document.getElementById('modalFormLeader').onsubmit = (e) => {
       e.preventDefault();
       const list = DyfiDataStore.get(DYFI_DATA_KEYS.LEADERS) || [];
+      const tier = document.getElementById('inpLTier').value;
       list.push({
-        id: 'l_' + Date.now(),
+        id: (tier === 'national' ? 'nl_' : 'l_') + Date.now(),
+        tier: tier,
         name_en: document.getElementById('inpLNameEn').value.trim(),
         name_kn: document.getElementById('inpLNameKn').value.trim(),
         role_en: document.getElementById('inpLRoleEn').value.trim(),
         role_kn: document.getElementById('inpLRoleKn').value.trim(),
-        region: 'Karnataka State Committee',
-        photo: document.getElementById('inpLPhoto').value.trim() || 'images/santosh_bajal.jpg'
+        region: document.getElementById('inpLRegion').value.trim() || (tier === 'national' ? 'DYFI All India Centre' : 'Karnataka State Committee'),
+        photo: document.getElementById('inpLPhoto').value.trim()
       });
       DyfiDataStore.set(DYFI_DATA_KEYS.LEADERS, list);
       closeModal();
       renderLeaders();
       renderDashboard();
-      showToast('Leader added to State Committee');
     };
   });
 

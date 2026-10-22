@@ -168,8 +168,8 @@ const DEFAULT_DYFI_DATA = {
   martyrs: [
     {
       id: 'm1',
-      name_en: 'Comrade Shivappa',
-      name_kn: 'ಕಾಮ್ರೇಡ್ ಶಿವಪ್ಪ',
+      name_en: 'Comrade Shivappa Kotian',
+      name_kn: 'ಕಾಮ್ರೇಡ್ ಶಿವಪ್ಪ ಕೋಟ್ಯಾನ್',
       date: '1987',
       district: 'Dakshina Kannada',
       photo: 'images/shivappa.jpg',
@@ -179,10 +179,10 @@ const DEFAULT_DYFI_DATA = {
     {
       id: 'm2',
       name_en: 'Comrade Muneer & Comrades',
-      name_kn: 'ಹೋರಾಟದ ಹುತಾತ್ಮರು',
+      name_kn: 'ಕಾಮ್ರೇಡ್ ಮುನೀರ್ ಮತ್ತು ಒಡನಾಡಿಗಳು',
       date: '1992',
       district: 'Karnataka State',
-      photo: 'images/leader-1.jpg',
+      photo: '',
       tribute_en: 'Sacrificed their lives fighting for secularism, social dignity, and the unity of the working youth.',
       tribute_kn: 'ಸಾಮಾಜಿಕ ಸಮಾನತೆ, ಸೌಹಾರ್ದತೆ ಮತ್ತು ಯುವಜನರ ಘನತೆಗಾಗಿ ಹೋರಾಟದ ಹಾದಿಯಲ್ಲಿ ಪ್ರಾಣಾರ್ಪಣೆ ಮಾಡಿದ ಚೇತನಗಳು.'
     }
@@ -190,11 +190,32 @@ const DEFAULT_DYFI_DATA = {
 
   leaders: [
     {
+      id: 'nl1',
+      name_en: 'Comrade A. A. Rahim',
+      name_kn: 'ಕಾಮ್ರೇಡ್ ಎ. ಎ. ರಹೀಮ್',
+      role_en: 'All India President (National President)',
+      role_kn: 'ಅಖಿಲ ಭಾರತ ಅಧ್ಯಕ್ಷರು (ರಾಷ್ಟ್ರೀಯ ಅಧ್ಯಕ್ಷರು)',
+      tier: 'national',
+      region: 'DYFI All India Centre',
+      photo: ''
+    },
+    {
+      id: 'nl2',
+      name_en: 'Comrade Himagnoraj Bhattacharya',
+      name_kn: 'ಕಾಮ್ರೇಡ್ ಹಿಮಾಘ್ನರಾಜ್ ಭಟ್ಟಾಚಾರ್ಯ',
+      role_en: 'All India General Secretary (National General Secretary)',
+      role_kn: 'ಅಖಿಲ ಭಾರತ ಪ್ರಧಾನ ಕಾರ್ಯದರ್ಶಿ',
+      tier: 'national',
+      region: 'DYFI All India Centre',
+      photo: ''
+    },
+    {
       id: 'l1',
       name_en: 'Comrade Lavitra Vastrad',
       name_kn: 'ಕಾಮ್ರೇಡ್ ಲವಿತ್ರ ವಸ್ತ್ರದ',
       role_en: 'State President',
       role_kn: 'ರಾಜ್ಯ ಅಧ್ಯಕ್ಷರು',
+      tier: 'state',
       region: 'Karnataka State Committee',
       photo: 'images/lavitra_president.jpg'
     },
@@ -204,6 +225,7 @@ const DEFAULT_DYFI_DATA = {
       name_kn: 'ಕಾಮ್ರೇಡ್ ಸಂತೋಷ್ ಬಜಾಲ್',
       role_en: 'State General Secretary',
       role_kn: 'ರಾಜ್ಯ ಪ್ರಧಾನ ಕಾರ್ಯದರ್ಶಿ',
+      tier: 'state',
       region: 'Karnataka State Committee',
       photo: 'images/santosh_bajal.jpg'
     },
@@ -213,6 +235,7 @@ const DEFAULT_DYFI_DATA = {
       name_kn: 'ಕಾಮ್ರೇಡ್ ದಿಲೀಪ್ (ಬೆಂಗಳೂರು)',
       role_en: 'State Treasurer',
       role_kn: 'ರಾಜ್ಯ ಖಜಾಂಚಿ',
+      tier: 'state',
       region: 'Karnataka State Committee',
       photo: 'images/dilep.jpg'
     }
@@ -1501,7 +1524,7 @@ class DyfiDataStore {
   static set(key, value) {
     try {
       localStorage.setItem(key, JSON.stringify(value));
-      if (typeof window !== 'undefined') {
+      if (typeof window !== 'undefined' && typeof window.dispatchEvent === 'function' && typeof CustomEvent === 'function') {
         window.dispatchEvent(new CustomEvent('dyfi_data_updated', { detail: { key, value } }));
       }
       return true;
@@ -1561,6 +1584,14 @@ class DyfiDataStore {
       this.set(DYFI_DATA_KEYS.DISTRICTS, DEFAULT_DYFI_DATA.districts);
       localStorage.setItem(CLEAN_DISTRICTS_VERSION, 'true');
     }
+
+    // Auto-migrate leaders to include 2 National Leaders and clean avatars
+    const NATIONAL_LEADERS_VERSION = 'dyfi_leaders_v2_national_allocated';
+    if (!localStorage.getItem(NATIONAL_LEADERS_VERSION)) {
+      this.set(DYFI_DATA_KEYS.LEADERS, DEFAULT_DYFI_DATA.leaders);
+      this.set(DYFI_DATA_KEYS.MARTYRS, DEFAULT_DYFI_DATA.martyrs);
+      localStorage.setItem(NATIONAL_LEADERS_VERSION, 'true');
+    }
   }
 
   static resetToDefaults() {
@@ -1583,4 +1614,8 @@ if (typeof window !== 'undefined') {
   window.DyfiDataStore = DyfiDataStore;
   window.DYFI_DATA_KEYS = DYFI_DATA_KEYS;
   DyfiDataStore.init();
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { DyfiDataStore, DYFI_DATA_KEYS, DEFAULT_DYFI_DATA };
 }

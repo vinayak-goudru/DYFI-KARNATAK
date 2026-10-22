@@ -71,19 +71,16 @@
             </ul>
           </li>
 
-          <!-- Dedicated Committees Nav Dropdown with Dist / Taluk / Area -->
+          <!-- Dedicated Committees Nav Dropdown -->
           <li class="nav-item-dropdown">
-            <a href="#districts" class="nav-link dropdown-toggle">
+            <a href="committees.html" class="nav-link dropdown-toggle">
               <span data-i18n="navCommittees">ಸಮಿತಿಗಳು &amp; ಘಟಕಗಳು</span>
               <span class="dropdown-chevron">▼</span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="#districts" class="dropdown-item" data-i18n="navDistrictCommittees">🚩 ಜಿಲ್ಲಾ ಸಮಿತಿಗಳು
-                  (District Committees)</a></li>
-              <li><a href="#districts" class="dropdown-item" data-i18n="navTalukCommittees">🏛️ ತಾಲ್ಲೂಕು ಸಮಿತಿಗಳು (Taluk
-                  Committees)</a></li>
-              <li><a href="#districts" class="dropdown-item" data-i18n="navAreaCommittees">👥 ಗ್ರಾಮ &amp; ಏರಿಯಾ ಸಮಿತಿಗಳು
-                  (Area Units)</a></li>
+              <li><a href="committees.html" class="dropdown-item" data-i18n="navDistrictCommittees">🚩 ಜಿಲ್ಲಾ ಸಮಿತಿಗಳು (District Committees)</a></li>
+              <li><a href="committees.html" class="dropdown-item" data-i18n="navTalukCommittees">🏛️ ತಾಲ್ಲೂಕು ಸಮಿತಿಗಳು (Taluk Committees)</a></li>
+              <li><a href="committees.html" class="dropdown-item" data-i18n="navAreaCommittees">👥 ಗ್ರಾಮ &amp; ಏರಿಯಾ ಸಮಿತಿಗಳು (Area Units)</a></li>
             </ul>
           </li>
 
@@ -91,7 +88,7 @@
           <li><a href="#statements" class="nav-link" data-i18n="navStatements">ಹೇಳಿಕೆಗಳು</a></li>
           <li><a href="#news" class="nav-link" data-i18n="navNews">ಸುದ್ದಿಗಳು</a></li>
           <li><a href="#gallery" class="nav-link" data-i18n="navGallery">ಚಿತ್ರ ಗ್ಯಾಲರಿ</a></li>
-          <li><a href="#martyrs" class="nav-link" data-i18n="navMartyrs">ಹುತಾತ್ಮರು</a></li>
+          <li><a href="martyrs.html" class="nav-link" data-i18n="navMartyrs">ಹುತಾತ್ಮರು</a></li>
           <li><a href="#bloodDonation" class="nav-link" data-i18n="navBlood">ರಕ್ತದಾನ ಸೇವೆ</a></li>
         </ul>
       </nav>
@@ -681,99 +678,136 @@
   </section>
 
   <!-- ========================================================
-       STATE LEADERSHIP SHOWCASE
+       LEADERSHIP SHOWCASE (NATIONAL & STATE LEADERS)
        ======================================================== -->
   <section class="leadership-section" id="leadership">
     <div class="container">
-      <div class="section-header-row">
-        <h2 class="section-title" data-i18n="leadSectionTitle">ರಾಜ್ಯ <span class="highlight-red">ಮುಖಂಡರು</span></h2>
+      <div class="section-header-row" style="text-align: center; margin-bottom: 2.5rem;">
+        <span class="section-tag" style="display: inline-block;">LEADERSHIP OF THE MOVEMENT</span>
+        <h2 class="section-title"><span class="highlight-red">ಮುಖಂಡರು</span> (Leadership)</h2>
       </div>
 
-      <div class="leadership-grid">
-        <div class="leader-card">
-          <div class="leader-avatar-wrap">
-            <img src="images/lavitra_president.jpg" alt="State President" loading="lazy">
-          </div>
-          <h3 class="leader-name" data-i18n="lead1Name">Comrade Lavitra Vastrad</h3>
-          <div class="leader-role" data-i18n="lead1Role">State President</div>
-          <div class="leader-region">Karnataka State Committee</div>
+      <!-- 1. All India / National Leadership (2 Leaders) -->
+      <div class="leadership-category-block">
+        <div class="leadership-subtitle-wrap">
+          <span class="leadership-sub-badge">ALL INDIA</span>
+          <h3 class="leadership-tier-title" data-i18n="nationalLeadTitle">🚩 ಅಖಿಲ ಭಾರತ / ರಾಷ್ಟ್ರೀಯ ನಾಯಕತ್ವ (National Leadership)</h3>
         </div>
-
-        <div class="leader-card">
-          <div class="leader-avatar-wrap">
-            <img src="images/santosh_bajal.jpg" alt="State General Secretary" loading="lazy">
+        <div class="leadership-grid national-leaders-grid" id="nationalLeadersGrid">
+          <!-- National Leader 1: All India President -->
+          <div class="leader-card" onclick="openContentDetails('leader', 'nl1')" style="cursor: pointer;">
+            <div class="leader-avatar-wrap">
+              <div class="leader-avatar-wrap placeholder-avatar" style="display:flex; align-items:center; justify-content:center; background:#1e293b; color:#94a3b8; font-size:2.4rem; border:3px solid #dc2626; width:100%; height:100%; border-radius:50%;">👤</div>
+              <span class="officer-zoom-hint">🔍</span>
+            </div>
+            <h3 class="leader-name" data-i18n="nl1Name">Comrade A. A. Rahim</h3>
+            <div class="leader-role" data-i18n="nl1Role">All India President</div>
+            <div class="leader-region">DYFI All India Centre</div>
           </div>
-          <h3 class="leader-name" data-i18n="lead2Name">Comrade Santosh Bajal</h3>
-          <div class="leader-role" data-i18n="lead2Role">State General Secretary</div>
-          <div class="leader-region">Karnataka State Committee</div>
+
+          <!-- National Leader 2: All India General Secretary -->
+          <div class="leader-card" onclick="openContentDetails('leader', 'nl2')" style="cursor: pointer;">
+            <div class="leader-avatar-wrap">
+              <div class="leader-avatar-wrap placeholder-avatar" style="display:flex; align-items:center; justify-content:center; background:#1e293b; color:#94a3b8; font-size:2.4rem; border:3px solid #dc2626; width:100%; height:100%; border-radius:50%;">👤</div>
+              <span class="officer-zoom-hint">🔍</span>
+            </div>
+            <h3 class="leader-name" data-i18n="nl2Name">Comrade Himagnoraj Bhattacharya</h3>
+            <div class="leader-role" data-i18n="nl2Role">All India General Secretary</div>
+            <div class="leader-region">DYFI All India Centre</div>
+          </div>
         </div>
+      </div>
 
-        <div class="leader-card">
-          <div class="leader-avatar-wrap">
-            <img src="images/dilep.jpg" alt="State Treasurer" loading="lazy">
+      <!-- 2. Karnataka State Leadership (3 Leaders) -->
+      <div class="leadership-category-block">
+        <div class="leadership-subtitle-wrap">
+          <span class="leadership-sub-badge">KARNATAKA</span>
+          <h3 class="leadership-tier-title" data-i18n="stateLeadTitle">🚩 ಕರ್ನಾಟಕ ರಾಜ್ಯ ನಾಯಕತ್ವ (State Leadership)</h3>
+        </div>
+        <div class="leadership-grid state-leaders-grid" id="stateLeadersGrid">
+          <div class="leader-card" onclick="openContentDetails('leader', 'l1')" style="cursor: pointer;">
+            <div class="leader-avatar-wrap">
+              <img src="images/lavitra_president.jpg" alt="State President" loading="lazy">
+              <span class="officer-zoom-hint">🔍</span>
+            </div>
+            <h3 class="leader-name" data-i18n="lead1Name">Comrade Lavitra Vastrad</h3>
+            <div class="leader-role" data-i18n="lead1Role">State President</div>
+            <div class="leader-region">Karnataka State Committee</div>
           </div>
-          <h3 class="leader-name" data-i18n="lead3Name">Comrade Dilip Bangalore</h3>
-          <div class="leader-role" data-i18n="lead3Role">State Treasurer</div>
-          <div class="leader-region">Karnataka State Committee</div>
+
+          <div class="leader-card" onclick="openContentDetails('leader', 'l2')" style="cursor: pointer;">
+            <div class="leader-avatar-wrap">
+              <img src="images/santosh_bajal.jpg" alt="State General Secretary" loading="lazy">
+              <span class="officer-zoom-hint">🔍</span>
+            </div>
+            <h3 class="leader-name" data-i18n="lead2Name">Comrade Santosh Bajal</h3>
+            <div class="leader-role" data-i18n="lead2Role">State General Secretary</div>
+            <div class="leader-region">Karnataka State Committee</div>
+          </div>
+
+          <div class="leader-card" onclick="openContentDetails('leader', 'l3')" style="cursor: pointer;">
+            <div class="leader-avatar-wrap">
+              <img src="images/dilep.jpg" alt="State Treasurer" loading="lazy">
+              <span class="officer-zoom-hint">🔍</span>
+            </div>
+            <h3 class="leader-name" data-i18n="lead3Name">Comrade Dilip Bangalore</h3>
+            <div class="leader-role" data-i18n="lead3Role">State Treasurer</div>
+            <div class="leader-region">Karnataka State Committee</div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ========================================================
-       DISTRICT, TALUK & AREA COMMITTEES EXPLORER
+       ORGANIZATIONAL NETWORK HOMEPAGE TEASER
        ======================================================== -->
-  <section class="districts-section" id="districts">
+  <section class="network-teaser-section" id="committees-overview">
     <div class="container">
-      <div class="section-header-row" style="flex-direction: column; align-items: flex-start; gap: 0.5rem;">
-        <span class="section-tag" data-i18n="districtsTag">ORGANIZATIONAL NETWORK</span>
-        <h2 class="section-title" data-i18n="districtsSectionTitle">ಕರ್ನಾಟಕ <span class="highlight-red">ಜಿಲ್ಲಾ &amp;
-            ತಾಲ್ಲೂಕು ಸಮಿತಿಗಳು</span></h2>
-        <p class="section-subtitle" data-i18n="districtsSectionSub"
-          style="margin-top: 0.35rem; color: var(--text-muted); font-size: 1rem; max-width: 850px; line-height: 1.6;">
-          ಕರ್ನಾಟಕದ 31 ಜಿಲ್ಲೆಗಳು ಹಾಗೂ ತಾಲ್ಲೂಕುಗಳ ಅಧ್ಯಕ್ಷರು, ಕಾರ್ಯದರ್ಶಿಗಳು ಮತ್ತು ಪದಾಧಿಕಾರಿಗಳ ವಿವರ (District &amp; Taluk
-          Presidents &amp; Secretaries)
-        </p>
-      </div>
-
-      <!-- District Zone Filter Bar -->
-      <div class="districts-filter-bar">
-        <button type="button" class="district-filter-btn active" data-filter="all" data-i18n="filterAllDistricts">ಎಲ್ಲಾ
-          ಜಿಲ್ಲೆಗಳು (All)</button>
-        <button type="button" class="district-filter-btn" data-filter="coastal" data-i18n="filterCoastal">ಕರಾವಳಿ ಮತ್ತು
-          ಮಲೆನಾಡು</button>
-        <button type="button" class="district-filter-btn" data-filter="bengaluru" data-i18n="filterBengaluru">ಬೆಂಗಳೂರು
-          ವಿಭಾಗ</button>
-        <button type="button" class="district-filter-btn" data-filter="mysuru" data-i18n="filterMysuru">ಮೈಸೂರು
-          ವಿಭಾಗ</button>
-        <button type="button" class="district-filter-btn" data-filter="kalyana" data-i18n="filterKalyana">ಕಲ್ಯಾಣ
-          ಕರ್ನಾಟಕ</button>
-        <button type="button" class="district-filter-btn" data-filter="kittur" data-i18n="filterKittur">ಕಿತ್ತೂರು
-          ಕರ್ನಾಟಕ</button>
-      </div>
-
-      <!-- Districts Grid Container -->
-      <div class="districts-grid" id="districtsGridContainer">
-        <!-- Rendered dynamically by JavaScript with President & Secretary info -->
+      <div class="network-teaser-card">
+        <div class="network-teaser-info">
+          <div class="network-teaser-badge">★ 31 DISTRICTS ORGANIZATIONAL NETWORK</div>
+          <h2 class="network-teaser-title">
+            ಕರ್ನಾಟಕ <span class="highlight-red">ಸಮಿತಿಗಳು &amp; ಘಟಕಗಳು</span> (Committees &amp; Units)
+          </h2>
+          <p class="network-teaser-desc">
+            ಕರ್ನಾಟಕದ 31 ಜಿಲ್ಲಾ ಸಮಿತಿಗಳು, ನೂರಾರು ತಾಲ್ಲೂಕು ಸಮಿತಿಗಳು ಹಾಗೂ ಸಾವಿರಾರು ಗ್ರಾಮ ಮತ್ತು ಏರಿಯಾ ಘಟಕಗಳ ಸಮಗ್ರ ವಿವರಗಳು, ಚುನಾಯಿತ ಅಧ್ಯಕ್ಷರು ಮತ್ತು ಕಾರ್ಯದರ್ಶಿಗಳ ಸಂಪರ್ಕ ಮಾಹಿತಿ.
+          </p>
+          <div class="network-teaser-stats">
+            <span class="network-stat-pill">🚩 31 ಜಿಲ್ಲಾ ಸಮಿತಿಗಳು</span>
+            <span class="network-stat-pill">🏛️ 220+ ತಾಲ್ಲೂಕು ಘಟಕಗಳು</span>
+            <span class="network-stat-pill">👥 5,000+ ಸ್ಥಳೀಯ ಏರಿಯಾ ಶಾಖೆಗಳು</span>
+          </div>
+        </div>
+        <div>
+          <a href="committees.html" class="btn-primary" style="padding: 1rem 1.8rem; font-size: 1rem; box-shadow: 0 4px 20px rgba(220, 38, 38, 0.4);">
+            ಸಮಿತಿಗಳ ಸಂಪೂರ್ಣ ವಿವರ ವೀಕ್ಷಿಸಿ ➔
+          </a>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ========================================================
-       MARTYRS MEMORIAL SECTION (DYFI Kerala Style)
+       MARTYRS MEMORIAL HOMEPAGE TEASER
        ======================================================== -->
-  <section class="martyrs-section" id="martyrs">
+  <section class="martyrs-teaser-section" id="martyrs-overview">
     <div class="container">
-      <div class="section-header-row">
-        <h2 class="section-title" style="color:#fff;" data-i18n="martyrsSectionTitle">ಹೋರಾಟದ <span
-            class="highlight-red">ಅಮರ ಹುತಾತ್ಮರು</span></h2>
-      </div>
-      <p style="color:#94a3b8; max-width:700px; margin-bottom:1.5rem;" data-i18n="martyrsIntro">
-        ಯುವಜನರ ಹಕ್ಕುಗಳು, ಸಾಮಾಜಿಕ ನ್ಯಾಯ, ಸಮಾನತೆ ಮತ್ತು ಕೋಮು ಸೌಹಾರ್ದತೆಯ ಉದಾತ್ತ ಧ್ಯೇಯಕ್ಕಾಗಿ ತಮ್ಮ ಜೀವನವನ್ನೇ ಬಲಿದಾನ ಮಾಡಿದ
-        ಕ್ರಾಂತಿಕಾರಿ ಹುತಾತ್ಮರಿಗೆ ನಮ್ಮ ಕ್ರಾಂತಿಕಾರಿ ನಮನಗಳು.
-      </p>
-      <div class="martyrs-grid" id="martyrsContainer">
-        <!-- Rendered dynamically from DyfiDataStore -->
+      <div class="martyrs-teaser-card">
+        <div class="network-teaser-info">
+          <div class="network-teaser-badge" style="background: rgba(220, 38, 38, 0.25); color: #fca5a5;">★ REVOLUTIONARY HOMAGE ★ ಕ್ರಾಂತಿಕಾರಿ ಪ್ರಣಾಮಗಳು</div>
+          <h2 class="network-teaser-title">
+            ಹೋರಾಟದ <span class="highlight-red">ಅಮರ ಹುತಾತ್ಮರು</span> (Immortal Martyrs)
+          </h2>
+          <p class="network-teaser-desc">
+            ಯುವಜನರ ಹಕ್ಕುಗಳು, ಸಾಮಾಜಿಕ ನ್ಯಾಯ, ಸಮಾನತೆ ಮತ್ತು ಕೋಮು ಸೌಹಾರ್ದತೆಯ ಉದಾತ್ತ ಧ್ಯೇಯಕ್ಕಾಗಿ ತಮ್ಮ ಜೀವನವನ್ನೇ ಬಲಿದಾನ ಮಾಡಿದ ಕ್ರಾಂತಿಕಾರಿ ಹುತಾತ್ಮರ ಸ್ಮರಣೆ.
+          </p>
+        </div>
+        <div>
+          <a href="martyrs.html" class="btn-secondary" style="border-color: #ef4444; color: #ef4444; padding: 1rem 1.8rem; font-size: 1rem; background: rgba(220, 38, 38, 0.1);">
+            ಅಮರ ಹುತಾತ್ಮರ ಸ್ಮರಣೆ ಪುಟ ವೀಕ್ಷಿಸಿ ➔
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -917,8 +951,8 @@
           <ul class="footer-links-list">
             <li class="footer-link-item"><a href="#home" data-i18n="navHome">ಮುಖಪುಟ</a></li>
             <li class="footer-link-item"><a href="#about" data-i18n="navAbout">ನಮ್ಮ ಬಗ್ಗೆ</a></li>
-            <li class="footer-link-item"><a href="#campaigns" data-i18n="navCampaigns">ಅಭಿಯಾನಗಳು</a></li>
-            <li class="footer-link-item"><a href="#activities" data-i18n="navActivities">ಚಟುವಟಿಕೆಗಳು</a></li>
+            <li class="footer-link-item"><a href="committees.html" data-i18n="navCommittees">ಸಮಿತಿಗಳು &amp; ಘಟಕಗಳು</a></li>
+            <li class="footer-link-item"><a href="martyrs.html" data-i18n="navMartyrs">ಹುತಾತ್ಮರು</a></li>
             <li class="footer-link-item"><a href="#bloodDonation" data-i18n="navBlood">ರಕ್ತದಾನ ಸೇವೆ</a></li>
           </ul>
         </div>
@@ -927,11 +961,11 @@
         <div>
           <div class="footer-col-title" data-i18n="footerDistricts">ಪ್ರಮುಖ ಜಿಲ್ಲೆಗಳು</div>
           <ul class="footer-links-list">
-            <li class="footer-link-item"><a href="#districts">ಬೆಂಗಳೂರು ನಗರ ಸಮಿತಿ</a></li>
-            <li class="footer-link-item"><a href="#districts">ದಕ್ಷಿಣ ಕನ್ನಡ ಜಿಲ್ಲಾ ಸಮಿತಿ</a></li>
-            <li class="footer-link-item"><a href="#districts">ಮೈಸೂರು ಜಿಲ್ಲಾ ಸಮಿತಿ</a></li>
-            <li class="footer-link-item"><a href="#districts">ಕಲಬುರಗಿ ಜಿಲ್ಲಾ ಸಮಿತಿ</a></li>
-            <li class="footer-link-item"><a href="#districts">ಬೆಳಗಾವಿ ಜಿಲ್ಲಾ ಸಮಿತಿ</a></li>
+            <li class="footer-link-item"><a href="committees.html">ಬೆಂಗಳೂರು ನಗರ ಸಮಿತಿ</a></li>
+            <li class="footer-link-item"><a href="committees.html">ದಕ್ಷಿಣ ಕನ್ನಡ ಜಿಲ್ಲಾ ಸಮಿತಿ</a></li>
+            <li class="footer-link-item"><a href="committees.html">ಮೈಸೂರು ಜಿಲ್ಲಾ ಸಮಿತಿ</a></li>
+            <li class="footer-link-item"><a href="committees.html">ಕಲಬುರಗಿ ಜಿಲ್ಲಾ ಸಮಿತಿ</a></li>
+            <li class="footer-link-item"><a href="committees.html">ಬೆಳಗಾವಿ ಜಿಲ್ಲಾ ಸಮಿತಿ</a></li>
           </ul>
         </div>
 
@@ -1169,14 +1203,13 @@
       <li><a href="#home" class="mobile-nav-link" data-i18n="navHome">ಮುಖಪುಟ</a></li>
       <li><a href="#about" class="mobile-nav-link" data-i18n="navAbout">ನಮ್ಮ ಬಗ್ಗೆ</a></li>
       <li><a href="#leadership" class="mobile-nav-link" data-i18n="navLeadership">ರಾಜ್ಯ ನಾಯಕತ್ವ</a></li>
-      <li><a href="#districts" class="mobile-nav-link" data-i18n="navDistricts">🚩 ಜಿಲ್ಲಾ &amp; ತಾಲ್ಲೂಕು ಸಮಿತಿಗಳು</a>
-      </li>
+      <li><a href="committees.html" class="mobile-nav-link" data-i18n="navDistricts">🚩 ಸಮಿತಿಗಳು &amp; ಘಟಕಗಳು</a></li>
       <li><a href="#campaigns" class="mobile-nav-link" data-i18n="navCampaigns">ಅಭಿಯಾನಗಳು</a></li>
       <li><a href="#activities" class="mobile-nav-link" data-i18n="navActivities">ಚಟುವಟಿಕೆಗಳು</a></li>
       <li><a href="#statements" class="mobile-nav-link" data-i18n="navStatements">ಹೇಳಿಕೆಗಳು</a></li>
       <li><a href="#news" class="mobile-nav-link" data-i18n="navNews">ಸುದ್ದಿಗಳು</a></li>
       <li><a href="#gallery" class="mobile-nav-link" data-i18n="navGallery">ಚಿತ್ರ ಗ್ಯಾಲರಿ</a></li>
-      <li><a href="#martyrs" class="mobile-nav-link" data-i18n="navMartyrs">ಹುತಾತ್ಮರು</a></li>
+      <li><a href="martyrs.html" class="mobile-nav-link" data-i18n="navMartyrs">ಹುತಾತ್ಮರು</a></li>
       <li><a href="#bloodDonation" class="mobile-nav-link" data-i18n="navBlood">ರಕ್ತದಾನ ಸೇವೆ</a></li>
       <li><a href="#contact" class="mobile-nav-link" data-i18n="navContactBtn">ಸಂಪರ್ಕಿಸಿ</a></li>
     </ul>

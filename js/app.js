@@ -136,6 +136,12 @@ const i18nData = {
     btnDownloadStatement: 'Download Statement PDF ⬇',
     adminLink: 'Admin Portal',
     leadSectionTitle: 'State <span class="highlight-red">Leadership</span>',
+    nationalLeadTitle: '🚩 All India / National Leadership',
+    stateLeadTitle: '🚩 Karnataka State Leadership',
+    nl1Name: 'Comrade A. A. Rahim',
+    nl1Role: 'All India President',
+    nl2Name: 'Comrade Himagnoraj Bhattacharya',
+    nl2Role: 'All India General Secretary',
     lead1Name: 'Comrade Lavitra Vastrad',
     lead1Role: 'State President',
     lead2Name: 'Comrade Santosh Bajal',
@@ -279,6 +285,12 @@ const i18nData = {
     btnDownloadStatement: 'ಹೇಳಿಕೆ PDF ಡೌನ್‌ಲೋಡ್ ⬇',
     adminLink: 'ಅಡ್ಮಿನ್ ಪೋರ್ಟಲ್',
     leadSectionTitle: 'ರಾಜ್ಯ <span class="highlight-red">ಮುಖಂಡರು</span>',
+    nationalLeadTitle: '🚩 ಅಖಿಲ ಭಾರತ / ರಾಷ್ಟ್ರೀಯ ನಾಯಕತ್ವ',
+    stateLeadTitle: '🚩 ಕರ್ನಾಟಕ ರಾಜ್ಯ ನಾಯಕತ್ವ',
+    nl1Name: 'ಕಾಮ್ರೇಡ್ ಎ. ಎ. ರಹೀಮ್',
+    nl1Role: 'ಅಖಿಲ ಭಾರತ ಅಧ್ಯಕ್ಷರು',
+    nl2Name: 'ಕಾಮ್ರೇಡ್ ಹಿಮಾಘ್ನರಾಜ್ ಭಟ್ಟಾಚಾರ್ಯ',
+    nl2Role: 'ಅಖಿಲ ಭಾರತ ಪ್ರಧಾನ ಕಾರ್ಯದರ್ಶಿ',
     lead1Name: 'ಕಾಮ್ರೇಡ್ ಲವಿತ್ರ ವಸ್ತ್ರದ',
     lead1Role: 'ರಾಜ್ಯ ಅಧ್ಯಕ್ಷರು',
     lead2Name: 'ಕಾಮ್ರೇಡ್ ಸಂತೋಷ್ ಬಜಾಲ್',
@@ -436,6 +448,7 @@ function applyLanguage(lang) {
    4. DISTRICT UNITS EXPLORER & MODAL
    ======================================================== */
 let currentDistrictFilter = 'all';
+let currentDistrictSearch = '';
 
 function initDistrictUnits() {
   renderDistrictCards();
@@ -449,6 +462,14 @@ function initDistrictUnits() {
       renderDistrictCards();
     });
   });
+
+  const searchInput = document.getElementById('districtSearchInput');
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      currentDistrictSearch = (e.target.value || '').trim().toLowerCase();
+      renderDistrictCards();
+    });
+  }
   
   // Modal Close
   const closeBtn = document.getElementById('closeDistrictModal');
@@ -468,9 +489,27 @@ function renderDistrictCards() {
   districtUnitsData = getDistrictUnitsData();
 
   const isKn = currentLang === 'kn';
-  const filtered = currentDistrictFilter === 'all' 
-    ? districtUnitsData 
-    : districtUnitsData.filter(d => d.zone === currentDistrictFilter);
+  const q = currentDistrictSearch;
+  const filtered = districtUnitsData.filter(d => {
+    const matchZone = currentDistrictFilter === 'all' || d.zone === currentDistrictFilter;
+    if (!matchZone) return false;
+    if (!q) return true;
+
+    const nameKn = (d.name_kn || '').toLowerCase();
+    const nameEn = (d.name_en || '').toLowerCase();
+    const zoneKn = (d.zone_kn || '').toLowerCase();
+    const zoneEn = (d.zone_en || '').toLowerCase();
+    const presKn = (d.president_kn || '').toLowerCase();
+    const presEn = (d.president_en || '').toLowerCase();
+    const secKn = (d.secretary_kn || '').toLowerCase();
+    const secEn = (d.secretary_en || '').toLowerCase();
+    const taluksKn = Array.isArray(d.taluks_kn) ? d.taluks_kn.join(' ').toLowerCase() : '';
+    const taluksEn = Array.isArray(d.taluks_en) ? d.taluks_en.join(' ').toLowerCase() : '';
+
+    return nameKn.includes(q) || nameEn.includes(q) || zoneKn.includes(q) || zoneEn.includes(q) ||
+      presKn.includes(q) || presEn.includes(q) || secKn.includes(q) || secEn.includes(q) ||
+      taluksKn.includes(q) || taluksEn.includes(q);
+  });
     
   container.innerHTML = filtered.map(d => {
     const dName = isKn ? d.name_kn : d.name_en;
@@ -1183,42 +1222,72 @@ function showToast(message) {
       if (martyrsContainer) {
         const martyrs = DyfiDataStore.get(DYFI_DATA_KEYS.MARTYRS) || [];
         if (martyrs.length > 0) {
-          martyrsContainer.innerHTML = martyrs.map((m, idx) => `
-            <div class="martyr-card" onclick="openContentDetails('martyr', '${m.id || idx}')" style="cursor: pointer;">
-              <div class="martyr-avatar-wrap">
-                <img src="${m.photo || 'images/shivappa.jpg'}" alt="${m.name_en}" loading="lazy" onerror="this.onerror=null; this.src='images/shivappa.jpg';">
-                <span class="officer-zoom-hint">🔍</span>
+          martyrsContainer.innerHTML = martyrs.map((m, idx) => {
+            const avatarHtml = m.photo
+              ? `<img src="${m.photo}" alt="${m.name_en}" loading="lazy" onerror="this.outerHTML='<div class=\\'martyr-avatar-wrap placeholder-avatar\\' style=\\'display:flex; align-items:center; justify-content:center; background:#1e293b; color:#94a3b8; font-size:2.5rem; border:3px solid #dc2626;\\'>👤</div>';">`
+              : `<div class="martyr-avatar-wrap placeholder-avatar" style="display:flex; align-items:center; justify-content:center; background:#1e293b; color:#94a3b8; font-size:2.5rem; border:3px solid #dc2626;">👤</div>`;
+
+            return `
+              <div class="martyr-card" onclick="openContentDetails('martyr', '${m.id || idx}')" style="cursor: pointer;">
+                <div class="martyr-avatar-wrap">
+                  ${avatarHtml}
+                  <span class="officer-zoom-hint">🔍</span>
+                </div>
+                <h3 class="martyr-name">${isKn ? m.name_kn : m.name_en}</h3>
+                <span class="martyr-badge-date">${m.date}</span>
+                <div class="martyr-district">🚩 ${m.district}</div>
+                <p class="martyr-tribute">"${isKn ? m.tribute_kn : m.tribute_en}"</p>
               </div>
-              <h3 class="martyr-name">${isKn ? m.name_kn : m.name_en}</h3>
-              <span class="martyr-badge-date">${m.date}</span>
-              <div class="martyr-district">🚩 ${m.district}</div>
-              <p class="martyr-tribute">"${isKn ? m.tribute_kn : m.tribute_en}"</p>
-            </div>
-          `).join('');
+            `;
+          }).join('');
         }
       }
     } catch (e) {
       console.warn('Martyrs sync error:', e);
     }
 
-    // 7. Render Leaders (Admin Dynamic)
+    // 7. Render Leaders (Admin Dynamic — National & State Grid Support)
     try {
-      const leaderGrid = document.querySelector('.leadership-grid');
-      if (leaderGrid) {
-        const leaders = DyfiDataStore.get(DYFI_DATA_KEYS.LEADERS) || [];
-        if (leaders.length > 0) {
-          leaderGrid.innerHTML = leaders.map((l, idx) => `
-            <div class="leader-card" onclick="openContentDetails('leader', '${l.id || idx}')" style="cursor: pointer;">
-              <div class="leader-avatar-wrap">
-                <img src="${l.photo || 'images/santosh_bajal.jpg'}" alt="${l.name_en}" loading="lazy" onerror="this.onerror=null; this.src='images/santosh_bajal.jpg';">
-                <span class="officer-zoom-hint">🔍</span>
-              </div>
-              <h3 class="leader-name">${isKn ? l.name_kn : l.name_en}</h3>
-              <div class="leader-role">${isKn ? l.role_kn : l.role_en}</div>
-              <div class="leader-region">${l.region || 'Karnataka State Committee'}</div>
+      const nationalGrid = document.getElementById('nationalLeadersGrid');
+      const stateGrid = document.getElementById('stateLeadersGrid');
+      const generalLeaderGrid = document.querySelector('.leadership-grid');
+      const leaders = DyfiDataStore.get(DYFI_DATA_KEYS.LEADERS) || [];
+
+      function renderLeaderCard(l, idx) {
+        const isBlankName = !l.name_kn && !l.name_en;
+        const displayName = isKn ? (l.name_kn || l.name_en) : (l.name_en || l.name_kn);
+        const displayRole = isKn ? (l.role_kn || l.role_en) : (l.role_en || l.role_kn);
+        const avatarHtml = l.photo
+          ? `<img src="${l.photo}" alt="${displayName || 'Leader'}" loading="lazy" onerror="this.outerHTML='<div class=\\'leader-avatar-wrap placeholder-avatar\\' style=\\'display:flex; align-items:center; justify-content:center; background:#1e293b; color:#94a3b8; font-size:2.4rem; border:3px solid #dc2626;\\'>👤</div>';">`
+          : `<div class="leader-avatar-wrap placeholder-avatar" style="display:flex; align-items:center; justify-content:center; background:#1e293b; color:#94a3b8; font-size:2.4rem; border:3px solid #dc2626;">👤</div>`;
+
+        return `
+          <div class="leader-card" onclick="openContentDetails('leader', '${l.id || idx}')" style="cursor: pointer;">
+            <div class="leader-avatar-wrap">
+              ${avatarHtml}
+              <span class="officer-zoom-hint">🔍</span>
             </div>
-          `).join('');
+            <h3 class="leader-name" style="${isBlankName ? 'color:#94a3b8; font-style:italic;' : ''}">
+              ${displayName || (isKn ? '(ಖಾಲಿ / To be assigned)' : '(To be assigned)')}
+            </h3>
+            <div class="leader-role">${displayRole}</div>
+            <div class="leader-region">${l.region || 'DYFI'}</div>
+          </div>
+        `;
+      }
+
+      if (nationalGrid || stateGrid) {
+        const nationalLeaders = leaders.filter(l => l.tier === 'national' || (l.id && l.id.startsWith('nl')));
+        const stateLeaders = leaders.filter(l => l.tier !== 'national' && (!l.id || !l.id.startsWith('nl')));
+
+        if (nationalGrid && nationalLeaders.length > 0) {
+          nationalGrid.innerHTML = nationalLeaders.map(renderLeaderCard).join('');
         }
+        if (stateGrid && stateLeaders.length > 0) {
+          stateGrid.innerHTML = stateLeaders.map(renderLeaderCard).join('');
+        }
+      } else if (generalLeaderGrid && leaders.length > 0) {
+        generalLeaderGrid.innerHTML = leaders.map(renderLeaderCard).join('');
       }
     } catch (e) {
       console.warn('Leaders sync error:', e);
@@ -1547,19 +1616,26 @@ function showToast(message) {
       const list = (typeof DyfiDataStore !== 'undefined') ? DyfiDataStore.get(DYFI_DATA_KEYS.LEADERS) || [] : [];
       item = list.find(l => l.id === id || String(l.id) === String(id)) || list[id] || list[0];
       if (item) {
-        categoryBadge = isKn ? '🚩 ರಾಜ್ಯ ನಾಯಕತ್ವ (State Leadership)' : '🚩 State Leadership';
+        const isNational = item.tier === 'national' || (item.id && String(item.id).startsWith('nl'));
+        categoryBadge = isNational
+          ? (isKn ? '🇮🇳 ಅಖಿಲ ಭಾರತ ನಾಯಕತ್ವ (All India Leadership)' : '🇮🇳 All India Leadership')
+          : (isKn ? '🚩 ರಾಜ್ಯ ನಾಯಕತ್ವ (State Leadership)' : '🚩 State Leadership');
         title = isKn ? (item.name_kn || item.name_en) : (item.name_en || item.name_kn);
         date = isKn ? (item.role_kn || item.role_en) : (item.role_en || item.role_kn);
         extra = item.region ? `• ${item.region}` : '';
-        img = item.photo || 'images/santosh_bajal.jpg';
+        img = item.photo || 'images/logo.jpg';
         fullText = isKn
-          ? `${title} — ${date}\n\nಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಮಿತಿಯ ಮುಂಚೂಣಿಯಲ್ಲಿ ನಿಂತು ರಾಜ್ಯಾದ್ಯಂತ ಯುವಜನ ಚಳವಳಿ, ಉದ್ಯೋಗ ಹಕ್ಕು ಹೋರಾಟ, ಕೋಮು ಸೌಹಾರ್ದ ಜಾಗೃತಿ ಹಾಗೂ ರಕ್ತದಾನ ಜಾಲವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಮುನ್ನಡೆಸುತ್ತಿರುವ ನಾಯಕರು.`
-          : `${title} — ${date}\n\nLeading the vanguard of progressive youth struggles, employment rights, and secular campaigns across Karnataka State Committee.`;
+          ? `${title} — ${date}\n\n${item.region || (isNational ? 'ಡಿವೈಎಫ್ಐ ಅಖಿಲ ಭಾರತ ಕೇಂದ್ರ' : 'ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಮಿತಿ')} ಮುಂಚೂಣಿಯಲ್ಲಿ ನಿಂತು ಯುವಜನ ಚಳವಳಿ, ಉದ್ಯೋಗ ಹಕ್ಕು ಹೋರಾಟ, ಸಮಾನತೆ ಹಾಗೂ ಸಾಮಾಜಿಕ ನ್ಯಾಯವನ್ನು ಎತ್ತಿಹಿಡಿಯುತ್ತಿರುವ ನಾಯಕರು.`
+          : `${title} — ${date}\n\nLeading the vanguard of progressive youth struggles, employment rights, and secular campaigns across ${item.region || (isNational ? 'DYFI All India Centre' : 'Karnataka State Committee')}.`;
         primaryActionText = isKn ? 'ಸಂಪರ್ಕಿಸಿ ➔' : 'Get in Touch ➔';
         primaryActionFn = () => {
           modal.classList.remove('active');
           const contactSec = document.getElementById('contact');
-          if (contactSec) contactSec.scrollIntoView({ behavior: 'smooth' });
+          if (contactSec) {
+            contactSec.scrollIntoView({ behavior: 'smooth' });
+          } else {
+            window.location.href = 'index.html#contact';
+          }
         };
       }
     }
