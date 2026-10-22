@@ -84,6 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (tabId === 'statements') document.getElementById('btnOpenAddStatement').click();
         if (tabId === 'campaigns') document.getElementById('btnOpenAddCampaign').click();
         if (tabId === 'martyrs') document.getElementById('btnOpenAddMartyr').click();
+        if (tabId === 'districts') document.getElementById('btnOpenAddDistrict').click();
       }, 100);
     }
   }
@@ -109,15 +110,19 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Modal helpers
-  function openModal(title, htmlContent) {
+  function openModal(title, htmlContent, isLarge = false) {
     modalTitle.innerText = title;
     modalBody.innerHTML = htmlContent;
+    const box = document.querySelector('.admin-modal-box');
+    if (box) box.classList.toggle('modal-lg', Boolean(isLarge));
     modalOverlay.classList.add('active');
   }
 
   function closeModal() {
     modalOverlay.classList.remove('active');
     modalBody.innerHTML = '';
+    const box = document.querySelector('.admin-modal-box');
+    if (box) box.classList.remove('modal-lg');
   }
 
   modalCloseBtn.addEventListener('click', closeModal);
@@ -331,6 +336,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const donors = DyfiDataStore.get(DYFI_DATA_KEYS.BLOOD_DONORS) || [];
     const messages = DyfiDataStore.get(DYFI_DATA_KEYS.MESSAGES) || [];
     const ticker = DyfiDataStore.get(DYFI_DATA_KEYS.TICKER) || [];
+    const districts = DyfiDataStore.get(DYFI_DATA_KEYS.DISTRICTS) || [];
 
     document.getElementById('statNews').innerText = news.length;
     document.getElementById('statCampaigns').innerText = campaigns.length;
@@ -339,6 +345,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('statDonors').innerText = donors.length;
     document.getElementById('statMessages').innerText = messages.length;
     document.getElementById('badgeMsgCount').innerText = messages.filter(m => m.status === 'Unread').length;
+
+    const statDistricts = document.getElementById('statDistricts');
+    if (statDistricts) statDistricts.innerText = districts.length;
+    const badgeDistricts = document.getElementById('badgeDistrictsCount');
+    if (badgeDistricts) badgeDistricts.innerText = districts.length;
 
     const dashTickerList = document.getElementById('dashTickerList');
     dashTickerList.innerHTML = ticker.map(t => `
@@ -1206,6 +1217,570 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   });
 
+  // ================= DISTRICTS, TALUKS & AREA COMMITTEES ENGINE =================
+  const zoneNames = {
+    coastal: { en: 'Coastal Zone', kn: 'ಕರಾವಳಿ ವಿಭಾಗ' },
+    bengaluru: { en: 'Bengaluru Region', kn: 'ಬೆಂಗಳೂರು ವಿಭಾಗ' },
+    mysuru: { en: 'Mysuru Region', kn: 'ಮೈಸೂರು ವಿಭಾಗ' },
+    kalyana: { en: 'Kalyana Karnataka', kn: 'ಕಲ್ಯಾಣ ಕರ್ನಾಟಕ' },
+    kittur: { en: 'Kittur Karnataka', kn: 'ಕಿತ್ತೂರು ಕರ್ನಾಟಕ' }
+  };
+
+  function renderDistricts() {
+    const list = DyfiDataStore.get(DYFI_DATA_KEYS.DISTRICTS) || [];
+    const tbody = document.getElementById('districtsTableBody');
+    if (!tbody) return;
+
+    const queryInput = document.getElementById('filterDistrictQuery');
+    const zoneSelect = document.getElementById('filterDistrictZone');
+    const query = queryInput ? queryInput.value.trim().toLowerCase() : '';
+    const zone = zoneSelect ? zoneSelect.value : '';
+
+    const filtered = list.filter(d => {
+      if (zone && d.zone !== zone) return false;
+      if (query) {
+        const dKn = (d.name_kn || '').toLowerCase();
+        const dEn = (d.name_en || '').toLowerCase();
+        const presKn = (d.president_kn || '').toLowerCase();
+        const presEn = (d.president_en || '').toLowerCase();
+        const secKn = (d.secretary_kn || '').toLowerCase();
+        const secEn = (d.secretary_en || '').toLowerCase();
+        const taluks = ((d.taluks_data || []).map(t => `${t.name_kn} ${t.name_en}`).join(' ')).toLowerCase();
+        if (!dKn.includes(query) && !dEn.includes(query) && !presKn.includes(query) && !presEn.includes(query) && !secKn.includes(query) && !secEn.includes(query) && !taluks.includes(query)) {
+          return false;
+        }
+      }
+      return true;
+    });
+
+    const badgeDistricts = document.getElementById('badgeDistrictsCount');
+    if (badgeDistricts) badgeDistricts.innerText = list.length;
+
+    if (filtered.length === 0) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="5" style="text-align:center; padding: 2.5rem; color: #94a3b8;">
+            🚩 No district committees found matching your filter criteria.
+          </td>
+        </tr>
+      `;
+      return;
+    }
+
+    tbody.innerHTML = filtered.map((d) => {
+      const originalIndex = list.findIndex(item => item.id === d.id);
+      const taluksList = d.taluks_data || [];
+      const talukCount = taluksList.length || d.taluks_count || 0;
+      const unitsCount = d.units_count || '100+';
+
+      return `
+        <tr>
+          <td>
+            <div class="district-table-title">${d.name_kn || d.name_en}</div>
+            <div class="district-table-sub">${d.name_en || ''}</div>
+            <span class="district-zone-tag">${d.zone_kn || d.zone_en || d.zone}</span>
+          </td>
+          <td>
+            <div class="leader-preview-cell">
+              <img src="${d.president_photo || 'images/leader-1.jpg'}" class="leader-preview-avatar" alt="President" onerror="this.onerror=null; this.src='images/leader-1.jpg';">
+              <div class="leader-preview-meta">
+                <span class="leader-preview-name">${d.president_kn || d.president_en || '—'}</span>
+                <span class="leader-preview-role">🚩 ${d.president_post_kn || 'ಜಿಲ್ಲಾ ಅಧ್ಯಕ್ಷರು'}</span>
+                ${d.president_phone ? `<a href="tel:${d.president_phone}" class="leader-preview-phone">📞 ${d.president_phone}</a>` : ''}
+              </div>
+            </div>
+          </td>
+          <td>
+            <div class="leader-preview-cell">
+              <img src="${d.secretary_photo || 'images/santosh_bajal.jpg'}" class="leader-preview-avatar" alt="Secretary" onerror="this.onerror=null; this.src='images/santosh_bajal.jpg';">
+              <div class="leader-preview-meta">
+                <span class="leader-preview-name">${d.secretary_kn || d.secretary_en || '—'}</span>
+                <span class="leader-preview-role">🚩 ${d.secretary_post_kn || 'ಜಿಲ್ಲಾ ಕಾರ್ಯದರ್ಶಿ'}</span>
+                ${d.secretary_phone ? `<a href="tel:${d.secretary_phone}" class="leader-preview-phone">📞 ${d.secretary_phone}</a>` : ''}
+              </div>
+            </div>
+          </td>
+          <td>
+            <span class="taluk-pill-tag">🏛️ ${talukCount} Taluks</span><br>
+            <span class="units-pill-tag">🚩 ${unitsCount}</span>
+          </td>
+          <td>
+            <div class="table-actions-cell">
+              <button class="btn btn-table-action btn-outline-warning" onclick="editDistrict(${originalIndex})" title="Edit District Details">✏️ Edit</button>
+              <button class="btn btn-table-action btn-outline-primary" onclick="manageDistrictTaluks(${originalIndex})" title="Manage Taluks & Area Committees">🏛️ Taluks (${talukCount})</button>
+              <button class="btn btn-table-action btn-outline-danger" onclick="deleteDistrict(${originalIndex})" title="Delete District">🗑️</button>
+            </div>
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
+
+  // Filter Listeners
+  const filterDistrictQuery = document.getElementById('filterDistrictQuery');
+  if (filterDistrictQuery) {
+    filterDistrictQuery.addEventListener('input', renderDistricts);
+  }
+  const filterDistrictZone = document.getElementById('filterDistrictZone');
+  if (filterDistrictZone) {
+    filterDistrictZone.addEventListener('change', renderDistricts);
+  }
+
+  // Open Edit / Add District Modal
+  function openDistrictEditModal(item, index) {
+    const isEdit = typeof index === 'number' && index >= 0;
+    const title = isEdit ? `Edit District: ${item.name_kn} (${item.name_en})` : 'Add New District Committee';
+
+    openModal(title, `
+      <form id="modalFormDistrictEdit">
+        <!-- 1. GENERAL INFORMATION -->
+        <div class="form-section-divider">🚩 District General Information</div>
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label class="form-label">District Name (ಕನ್ನಡ)</label>
+            <input type="text" id="inpDNameKn" class="form-control" required value="${(item.name_kn || '').replace(/"/g, '&quot;')}" placeholder="ಉದಾ: ದಕ್ಷಿಣ ಕನ್ನಡ / ಶಿವಮೊಗ್ಗ">
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label">District Name (English)</label>
+            <input type="text" id="inpDNameEn" class="form-control" required value="${(item.name_en || '').replace(/"/g, '&quot;')}" placeholder="e.g. Dakshina Kannada / Shivamogga">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label class="form-label">Zone / Administrative Region</label>
+            <select id="inpDZone" class="form-control">
+              <option value="coastal" ${item.zone === 'coastal' ? 'selected' : ''}>Coastal Zone (ಕರಾವಳಿ ವಿಭಾಗ)</option>
+              <option value="bengaluru" ${item.zone === 'bengaluru' ? 'selected' : ''}>Bengaluru Region (ಬೆಂಗಳೂರು ವಿಭಾಗ)</option>
+              <option value="mysuru" ${item.zone === 'mysuru' ? 'selected' : ''}>Mysuru Region (ಮೈಸೂರು ವಿಭಾಗ)</option>
+              <option value="kalyana" ${item.zone === 'kalyana' ? 'selected' : ''}>Kalyana Karnataka (ಕಲ್ಯಾಣ ಕರ್ನಾಟಕ)</option>
+              <option value="kittur" ${item.zone === 'kittur' ? 'selected' : ''}>Kittur Karnataka (ಕಿತ್ತೂರು ಕರ್ನಾಟಕ)</option>
+            </select>
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label">Local Units Count (ಘಟಕಗಳ ಸಂಖ್ಯೆ)</label>
+            <input type="text" id="inpDUnitsCount" class="form-control" value="${(item.units_count || '').replace(/"/g, '&quot;')}" placeholder="e.g. 140+ / 100+ ಘಟಕಗಳು">
+          </div>
+        </div>
+
+        <!-- 2. DISTRICT PRESIDENT -->
+        <div class="form-section-divider">👤 District President (ಜಿಲ್ಲಾ ಅಧ್ಯಕ್ಷರು)</div>
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label class="form-label">President Name (ಕನ್ನಡ)</label>
+            <input type="text" id="inpDPresKn" class="form-control" required value="${(item.president_kn || '').replace(/"/g, '&quot;')}" placeholder="ಕಾಮ್ರೇಡ್ ಹೆಸರು">
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label">President Name (English)</label>
+            <input type="text" id="inpDPresEn" class="form-control" required value="${(item.president_en || '').replace(/"/g, '&quot;')}" placeholder="Comrade Name">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label class="form-label">President Post Designation (ಕನ್ನಡ)</label>
+            <input type="text" id="inpDPresPostKn" class="form-control" value="${(item.president_post_kn || 'ಜಿಲ್ಲಾ ಅಧ್ಯಕ್ಷರು').replace(/"/g, '&quot;')}">
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label">President Post Designation (English)</label>
+            <input type="text" id="inpDPresPostEn" class="form-control" value="${(item.president_post_en || 'District President').replace(/"/g, '&quot;')}">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label class="form-label">President Phone Number</label>
+            <input type="text" id="inpDPresPhone" class="form-control" value="${(item.president_phone || '').replace(/"/g, '&quot;')}" placeholder="+91 9448123456">
+          </div>
+          <div class="form-group col-6">
+            ${renderImagePickerHTML('inpDPresPhoto', 'President Photo (ಭಾವಚಿತ್ರ)', item.president_photo || '', 'images/leader-1.jpg')}
+          </div>
+        </div>
+
+        <!-- 3. DISTRICT SECRETARY -->
+        <div class="form-section-divider">👤 District Secretary (ಜಿಲ್ಲಾ ಕಾರ್ಯದರ್ಶಿ)</div>
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label class="form-label">Secretary Name (ಕನ್ನಡ)</label>
+            <input type="text" id="inpDSecKn" class="form-control" required value="${(item.secretary_kn || '').replace(/"/g, '&quot;')}" placeholder="ಕಾಮ್ರೇಡ್ ಹೆಸರು">
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label">Secretary Name (English)</label>
+            <input type="text" id="inpDSecEn" class="form-control" required value="${(item.secretary_en || '').replace(/"/g, '&quot;')}" placeholder="Comrade Name">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label class="form-label">Secretary Post Designation (ಕನ್ನಡ)</label>
+            <input type="text" id="inpDSecPostKn" class="form-control" value="${(item.secretary_post_kn || 'ಜಿಲ್ಲಾ ಕಾರ್ಯದರ್ಶಿ').replace(/"/g, '&quot;')}">
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label">Secretary Post Designation (English)</label>
+            <input type="text" id="inpDSecPostEn" class="form-control" value="${(item.secretary_post_en || 'District Secretary').replace(/"/g, '&quot;')}">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label class="form-label">Secretary Phone Number</label>
+            <input type="text" id="inpDSecPhone" class="form-control" value="${(item.secretary_phone || '').replace(/"/g, '&quot;')}" placeholder="+91 9880123456">
+          </div>
+          <div class="form-group col-6">
+            ${renderImagePickerHTML('inpDSecPhoto', 'Secretary Photo (ಭಾವಚಿತ್ರ)', item.secretary_photo || '', 'images/santosh_bajal.jpg')}
+          </div>
+        </div>
+
+        <!-- 4. OFFICE & AREA UNITS -->
+        <div class="form-section-divider">🏛️ Office Address &amp; Area Units Coverage</div>
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label class="form-label">District Office Address (ಕನ್ನಡ)</label>
+            <textarea id="inpDOfficeKn" class="form-control" rows="2" placeholder="ಡಿವೈಎಫ್ಐ ಜಿಲ್ಲಾ ಕಚೇರಿ...">${item.office_kn || ''}</textarea>
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label">District Office Address (English)</label>
+            <textarea id="inpDOfficeEn" class="form-control" rows="2" placeholder="DYFI District Office...">${item.office_en || ''}</textarea>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label class="form-label">Office / Helpline Phone</label>
+            <input type="text" id="inpDPhone" class="form-control" value="${(item.phone || '').replace(/"/g, '&quot;')}" placeholder="+91 824 2440123 / +91 9448123456">
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label">District Slug / ID</label>
+            <input type="text" id="inpDId" class="form-control" value="${(item.id || '').replace(/"/g, '&quot;')}" placeholder="e.g. dk, udupi, bagalkote" ${isEdit ? 'readonly style="opacity:0.75;"' : ''}>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label class="form-label">Area Units Summary (ಕನ್ನಡ)</label>
+            <textarea id="inpDAreaKn" class="form-control" rows="2" placeholder="140ಕ್ಕೂ ಹೆಚ್ಚು ಸಕ್ರಿಯ ಗ್ರಾಮ, ವಾರ್ಡ್ ಮತ್ತು ಏರಿಯಾ ಯುವ ಸಮಿತಿಗಳು...">${item.area_units_kn || ''}</textarea>
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label">Area Units Summary (English)</label>
+            <textarea id="inpDAreaEn" class="form-control" rows="2" placeholder="Over 140 active village, ward, and student area committees...">${item.area_units_en || ''}</textarea>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top: 1rem;">${isEdit ? '✓ Save District Committee Changes' : '+ Create District Committee'}</button>
+      </form>
+    `, true);
+
+    initImagePicker('inpDPresPhoto');
+    initImagePicker('inpDSecPhoto');
+
+    document.getElementById('modalFormDistrictEdit').onsubmit = (e) => {
+      e.preventDefault();
+      const list = DyfiDataStore.get(DYFI_DATA_KEYS.DISTRICTS) || [];
+      const zoneVal = document.getElementById('inpDZone').value;
+      const zoneInfo = zoneNames[zoneVal] || { en: 'Karnataka', kn: 'ಕರ್ನಾಟಕ' };
+
+      const name_en = document.getElementById('inpDNameEn').value.trim();
+      const name_kn = document.getElementById('inpDNameKn').value.trim();
+      const slug = document.getElementById('inpDId').value.trim() || name_en.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+
+      const target = isEdit ? list[index] : {
+        id: slug,
+        taluks_data: [],
+        taluks_en: [],
+        taluks_kn: [],
+        taluks_count: 0
+      };
+
+      target.id = slug;
+      target.zone = zoneVal;
+      target.zone_en = zoneInfo.en;
+      target.zone_kn = zoneInfo.kn;
+      target.name_en = name_en;
+      target.name_kn = name_kn;
+      target.units_count = document.getElementById('inpDUnitsCount').value.trim() || '100+';
+
+      target.president_kn = document.getElementById('inpDPresKn').value.trim();
+      target.president_en = document.getElementById('inpDPresEn').value.trim();
+      target.president_post_kn = document.getElementById('inpDPresPostKn').value.trim() || 'ಜಿಲ್ಲಾ ಅಧ್ಯಕ್ಷರು';
+      target.president_post_en = document.getElementById('inpDPresPostEn').value.trim() || 'District President';
+      target.president_phone = document.getElementById('inpDPresPhone').value.trim();
+      target.president_photo = document.getElementById('inpDPresPhoto').value.trim() || 'images/leader-1.jpg';
+
+      target.secretary_kn = document.getElementById('inpDSecKn').value.trim();
+      target.secretary_en = document.getElementById('inpDSecEn').value.trim();
+      target.secretary_post_kn = document.getElementById('inpDSecPostKn').value.trim() || 'ಜಿಲ್ಲಾ ಕಾರ್ಯದರ್ಶಿ';
+      target.secretary_post_en = document.getElementById('inpDSecPostEn').value.trim() || 'District Secretary';
+      target.secretary_phone = document.getElementById('inpDSecPhone').value.trim();
+      target.secretary_photo = document.getElementById('inpDSecPhoto').value.trim() || 'images/santosh_bajal.jpg';
+
+      target.office_kn = document.getElementById('inpDOfficeKn').value.trim();
+      target.office_en = document.getElementById('inpDOfficeEn').value.trim();
+      target.phone = document.getElementById('inpDPhone').value.trim();
+      target.area_units_kn = document.getElementById('inpDAreaKn').value.trim();
+      target.area_units_en = document.getElementById('inpDAreaEn').value.trim();
+
+      if (!isEdit) {
+        list.push(target);
+      }
+
+      DyfiDataStore.set(DYFI_DATA_KEYS.DISTRICTS, list);
+      closeModal();
+      renderDistricts();
+      renderDashboard();
+      showToast(isEdit ? `District "${name_kn}" updated successfully!` : `District "${name_kn}" added to network!`);
+    };
+  }
+
+  window.editDistrict = function(index) {
+    const list = DyfiDataStore.get(DYFI_DATA_KEYS.DISTRICTS) || [];
+    const item = list[index];
+    if (!item) return;
+    openDistrictEditModal(item, index);
+  };
+
+  window.deleteDistrict = function(index) {
+    const list = DyfiDataStore.get(DYFI_DATA_KEYS.DISTRICTS) || [];
+    const item = list[index];
+    if (!item) return;
+
+    if (confirm(`Are you sure you want to delete the district "${item.name_kn || item.name_en}"? This will also remove its taluks and units.`)) {
+      list.splice(index, 1);
+      DyfiDataStore.set(DYFI_DATA_KEYS.DISTRICTS, list);
+      renderDistricts();
+      renderDashboard();
+      showToast(`District "${item.name_kn || item.name_en}" deleted`);
+    }
+  };
+
+  const btnOpenAddDistrict = document.getElementById('btnOpenAddDistrict');
+  if (btnOpenAddDistrict) {
+    btnOpenAddDistrict.addEventListener('click', () => {
+      openDistrictEditModal({
+        id: '',
+        zone: 'coastal',
+        name_en: '',
+        name_kn: '',
+        units_count: '100+',
+        president_kn: '',
+        president_en: '',
+        president_post_kn: 'ಜಿಲ್ಲಾ ಅಧ್ಯಕ್ಷರು',
+        president_post_en: 'District President',
+        president_photo: 'images/leader-1.jpg',
+        president_phone: '',
+        secretary_kn: '',
+        secretary_en: '',
+        secretary_post_kn: 'ಜಿಲ್ಲಾ ಕಾರ್ಯದರ್ಶಿ',
+        secretary_post_en: 'District Secretary',
+        secretary_photo: 'images/santosh_bajal.jpg',
+        secretary_phone: '',
+        office_kn: '',
+        office_en: '',
+        phone: '',
+        area_units_kn: '',
+        area_units_en: ''
+      }, -1);
+    });
+  }
+
+  // Manage Taluks & Area Committees per District
+  window.manageDistrictTaluks = function(districtIndex) {
+    const list = DyfiDataStore.get(DYFI_DATA_KEYS.DISTRICTS) || [];
+    const d = list[districtIndex];
+    if (!d) return;
+
+    if (!Array.isArray(d.taluks_data)) {
+      d.taluks_data = [];
+    }
+
+    function renderTaluksModalContent() {
+      const taluks = d.taluks_data || [];
+      return `
+        <div class="taluk-management-wrapper">
+          <div style="margin-bottom: 1rem; color: #94a3b8; font-size: 0.9rem;">
+            District: <strong style="color: #fff;">${d.name_kn} (${d.name_en})</strong> &bull; Total Taluks: <strong style="color: #3b82f6;">${taluks.length}</strong> &bull; Area Units: <strong style="color: #10b981;">${d.units_count || 'Active'}</strong>
+          </div>
+
+          <!-- Add / Edit Taluk Box -->
+          <div class="taluk-add-box" id="talukFormContainer">
+            <h4 id="talukFormTitle">+ Add New Taluk / City Unit</h4>
+            <form id="formAddTaluk">
+              <input type="hidden" id="inpTalukEditIdx" value="-1">
+              <div class="form-row">
+                <div class="form-group col-6">
+                  <label class="form-label">Taluk Name (ಕನ್ನಡ)</label>
+                  <input type="text" id="inpTNameKn" class="form-control" placeholder="ಉದಾ: ಮಂಗಳೂರು ನಗರ / ಹುಣಸೂರು" required>
+                </div>
+                <div class="form-group col-6">
+                  <label class="form-label">Taluk Name (English)</label>
+                  <input type="text" id="inpTNameEn" class="form-control" placeholder="e.g. Mangaluru City / Hunsur" required>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-6">
+                  <label class="form-label">Taluk President (ಅಧ್ಯಕ್ಷರು - ಕನ್ನಡ)</label>
+                  <input type="text" id="inpTPresKn" class="form-control" placeholder="ಕಾಮ್ರೇಡ್ ಹೆಸರು">
+                </div>
+                <div class="form-group col-6">
+                  <label class="form-label">Taluk President (English)</label>
+                  <input type="text" id="inpTPresEn" class="form-control" placeholder="Comrade Name">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-6">
+                  <label class="form-label">Taluk Secretary (ಕಾರ್ಯದರ್ಶಿ - ಕನ್ನಡ)</label>
+                  <input type="text" id="inpTSecKn" class="form-control" placeholder="ಕಾಮ್ರೇಡ್ ಹೆಸರು">
+                </div>
+                <div class="form-group col-6">
+                  <label class="form-label">Taluk Secretary (English)</label>
+                  <input type="text" id="inpTSecEn" class="form-control" placeholder="Comrade Name">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-6">
+                  <label class="form-label">Contact Phone</label>
+                  <input type="text" id="inpTPhone" class="form-control" placeholder="+91 9845112233">
+                </div>
+                <div class="form-group col-6">
+                  <label class="form-label">Units Count / Area Description</label>
+                  <input type="text" id="inpTUnitsKn" class="form-control" placeholder="ಉದಾ: 25 ಗ್ರಾಮ/ನಗರ ಘಟಕಗಳು">
+                </div>
+              </div>
+              <div class="flex gap-sm" style="margin-top: 0.5rem;">
+                <button type="submit" class="btn btn-primary" id="btnSubmitTaluk">+ Save Taluk Unit</button>
+                <button type="button" class="btn btn-outline-white" id="btnCancelTalukEdit" style="display:none;">Cancel Edit</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Existing Taluks List -->
+          <h4 style="margin: 1.2rem 0 0.6rem; font-size: 0.95rem; color: #fff;">🏛️ Existing Taluk Units in this District (${taluks.length})</h4>
+          <div class="taluk-admin-list">
+            ${taluks.length === 0 ? '<div style="color:#94a3b8; font-style:italic; padding:1rem; text-align:center;">No taluk units added yet. Use the form above to add the first taluk.</div>' : ''}
+            ${taluks.map((t, tIdx) => `
+              <div class="taluk-admin-item">
+                <div class="taluk-admin-info">
+                  <div class="taluk-admin-title">
+                    <span>🏛️</span>
+                    <span>${t.name_kn || t.name_en}</span>
+                    ${t.name_en && t.name_en !== t.name_kn ? `<small style="color:#94a3b8; font-weight:normal;">(${t.name_en})</small>` : ''}
+                    <span class="taluk-unit-tag" style="font-size:0.75rem; background:rgba(59,130,246,0.15); color:#60a5fa; padding:2px 8px; border-radius:4px;">${t.units_kn || 'ಸಕ್ರಿಯ ಘಟಕ'}</span>
+                  </div>
+                  <div class="taluk-admin-officers">
+                    <span><strong>ಅಧ್ಯಕ್ಷರು:</strong> ${t.president_kn || t.president_en || '—'}</span>
+                    <span><strong>ಕಾರ್ಯದರ್ಶಿ:</strong> ${t.secretary_kn || t.secretary_en || '—'}</span>
+                    ${t.phone ? `<span><a href="tel:${t.phone}" style="color:#94a3b8; text-decoration:none;">📞 ${t.phone}</a></span>` : ''}
+                  </div>
+                </div>
+                <div class="table-actions-cell">
+                  <button class="btn btn-table-action btn-outline-warning" onclick="editTalukInModal(${districtIndex}, ${tIdx})">✏️</button>
+                  <button class="btn btn-table-action btn-outline-danger" onclick="deleteTalukInModal(${districtIndex}, ${tIdx})">🗑️</button>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    openModal(`Taluks & Area Committees — ${d.name_kn}`, renderTaluksModalContent(), true);
+    bindTalukFormHandlers();
+
+    function bindTalukFormHandlers() {
+      const form = document.getElementById('formAddTaluk');
+      if (!form) return;
+
+      const editIdxInput = document.getElementById('inpTalukEditIdx');
+      const btnCancel = document.getElementById('btnCancelTalukEdit');
+
+      btnCancel.onclick = () => {
+        editIdxInput.value = '-1';
+        form.reset();
+        document.getElementById('talukFormTitle').innerText = '+ Add New Taluk / City Unit';
+        document.getElementById('btnSubmitTaluk').innerText = '+ Save Taluk Unit';
+        btnCancel.style.display = 'none';
+      };
+
+      form.onsubmit = (e) => {
+        e.preventDefault();
+        const editIdx = parseInt(editIdxInput.value, 10);
+        const name_kn = document.getElementById('inpTNameKn').value.trim();
+        const name_en = document.getElementById('inpTNameEn').value.trim();
+        const president_kn = document.getElementById('inpTPresKn').value.trim();
+        const president_en = document.getElementById('inpTPresEn').value.trim();
+        const secretary_kn = document.getElementById('inpTSecKn').value.trim();
+        const secretary_en = document.getElementById('inpTSecEn').value.trim();
+        const phone = document.getElementById('inpTPhone').value.trim();
+        const units_kn = document.getElementById('inpTUnitsKn').value.trim() || 'ಸಕ್ರಿಯ ಘಟಕಗಳು';
+
+        const talukObj = {
+          name_kn,
+          name_en,
+          president_kn,
+          president_en,
+          secretary_kn,
+          secretary_en,
+          phone,
+          units_kn
+        };
+
+        if (editIdx >= 0 && editIdx < d.taluks_data.length) {
+          d.taluks_data[editIdx] = talukObj;
+          showToast(`Taluk "${name_kn}" updated successfully!`);
+        } else {
+          d.taluks_data.push(talukObj);
+          showToast(`Taluk "${name_kn}" added successfully!`);
+        }
+
+        d.taluks_count = d.taluks_data.length;
+        d.taluks_kn = d.taluks_data.map(t => t.name_kn);
+        d.taluks_en = d.taluks_data.map(t => t.name_en);
+
+        DyfiDataStore.set(DYFI_DATA_KEYS.DISTRICTS, list);
+        renderDistricts();
+
+        modalBody.innerHTML = renderTaluksModalContent();
+        bindTalukFormHandlers();
+      };
+    }
+
+    window.editTalukInModal = function(dIdx, tIdx) {
+      const curList = DyfiDataStore.get(DYFI_DATA_KEYS.DISTRICTS) || [];
+      const curD = curList[dIdx];
+      if (!curD || !curD.taluks_data[tIdx]) return;
+      const t = curD.taluks_data[tIdx];
+
+      document.getElementById('inpTalukEditIdx').value = tIdx;
+      document.getElementById('inpTNameKn').value = t.name_kn || '';
+      document.getElementById('inpTNameEn').value = t.name_en || '';
+      document.getElementById('inpTPresKn').value = t.president_kn || '';
+      document.getElementById('inpTPresEn').value = t.president_en || '';
+      document.getElementById('inpTSecKn').value = t.secretary_kn || '';
+      document.getElementById('inpTSecEn').value = t.secretary_en || '';
+      document.getElementById('inpTPhone').value = t.phone || '';
+      document.getElementById('inpTUnitsKn').value = t.units_kn || '';
+
+      document.getElementById('talukFormTitle').innerText = `✏️ Edit Taluk Unit: ${t.name_kn}`;
+      document.getElementById('btnSubmitTaluk').innerText = 'Update Taluk Unit';
+      document.getElementById('btnCancelTalukEdit').style.display = 'inline-block';
+      document.getElementById('talukFormContainer').scrollIntoView({ behavior: 'smooth' });
+    };
+
+    window.deleteTalukInModal = function(dIdx, tIdx) {
+      const curList = DyfiDataStore.get(DYFI_DATA_KEYS.DISTRICTS) || [];
+      const curD = curList[dIdx];
+      if (!curD || !curD.taluks_data[tIdx]) return;
+      const t = curD.taluks_data[tIdx];
+
+      if (confirm(`Are you sure you want to delete the taluk "${t.name_kn || t.name_en}"?`)) {
+        curD.taluks_data.splice(tIdx, 1);
+        curD.taluks_count = curD.taluks_data.length;
+        curD.taluks_kn = curD.taluks_data.map(item => item.name_kn);
+        curD.taluks_en = curD.taluks_data.map(item => item.name_en);
+
+        DyfiDataStore.set(DYFI_DATA_KEYS.DISTRICTS, curList);
+        renderDistricts();
+
+        modalBody.innerHTML = renderTaluksModalContent();
+        bindTalukFormHandlers();
+        showToast('Taluk unit removed');
+      }
+    };
+  };
+
   // Gallery
   function renderGallery() {
     const list = DyfiDataStore.get(DYFI_DATA_KEYS.GALLERY) || [];
@@ -1615,6 +2190,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderStatements();
     renderMartyrs();
     renderLeaders();
+    renderDistricts();
     renderGallery();
     renderBloodDonors();
     renderMessages();

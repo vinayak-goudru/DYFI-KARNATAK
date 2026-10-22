@@ -950,6 +950,179 @@ textarea.form-control {
   color: #fef3c7;
 }
 
+/* ==================== DISTRICT & TALUKS ADMIN STYLES ==================== */
+.admin-modal-box.modal-lg {
+  max-width: 860px;
+}
+
+.district-table-title {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #fff;
+}
+
+.district-table-sub {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.district-zone-tag {
+  display: inline-block;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  margin-top: 0.25rem;
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.leader-preview-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.leader-preview-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(239, 68, 68, 0.4);
+  background: #334155;
+  flex-shrink: 0;
+}
+
+.leader-preview-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  overflow: hidden;
+}
+
+.leader-preview-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #f8fafc;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.leader-preview-role {
+  font-size: 0.75rem;
+  color: #f87171;
+}
+
+.leader-preview-phone {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-decoration: none;
+}
+.leader-preview-phone:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.taluk-pill-tag {
+  display: inline-block;
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.78rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.units-pill-tag {
+  display: inline-block;
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.form-section-divider {
+  margin: 1.4rem 0 0.9rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--dark-border);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #f8fafc;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Taluk List in Modal */
+.taluk-admin-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  max-height: 380px;
+  overflow-y: auto;
+  padding-right: 0.3rem;
+}
+
+.taluk-admin-item {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid var(--dark-border);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.taluk-admin-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.taluk-admin-title {
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.taluk-admin-officers {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.taluk-admin-officers span strong {
+  color: #cbd5e1;
+}
+
+.taluk-add-box {
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px dashed var(--dark-border);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.taluk-add-box h4 {
+  font-size: 0.9rem;
+  color: #f8fafc;
+  margin-bottom: 0.8rem;
+}
+
 /* Responsive */
 @media (max-width: 992px) {
   .admin-sidebar {

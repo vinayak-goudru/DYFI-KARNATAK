@@ -81,6 +81,11 @@
           <span class="nav-icon">👥</span>
           <span>Leadership Team</span>
         </button>
+        <button class="nav-item" data-tab="districts">
+          <span class="nav-icon">🏛️</span>
+          <span>District &amp; Taluks</span>
+          <span class="badge-count" id="badgeDistrictsCount">0</span>
+        </button>
         <button class="nav-item" data-tab="gallery">
           <span class="nav-icon">🖼️</span>
           <span>Gallery Media</span>
@@ -168,6 +173,13 @@
                 <div class="stat-label">Contact Enquiries</div>
               </div>
             </div>
+            <div class="stat-card">
+              <div class="stat-icon red">🏛️</div>
+              <div class="stat-meta">
+                <div class="stat-value" id="statDistricts">0</div>
+                <div class="stat-label">District Units</div>
+              </div>
+            </div>
           </div>
 
           <div class="dashboard-panels-grid">
@@ -180,6 +192,7 @@
                 <button class="btn btn-outline-primary" onclick="window.adminApp.switchTab('statements', true)">+ Release Statement</button>
                 <button class="btn btn-outline-primary" onclick="window.adminApp.switchTab('campaigns', true)">+ Launch Campaign</button>
                 <button class="btn btn-outline-primary" onclick="window.adminApp.switchTab('martyrs', true)">+ Add Martyr Tribute</button>
+                <button class="btn btn-outline-primary" onclick="window.adminApp.switchTab('districts', true)">+ Add District Committee</button>
                 <button class="btn btn-outline-primary" onclick="window.adminApp.switchTab('ticker')">Edit Top Ticker</button>
                 <button class="btn btn-outline-primary" onclick="window.adminApp.switchTab('bloodDonors')">Browse Donors</button>
               </div>
@@ -462,6 +475,46 @@
                     </tr>
                   </thead>
                   <tbody id="leadersTableBody"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================= TAB: DISTRICTS, TALUKS & AREA COMMITTEES ================= -->
+        <section class="tab-pane" id="pane-districts">
+          <div class="card">
+            <div class="card-header flex-between">
+              <div>
+                <h3>🚩 District, Taluk &amp; Area Committees (ಜಿಲ್ಲಾ &amp; ತಾಲ್ಲೂಕು ಸಮಿತಿಗಳು)</h3>
+                <p class="card-subtitle">Manage district committees, presidents, secretaries, taluk units, and local area branches across Karnataka.</p>
+              </div>
+              <button class="btn btn-primary" id="btnOpenAddDistrict">+ Add District Committee</button>
+            </div>
+            <div class="card-body">
+              <div class="filter-bar">
+                <input type="text" id="filterDistrictQuery" class="form-control" placeholder="Search by district name, president, secretary, or taluk...">
+                <select id="filterDistrictZone" class="form-control">
+                  <option value="">All Zones / Regions (ಎಲ್ಲಾ ವಿಭಾಗಗಳು)</option>
+                  <option value="coastal">Coastal Zone (ಕರಾವಳಿ ವಿಭಾಗ)</option>
+                  <option value="bengaluru">Bengaluru Region (ಬೆಂಗಳೂರು ವಿಭಾಗ)</option>
+                  <option value="mysuru">Mysuru Region (ಮೈಸೂರು ವಿಭಾಗ)</option>
+                  <option value="kalyana">Kalyana Karnataka (ಕಲ್ಯಾಣ ಕರ್ನಾಟಕ)</option>
+                  <option value="kittur">Kittur Karnataka (ಕಿತ್ತೂರು ಕರ್ನಾಟಕ)</option>
+                </select>
+              </div>
+              <div class="table-responsive">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th width="20%">District &amp; Zone</th>
+                      <th width="23%">District President</th>
+                      <th width="23%">District Secretary</th>
+                      <th width="14%">Taluks &amp; Units</th>
+                      <th width="20%">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="districtsTableBody"></tbody>
                 </table>
               </div>
             </div>
