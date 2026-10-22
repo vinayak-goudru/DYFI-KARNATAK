@@ -1271,7 +1271,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const originalIndex = list.findIndex(item => item.id === d.id);
       const taluksList = d.taluks_data || [];
       const talukCount = taluksList.length || d.taluks_count || 0;
-      const unitsCount = d.units_count || '100+';
+      const unitsDisplay = d.units_count 
+        ? `<span class="units-pill-tag">🚩 ${d.units_count}</span>` 
+        : `<span class="units-pill-tag" style="opacity:0.6; border-style:dashed;">🚩 —</span>`;
 
       return `
         <tr>
@@ -1282,27 +1284,35 @@ document.addEventListener('DOMContentLoaded', () => {
           </td>
           <td>
             <div class="leader-preview-cell">
-              <img src="${d.president_photo || 'images/leader-1.jpg'}" class="leader-preview-avatar" alt="President" onerror="this.onerror=null; this.src='images/leader-1.jpg';">
+              ${d.president_photo 
+                ? `<img src="${d.president_photo}" class="leader-preview-avatar" alt="President" onerror="this.onerror=null; this.outerHTML='<div class=\\'leader-preview-avatar leader-placeholder-avatar\\'>👤</div>';">` 
+                : `<div class="leader-preview-avatar leader-placeholder-avatar" title="No photo uploaded">👤</div>`}
               <div class="leader-preview-meta">
-                <span class="leader-preview-name">${d.president_kn || d.president_en || '—'}</span>
+                <span class="leader-preview-name ${!d.president_kn && !d.president_en ? 'text-muted-blank' : ''}">
+                  ${d.president_kn || d.president_en || '<em>(ಖಾಲಿ / Blank)</em>'}
+                </span>
                 <span class="leader-preview-role">🚩 ${d.president_post_kn || 'ಜಿಲ್ಲಾ ಅಧ್ಯಕ್ಷರು'}</span>
-                ${d.president_phone ? `<a href="tel:${d.president_phone}" class="leader-preview-phone">📞 ${d.president_phone}</a>` : ''}
+                ${d.president_phone ? `<a href="tel:${d.president_phone}" class="leader-preview-phone">📞 ${d.president_phone}</a>` : `<span style="color:#64748b; font-size:0.75rem;">📞 —</span>`}
               </div>
             </div>
           </td>
           <td>
             <div class="leader-preview-cell">
-              <img src="${d.secretary_photo || 'images/santosh_bajal.jpg'}" class="leader-preview-avatar" alt="Secretary" onerror="this.onerror=null; this.src='images/santosh_bajal.jpg';">
+              ${d.secretary_photo 
+                ? `<img src="${d.secretary_photo}" class="leader-preview-avatar" alt="Secretary" onerror="this.onerror=null; this.outerHTML='<div class=\\'leader-preview-avatar leader-placeholder-avatar\\'>👤</div>';">` 
+                : `<div class="leader-preview-avatar leader-placeholder-avatar" title="No photo uploaded">👤</div>`}
               <div class="leader-preview-meta">
-                <span class="leader-preview-name">${d.secretary_kn || d.secretary_en || '—'}</span>
+                <span class="leader-preview-name ${!d.secretary_kn && !d.secretary_en ? 'text-muted-blank' : ''}">
+                  ${d.secretary_kn || d.secretary_en || '<em>(ಖಾಲಿ / Blank)</em>'}
+                </span>
                 <span class="leader-preview-role">🚩 ${d.secretary_post_kn || 'ಜಿಲ್ಲಾ ಕಾರ್ಯದರ್ಶಿ'}</span>
-                ${d.secretary_phone ? `<a href="tel:${d.secretary_phone}" class="leader-preview-phone">📞 ${d.secretary_phone}</a>` : ''}
+                ${d.secretary_phone ? `<a href="tel:${d.secretary_phone}" class="leader-preview-phone">📞 ${d.secretary_phone}</a>` : `<span style="color:#64748b; font-size:0.75rem;">📞 —</span>`}
               </div>
             </div>
           </td>
           <td>
             <span class="taluk-pill-tag">🏛️ ${talukCount} Taluks</span><br>
-            <span class="units-pill-tag">🚩 ${unitsCount}</span>
+            ${unitsDisplay}
           </td>
           <td>
             <div class="table-actions-cell">
@@ -1359,20 +1369,20 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
           <div class="form-group col-6">
             <label class="form-label">Local Units Count (ಘಟಕಗಳ ಸಂಖ್ಯೆ)</label>
-            <input type="text" id="inpDUnitsCount" class="form-control" value="${(item.units_count || '').replace(/"/g, '&quot;')}" placeholder="e.g. 140+ / 100+ ಘಟಕಗಳು">
+            <input type="text" id="inpDUnitsCount" class="form-control" value="${(item.units_count || '').replace(/"/g, '&quot;')}" placeholder="ಉದಾ: 100+ ಘಟಕಗಳು (ಐಚ್ಛಿಕ/Optional)">
           </div>
         </div>
 
         <!-- 2. DISTRICT PRESIDENT -->
-        <div class="form-section-divider">👤 District President (ಜಿಲ್ಲಾ ಅಧ್ಯಕ್ಷರು)</div>
+        <div class="form-section-divider">👤 District President (ಜಿಲ್ಲಾ ಅಧ್ಯಕ್ಷರು - ಐಚ್ಛಿಕ/Optional)</div>
         <div class="form-row">
           <div class="form-group col-6">
             <label class="form-label">President Name (ಕನ್ನಡ)</label>
-            <input type="text" id="inpDPresKn" class="form-control" required value="${(item.president_kn || '').replace(/"/g, '&quot;')}" placeholder="ಕಾಮ್ರೇಡ್ ಹೆಸರು">
+            <input type="text" id="inpDPresKn" class="form-control" value="${(item.president_kn || '').replace(/"/g, '&quot;')}" placeholder="ಖಾಲಿ ಬಿಡಬಹುದು ಅಥವಾ ಕಾಮ್ರೇಡ್ ಹೆಸರು">
           </div>
           <div class="form-group col-6">
             <label class="form-label">President Name (English)</label>
-            <input type="text" id="inpDPresEn" class="form-control" required value="${(item.president_en || '').replace(/"/g, '&quot;')}" placeholder="Comrade Name">
+            <input type="text" id="inpDPresEn" class="form-control" value="${(item.president_en || '').replace(/"/g, '&quot;')}" placeholder="Leave blank or Comrade Name">
           </div>
         </div>
         <div class="form-row">
@@ -1388,23 +1398,23 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="form-row">
           <div class="form-group col-6">
             <label class="form-label">President Phone Number</label>
-            <input type="text" id="inpDPresPhone" class="form-control" value="${(item.president_phone || '').replace(/"/g, '&quot;')}" placeholder="+91 9448123456">
+            <input type="text" id="inpDPresPhone" class="form-control" value="${(item.president_phone || '').replace(/"/g, '&quot;')}" placeholder="ಉದಾ: +91 9448123456 (ಐಚ್ಛಿಕ)">
           </div>
           <div class="form-group col-6">
-            ${renderImagePickerHTML('inpDPresPhoto', 'President Photo (ಭಾವಚಿತ್ರ)', item.president_photo || '', 'images/leader-1.jpg')}
+            ${renderImagePickerHTML('inpDPresPhoto', 'President Photo (ಭಾವಚಿತ್ರ - ಐಚ್ಛಿಕ/Optional)', item.president_photo || '', '')}
           </div>
         </div>
 
         <!-- 3. DISTRICT SECRETARY -->
-        <div class="form-section-divider">👤 District Secretary (ಜಿಲ್ಲಾ ಕಾರ್ಯದರ್ಶಿ)</div>
+        <div class="form-section-divider">👤 District Secretary (ಜಿಲ್ಲಾ ಕಾರ್ಯದರ್ಶಿ - ಐಚ್ಛಿಕ/Optional)</div>
         <div class="form-row">
           <div class="form-group col-6">
             <label class="form-label">Secretary Name (ಕನ್ನಡ)</label>
-            <input type="text" id="inpDSecKn" class="form-control" required value="${(item.secretary_kn || '').replace(/"/g, '&quot;')}" placeholder="ಕಾಮ್ರೇಡ್ ಹೆಸರು">
+            <input type="text" id="inpDSecKn" class="form-control" value="${(item.secretary_kn || '').replace(/"/g, '&quot;')}" placeholder="ಖಾಲಿ ಬಿಡಬಹುದು ಅಥವಾ ಕಾಮ್ರೇಡ್ ಹೆಸರು">
           </div>
           <div class="form-group col-6">
             <label class="form-label">Secretary Name (English)</label>
-            <input type="text" id="inpDSecEn" class="form-control" required value="${(item.secretary_en || '').replace(/"/g, '&quot;')}" placeholder="Comrade Name">
+            <input type="text" id="inpDSecEn" class="form-control" value="${(item.secretary_en || '').replace(/"/g, '&quot;')}" placeholder="Leave blank or Comrade Name">
           </div>
         </div>
         <div class="form-row">
@@ -1420,10 +1430,10 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="form-row">
           <div class="form-group col-6">
             <label class="form-label">Secretary Phone Number</label>
-            <input type="text" id="inpDSecPhone" class="form-control" value="${(item.secretary_phone || '').replace(/"/g, '&quot;')}" placeholder="+91 9880123456">
+            <input type="text" id="inpDSecPhone" class="form-control" value="${(item.secretary_phone || '').replace(/"/g, '&quot;')}" placeholder="ಉದಾ: +91 9880123456 (ಐಚ್ಛಿಕ)">
           </div>
           <div class="form-group col-6">
-            ${renderImagePickerHTML('inpDSecPhoto', 'Secretary Photo (ಭಾವಚಿತ್ರ)', item.secretary_photo || '', 'images/santosh_bajal.jpg')}
+            ${renderImagePickerHTML('inpDSecPhoto', 'Secretary Photo (ಭಾವಚಿತ್ರ - ಐಚ್ಛಿಕ/Optional)', item.secretary_photo || '', '')}
           </div>
         </div>
 
@@ -1491,21 +1501,21 @@ document.addEventListener('DOMContentLoaded', () => {
       target.zone_kn = zoneInfo.kn;
       target.name_en = name_en;
       target.name_kn = name_kn;
-      target.units_count = document.getElementById('inpDUnitsCount').value.trim() || '100+';
+      target.units_count = document.getElementById('inpDUnitsCount').value.trim();
 
       target.president_kn = document.getElementById('inpDPresKn').value.trim();
       target.president_en = document.getElementById('inpDPresEn').value.trim();
       target.president_post_kn = document.getElementById('inpDPresPostKn').value.trim() || 'ಜಿಲ್ಲಾ ಅಧ್ಯಕ್ಷರು';
       target.president_post_en = document.getElementById('inpDPresPostEn').value.trim() || 'District President';
       target.president_phone = document.getElementById('inpDPresPhone').value.trim();
-      target.president_photo = document.getElementById('inpDPresPhoto').value.trim() || 'images/leader-1.jpg';
+      target.president_photo = document.getElementById('inpDPresPhoto').value.trim();
 
       target.secretary_kn = document.getElementById('inpDSecKn').value.trim();
       target.secretary_en = document.getElementById('inpDSecEn').value.trim();
       target.secretary_post_kn = document.getElementById('inpDSecPostKn').value.trim() || 'ಜಿಲ್ಲಾ ಕಾರ್ಯದರ್ಶಿ';
       target.secretary_post_en = document.getElementById('inpDSecPostEn').value.trim() || 'District Secretary';
       target.secretary_phone = document.getElementById('inpDSecPhone').value.trim();
-      target.secretary_photo = document.getElementById('inpDSecPhoto').value.trim() || 'images/santosh_bajal.jpg';
+      target.secretary_photo = document.getElementById('inpDSecPhoto').value.trim();
 
       target.office_kn = document.getElementById('inpDOfficeKn').value.trim();
       target.office_en = document.getElementById('inpDOfficeEn').value.trim();
@@ -1554,18 +1564,18 @@ document.addEventListener('DOMContentLoaded', () => {
         zone: 'coastal',
         name_en: '',
         name_kn: '',
-        units_count: '100+',
+        units_count: '',
         president_kn: '',
         president_en: '',
         president_post_kn: 'ಜಿಲ್ಲಾ ಅಧ್ಯಕ್ಷರು',
         president_post_en: 'District President',
-        president_photo: 'images/leader-1.jpg',
+        president_photo: '',
         president_phone: '',
         secretary_kn: '',
         secretary_en: '',
         secretary_post_kn: 'ಜಿಲ್ಲಾ ಕಾರ್ಯದರ್ಶಿ',
         secretary_post_en: 'District Secretary',
-        secretary_photo: 'images/santosh_bajal.jpg',
+        secretary_photo: '',
         secretary_phone: '',
         office_kn: '',
         office_en: '',
@@ -1660,9 +1670,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     <span class="taluk-unit-tag" style="font-size:0.75rem; background:rgba(59,130,246,0.15); color:#60a5fa; padding:2px 8px; border-radius:4px;">${t.units_kn || 'ಸಕ್ರಿಯ ಘಟಕ'}</span>
                   </div>
                   <div class="taluk-admin-officers">
-                    <span><strong>ಅಧ್ಯಕ್ಷರು:</strong> ${t.president_kn || t.president_en || '—'}</span>
-                    <span><strong>ಕಾರ್ಯದರ್ಶಿ:</strong> ${t.secretary_kn || t.secretary_en || '—'}</span>
-                    ${t.phone ? `<span><a href="tel:${t.phone}" style="color:#94a3b8; text-decoration:none;">📞 ${t.phone}</a></span>` : ''}
+                    <span><strong>ಅಧ್ಯಕ್ಷರು:</strong> ${t.president_kn || t.president_en || '<span style="color:#64748b; font-style:italic;">(ಖಾಲಿ / Blank)</span>'}</span>
+                    <span><strong>ಕಾರ್ಯದರ್ಶಿ:</strong> ${t.secretary_kn || t.secretary_en || '<span style="color:#64748b; font-style:italic;">(ಖಾಲಿ / Blank)</span>'}</span>
+                    ${t.phone ? `<span><a href="tel:${t.phone}" style="color:#94a3b8; text-decoration:none;">📞 ${t.phone}</a></span>` : `<span style="color:#64748b; font-size:0.8rem;">📞 —</span>`}
                   </div>
                 </div>
                 <div class="table-actions-cell">
@@ -1704,7 +1714,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const secretary_kn = document.getElementById('inpTSecKn').value.trim();
         const secretary_en = document.getElementById('inpTSecEn').value.trim();
         const phone = document.getElementById('inpTPhone').value.trim();
-        const units_kn = document.getElementById('inpTUnitsKn').value.trim() || 'ಸಕ್ರಿಯ ಘಟಕಗಳು';
+        const units_kn = document.getElementById('inpTUnitsKn').value.trim();
 
         const talukObj = {
           name_kn,

@@ -994,6 +994,17 @@ textarea.form-control {
   flex-shrink: 0;
 }
 
+.leader-preview-avatar.leader-placeholder-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1.5px dashed rgba(255, 255, 255, 0.25);
+  color: #94a3b8;
+  font-size: 1.15rem;
+  user-select: none;
+}
+
 .leader-preview-meta {
   display: flex;
   flex-direction: column;
@@ -1008,6 +1019,12 @@ textarea.form-control {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.leader-preview-name.text-muted-blank {
+  color: #64748b;
+  font-weight: normal;
+  font-style: italic;
 }
 
 .leader-preview-role {

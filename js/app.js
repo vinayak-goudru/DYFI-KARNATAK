@@ -506,20 +506,28 @@ function renderDistrictCards() {
         
         <!-- District President & Secretary Spotlight -->
         <div class="district-leaders-preview">
-          <div class="preview-leader-item district-pres-item" onclick="openLightboxImage('${d.president_photo || 'images/leader-1.jpg'}', '${presName} - ${presPost} (${dName})')" title="${isKn ? 'ದೊಡ್ಡದಾಗಿ ನೋಡಲು ಕ್ಲಿಕ್ ಮಾಡಿ' : 'Click to view photo'}">
-            <img src="${d.president_photo || 'images/leader-1.jpg'}" alt="${presName}" class="preview-avatar" onerror="this.onerror=null; this.src='images/leader-1.jpg';">
+          <div class="preview-leader-item district-pres-item" ${d.president_photo ? `onclick="openLightboxImage('${d.president_photo}', '${presName || presPost} (${dName})')"` : ''}>
+            ${d.president_photo 
+              ? `<img src="${d.president_photo}" alt="${presName || presPost}" class="preview-avatar" onerror="this.onerror=null; this.outerHTML='<div class=\\'preview-avatar placeholder-avatar\\' style=\\'display:flex; align-items:center; justify-content:center; background:#1e293b; color:#94a3b8; font-size:1.2rem; border:2px solid rgba(239,68,68,0.25);\\'>👤</div>';">` 
+              : `<div class="preview-avatar placeholder-avatar" style="display:flex; align-items:center; justify-content:center; background:#1e293b; color:#94a3b8; font-size:1.2rem; border:2px solid rgba(239,68,68,0.25);">👤</div>`}
             <div class="preview-info">
               <span class="preview-post-badge pres-badge">🚩 ${presPost}</span>
-              <strong class="preview-name">${presName}</strong>
-              <a href="tel:${d.president_phone || ''}" class="preview-phone" onclick="event.stopPropagation();">📞 ${d.president_phone || '-'}</a>
+              <strong class="preview-name" style="${!presName ? 'color:#94a3b8; font-weight:normal; font-style:italic;' : ''}">
+                ${presName || (isKn ? 'ನಿಗದಿಪಡಿಸಿಲ್ಲ' : 'To be assigned')}
+              </strong>
+              ${d.president_phone ? `<a href="tel:${d.president_phone}" class="preview-phone" onclick="event.stopPropagation();">📞 ${d.president_phone}</a>` : `<span class="preview-phone" style="opacity:0.5;">📞 —</span>`}
             </div>
           </div>
-          <div class="preview-leader-item district-sec-item" onclick="openLightboxImage('${d.secretary_photo || 'images/santosh_bajal.jpg'}', '${secName} - ${secPost} (${dName})')" title="${isKn ? 'ದೊಡ್ಡದಾಗಿ ನೋಡಲು ಕ್ಲಿಕ್ ಮಾಡಿ' : 'Click to view photo'}">
-            <img src="${d.secretary_photo || 'images/santosh_bajal.jpg'}" alt="${secName}" class="preview-avatar" onerror="this.onerror=null; this.src='images/santosh_bajal.jpg';">
+          <div class="preview-leader-item district-sec-item" ${d.secretary_photo ? `onclick="openLightboxImage('${d.secretary_photo}', '${secName || secPost} (${dName})')"` : ''}>
+            ${d.secretary_photo 
+              ? `<img src="${d.secretary_photo}" alt="${secName || secPost}" class="preview-avatar" onerror="this.onerror=null; this.outerHTML='<div class=\\'preview-avatar placeholder-avatar\\' style=\\'display:flex; align-items:center; justify-content:center; background:#1e293b; color:#94a3b8; font-size:1.2rem; border:2px solid rgba(239,68,68,0.25);\\'>👤</div>';">` 
+              : `<div class="preview-avatar placeholder-avatar" style="display:flex; align-items:center; justify-content:center; background:#1e293b; color:#94a3b8; font-size:1.2rem; border:2px solid rgba(239,68,68,0.25);">👤</div>`}
             <div class="preview-info">
               <span class="preview-post-badge sec-badge">🚩 ${secPost}</span>
-              <strong class="preview-name">${secName}</strong>
-              <a href="tel:${d.secretary_phone || ''}" class="preview-phone" onclick="event.stopPropagation();">📞 ${d.secretary_phone || '-'}</a>
+              <strong class="preview-name" style="${!secName ? 'color:#94a3b8; font-weight:normal; font-style:italic;' : ''}">
+                ${secName || (isKn ? 'ನಿಗದಿಪಡಿಸಿಲ್ಲ' : 'To be assigned')}
+              </strong>
+              ${d.secretary_phone ? `<a href="tel:${d.secretary_phone}" class="preview-phone" onclick="event.stopPropagation();">📞 ${d.secretary_phone}</a>` : `<span class="preview-phone" style="opacity:0.5;">📞 —</span>`}
             </div>
           </div>
         </div>
@@ -555,8 +563,8 @@ window.openDistrictModal = function(districtId) {
   const dOffice = isKn ? d.office_kn : d.office_en;
   const presPost = isKn ? (d.president_post_kn || 'ಜಿಲ್ಲಾ ಅಧ್ಯಕ್ಷರು') : (d.president_post_en || 'District President');
   const secPost = isKn ? (d.secretary_post_kn || 'ಜಿಲ್ಲಾ ಕಾರ್ಯದರ್ಶಿ') : (d.secretary_post_en || 'District Secretary');
-  const presName = isKn ? d.president_kn : d.president_en;
-  const secName = isKn ? d.secretary_kn : d.secretary_en;
+  const presName = isKn ? (d.president_kn || d.president_en || '') : (d.president_en || d.president_kn || '');
+  const secName = isKn ? (d.secretary_kn || d.secretary_en || '') : (d.secretary_en || d.secretary_kn || '');
 
   // Set Modal Title
   const modalTitle = document.getElementById('districtModalTitle');
@@ -573,28 +581,34 @@ window.openDistrictModal = function(districtId) {
       </div>
       <div class="district-officers-spotlight">
         <div class="district-officer-card spotlight-pres">
-          <div class="officer-avatar-box" onclick="openLightboxImage('${d.president_photo}', '${presName} - ${presPost} (${dName})')" title="${isKn ? 'ದೊಡ್ಡದಾಗಿ ನೋಡಲು ಕ್ಲಿಕ್ ಮಾಡಿ' : 'Click to enlarge'}">
-            <img src="${d.president_photo}" alt="${presName}" onerror="this.onerror=null; this.src='images/leader-1.jpg';">
-            <span class="officer-zoom-hint">🔍</span>
+          <div class="officer-avatar-box" ${d.president_photo ? `onclick="openLightboxImage('${d.president_photo}', '${presName || presPost} (${dName})')"` : ''}>
+            ${d.president_photo 
+              ? `<img src="${d.president_photo}" alt="${presName || presPost}" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\\'officer-avatar-box placeholder-box\\' style=\\'display:flex; align-items:center; justify-content:center; width:100%; height:100%; background:#1e293b; color:#94a3b8; font-size:2.5rem;\\'>👤</div>';"><span class="officer-zoom-hint">🔍</span>` 
+              : `<div class="officer-avatar-box placeholder-box" style="display:flex; align-items:center; justify-content:center; width:100%; height:100%; background:#1e293b; color:#94a3b8; font-size:2.5rem;">👤</div>`}
           </div>
           <div class="officer-info">
             <span class="officer-badge pres-badge">🚩 ${presPost}</span>
-            <h4 class="officer-name">${presName}</h4>
+            <h4 class="officer-name" style="${!presName ? 'color:#94a3b8; font-weight:normal; font-style:italic;' : ''}">
+              ${presName || (isKn ? 'ಪದಾಧಿಕಾರಿ ನಿಗದಿಪಡಿಸಿಲ್ಲ' : 'Officer to be assigned')}
+            </h4>
             <div class="officer-sub">${isKn ? 'ಜಿಲ್ಲಾ ಸಮಿತಿ ಮುಖ್ಯಸ್ಥರು' : 'District Committee President'}</div>
-            <a href="tel:${d.president_phone}" class="officer-phone-btn">📞 ${d.president_phone}</a>
+            ${d.president_phone ? `<a href="tel:${d.president_phone}" class="officer-phone-btn">📞 ${d.president_phone}</a>` : `<span class="officer-phone-btn" style="opacity:0.5; pointer-events:none;">📞 —</span>`}
           </div>
         </div>
 
         <div class="district-officer-card spotlight-sec">
-          <div class="officer-avatar-box" onclick="openLightboxImage('${d.secretary_photo}', '${secName} - ${secPost} (${dName})')" title="${isKn ? 'ದೊಡ್ಡದಾಗಿ ನೋಡಲು ಕ್ಲಿಕ್ ಮಾಡಿ' : 'Click to enlarge'}">
-            <img src="${d.secretary_photo}" alt="${secName}" onerror="this.onerror=null; this.src='images/santosh_bajal.jpg';">
-            <span class="officer-zoom-hint">🔍</span>
+          <div class="officer-avatar-box" ${d.secretary_photo ? `onclick="openLightboxImage('${d.secretary_photo}', '${secName || secPost} (${dName})')"` : ''}>
+            ${d.secretary_photo 
+              ? `<img src="${d.secretary_photo}" alt="${secName || secPost}" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\\'officer-avatar-box placeholder-box\\' style=\\'display:flex; align-items:center; justify-content:center; width:100%; height:100%; background:#1e293b; color:#94a3b8; font-size:2.5rem;\\'>👤</div>';"><span class="officer-zoom-hint">🔍</span>` 
+              : `<div class="officer-avatar-box placeholder-box" style="display:flex; align-items:center; justify-content:center; width:100%; height:100%; background:#1e293b; color:#94a3b8; font-size:2.5rem;">👤</div>`}
           </div>
           <div class="officer-info">
             <span class="officer-badge sec-badge">🚩 ${secPost}</span>
-            <h4 class="officer-name">${secName}</h4>
+            <h4 class="officer-name" style="${!secName ? 'color:#94a3b8; font-weight:normal; font-style:italic;' : ''}">
+              ${secName || (isKn ? 'ಪದಾಧಿಕಾರಿ ನಿಗದಿಪಡಿಸಿಲ್ಲ' : 'Officer to be assigned')}
+            </h4>
             <div class="officer-sub">${isKn ? 'ಜಿಲ್ಲಾ ಸಂಘಟನಾ ಕಾರ್ಯದರ್ಶಿ' : 'District Organizing Secretary'}</div>
-            <a href="tel:${d.secretary_phone}" class="officer-phone-btn">📞 ${d.secretary_phone}</a>
+            ${d.secretary_phone ? `<a href="tel:${d.secretary_phone}" class="officer-phone-btn">📞 ${d.secretary_phone}</a>` : `<span class="officer-phone-btn" style="opacity:0.5; pointer-events:none;">📞 —</span>`}
           </div>
         </div>
       </div>
@@ -607,11 +621,13 @@ window.openDistrictModal = function(districtId) {
     const taluksData = d.taluks_data || [];
     const talukCardsHtml = taluksData.length > 0 ? taluksData.map((t) => {
       const tName = isKn ? (t.name_kn || t.name_en) : (t.name_en || t.name_kn);
-      const tPres = isKn ? (t.president_kn || t.president_en || '-') : (t.president_en || t.president_kn || '-');
-      const tSec = isKn ? (t.secretary_kn || t.secretary_en || '-') : (t.secretary_en || t.secretary_kn || '-');
+      const tPres = isKn ? (t.president_kn || t.president_en) : (t.president_en || t.president_kn);
+      const tSec = isKn ? (t.secretary_kn || t.secretary_en) : (t.secretary_en || t.secretary_kn);
+      const presDisplay = tPres || `<span style="color:#94a3b8; font-weight:normal; font-style:italic;">${isKn ? 'ನಿಗದಿಪಡಿಸಿಲ್ಲ' : '—'}</span>`;
+      const secDisplay = tSec || `<span style="color:#94a3b8; font-weight:normal; font-style:italic;">${isKn ? 'ನಿಗದಿಪಡಿಸಿಲ್ಲ' : '—'}</span>`;
       const tUnits = isKn 
-        ? (t.units_kn || t.units_en || `${t.units || 0} ಘಟಕಗಳು`) 
-        : (t.units_en || t.units_kn || `${t.units || 0} Units`);
+        ? (t.units_kn || t.units_en || `${t.units || ''} ಸಕ್ರಿಯ ಘಟಕ`) 
+        : (t.units_en || t.units_kn || `${t.units || ''} Active Unit`);
       return `
         <div class="taluk-committee-item">
           <div class="taluk-header-bar">
@@ -621,14 +637,14 @@ window.openDistrictModal = function(districtId) {
           <div class="taluk-officers-grid">
             <div class="taluk-officer-col">
               <span class="taluk-officer-role">${isKn ? 'ತಾಲ್ಲೂಕು ಅಧ್ಯಕ್ಷರು:' : 'Taluk President:'}</span>
-              <strong class="taluk-officer-name">${tPres}</strong>
+              <strong class="taluk-officer-name">${presDisplay}</strong>
             </div>
             <div class="taluk-officer-col">
               <span class="taluk-officer-role">${isKn ? 'ತಾಲ್ಲೂಕು ಕಾರ್ಯದರ್ಶಿ:' : 'Taluk Secretary:'}</span>
-              <strong class="taluk-officer-name">${tSec}</strong>
+              <strong class="taluk-officer-name">${secDisplay}</strong>
             </div>
             <div class="taluk-officer-col taluk-contact-col">
-              ${t.phone ? `<a href="tel:${t.phone}" class="taluk-call-btn">📞 ${t.phone}</a>` : `<span style="color:#64748b; font-size:0.85rem;">-</span>`}
+              ${t.phone ? `<a href="tel:${t.phone}" class="taluk-call-btn">📞 ${t.phone}</a>` : `<span style="color:#64748b; font-size:0.85rem;">📞 —</span>`}
             </div>
           </div>
         </div>
