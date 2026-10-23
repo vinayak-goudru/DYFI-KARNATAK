@@ -53,8 +53,9 @@ const i18nData = {
     heroBtnJoin: 'Get Involved <i class="fa-solid fa-arrow-right"></i>',
     heroBtnMission: 'Our Ideology & Mission',
     
-    aboutHeadline: 'Empowering Youth, Safeguarding Secularism — <span class="highlight-red">DYFI Karnataka State Committee</span> Leading Progressive Movements',
-    aboutSubtext: 'Employment for all, quality free education, communal harmony, scientific temper, and an egalitarian society free from injustice and discrimination are our supreme guiding principles.',
+    aboutTag: '<i class="fa-solid fa-star" style="color:var(--primary,#dc2626); font-size:0.8em; margin-right:4px;"></i> DEMOCRATIC YOUTH FEDERATION OF INDIA',
+    aboutHeadline: 'Education for All, <span class="highlight-red">Jobs for All</span> — For a Secure Youth Future',
+    aboutSubtext: 'The Democratic Youth Federation of India (DYFI) as a forward looking and progressive youth organisation inspired by anti-imperialist, democratic and socialist ideas takes upon itself the task of organising the young men and the young women of our country into a well-knit all India youth organisation to build a powerful youth movement to fight for a democratic and progressive social system and for the upliftment and betterment of the youth community as a whole.',
     btnReadMore: 'Read More <i class="fa-solid fa-arrow-up-right-from-square"></i>',
     
     stat1: 'Active Youth Members',
@@ -202,8 +203,9 @@ const i18nData = {
     heroBtnJoin: 'ಹೋರಾಟದಲ್ಲಿ ಕೈಜೋಡಿಸಿ <i class="fa-solid fa-arrow-right"></i>',
     heroBtnMission: 'ನಮ್ಮ ಧ್ಯೇಯೋದ್ದೇಶಗಳು',
     
-    aboutHeadline: 'ಯುವಜನರ ಸಬಲೀಕರಣ, ಜಾತ್ಯತೀತತೆಯ ರಕ್ಷಣೆ — <span class="highlight-red">ಡಿವೈಎಫ್ಐ ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಮಿತಿ</span> ಮುಂಚೂಣಿ ಹೋರಾಟ',
-    aboutSubtext: 'ಸರ್ವರಿಗೂ ಉದ್ಯೋಗ, ಎಲ್ಲರಿಗೂ ಗುಣಮಟ್ಟದ ಶಿಕ್ಷಣ, ಕೋಮು ಸೌಹಾರ್ದ ಹಾಗೂ ಜಾತಿ-ಧರ್ಮ ಭೇದವಿಲ್ಲದ ಸಮಾನತೆಯ ಸಮಾಜ ನಿರ್ಮಾಣವೇ ನಮ್ಮ ಮೂಲ ಉದ್ದೇಶ.',
+    aboutTag: '<i class="fa-solid fa-star" style="color:var(--primary,#dc2626); font-size:0.8em; margin-right:4px;"></i> ಭಾರತ ಪ್ರಜಾಸತ್ತಾತ್ಮಕ ಯುವಜನ ಫೆಡರೇಶನ್ — ಕರ್ನಾಟಕ',
+    aboutHeadline: 'ಸರ್ವರಿಗೂ ಶಿಕ್ಷಣ, <span class="highlight-red">ಸರ್ವರಿಗೂ ಉದ್ಯೋಗ</span> — ಯುವಜನರ ಭದ್ರತೆಯ ಬದುಕಿಗಾಗಿ',
+    aboutSubtext: 'The Democratic Youth Federation of India (DYFI) as a forward looking and progressive youth organisation inspired by anti-imperialist, democratic and socialist ideas takes upon itself the task of organising the young men and the young women of our country into a well-knit all India youth organisation to build a powerful youth movement to fight for a democratic and progressive social system and for the upliftment and betterment of the youth community as a whole.',
     btnReadMore: 'ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ <i class="fa-solid fa-arrow-up-right-from-square"></i>',
     
     stat1: 'ಸಕ್ರಿಯ ಯುವ ಸದಸ್ಯರು',
