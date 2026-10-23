@@ -1163,3 +1163,55 @@ textarea.form-control {
     flex: 0 0 100%;
   }
 }
+
+/* ========================================================
+   ADMIN OVERFLOW: HIDDEN & TRUNCATION SYSTEM
+   ======================================================== */
+.admin-card,
+.stat-card,
+.data-table-card,
+.admin-sidebar,
+.admin-topbar,
+.taluk-admin-item,
+.modal-dialog,
+.modal-content {
+  overflow: hidden !important;
+}
+
+/* Table truncation: Never blow out admin tables with full content */
+.admin-table,
+.table {
+  table-layout: fixed !important;
+  width: 100% !important;
+  overflow: hidden !important;
+}
+
+.admin-table th,
+.admin-table td,
+.table th,
+.table td {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+/* Truncate specific content cells */
+.table-desc,
+.admin-table td:nth-child(2),
+.admin-table td:nth-child(3) {
+  max-width: 200px !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+i.fa-solid,
+i.fa-brands,
+i.fa-regular {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  vertical-align: middle !important;
+  line-height: 1 !important;
+}
+

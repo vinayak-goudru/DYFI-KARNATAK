@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DYFI Karnataka — Central Admin Management Suite</title>
   <link rel="icon" type="image/png" href="images/logo.jpg">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="css/admin.css">
 </head>
 <body class="admin-body">
@@ -14,7 +14,7 @@
   <div class="login-overlay active" id="loginOverlay">
     <div class="login-card">
       <div class="login-header">
-        <div class="login-brand-icon">🚩</div>
+        <div class="login-brand-icon"><i class="fa-solid fa-flag" style="color:#dc2626;"></i></div>
         <h2>DYFI KARNATAKA</h2>
         <p>State Committee Central Admin Suite</p>
       </div>
@@ -27,7 +27,7 @@
           <label class="form-label">Admin Password</label>
           <input type="password" id="adminPass" class="form-control" placeholder="••••••••••••" required autocomplete="current-password">
         </div>
-        <button type="submit" class="btn btn-primary btn-block">Secure Login ➔</button>
+        <button type="submit" class="btn btn-primary btn-block">Secure Login <i class="fa-solid fa-arrow-right"></i></button>
         <button type="button" class="btn btn-demo btn-block" id="btnQuickDemo">Quick Demo Login (Pre-filled)</button>
         <div class="login-hint">Default: <code>admin</code> / <code>dyfi@karnataka2026</code></div>
       </form>
@@ -50,63 +50,63 @@
 
       <nav class="sidebar-nav">
         <button class="nav-item active" data-tab="dashboard">
-          <span class="nav-icon">📊</span>
+          <span class="nav-icon"><i class="fa-solid fa-chart-line"></i></span>
           <span>Dashboard</span>
         </button>
         <button class="nav-item" data-tab="ticker">
-          <span class="nav-icon">📢</span>
+          <span class="nav-icon"><i class="fa-solid fa-bullhorn"></i></span>
           <span>Announcement Ticker</span>
         </button>
         <button class="nav-item" data-tab="siteContent">
-          <span class="nav-icon">🏛️</span>
+          <span class="nav-icon"><i class="fa-solid fa-desktop"></i></span>
           <span>Hero &amp; Site Content</span>
         </button>
         <button class="nav-item" data-tab="news">
-          <span class="nav-icon">📰</span>
+          <span class="nav-icon"><i class="fa-solid fa-newspaper"></i></span>
           <span>News &amp; Events</span>
         </button>
         <button class="nav-item" data-tab="campaigns">
-          <span class="nav-icon">🚩</span>
+          <span class="nav-icon"><i class="fa-solid fa-hand-fist"></i></span>
           <span>Active Campaigns</span>
         </button>
         <button class="nav-item" data-tab="statements">
-          <span class="nav-icon">📜</span>
+          <span class="nav-icon"><i class="fa-solid fa-scroll"></i></span>
           <span>Press Statements</span>
         </button>
         <button class="nav-item" data-tab="martyrs">
-          <span class="nav-icon">🕊️</span>
+          <span class="nav-icon"><i class="fa-solid fa-spa"></i></span>
           <span>Martyrs Memorial</span>
         </button>
         <button class="nav-item" data-tab="leaders">
-          <span class="nav-icon">👥</span>
+          <span class="nav-icon"><i class="fa-solid fa-users"></i></span>
           <span>Leadership Team</span>
         </button>
         <button class="nav-item" data-tab="districts">
-          <span class="nav-icon">🏛️</span>
+          <span class="nav-icon"><i class="fa-solid fa-landmark"></i></span>
           <span>District &amp; Taluks</span>
           <span class="badge-count" id="badgeDistrictsCount">0</span>
         </button>
         <button class="nav-item" data-tab="gallery">
-          <span class="nav-icon">🖼️</span>
+          <span class="nav-icon"><i class="fa-solid fa-images"></i></span>
           <span>Gallery Media</span>
         </button>
         <button class="nav-item" data-tab="bloodDonors">
-          <span class="nav-icon">🩸</span>
+          <span class="nav-icon"><i class="fa-solid fa-droplet"></i></span>
           <span>Blood Donors Registry</span>
         </button>
         <button class="nav-item" data-tab="messages">
-          <span class="nav-icon">📩</span>
+          <span class="nav-icon"><i class="fa-solid fa-envelope"></i></span>
           <span>Contact Enquiries</span>
           <span class="badge-count" id="badgeMsgCount">0</span>
         </button>
         <button class="nav-item" data-tab="settings">
-          <span class="nav-icon">⚙️</span>
+          <span class="nav-icon"><i class="fa-solid fa-gear"></i></span>
           <span>Backup &amp; Reset</span>
         </button>
       </nav>
 
       <div class="sidebar-footer">
-        <a href="index.html" target="_blank" class="btn btn-outline-white btn-sm btn-block">🌐 View Live Website</a>
+        <a href="index.html" target="_blank" class="btn btn-outline-white btn-sm btn-block"><i class="fa-solid fa-globe"></i> View Live Website</a>
         <button class="btn btn-logout btn-sm btn-block" id="btnLogout">Sign Out</button>
       </div>
     </aside>
@@ -115,13 +115,13 @@
     <main class="admin-main">
       <header class="admin-topbar">
         <div class="topbar-left">
-          <button class="mobile-nav-toggle" id="mobileNavToggle">☰</button>
+          <button class="mobile-nav-toggle" id="mobileNavToggle"><i class="fa-solid fa-bars"></i></button>
           <h1 class="page-heading" id="topbarTitle">Dashboard Overview</h1>
         </div>
         <div class="topbar-right">
-          <a href="index.html" target="_blank" class="btn btn-sm btn-outline-primary">Visit Public Site ➔</a>
+          <a href="index.html" target="_blank" class="btn btn-sm btn-outline-primary">Visit Public Site <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
           <div class="admin-user-pill">
-            <span class="user-avatar">🛡️</span>
+            <span class="user-avatar"><i class="fa-solid fa-shield-halved"></i></span>
             <span class="user-name">State Admin</span>
           </div>
         </div>
@@ -132,56 +132,56 @@
         <section class="tab-pane active" id="pane-dashboard">
           <div class="stats-overview-grid">
             <div class="stat-card">
-              <div class="stat-icon red">📰</div>
+              <div class="stat-icon red"><i class="fa-solid fa-newspaper"></i></div>
               <div class="stat-meta">
                 <div class="stat-value" id="statNews">0</div>
                 <div class="stat-label">Published News</div>
               </div>
             </div>
             <div class="stat-card">
-              <div class="stat-icon red">🚩</div>
+              <div class="stat-icon red"><i class="fa-solid fa-hand-fist"></i></div>
               <div class="stat-meta">
                 <div class="stat-value" id="statCampaigns">0</div>
                 <div class="stat-label">Active Campaigns</div>
               </div>
             </div>
             <div class="stat-card">
-              <div class="stat-icon blue">📜</div>
+              <div class="stat-icon blue"><i class="fa-solid fa-scroll"></i></div>
               <div class="stat-meta">
                 <div class="stat-value" id="statStatements">0</div>
                 <div class="stat-label">Official Statements</div>
               </div>
             </div>
             <div class="stat-card">
-              <div class="stat-icon dark">🕊️</div>
+              <div class="stat-icon dark"><i class="fa-solid fa-spa"></i></div>
               <div class="stat-meta">
                 <div class="stat-value" id="statMartyrs">0</div>
                 <div class="stat-label">Martyrs Honored</div>
               </div>
             </div>
             <div class="stat-card">
-              <div class="stat-icon red">🩸</div>
+              <div class="stat-icon red"><i class="fa-solid fa-droplet"></i></div>
               <div class="stat-meta">
                 <div class="stat-value" id="statDonors">0</div>
                 <div class="stat-label">Registered Donors</div>
               </div>
             </div>
             <div class="stat-card">
-              <div class="stat-icon amber">📩</div>
+              <div class="stat-icon amber"><i class="fa-solid fa-envelope"></i></div>
               <div class="stat-meta">
                 <div class="stat-value" id="statMessages">0</div>
                 <div class="stat-label">Contact Enquiries</div>
               </div>
             </div>
             <div class="stat-card">
-              <div class="stat-icon red">🏛️</div>
+              <div class="stat-icon red"><i class="fa-solid fa-landmark"></i></div>
               <div class="stat-meta">
                 <div class="stat-value" id="statDistricts">0</div>
                 <div class="stat-label">District Units</div>
               </div>
             </div>
             <div class="stat-card">
-              <div class="stat-icon dark">👥</div>
+              <div class="stat-icon dark"><i class="fa-solid fa-users"></i></div>
               <div class="stat-meta">
                 <div class="stat-value" id="statLeaders">0</div>
                 <div class="stat-label">Leadership Team</div>
@@ -192,7 +192,7 @@
           <div class="dashboard-panels-grid">
             <div class="card dashboard-card">
               <div class="card-header">
-                <h3>⚡ Quick Actions</h3>
+                <h3><i class="fa-solid fa-bolt"></i> Quick Actions</h3>
               </div>
               <div class="card-body quick-actions-grid">
                 <button class="btn btn-outline-primary" onclick="window.adminApp.switchTab('news', true)">+ Add Breaking News</button>
@@ -208,7 +208,7 @@
 
             <div class="card dashboard-card">
               <div class="card-header">
-                <h3>📢 Current Live Ticker</h3>
+                <h3><i class="fa-solid fa-bullhorn"></i> Current Live Ticker</h3>
               </div>
               <div class="card-body">
                 <ul class="ticker-preview-list" id="dashTickerList"></ul>
@@ -336,7 +336,7 @@
                 </div>
 
                 <div class="form-actions">
-                  <button type="submit" class="btn btn-primary btn-lg">💾 Save Global Content</button>
+                  <button type="submit" class="btn btn-primary btn-lg"><i class="fa-solid fa-floppy-disk"></i> Save Global Content</button>
                   <span class="save-status-msg" id="scSaveStatus"></span>
                 </div>
               </form>
@@ -494,7 +494,7 @@
           <div class="card">
             <div class="card-header flex-between">
               <div>
-                <h3>🚩 District, Taluk &amp; Area Committees (ಜಿಲ್ಲಾ &amp; ತಾಲ್ಲೂಕು ಸಮಿತಿಗಳು)</h3>
+                <h3><i class="fa-solid fa-flag" style="color:var(--primary,#dc2626); margin-right: 6px;"></i>District, Taluk &amp; Area Committees (ಜಿಲ್ಲಾ &amp; ತಾಲ್ಲೂಕು ಸಮಿತಿಗಳು)</h3>
                 <p class="card-subtitle">Manage district committees, presidents, secretaries, taluk units, and local area branches across Karnataka.</p>
               </div>
               <button class="btn btn-primary" id="btnOpenAddDistrict">+ Add District Committee</button>
@@ -567,8 +567,8 @@
                 <p class="card-subtitle">Browse and filter voluntary youth donors registered across Karnataka.</p>
               </div>
               <div class="flex gap-sm">
-                <button class="btn btn-outline-primary" id="btnExportDonors">📥 Export CSV</button>
-                <button class="btn btn-primary" id="btnOpenAddDonor">+ Register Donor</button>
+                <button class="btn btn-outline-primary" id="btnExportDonors"><i class="fa-solid fa-file-arrow-down"></i> Export CSV</button>
+                <button class="btn btn-primary" id="btnOpenAddDonor"><i class="fa-solid fa-user-plus"></i> Register Donor</button>
               </div>
             </div>
             <div class="card-body">
@@ -656,20 +656,20 @@
             <div class="card-body">
               <div class="settings-actions-grid">
                 <div class="settings-action-card">
-                  <h4>📥 Export Full Data Backup</h4>
+                  <h4><i class="fa-solid fa-file-arrow-down"></i> Export Full Data Backup</h4>
                   <p>Download a complete JSON snapshot of all news, campaigns, statements, martyrs, donors, and content.</p>
-                  <button class="btn btn-primary" id="btnExportBackup">Download JSON Backup</button>
+                  <button class="btn btn-primary" id="btnExportBackup"><i class="fa-solid fa-download"></i> Download JSON Backup</button>
                 </div>
                 <div class="settings-action-card">
-                  <h4>📤 Restore from Backup</h4>
+                  <h4><i class="fa-solid fa-file-arrow-up"></i> Restore from Backup</h4>
                   <p>Restore entire site data from a previously exported JSON backup file.</p>
                   <input type="file" id="fileImportBackup" accept=".json" style="display:none">
-                  <button class="btn btn-outline-primary" onclick="document.getElementById('fileImportBackup').click()">Select JSON File to Restore</button>
+                  <button class="btn btn-outline-primary" onclick="document.getElementById('fileImportBackup').click()"><i class="fa-solid fa-upload"></i> Select JSON File to Restore</button>
                 </div>
                 <div class="settings-action-card border-danger">
-                  <h4 class="text-danger">⚠️ Reset Site to Default State</h4>
+                  <h4 class="text-danger"><i class="fa-solid fa-triangle-exclamation"></i> Reset Site to Default State</h4>
                   <p>Revert all contents, news, martyrs, and settings to the default official dataset.</p>
-                  <button class="btn btn-danger" id="btnResetDefaults">Reset to Default Data</button>
+                  <button class="btn btn-danger" id="btnResetDefaults"><i class="fa-solid fa-rotate-left"></i> Reset to Default Data</button>
                 </div>
               </div>
             </div>

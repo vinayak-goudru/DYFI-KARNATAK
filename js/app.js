@@ -33,9 +33,9 @@ const i18nData = {
     navLeadership: 'State Leadership',
     navDistricts: 'District Units',
     navCommittees: 'Committees & Units',
-    navDistrictCommittees: '🚩 District Committees',
-    navTalukCommittees: '🏛️ Taluk Committees',
-    navAreaCommittees: '👥 Village & Area Units',
+    navDistrictCommittees: '<i class="fa-solid fa-flag" style="color:var(--primary,#dc2626); font-size:0.85em; margin-right:4px;"></i> District Committees',
+    navTalukCommittees: '<i class="fa-solid fa-landmark" style="font-size:0.85em; margin-right:4px;"></i> Taluk Committees',
+    navAreaCommittees: '<i class="fa-solid fa-users" style="font-size:0.85em; margin-right:4px;"></i> Village & Area Units',
     navCampaigns: 'Campaigns',
     navActivities: 'Activities',
     navGallery: 'Gallery',
@@ -47,15 +47,15 @@ const i18nData = {
     tickerText: 'Statewide Youth Convention against Unemployment — All District Committees advised to mobilize.',
     tickerHelp: 'Emergency Blood Helpline:',
     
-    heroTag: '★ Democratic Youth Federation of India — Karnataka',
+    heroTag: '<i class="fa-solid fa-star" style="color:var(--primary,#dc2626); font-size:0.8em; margin-right:4px;"></i> Democratic Youth Federation of India — Karnataka',
     heroTitle: 'United Youth, <span class="highlight-red">Secular Karnataka</span> — Building a Better Tomorrow',
     heroDesc: 'DYFI Karnataka State Committee stands at the forefront of progressive youth struggles, advocating for employment, quality free education, communal harmony, and social justice across Karnataka.',
-    heroBtnJoin: 'Get Involved »',
+    heroBtnJoin: 'Get Involved <i class="fa-solid fa-arrow-right"></i>',
     heroBtnMission: 'Our Ideology & Mission',
     
     aboutHeadline: 'Empowering Youth, Safeguarding Secularism — <span class="highlight-red">DYFI Karnataka State Committee</span> Leading Progressive Movements',
     aboutSubtext: 'Employment for all, quality free education, communal harmony, scientific temper, and an egalitarian society free from injustice and discrimination are our supreme guiding principles.',
-    btnReadMore: 'Read More ↗',
+    btnReadMore: 'Read More <i class="fa-solid fa-arrow-up-right-from-square"></i>',
     
     stat1: 'Active Youth Members',
     stat2: 'District Committees',
@@ -63,7 +63,7 @@ const i18nData = {
     stat4: 'State Campaigns',
     
     campSectionTitle: 'Our <span class="highlight-red">Campaigns</span>',
-    btnViewAll: 'View All ↗',
+    btnViewAll: 'View All <i class="fa-solid fa-arrow-up-right-from-square"></i>',
     
     camp1Title: 'Karnataka Youth Employment Rights Movement',
     camp1Desc: 'Demanding immediate recruitment for 2.5 lakh vacant government posts, fair employment, and local reservation in industries.',
@@ -74,7 +74,7 @@ const i18nData = {
     
     quoteMain: 'True <span class="highlight-red">transformation</span> begins when the youth unite to challenge injustice and build equality.',
     quoteMotto: '“Struggle is our path, equality is our goal — Che Guevara”',
-    btnMovement: 'Join the Movement ✊',
+    btnMovement: 'Join the Movement <i class="fa-solid fa-hand-fist"></i>',
     
     actSectionTitle: 'Recent <span class="highlight-red">Activities</span>',
     act1Title: 'Bengaluru State Youth Convention',
@@ -90,7 +90,7 @@ const i18nData = {
     ann2Title: 'Monsoon Natural Disaster Task Force',
     ann2Text: 'Circular advising all coastal and river basin units to mobilize emergency volunteer groups for monsoon assistance.',
     
-    districtsTag: '★ Organizational Network across Karnataka',
+    districtsTag: '<i class="fa-solid fa-star" style="color:var(--primary,#dc2626); font-size:0.8em; margin-right:4px;"></i> Organizational Network across Karnataka',
     districtsSectionTitle: 'District, Taluk & Area <span class="highlight-red">Committees</span>',
     districtsSectionSub: 'Democratically elected District & Taluk Presidents, Secretaries, and local units leading struggles across Karnataka.',
     filterAllDistricts: 'All Districts',
@@ -103,7 +103,7 @@ const i18nData = {
     bloodTitle: 'A drop of blood, a lifetime for someone!',
     bloodSub: 'Connecting patients in critical emergencies across Karnataka with voluntary youth blood donors round the clock.',
     bloodHelplineLabel: '24/7 State Emergency Blood Helpline',
-    btnBloodReg: 'Register as Volunteer Donor ❤️',
+    btnBloodReg: 'Register as Volunteer Donor <i class="fa-solid fa-heart"></i>',
     
     galleryTitle: 'Photo <span class="highlight-red">Gallery</span>',
     filterAll: 'All',
@@ -133,11 +133,11 @@ const i18nData = {
     bloodSearchHeading: 'Emergency Blood Donor Finder',
     joinModalTitle: 'Join The Revolution (ಸದಸ್ಯತ್ವ)',
     joinModalSub: 'Become part of India\'s vanguard progressive democratic youth movement fighting for equality, education, and social harmony.',
-    btnDownloadStatement: 'Download Statement PDF ⬇',
+    btnDownloadStatement: 'Download Statement PDF <i class="fa-solid fa-download"></i>',
     adminLink: 'Admin Portal',
     leadSectionTitle: 'State <span class="highlight-red">Leadership</span>',
-    nationalLeadTitle: '🚩 All India / National Leadership',
-    stateLeadTitle: '🚩 Karnataka State Leadership',
+    nationalLeadTitle: '<i class="fa-solid fa-flag" style="color:var(--primary,#dc2626); font-size:0.85em; margin-right:4px;"></i> All India / National Leadership',
+    stateLeadTitle: '<i class="fa-solid fa-flag" style="color:var(--primary,#dc2626); font-size:0.85em; margin-right:4px;"></i> Karnataka State Leadership',
     nl1Name: 'Comrade A. A. Rahim',
     nl1Role: 'All India President',
     nl2Name: 'Comrade Himagnoraj Bhattacharya',
@@ -160,7 +160,7 @@ const i18nData = {
     formPhone: 'Mobile Number',
     formDistrict: 'Your District',
     formMsg: 'Your Message or Inquiry',
-    formSubmit: 'Send Message 🚀',
+    formSubmit: 'Send Message <i class="fa-solid fa-paper-plane"></i>',
     
     footerDesc: 'Democratic Youth Federation of India (DYFI) — Leading the progressive youth movement for employment, education, secularism, and democracy.',
     footerQuick: 'Quick Links',
@@ -182,9 +182,9 @@ const i18nData = {
     navLeadership: 'ರಾಜ್ಯ ನಾಯಕತ್ವ',
     navDistricts: 'ಜಿಲ್ಲಾ ಘಟಕಗಳು',
     navCommittees: 'ಸಮಿತಿಗಳು & ಘಟಕಗಳು',
-    navDistrictCommittees: '🚩 ಜಿಲ್ಲಾ ಸಮಿತಿಗಳು',
-    navTalukCommittees: '🏛️ ತಾಲ್ಲೂಕು ಸಮಿತಿಗಳು',
-    navAreaCommittees: '👥 ಗ್ರಾಮ & ಏರಿಯಾ ಸಮಿತಿಗಳು',
+    navDistrictCommittees: '<i class="fa-solid fa-flag" style="color:var(--primary,#dc2626); font-size:0.85em; margin-right:4px;"></i> ಜಿಲ್ಲಾ ಸಮಿತಿಗಳು',
+    navTalukCommittees: '<i class="fa-solid fa-landmark" style="font-size:0.85em; margin-right:4px;"></i> ತಾಲ್ಲೂಕು ಸಮಿತಿಗಳು',
+    navAreaCommittees: '<i class="fa-solid fa-users" style="font-size:0.85em; margin-right:4px;"></i> ಗ್ರಾಮ & ಏರಿಯಾ ಸಮಿತಿಗಳು',
     navCampaigns: 'ಅಭಿಯಾನಗಳು',
     navActivities: 'ಚಟುವಟಿಕೆಗಳು',
     navGallery: 'ಚಿತ್ರ ಗ್ಯಾಲರಿ',
@@ -196,15 +196,15 @@ const i18nData = {
     tickerText: 'ರಾಜ್ಯವ್ಯಾಪಿ ನಿರುದ್ಯೋಗ ವಿರುದ್ಧ ಬೃಹತ್ ಯುವ ಜಾಗೃತಿ ಸಮಾವೇಶ — ಎಲ್ಲಾ ಜಿಲ್ಲಾ ಘಟಕಗಳು ಸಿದ್ಧತೆ ಕೈಗೊಳ್ಳಲು ಕರೆ.',
     tickerHelp: 'ತುರ್ತು ರಕ್ತದಾನ ಸಹಾಯವಾಣಿ:',
     
-    heroTag: '★ ಭಾರತ ಪ್ರಜಾಸತ್ತಾತ್ಮಕ ಯುವಜನ ಫೆಡರೇಶನ್ — ಕರ್ನಾಟಕ',
+    heroTag: '<i class="fa-solid fa-star" style="color:var(--primary,#dc2626); font-size:0.8em; margin-right:4px;"></i> ಭಾರತ ಪ್ರಜಾಸತ್ತಾತ್ಮಕ ಯುವಜನ ಫೆಡರೇಶನ್ — ಕರ್ನಾಟಕ',
     heroTitle: 'ಒಗ್ಗಟ್ಟಾದ ಯುವಜನತೆ, <span class="highlight-red">ಜಾತ್ಯತೀತ ಕರ್ನಾಟಕ</span> — ಉಜ್ವಲ ಭವಿಷ್ಯದೆಡೆಗೆ',
     heroDesc: 'ಭಾರತ ಪ್ರಜಾಸತ್ತಾತ್ಮಕ ಯುವಜನ ಫೆಡರೇಶನ್ (DYFI) ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಮಿತಿ — ನಿರುದ್ಯೋಗ, ಅಸಮಾನತೆ ಹಾಗೂ ಕೋಮುವಾದದ ವಿರುದ್ಧ ರಾಜ್ಯದ 31 ಜಿಲ್ಲೆಗಳಲ್ಲಿ ಸಾಗುತ್ತಿರುವ ಯುವಜನರ ಹೋರಾಟದ ಧ್ವನಿ.',
-    heroBtnJoin: 'ಹೋರಾಟದಲ್ಲಿ ಕೈಜೋಡಿಸಿ »',
+    heroBtnJoin: 'ಹೋರಾಟದಲ್ಲಿ ಕೈಜೋಡಿಸಿ <i class="fa-solid fa-arrow-right"></i>',
     heroBtnMission: 'ನಮ್ಮ ಧ್ಯೇಯೋದ್ದೇಶಗಳು',
     
     aboutHeadline: 'ಯುವಜನರ ಸಬಲೀಕರಣ, ಜಾತ್ಯತೀತತೆಯ ರಕ್ಷಣೆ — <span class="highlight-red">ಡಿವೈಎಫ್ಐ ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಮಿತಿ</span> ಮುಂಚೂಣಿ ಹೋರಾಟ',
     aboutSubtext: 'ಸರ್ವರಿಗೂ ಉದ್ಯೋಗ, ಎಲ್ಲರಿಗೂ ಗುಣಮಟ್ಟದ ಶಿಕ್ಷಣ, ಕೋಮು ಸೌಹಾರ್ದ ಹಾಗೂ ಜಾತಿ-ಧರ್ಮ ಭೇದವಿಲ್ಲದ ಸಮಾನತೆಯ ಸಮಾಜ ನಿರ್ಮಾಣವೇ ನಮ್ಮ ಮೂಲ ಉದ್ದೇಶ.',
-    btnReadMore: 'ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ ↗',
+    btnReadMore: 'ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ <i class="fa-solid fa-arrow-up-right-from-square"></i>',
     
     stat1: 'ಸಕ್ರಿಯ ಯುವ ಸದಸ್ಯರು',
     stat2: 'ಜಿಲ್ಲಾ ಸಮಿತಿಗಳು',
@@ -212,7 +212,7 @@ const i18nData = {
     stat4: 'ಸಾಮಾಜಿಕ ಚಳುವಳಿಗಳು',
     
     campSectionTitle: 'ನಮ್ಮ <span class="highlight-red">ಅಭಿಯಾನಗಳು</span>',
-    btnViewAll: 'ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ ↗',
+    btnViewAll: 'ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ <i class="fa-solid fa-arrow-up-right-from-square"></i>',
     
     camp1Title: 'ರಾಜ್ಯ ಯುವ ಉದ್ಯೋಗ ಹಕ್ಕು ಚಳುವಳಿ',
     camp1Desc: 'ಕರ್ನಾಟಕದ ಸರ್ಕಾರಿ ಇಲಾಖೆಗಳಲ್ಲಿ ಖಾಲಿ ಇರುವ 2.5 ಲಕ್ಷ ಹುದ್ದೆಗಳ ಭರ್ತಿ ಹಾಗೂ ಸ್ಥಳೀಯ ಯುವಕರಿಗೆ ಉದ್ಯೋಗ ಮೀಸಲಾತಿಗೆ ಆಗ್ರಹ.',
@@ -223,7 +223,7 @@ const i18nData = {
     
     quoteMain: 'ಯುವಜನರು ಅನ್ಯಾಯದ ವಿರುದ್ಧ ಒಗ್ಗೂಡಿ <span class="highlight-red">ಸಮಾನತೆ ಮತ್ತು ಸಾಮಾಜಿಕ ನ್ಯಾಯ</span> ಕಟ್ಟಲು ನಿಂತಾಗ ಮಾತ್ರ ಬದಲಾವಣೆ ಸಾಧ್ಯ.',
     quoteMotto: '“ಹೋರಾಟವೇ ನಮ್ಮ ಹಾದಿ, ಸಮಾನತೆಯೇ ನಮ್ಮ ಗುರಿ — ಚೇ ಗುವಾರಾ”',
-    btnMovement: 'ಹೋರಾಟದಲ್ಲಿ ಕೈಜೋಡಿಸಿ ✊',
+    btnMovement: 'ಹೋರಾಟದಲ್ಲಿ ಕೈಜೋಡಿಸಿ <i class="fa-solid fa-hand-fist"></i>',
     
     actSectionTitle: 'ಇತ್ತೀಚಿನ <span class="highlight-red">ಚಟುವಟಿಕೆಗಳು</span>',
     act1Title: 'ಬೆಂಗಳೂರು ರಾಜ್ಯ ಮಟ್ಟದ ಯುವ ಸಮಾವೇಶ',
@@ -239,7 +239,7 @@ const i18nData = {
     ann2Title: 'ಮುಂಗಾರು ನೈಸರ್ಗಿಕ ವಿಕೋಪ ಪರಿಹಾರ ಕಾರ್ಯಪಡೆ ರಚನೆ',
     ann2Text: 'ಮಳೆ ಹಾನಿ ಪೀಡಿತ ಪ್ರದೇಶಗಳಲ್ಲಿ ತುರ್ತು ನೆರವಿಗಾಗಿ ಡಿವೈಎಫ್ಐ ಯುವ ಕಾರ್ಯಪಡೆಗಳನ್ನು ಸನ್ನದ್ಧ ಸ್ಥಿತಿಯಲ್ಲಿಡಲು ಸುತ್ತೋಲೆ.',
     
-    districtsTag: '★ ಕರ್ನಾಟಕ ರಾಜ್ಯಾದ್ಯಂತ ಸಾಂಘಿಕ ಜಾಲ',
+    districtsTag: '<i class="fa-solid fa-star" style="color:var(--primary,#dc2626); font-size:0.8em; margin-right:4px;"></i> ಕರ್ನಾಟಕ ರಾಜ್ಯಾದ್ಯಂತ ಸಾಂಘಿಕ ಜಾಲ',
     districtsSectionTitle: 'ಜಿಲ್ಲಾ, ತಾಲ್ಲೂಕು & ಏರಿಯಾ <span class="highlight-red">ಸಮಿತಿಗಳು</span>',
     districtsSectionSub: 'ಕರ್ನಾಟಕದ ಪ್ರತಿ ಜಿಲ್ಲೆ ಮತ್ತು ತಾಲ್ಲೂಕುಗಳಲ್ಲಿ ಯುವಜನ ಹೋರಾಟ ಮುನ್ನಡೆಸುತ್ತಿರುವ ಚುನಾಯಿತ ಅಧ್ಯಕ್ಷರು, ಕಾರ್ಯದರ್ಶಿಗಳು ಹಾಗೂ ಸಮಿತಿಗಳು.',
     filterAllDistricts: 'ಎಲ್ಲಾ ಜಿಲ್ಲೆಗಳು',
@@ -252,7 +252,7 @@ const i18nData = {
     bloodTitle: 'ರಕ್ತದ ಹನಿ — ಜೀವದ ಚಿಗುರು!',
     bloodSub: 'ಕರ್ನಾಟಕ ರಾಜ್ಯಾದ್ಯಂತ ತುರ್ತು ರಕ್ತದ ಅಗತ್ಯವಿರುವ ರೋಗಿಗಳಿಗೆ ಉಚಿತವಾಗಿ ರಕ್ತ ಒದಗಿಸುವ ಡಿವೈಎಫ್ಐ ಯುವಜನ ರಕ್ತದಾನ ಜಾಲ.',
     bloodHelplineLabel: '24/7 ತುರ್ತು ರಾಜ್ಯ ರಕ್ತದಾನ ಸಹಾಯವಾಣಿ',
-    btnBloodReg: 'ಸ್ವಯಂಸೇವಕ ರಕ್ತದಾನಿ ನೋಂದಣಿ ❤️',
+    btnBloodReg: 'ಸ್ವಯಂಸೇವಕ ರಕ್ತದಾನಿ ನೋಂದಣಿ <i class="fa-solid fa-heart"></i>',
     
     galleryTitle: 'ಚಿತ್ರ <span class="highlight-red">ಗ್ಯಾಲರಿ</span>',
     filterAll: 'ಎಲ್ಲವೂ',
@@ -282,11 +282,11 @@ const i18nData = {
     bloodSearchHeading: 'ತುರ್ತು ರಕ್ತದಾನಿ ಹುಡುಕಾಟ (Emergency Blood Finder)',
     joinModalTitle: 'ಕ್ರಾಂತಿಯಲ್ಲಿ ಕೈಜೋಡಿಸಿ (Join The Revolution)',
     joinModalSub: 'ಯುವಜನರ ಹಕ್ಕುಗಳು, ಶಿಕ್ಷಣ ಮತ್ತು ಸಮಾನ ಸಮಾಜ ನಿರ್ಮಾಣದ ಐತಿಹಾಸಿಕ ಚಳವಳಿಯ ಭಾಗವಾಗಿ. ಸದಸ್ಯತ್ವಕ್ಕಾಗಿ ವಿವರಗಳನ್ನು ಭರ್ತಿ ಮಾಡಿ.',
-    btnDownloadStatement: 'ಹೇಳಿಕೆ PDF ಡೌನ್‌ಲೋಡ್ ⬇',
+    btnDownloadStatement: 'ಹೇಳಿಕೆ PDF ಡೌನ್‌ಲೋಡ್ <i class="fa-solid fa-download"></i>',
     adminLink: 'ಅಡ್ಮಿನ್ ಪೋರ್ಟಲ್',
     leadSectionTitle: 'ರಾಜ್ಯ <span class="highlight-red">ಮುಖಂಡರು</span>',
-    nationalLeadTitle: '🚩 ಅಖಿಲ ಭಾರತ / ರಾಷ್ಟ್ರೀಯ ನಾಯಕತ್ವ',
-    stateLeadTitle: '🚩 ಕರ್ನಾಟಕ ರಾಜ್ಯ ನಾಯಕತ್ವ',
+    nationalLeadTitle: '<i class="fa-solid fa-flag" style="color:var(--primary,#dc2626); font-size:0.85em; margin-right:4px;"></i> ಅಖಿಲ ಭಾರತ / ರಾಷ್ಟ್ರೀಯ ನಾಯಕತ್ವ',
+    stateLeadTitle: '<i class="fa-solid fa-flag" style="color:var(--primary,#dc2626); font-size:0.85em; margin-right:4px;"></i> ಕರ್ನಾಟಕ ರಾಜ್ಯ ನಾಯಕತ್ವ',
     nl1Name: 'ಕಾಮ್ರೇಡ್ ಎ. ಎ. ರಹೀಮ್',
     nl1Role: 'ಅಖಿಲ ಭಾರತ ಅಧ್ಯಕ್ಷರು',
     nl2Name: 'ಕಾಮ್ರೇಡ್ ಹಿಮಾಘ್ನರಾಜ್ ಭಟ್ಟಾಚಾರ್ಯ',
@@ -309,7 +309,7 @@ const i18nData = {
     formPhone: 'ಮೊಬೈಲ್ ಸಂಖ್ಯೆ',
     formDistrict: 'ನಿಮ್ಮ ಜಿಲ್ಲೆ',
     formMsg: 'ನಿಮ್ಮ ಸಂದೇಶ ಅಥವಾ ಪ್ರಶ್ನೆ',
-    formSubmit: 'ಸಂದೇಶ ಕಳುಹಿಸಿ 🚀',
+    formSubmit: 'ಸಂದೇಶ ಕಳುಹಿಸಿ <i class="fa-solid fa-paper-plane"></i>',
     
     footerDesc: 'ಭಾರತ ಪ್ರಜಾಸತ್ತಾತ್ಮಕ ಯುವಜನ ಫೆಡರೇಶನ್ (DYFI) — ಯುವಜನರ ಹಕ್ಕುಗಳು, ಶಿಕ್ಷಣ, ಉದ್ಯೋಗ ಮತ್ತು ಸಾಮಾಜಿಕ ನ್ಯಾಯಕ್ಕಾಗಿ ಹೋರಾಡುವ ಪ್ರಮುಖ ಸಂಘಟನೆ.',
     footerQuick: 'ತ್ವರಿತ ಲಿಂಕ್‌ಗಳು',
@@ -373,7 +373,7 @@ function applyTheme(theme) {
   const desktopBtn = document.getElementById('themeToggleBtn');
   const themeIcon = document.getElementById('themeIcon');
   if (themeIcon) {
-    themeIcon.textContent = isDark ? '☀️' : '🌙';
+    themeIcon.innerHTML = isDark ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
   }
   if (desktopBtn) {
     const label = isDark
@@ -387,7 +387,7 @@ function applyTheme(theme) {
   const mobileThemeIcon = document.getElementById('mobileThemeIcon');
   const mobileThemeText = document.getElementById('mobileThemeText');
   if (mobileThemeIcon) {
-    mobileThemeIcon.textContent = isDark ? '☀️' : '🌙';
+    mobileThemeIcon.innerHTML = isDark ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
   }
   if (mobileThemeText) {
     if (isDark) {
@@ -425,7 +425,7 @@ function applyLanguage(lang) {
   
   const langBtn = document.getElementById('langToggleBtn');
   if (langBtn) {
-    langBtn.innerHTML = `<span class="lang-icon">🌐</span> <span class="lang-text">${data.langBtn}</span>`;
+    langBtn.innerHTML = `<span class="lang-icon"><i class="fa-solid fa-globe"></i></span> <span class="lang-text">${data.langBtn}</span>`;
   }
   
   document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -516,7 +516,7 @@ function renderDistrictCards() {
     const dZone = isKn ? d.zone_kn : d.zone_en;
     const talukLabel = isKn ? `${d.taluks_count || (d.taluks_data ? d.taluks_data.length : 0)} ತಾಲ್ಲೂಕುಗಳು` : `${d.taluks_count || (d.taluks_data ? d.taluks_data.length : 0)} Taluks`;
     const unitsLabel = isKn ? `${d.units_count || 0} ಗ್ರಾಮ/ನಗರ ಘಟಕಗಳು` : `${d.units_count || 0} Local Units`;
-    const btnText = isKn ? 'ಸಮಿತಿ & ತಾಲ್ಲೂಕು ಪದಾಧಿಕಾರಿಗಳು ವೀಕ್ಷಿಸಿ ➔' : 'View Committee & Taluk Posts ➔';
+    const btnText = isKn ? 'ಸಮಿತಿ & ತಾಲ್ಲೂಕು ಪದಾಧಿಕಾರಿಗಳು ವೀಕ್ಷಿಸಿ <i class="fa-solid fa-arrow-right"></i>' : 'View Committee & Taluk Posts <i class="fa-solid fa-arrow-right"></i>';
     const presPost = isKn ? (d.president_post_kn || 'ಜಿಲ್ಲಾ ಅಧ್ಯಕ್ಷರು') : (d.president_post_en || 'District President');
     const secPost = isKn ? (d.secretary_post_kn || 'ಜಿಲ್ಲಾ ಕಾರ್ಯದರ್ಶಿ') : (d.secretary_post_en || 'District Secretary');
     const presName = isKn ? (d.president_kn || d.president_en) : (d.president_en || d.president_kn);
@@ -538,8 +538,8 @@ function renderDistrictCards() {
             <span class="district-zone-badge">${dZone}</span>
           </div>
           <div class="district-stats-vertical">
-            <span class="taluk-count-pill">🏛️ ${talukLabel}</span>
-            <span class="units-count-pill">🚩 ${unitsLabel}</span>
+            <span class="taluk-count-pill"><i class="fa-solid fa-landmark"></i> ${talukLabel}</span>
+            <span class="units-count-pill"><i class="fa-solid fa-flag" style="color:#ef4444;"></i> ${unitsLabel}</span>
           </div>
         </div>
         
@@ -547,26 +547,26 @@ function renderDistrictCards() {
         <div class="district-leaders-preview">
           <div class="preview-leader-item district-pres-item" ${d.president_photo ? `onclick="openLightboxImage('${d.president_photo}', '${presName || presPost} (${dName})')"` : ''}>
             ${d.president_photo 
-              ? `<img src="${d.president_photo}" alt="${presName || presPost}" class="preview-avatar" onerror="this.onerror=null; this.outerHTML='<div class=\\'preview-avatar placeholder-avatar\\' style=\\'display:flex; align-items:center; justify-content:center; background:#1e293b; color:#94a3b8; font-size:1.2rem; border:2px solid rgba(239,68,68,0.25);\\'>👤</div>';">` 
-              : `<div class="preview-avatar placeholder-avatar" style="display:flex; align-items:center; justify-content:center; background:#1e293b; color:#94a3b8; font-size:1.2rem; border:2px solid rgba(239,68,68,0.25);">👤</div>`}
+              ? `<img src="${d.president_photo}" alt="${presName || presPost}" class="preview-avatar" onerror="this.onerror=null; this.outerHTML='<div class=\\'preview-avatar placeholder-avatar\\' style=\\'display:flex; align-items:center; justify-content:center; background:#1e293b; color:#94a3b8; font-size:1.2rem; border:2px solid rgba(239,68,68,0.25);\\'><i class=\\'fa-solid fa-user\\'></i></div>';">` 
+              : `<div class="preview-avatar placeholder-avatar" style="display:flex; align-items:center; justify-content:center; background:#1e293b; color:#94a3b8; font-size:1.2rem; border:2px solid rgba(239,68,68,0.25);"><i class="fa-solid fa-user"></i></div>`}
             <div class="preview-info">
-              <span class="preview-post-badge pres-badge">🚩 ${presPost}</span>
+              <span class="preview-post-badge pres-badge"><i class="fa-solid fa-flag" style="font-size:0.8em; margin-right:3px;"></i> ${presPost}</span>
               <strong class="preview-name" style="${!presName ? 'color:#94a3b8; font-weight:normal; font-style:italic;' : ''}">
                 ${presName || (isKn ? 'ನಿಗದಿಪಡಿಸಿಲ್ಲ' : 'To be assigned')}
               </strong>
-              ${d.president_phone ? `<a href="tel:${d.president_phone}" class="preview-phone" onclick="event.stopPropagation();">📞 ${d.president_phone}</a>` : `<span class="preview-phone" style="opacity:0.5;">📞 —</span>`}
+              ${d.president_phone ? `<a href="tel:${d.president_phone}" class="preview-phone" onclick="event.stopPropagation();"><i class="fa-solid fa-phone"></i> ${d.president_phone}</a>` : `<span class="preview-phone" style="opacity:0.5;"><i class="fa-solid fa-phone"></i> —</span>`}
             </div>
           </div>
           <div class="preview-leader-item district-sec-item" ${d.secretary_photo ? `onclick="openLightboxImage('${d.secretary_photo}', '${secName || secPost} (${dName})')"` : ''}>
             ${d.secretary_photo 
-              ? `<img src="${d.secretary_photo}" alt="${secName || secPost}" class="preview-avatar" onerror="this.onerror=null; this.outerHTML='<div class=\\'preview-avatar placeholder-avatar\\' style=\\'display:flex; align-items:center; justify-content:center; background:#1e293b; color:#94a3b8; font-size:1.2rem; border:2px solid rgba(239,68,68,0.25);\\'>👤</div>';">` 
-              : `<div class="preview-avatar placeholder-avatar" style="display:flex; align-items:center; justify-content:center; background:#1e293b; color:#94a3b8; font-size:1.2rem; border:2px solid rgba(239,68,68,0.25);">👤</div>`}
+              ? `<img src="${d.secretary_photo}" alt="${secName || secPost}" class="preview-avatar" onerror="this.onerror=null; this.outerHTML='<div class=\\'preview-avatar placeholder-avatar\\' style=\\'display:flex; align-items:center; justify-content:center; background:#1e293b; color:#94a3b8; font-size:1.2rem; border:2px solid rgba(239,68,68,0.25);\\'><i class=\\'fa-solid fa-user\\'></i></div>';">` 
+              : `<div class="preview-avatar placeholder-avatar" style="display:flex; align-items:center; justify-content:center; background:#1e293b; color:#94a3b8; font-size:1.2rem; border:2px solid rgba(239,68,68,0.25);"><i class="fa-solid fa-user"></i></div>`}
             <div class="preview-info">
-              <span class="preview-post-badge sec-badge">🚩 ${secPost}</span>
+              <span class="preview-post-badge sec-badge"><i class="fa-solid fa-flag" style="font-size:0.8em; margin-right:3px;"></i> ${secPost}</span>
               <strong class="preview-name" style="${!secName ? 'color:#94a3b8; font-weight:normal; font-style:italic;' : ''}">
                 ${secName || (isKn ? 'ನಿಗದಿಪಡಿಸಿಲ್ಲ' : 'To be assigned')}
               </strong>
-              ${d.secretary_phone ? `<a href="tel:${d.secretary_phone}" class="preview-phone" onclick="event.stopPropagation();">📞 ${d.secretary_phone}</a>` : `<span class="preview-phone" style="opacity:0.5;">📞 —</span>`}
+              ${d.secretary_phone ? `<a href="tel:${d.secretary_phone}" class="preview-phone" onclick="event.stopPropagation();"><i class="fa-solid fa-phone"></i> ${d.secretary_phone}</a>` : `<span class="preview-phone" style="opacity:0.5;"><i class="fa-solid fa-phone"></i> —</span>`}
             </div>
           </div>
         </div>
@@ -608,7 +608,7 @@ window.openDistrictModal = function(districtId) {
   // Set Modal Title
   const modalTitle = document.getElementById('districtModalTitle');
   if (modalTitle) {
-    modalTitle.innerHTML = `<span style="color: #dc2626;">🚩</span> ${dName} — ${dZone}`;
+    modalTitle.innerHTML = `<span style="color: #dc2626;"><i class="fa-solid fa-flag"></i></span> ${dName} — ${dZone}`;
   }
   
   // 1. District Leadership Spotlight (District President & Secretary)
@@ -616,38 +616,38 @@ window.openDistrictModal = function(districtId) {
   if (membersWrap) {
     membersWrap.innerHTML = `
       <div class="modal-section-title">
-        <span>👥</span> ${isKn ? 'ಜಿಲ್ಲಾ ಪದಾಧಿಕಾರಿಗಳು (District President & Secretary Posts):' : 'District Committee Executive Officers:'}
+        <span><i class="fa-solid fa-users"></i></span> ${isKn ? 'ಜಿಲ್ಲಾ ಪದಾಧಿಕಾರಿಗಳು (District President & Secretary Posts):' : 'District Committee Executive Officers:'}
       </div>
       <div class="district-officers-spotlight">
         <div class="district-officer-card spotlight-pres">
           <div class="officer-avatar-box" ${d.president_photo ? `onclick="openLightboxImage('${d.president_photo}', '${presName || presPost} (${dName})')"` : ''}>
             ${d.president_photo 
-              ? `<img src="${d.president_photo}" alt="${presName || presPost}" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\\'officer-avatar-box placeholder-box\\' style=\\'display:flex; align-items:center; justify-content:center; width:100%; height:100%; background:#1e293b; color:#94a3b8; font-size:2.5rem;\\'>👤</div>';"><span class="officer-zoom-hint">🔍</span>` 
-              : `<div class="officer-avatar-box placeholder-box" style="display:flex; align-items:center; justify-content:center; width:100%; height:100%; background:#1e293b; color:#94a3b8; font-size:2.5rem;">👤</div>`}
+              ? `<img src="${d.president_photo}" alt="${presName || presPost}" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\\'officer-avatar-box placeholder-box\\' style=\\'display:flex; align-items:center; justify-content:center; width:100%; height:100%; background:#1e293b; color:#94a3b8; font-size:2.5rem;\\'><i class=\\'fa-solid fa-user\\'></i></div>';"><span class="officer-zoom-hint"><i class="fa-solid fa-magnifying-glass"></i></span>` 
+              : `<div class="officer-avatar-box placeholder-box" style="display:flex; align-items:center; justify-content:center; width:100%; height:100%; background:#1e293b; color:#94a3b8; font-size:2.5rem;"><i class="fa-solid fa-user"></i></div>`}
           </div>
           <div class="officer-info">
-            <span class="officer-badge pres-badge">🚩 ${presPost}</span>
+            <span class="officer-badge pres-badge"><i class="fa-solid fa-flag" style="font-size:0.8em; margin-right:3px;"></i> ${presPost}</span>
             <h4 class="officer-name" style="${!presName ? 'color:#94a3b8; font-weight:normal; font-style:italic;' : ''}">
               ${presName || (isKn ? 'ಪದಾಧಿಕಾರಿ ನಿಗದಿಪಡಿಸಿಲ್ಲ' : 'Officer to be assigned')}
             </h4>
             <div class="officer-sub">${isKn ? 'ಜಿಲ್ಲಾ ಸಮಿತಿ ಮುಖ್ಯಸ್ಥರು' : 'District Committee President'}</div>
-            ${d.president_phone ? `<a href="tel:${d.president_phone}" class="officer-phone-btn">📞 ${d.president_phone}</a>` : `<span class="officer-phone-btn" style="opacity:0.5; pointer-events:none;">📞 —</span>`}
+            ${d.president_phone ? `<a href="tel:${d.president_phone}" class="officer-phone-btn"><i class="fa-solid fa-phone"></i> ${d.president_phone}</a>` : `<span class="officer-phone-btn" style="opacity:0.5; pointer-events:none;"><i class="fa-solid fa-phone"></i> —</span>`}
           </div>
         </div>
 
         <div class="district-officer-card spotlight-sec">
           <div class="officer-avatar-box" ${d.secretary_photo ? `onclick="openLightboxImage('${d.secretary_photo}', '${secName || secPost} (${dName})')"` : ''}>
             ${d.secretary_photo 
-              ? `<img src="${d.secretary_photo}" alt="${secName || secPost}" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\\'officer-avatar-box placeholder-box\\' style=\\'display:flex; align-items:center; justify-content:center; width:100%; height:100%; background:#1e293b; color:#94a3b8; font-size:2.5rem;\\'>👤</div>';"><span class="officer-zoom-hint">🔍</span>` 
-              : `<div class="officer-avatar-box placeholder-box" style="display:flex; align-items:center; justify-content:center; width:100%; height:100%; background:#1e293b; color:#94a3b8; font-size:2.5rem;">👤</div>`}
+              ? `<img src="${d.secretary_photo}" alt="${secName || secPost}" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\\'officer-avatar-box placeholder-box\\' style=\\'display:flex; align-items:center; justify-content:center; width:100%; height:100%; background:#1e293b; color:#94a3b8; font-size:2.5rem;\\'><i class=\\'fa-solid fa-user\\'></i></div>';"><span class="officer-zoom-hint"><i class="fa-solid fa-magnifying-glass"></i></span>` 
+              : `<div class="officer-avatar-box placeholder-box" style="display:flex; align-items:center; justify-content:center; width:100%; height:100%; background:#1e293b; color:#94a3b8; font-size:2.5rem;"><i class="fa-solid fa-user"></i></div>`}
           </div>
           <div class="officer-info">
-            <span class="officer-badge sec-badge">🚩 ${secPost}</span>
+            <span class="officer-badge sec-badge"><i class="fa-solid fa-flag" style="font-size:0.8em; margin-right:3px;"></i> ${secPost}</span>
             <h4 class="officer-name" style="${!secName ? 'color:#94a3b8; font-weight:normal; font-style:italic;' : ''}">
               ${secName || (isKn ? 'ಪದಾಧಿಕಾರಿ ನಿಗದಿಪಡಿಸಿಲ್ಲ' : 'Officer to be assigned')}
             </h4>
             <div class="officer-sub">${isKn ? 'ಜಿಲ್ಲಾ ಸಂಘಟನಾ ಕಾರ್ಯದರ್ಶಿ' : 'District Organizing Secretary'}</div>
-            ${d.secretary_phone ? `<a href="tel:${d.secretary_phone}" class="officer-phone-btn">📞 ${d.secretary_phone}</a>` : `<span class="officer-phone-btn" style="opacity:0.5; pointer-events:none;">📞 —</span>`}
+            ${d.secretary_phone ? `<a href="tel:${d.secretary_phone}" class="officer-phone-btn"><i class="fa-solid fa-phone"></i> ${d.secretary_phone}</a>` : `<span class="officer-phone-btn" style="opacity:0.5; pointer-events:none;"><i class="fa-solid fa-phone"></i> —</span>`}
           </div>
         </div>
       </div>
@@ -670,7 +670,7 @@ window.openDistrictModal = function(districtId) {
       return `
         <div class="taluk-committee-item">
           <div class="taluk-header-bar">
-            <div class="taluk-item-name">🏛️ ${tName}</div>
+            <div class="taluk-item-name"><i class="fa-solid fa-landmark" style="margin-right:4px;"></i> ${tName}</div>
             <span class="taluk-unit-tag">${tUnits}</span>
           </div>
           <div class="taluk-officers-grid">
@@ -683,7 +683,7 @@ window.openDistrictModal = function(districtId) {
               <strong class="taluk-officer-name">${secDisplay}</strong>
             </div>
             <div class="taluk-officer-col taluk-contact-col">
-              ${t.phone ? `<a href="tel:${t.phone}" class="taluk-call-btn">📞 ${t.phone}</a>` : `<span style="color:#64748b; font-size:0.85rem;">📞 —</span>`}
+              ${t.phone ? `<a href="tel:${t.phone}" class="taluk-call-btn"><i class="fa-solid fa-phone"></i> ${t.phone}</a>` : `<span style="color:#64748b; font-size:0.85rem;"><i class="fa-solid fa-phone"></i> —</span>`}
             </div>
           </div>
         </div>
@@ -696,7 +696,7 @@ window.openDistrictModal = function(districtId) {
 
     taluksWrap.innerHTML = `
       <div class="modal-section-title" style="margin-top: 1.5rem;">
-        <span>🏛️</span> ${isKn ? `ತಾಲ್ಲೂಕು ಸಮಿತಿಗಳು ಮತ್ತು ಪದಾಧಿಕಾರಿಗಳು (${taluksData.length} ತಾಲ್ಲೂಕುಗಳು):` : `Taluk Committees & Leadership (${taluksData.length} Taluks):`}
+        <span><i class="fa-solid fa-landmark"></i></span> ${isKn ? `ತಾಲ್ಲೂಕು ಸಮಿತಿಗಳು ಮತ್ತು ಪದಾಧಿಕಾರಿಗಳು (${taluksData.length} ತಾಲ್ಲೂಕುಗಳು):` : `Taluk Committees & Leadership (${taluksData.length} Taluks):`}
       </div>
       <div class="taluk-committees-container">
         ${talukCardsHtml}
@@ -710,11 +710,11 @@ window.openDistrictModal = function(districtId) {
     const areaDesc = isKn ? (d.area_units_kn || d.area_units_en) : (d.area_units_en || d.area_units_kn);
     unitsWrap.innerHTML = `
       <div class="modal-section-title" style="margin-top: 1.2rem;">
-        <span>👥</span> ${isKn ? 'ಗ್ರಾಮ ಮತ್ತು ನಗರ ಏರಿಯಾ ಘಟಕಗಳು:' : 'Village & Area Youth Units:'}
+        <span><i class="fa-solid fa-users"></i></span> ${isKn ? 'ಗ್ರಾಮ ಮತ್ತು ನಗರ ಏರಿಯಾ ಘಟಕಗಳು:' : 'Village & Area Youth Units:'}
       </div>
       <div class="units-description-box">
         <p>${areaDesc || (isKn ? 'ಗ್ರಾಮ ಮತ್ತು ನಗರ ಮಟ್ಟದ ಶಾಖೆಗಳು, ಏರಿಯಾ ಸಮಿತಿಗಳು ಸಕ್ರಿಯವಾಗಿ ಕಾರ್ಯನಿರ್ವಹಿಸುತ್ತಿವೆ.' : 'Active village and urban ward committees operational across the district.')}</p>
-        <span class="units-badge-highlight">🚩 ${d.units_count || 0} ${isKn ? 'ಸಕ್ರಿಯ ಘಟಕಗಳು' : 'Active Local Units'}</span>
+        <span class="units-badge-highlight"><i class="fa-solid fa-flag" style="color:#ef4444; margin-right:4px;"></i> ${d.units_count || 0} ${isKn ? 'ಸಕ್ರಿಯ ಘಟಕಗಳು' : 'Active Local Units'}</span>
       </div>
     `;
   }
@@ -725,11 +725,11 @@ window.openDistrictModal = function(districtId) {
     officeWrap.innerHTML = `
       <div class="district-office-banner">
         <div>
-          <strong>${isKn ? '🏢 ಜಿಲ್ಲಾ ಸಮಿತಿ ಕಾರ್ಯಾಲಯ:' : '🏢 District Office:'}</strong>
+          <strong><i class="fa-solid fa-building" style="margin-right:4px;"></i> ${isKn ? 'ಜಿಲ್ಲಾ ಸಮಿತಿ ಕಾರ್ಯಾಲಯ:' : 'District Office:'}</strong>
           <div>${dOffice}</div>
         </div>
         <div style="margin-top: 0.6rem;">
-          <strong>${isKn ? '📞 24/7 ಜಿಲ್ಲಾ ಸಹಾಯವಾಣಿ:' : '📞 24/7 Helpline:'}</strong>
+          <strong><i class="fa-solid fa-phone" style="margin-right:4px;"></i> ${isKn ? '24/7 ಜಿಲ್ಲಾ ಸಹಾಯವಾಣಿ:' : '24/7 Helpline:'}</strong>
           <a href="tel:${d.phone}" class="office-tel-link">${d.phone}</a>
         </div>
       </div>
@@ -878,7 +878,7 @@ function initModals() {
       const modalBody = bloodModal.querySelector('.modal-body');
       modalBody.innerHTML = `
         <div class="success-checkmark-box">
-          <div class="checkmark-circle">✓</div>
+          <div class="checkmark-circle"><i class="fa-solid fa-check"></i></div>
           <h3 style="font-size: 1.4rem; color: #15803d; margin-bottom: 0.6rem;">
             ${isKn ? 'ಧನ್ಯವಾದಗಳು! ನೋಂದಣಿ ಯಶಸ್ವಿಯಾಗಿದೆ' : 'Thank You! Registration Successful'}
           </h3>
@@ -974,7 +974,7 @@ function initContactForm() {
     const btn = form.querySelector('.btn-submit-form');
     const originalText = btn.innerHTML;
     
-    btn.innerHTML = `<span>⏳ ${currentLang === 'kn' ? 'ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ...' : 'Sending...'}</span>`;
+    btn.innerHTML = `<span><i class="fa-solid fa-spinner fa-spin"></i> ${currentLang === 'kn' ? 'ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ...' : 'Sending...'}</span>`;
     btn.disabled = true;
     
     setTimeout(() => {
@@ -1040,7 +1040,7 @@ function showToast(message) {
     document.body.appendChild(toast);
   }
   
-  toast.innerHTML = `<span>✨ ${message}</span>`;
+  toast.innerHTML = `<span><i class="fa-solid fa-circle-check" style="color:#22c55e; margin-right:6px;"></i> ${message}</span>`;
   toast.classList.add('show');
   
   setTimeout(() => {
@@ -1142,12 +1142,12 @@ function showToast(message) {
                   <span class="badge-date">${c.date || '2026-10-15'}</span>
                   <span class="badge-status">${c.status || 'Active'}</span>
                 </div>
-                <span class="card-img-zoom-hint">🔍 ${isKn ? 'ಪೂರ್ಣ ವೀಕ್ಷಿಸಿ' : 'View Full'}</span>
+                <span class="card-img-zoom-hint"><i class="fa-solid fa-magnifying-glass"></i> ${isKn ? 'ಪೂರ್ಣ ವೀಕ್ಷಿಸಿ' : 'View Full'}</span>
               </div>
               <div class="card-body">
                 <h3 class="card-title">${isKn ? c.title_kn : c.title_en}</h3>
                 <p class="card-desc">${isKn ? c.desc_kn : c.desc_en}</p>
-                <a href="javascript:void(0)" class="card-link" onclick="openContentDetails('campaign', '${c.id || idx}'); event.stopPropagation();">${isKn ? 'ಪೂರ್ಣ ವಿವರ ವೀಕ್ಷಿಸಿ →' : 'Read Full Details →'}</a>
+                <a href="javascript:void(0)" class="card-link" onclick="openContentDetails('campaign', '${c.id || idx}'); event.stopPropagation();">${isKn ? 'ಪೂರ್ಣ ವಿವರ ವೀಕ್ಷಿಸಿ <i class="fa-solid fa-arrow-right"></i>' : 'Read Full Details <i class="fa-solid fa-arrow-right"></i>'}</a>
               </div>
             </article>
           `).join('');
@@ -1167,16 +1167,16 @@ function showToast(message) {
             <article class="news-card" onclick="openContentDetails('news', '${n.id || idx}')" style="cursor: pointer;">
               <div class="news-img-wrap" onclick="openContentDetails('news', '${n.id || idx}'); event.stopPropagation();" title="${isKn ? 'ಪೂರ್ಣ ಸುದ್ದಿ ವೀಕ್ಷಿಸಲು ಕ್ಲಿಕ್ ಮಾಡಿ' : 'Click to view full news'}">
                 <img src="${n.image || (idx === 0 ? 'images/hero-banner-1.jpg' : idx === 1 ? 'images/hero-banner-2.jpg' : 'images/hero-banner-3.jpg')}" alt="${n.title_en}" loading="lazy" onerror="this.onerror=null; this.src='images/hero-banner-2.jpg';">
-                <span class="card-img-zoom-hint">🔍 ${isKn ? 'ಪೂರ್ಣ ವೀಕ್ಷಿಸಿ' : 'View Full'}</span>
+                <span class="card-img-zoom-hint"><i class="fa-solid fa-magnifying-glass"></i> ${isKn ? 'ಪೂರ್ಣ ವೀಕ್ಷಿಸಿ' : 'View Full'}</span>
               </div>
               <div class="news-body">
                 <div class="news-meta">
-                  <span>📅 ${n.date || '2026-10-15'}</span>
-                  <span>🏷️ ${n.category || 'News'}</span>
+                  <span><i class="fa-solid fa-calendar-days"></i> ${n.date || '2026-10-15'}</span>
+                  <span><i class="fa-solid fa-tag"></i> ${n.category || 'News'}</span>
                 </div>
                 <h3 class="news-title">${isKn ? n.title_kn : n.title_en}</h3>
                 <p class="news-excerpt">${isKn ? n.desc_kn : n.desc_en}</p>
-                <a href="javascript:void(0)" class="btn-read-article" onclick="openContentDetails('news', '${n.id || idx}'); event.stopPropagation();">${isKn ? 'ಪೂರ್ಣ ವಿವರ ಓದಿ →' : 'Read Full Story →'}</a>
+                <a href="javascript:void(0)" class="btn-read-article" onclick="openContentDetails('news', '${n.id || idx}'); event.stopPropagation();">${isKn ? 'ಪೂರ್ಣ ವಿವರ ಓದಿ <i class="fa-solid fa-arrow-right"></i>' : 'Read Full Story <i class="fa-solid fa-arrow-right"></i>'}</a>
               </div>
             </article>
           `).join('');
@@ -1202,10 +1202,10 @@ function showToast(message) {
               <h3 class="statement-title">${isKn ? st.title_kn : st.title_en}</h3>
               <div style="display: flex; gap: 0.8rem; align-items: center; margin-top: auto; flex-wrap: wrap;">
                 <a href="javascript:void(0)" class="statement-view-link" onclick="openContentDetails('statement', '${st.id || idx}'); event.stopPropagation();" style="color: var(--primary); font-weight: 700; font-size: 0.85rem;">
-                  🔍 ${isKn ? 'ಪೂರ್ಣ ಹೇಳಿಕೆ ಓದಿ' : 'Read Statement'}
+                  <i class="fa-solid fa-magnifying-glass"></i> ${isKn ? 'ಪೂರ್ಣ ಹೇಳಿಕೆ ಓದಿ' : 'Read Statement'}
                 </a>
                 <a href="${st.fileUrl || '#'}" class="statement-download-btn" onclick="alert('${isKn ? 'ಅಧಿಕೃತ ಹೇಳಿಕೆ PDF ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ...' : 'Downloading Official Statement PDF...'}'); event.stopPropagation();">
-                  <span>${isKn ? 'PDF ಡೌನ್‌ಲೋಡ್' : 'Download PDF'}</span> ➔
+                  <span>${isKn ? 'PDF ಡೌನ್‌ಲೋಡ್' : 'Download PDF'}</span> <i class="fa-solid fa-download"></i>
                 </a>
               </div>
             </article>
@@ -1224,18 +1224,18 @@ function showToast(message) {
         if (martyrs.length > 0) {
           martyrsContainer.innerHTML = martyrs.map((m, idx) => {
             const avatarHtml = m.photo
-              ? `<img src="${m.photo}" alt="${m.name_en}" loading="lazy" onerror="this.outerHTML='<div class=\\'martyr-avatar-wrap placeholder-avatar\\' style=\\'display:flex; align-items:center; justify-content:center; background:#1e293b; color:#94a3b8; font-size:2.5rem; border:3px solid #dc2626;\\'>👤</div>';">`
-              : `<div class="martyr-avatar-wrap placeholder-avatar" style="display:flex; align-items:center; justify-content:center; background:#1e293b; color:#94a3b8; font-size:2.5rem; border:3px solid #dc2626;">👤</div>`;
+              ? `<img src="${m.photo}" alt="${m.name_en}" loading="lazy" onerror="this.outerHTML='<div class=\\'martyr-avatar-wrap placeholder-avatar\\' style=\\'display:flex; align-items:center; justify-content:center; background:#1e293b; color:#94a3b8; font-size:2.5rem; border:3px solid #dc2626;\\'><i class=\\'fa-solid fa-user\\'></i></div>';">`
+              : `<div class="martyr-avatar-wrap placeholder-avatar" style="display:flex; align-items:center; justify-content:center; background:#1e293b; color:#94a3b8; font-size:2.5rem; border:3px solid #dc2626;"><i class="fa-solid fa-user"></i></div>`;
 
             return `
               <div class="martyr-card" onclick="openContentDetails('martyr', '${m.id || idx}')" style="cursor: pointer;">
                 <div class="martyr-avatar-wrap">
                   ${avatarHtml}
-                  <span class="officer-zoom-hint">🔍</span>
+                  <span class="officer-zoom-hint"><i class="fa-solid fa-magnifying-glass"></i></span>
                 </div>
                 <h3 class="martyr-name">${isKn ? m.name_kn : m.name_en}</h3>
                 <span class="martyr-badge-date">${m.date}</span>
-                <div class="martyr-district">🚩 ${m.district}</div>
+                <div class="martyr-district"><i class="fa-solid fa-flag" style="color:var(--primary,#dc2626); margin-right:4px;"></i> ${m.district}</div>
                 <p class="martyr-tribute">"${isKn ? m.tribute_kn : m.tribute_en}"</p>
               </div>
             `;
@@ -1258,14 +1258,14 @@ function showToast(message) {
         const displayName = isKn ? (l.name_kn || l.name_en) : (l.name_en || l.name_kn);
         const displayRole = isKn ? (l.role_kn || l.role_en) : (l.role_en || l.role_kn);
         const avatarHtml = l.photo
-          ? `<img src="${l.photo}" alt="${displayName || 'Leader'}" loading="lazy" onerror="this.outerHTML='<div class=\\'leader-avatar-wrap placeholder-avatar\\' style=\\'display:flex; align-items:center; justify-content:center; background:#1e293b; color:#94a3b8; font-size:2.4rem; border:3px solid #dc2626;\\'>👤</div>';">`
-          : `<div class="leader-avatar-wrap placeholder-avatar" style="display:flex; align-items:center; justify-content:center; background:#1e293b; color:#94a3b8; font-size:2.4rem; border:3px solid #dc2626;">👤</div>`;
+          ? `<img src="${l.photo}" alt="${displayName || 'Leader'}" loading="lazy" onerror="this.outerHTML='<div class=\\'leader-avatar-wrap placeholder-avatar\\' style=\\'display:flex; align-items:center; justify-content:center; background:#1e293b; color:#94a3b8; font-size:2.4rem; border:3px solid #dc2626;\\'><i class=\\'fa-solid fa-user\\'></i></div>';">`
+          : `<div class="leader-avatar-wrap placeholder-avatar" style="display:flex; align-items:center; justify-content:center; background:#1e293b; color:#94a3b8; font-size:2.4rem; border:3px solid #dc2626;"><i class="fa-solid fa-user"></i></div>`;
 
         return `
           <div class="leader-card" onclick="openContentDetails('leader', '${l.id || idx}')" style="cursor: pointer;">
             <div class="leader-avatar-wrap">
               ${avatarHtml}
-              <span class="officer-zoom-hint">🔍</span>
+              <span class="officer-zoom-hint"><i class="fa-solid fa-magnifying-glass"></i></span>
             </div>
             <h3 class="leader-name" style="${isBlankName ? 'color:#94a3b8; font-style:italic;' : ''}">
               ${displayName || (isKn ? '(ಖಾಲಿ / To be assigned)' : '(To be assigned)')}
@@ -1304,7 +1304,7 @@ function showToast(message) {
               <img src="${g.src || 'images/hero-banner-1.jpg'}" alt="${g.caption_en || 'DYFI Karnataka'}" loading="lazy" onerror="this.onerror=null; this.src='images/hero-banner-1.jpg';">
               <div class="gallery-overlay">
                 <p class="gallery-caption">${isKn ? (g.caption_kn || g.caption_en) : (g.caption_en || g.caption_kn)}</p>
-                <span class="gallery-zoom-badge">🔍 ${isKn ? 'ದೊಡ್ಡದಾಗಿ ನೋಡಿ' : 'View High Res'}</span>
+                <span class="gallery-zoom-badge"><i class="fa-solid fa-magnifying-glass"></i> ${isKn ? 'ದೊಡ್ಡದಾಗಿ ನೋಡಿ' : 'View High Res'}</span>
               </div>
             </div>
           `).join('');
@@ -1380,7 +1380,7 @@ function showToast(message) {
             </div>
             <div style="display:flex; align-items:center; gap:0.6rem;">
               <span class="donor-badge-group">${d.group}</span>
-              <a href="tel:${d.phone}" class="btn-primary" style="padding:0.4rem 0.8rem; font-size:0.8rem; text-decoration:none;">📞 ಕರೆ</a>
+              <a href="tel:${d.phone}" class="btn-primary" style="padding:0.4rem 0.8rem; font-size:0.8rem; text-decoration:none;"><i class="fa-solid fa-phone"></i> ಕರೆ</a>
             </div>
           </div>
         `).join('');
@@ -1532,13 +1532,13 @@ function showToast(message) {
     const isKn = currentLang === 'kn';
 
     let item = null;
-    let categoryBadge = isKn ? '🚩 ಡಿವೈಎಫ್ಐ ಕರ್ನಾಟಕ' : '🚩 DYFI Karnataka';
+    let categoryBadge = isKn ? '<i class="fa-solid fa-flag" style="color:var(--primary,#dc2626); margin-right:4px;"></i> ಡಿವೈಎಫ್ಐ ಕರ್ನಾಟಕ' : '<i class="fa-solid fa-flag" style="color:var(--primary,#dc2626); margin-right:4px;"></i> DYFI Karnataka';
     let title = '';
     let date = '';
     let extra = '';
     let img = 'images/hero-banner-1.jpg';
     let fullText = '';
-    let primaryActionText = isKn ? 'ಹೋರಾಟದಲ್ಲಿ ಕೈಜೋಡಿಸಿ ➔' : 'Join The Movement ➔';
+    let primaryActionText = isKn ? 'ಹೋರಾಟದಲ್ಲಿ ಕೈಜೋಡಿಸಿ <i class="fa-solid fa-arrow-right"></i>' : 'Join The Movement <i class="fa-solid fa-arrow-right"></i>';
     let primaryActionFn = () => {
       modal.classList.remove('active');
       const joinModal = document.getElementById('joinModal');
@@ -1549,7 +1549,7 @@ function showToast(message) {
       const list = (typeof DyfiDataStore !== 'undefined') ? DyfiDataStore.get(DYFI_DATA_KEYS.CAMPAIGNS) || [] : [];
       item = list.find(c => c.id === id || String(c.id) === String(id)) || list[id] || list[0];
       if (item) {
-        categoryBadge = isKn ? '🚩 ಪ್ರಮುಖ ಅಭಿಯಾನ (State Campaign)' : '🚩 Major State Campaign';
+        categoryBadge = isKn ? '<i class="fa-solid fa-flag" style="color:var(--primary,#dc2626); margin-right:4px;"></i> ಪ್ರಮುಖ ಅಭಿಯಾನ (State Campaign)' : '<i class="fa-solid fa-flag" style="color:var(--primary,#dc2626); margin-right:4px;"></i> Major State Campaign';
         title = isKn ? (item.title_kn || item.title_en) : (item.title_en || item.title_kn);
         date = item.date || '2026-10-15';
         extra = item.status ? `• Status: ${item.status}` : '';
@@ -1557,13 +1557,13 @@ function showToast(message) {
         fullText = isKn 
           ? (item.full_kn || `${item.desc_kn}\n\nರಾಜ್ಯದ 31 ಜಿಲ್ಲೆಗಳಲ್ಲಿ ನಿರುದ್ಯೋಗ, ಶಿಕ್ಷಣದ ಖಾಸಗೀಕರಣ ಮತ್ತು ಕೋಮುವಾದದ ವಿರುದ್ಧ ಡಿವೈಎಫ್ಐ ಮುನ್ನಡೆಸುತ್ತಿರುವ ಬೃಹತ್ ಅಭಿಯಾನ. ಕಾಲೇಜು ಕ್ಯಾಂಪಸ್‌ಗಳು, ಕೈಗಾರಿಕಾ ವಲಯಗಳು ಹಾಗೂ ಹಳ್ಳಿ ಹಳ್ಳಿಗಳಲ್ಲಿ ಯುವ ಜಾಗೃತಿ ಸಭೆಗಳು, ಪಾದಯಾತ್ರೆಗಳು ಮತ್ತು ಬೀದಿ ನಾಟಕಗಳ ಮೂಲಕ ಲಕ್ಷಾಂತರ ಯುವಜನರನ್ನು ಒಗ್ಗೂಡಿಸಲಾಗುತ್ತಿದೆ.`)
           : (item.full_en || `${item.desc_en}\n\nMass campaign mobilized across 31 districts of Karnataka fighting for employment, secularism, and affordable public education.`);
-        primaryActionText = isKn ? 'ಈ ಅಭಿಯಾನದಲ್ಲಿ ಭಾಗವಹಿಸಿ ➔' : 'Participate in Campaign ➔';
+        primaryActionText = isKn ? 'ಈ ಅಭಿಯಾನದಲ್ಲಿ ಭಾಗವಹಿಸಿ <i class="fa-solid fa-arrow-right"></i>' : 'Participate in Campaign <i class="fa-solid fa-arrow-right"></i>';
       }
     } else if (type === 'news') {
       const list = (typeof DyfiDataStore !== 'undefined') ? DyfiDataStore.get(DYFI_DATA_KEYS.NEWS) || [] : [];
       item = list.find(n => n.id === id || String(n.id) === String(id)) || list[id] || list[0];
       if (item) {
-        categoryBadge = isKn ? '📰 ತಾಜಾ ಸುದ್ದಿ & ವರದಿ (Latest News)' : '📰 Latest News & Updates';
+        categoryBadge = isKn ? '<i class="fa-solid fa-newspaper" style="color:#2563eb; margin-right:4px;"></i> ತಾಜಾ ಸುದ್ದಿ & ವರದಿ (Latest News)' : '<i class="fa-solid fa-newspaper" style="color:#2563eb; margin-right:4px;"></i> Latest News & Updates';
         title = isKn ? (item.title_kn || item.title_en) : (item.title_en || item.title_kn);
         date = item.date || '2026-10-14';
         extra = item.category ? `• ${item.category}` : '';
@@ -1571,7 +1571,7 @@ function showToast(message) {
         fullText = isKn 
           ? (item.full_kn || `${item.desc_kn}\n\nರಾಜ್ಯ ಸರ್ಕಾರದ ಗಮನ ಸೆಳೆಯಲು ಡಿವೈಎಫ್ಐ ಜಿಲ್ಲಾ ಸಮಿತಿಗಳು ನಡೆಸಿದ ತೀವ್ರ ಹೋರಾಟದ ವರದಿ. ನಿರುದ್ಯೋಗಿ ಯುವಜನರಿಗೆ ಮಾಸಿಕ ಭತ್ಯೆ, ಖಾಲಿ ಇರುವ 2.5 ಲಕ್ಷ ಸರ್ಕಾರಿ ಹುದ್ದೆಗಳ ತಕ್ಷಣ ಭರ್ತಿ ಮತ್ತು ಪಾರದರ್ಶಕ ಪರೀಕ್ಷಾ ವ್ಯವಸ್ಥೆಗೆ ಒತ್ತಾಯಿಸಿ ರಾಜ್ಯಾದ್ಯಂತ ಮನವಿ ಸಲ್ಲಿಸಲಾಗಿದೆ.`)
           : (item.full_en || `${item.desc_en}\n\nComprehensive coverage of DYFI activities, protest rallies, and youth conventions across Karnataka.`);
-        primaryActionText = isKn ? 'ಸ್ಥಳೀಯ ಘಟಕ ಸಂಪರ್ಕಿಸಿ ➔' : 'Contact Local Unit ➔';
+        primaryActionText = isKn ? 'ಸ್ಥಳೀಯ ಘಟಕ ಸಂಪರ್ಕಿಸಿ <i class="fa-solid fa-arrow-right"></i>' : 'Contact Local Unit <i class="fa-solid fa-arrow-right"></i>';
         primaryActionFn = () => {
           modal.classList.remove('active');
           const contactSec = document.getElementById('contact');
@@ -1582,7 +1582,7 @@ function showToast(message) {
       const list = (typeof DyfiDataStore !== 'undefined') ? DyfiDataStore.get(DYFI_DATA_KEYS.STATEMENTS) || [] : [];
       item = list.find(s => s.id === id || String(s.id) === String(id)) || list[id] || list[0];
       if (item) {
-        categoryBadge = isKn ? '📜 ಅಧಿಕೃತ ಪತ್ರಿಕಾ ಹೇಳಿಕೆ (Official Statement)' : '📜 Official Press Release';
+        categoryBadge = isKn ? '<i class="fa-solid fa-scroll" style="color:#d97706; margin-right:4px;"></i> ಅಧಿಕೃತ ಪತ್ರಿಕಾ ಹೇಳಿಕೆ (Official Statement)' : '<i class="fa-solid fa-scroll" style="color:#d97706; margin-right:4px;"></i> Official Press Release';
         title = isKn ? (item.title_kn || item.title_en) : (item.title_en || item.title_kn);
         date = item.date || '2026-10-11';
         extra = item.refNo ? `• Ref: ${item.refNo}` : '';
@@ -1590,7 +1590,7 @@ function showToast(message) {
         fullText = isKn
           ? (item.full_kn || `ಭಾರತ ಪ್ರಜಾಸತ್ತಾತ್ಮಕ ಯುವಜನ ಫೆಡರೇಶನ್ (DYFI) ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಮಿತಿಯು ಅಧಿಕೃತವಾಗಿ ಹೊರಡಿಸಿರುವ ಪತ್ರಿಕಾ ಪ್ರಕಟಣೆ.\n\n${title}\n\nರಾಜ್ಯದ ಯುವಜನರ ಸಾಂವಿಧಾನಿಕ ಹಕ್ಕುಗಳ ರಕ್ಷಣೆ, ಪರೀಕ್ಷಾ ಅಕ್ರಮಗಳ ವಿರುದ್ಧ ಕಠಿಣ ಕಾನೂನು ಜಾರಿ ಮತ್ತು ಶಿಕ್ಷಣದ ವಾಣಿಜ್ಯೀಕರಣ ತಡೆಗಾಗಿ ಡಿವೈಎಫ್ಐ ನಿರಂತರವಾಗಿ ದನಿ ಎತ್ತುತ್ತಿದ್ದು, ಸಂಬಂಧಪಟ್ಟ ಇಲಾಖೆಗಳು ತಕ್ಷಣವೇ ಕ್ರಮ ವಹಿಸಬೇಕೆಂದು ಆಗ್ರಹಿಸಲಾಗಿದೆ.\n\nಈ ಅಧಿಕೃತ ಹೇಳಿಕೆಯ ಸಂಪೂರ್ಣ ಪ್ರತಿಯನ್ನು ಕೆಳಗಿನ ಬಟನ್ ಕ್ಲಿಕ್ ಮಾಡುವ ಮೂಲಕ PDF ರೂಪದಲ್ಲಿ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿಕೊಳ್ಳಬಹುದು.`)
           : (item.full_en || `Official press statement released by DYFI Karnataka State Committee regarding:\n\n${title}\n\nStanding firmly for democratic youth rights, transparency, and social justice across Karnataka.`);
-        primaryActionText = isKn ? 'ಹೇಳಿಕೆ PDF ಡೌನ್‌ಲೋಡ್ ⬇' : 'Download Statement PDF ⬇';
+        primaryActionText = isKn ? 'ಹೇಳಿಕೆ PDF ಡೌನ್‌ಲೋಡ್ <i class="fa-solid fa-download"></i>' : 'Download Statement PDF <i class="fa-solid fa-download"></i>';
         primaryActionFn = () => {
           alert(isKn ? 'ಅಧಿಕೃತ ಹೇಳಿಕೆ PDF ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ...' : 'Downloading Official Statement PDF...');
         };
@@ -1599,15 +1599,15 @@ function showToast(message) {
       const list = (typeof DyfiDataStore !== 'undefined') ? DyfiDataStore.get(DYFI_DATA_KEYS.MARTYRS) || [] : [];
       item = list.find(m => m.id === id || String(m.id) === String(id)) || list[id] || list[0];
       if (item) {
-        categoryBadge = isKn ? '⭐ ಅಮರ ಹುತಾತ್ಮರು (Immortal Martyrs)' : '⭐ Immortal Martyrs of Struggle';
+        categoryBadge = isKn ? '<i class="fa-solid fa-star" style="color:#eab308; margin-right:4px;"></i> ಅಮರ ಹುತಾತ್ಮರು (Immortal Martyrs)' : '<i class="fa-solid fa-star" style="color:#eab308; margin-right:4px;"></i> Immortal Martyrs of Struggle';
         title = isKn ? (item.name_kn || item.name_en) : (item.name_en || item.name_kn);
         date = item.date || '1992';
         extra = item.district ? `• ಜಿಲ್ಲೆ: ${item.district}` : '';
         img = item.photo || 'images/shivappa.jpg';
         fullText = isKn
-          ? `"${item.tribute_kn || item.tribute_en}"\n\nಯುವಜನರ ಶಿಕ್ಷಣ, ಉದ್ಯೋಗ, ಸಮಾನತೆ ಹಾಗೂ ಕೋಮು ಸೌಹಾರ್ದತೆಯ ರಕ್ಷಣೆಗಾಗಿ ಹೋರಾಡಿ ಹುತಾತ್ಮರಾದ ಧೀರ ಒಡನಾಡಿ. ಅವರ ತ್ಯಾಗ ಮತ್ತು ಬಲಿದಾನ ನಮ್ಮ ಪ್ರತಿಯೊಂದು ಹೋರಾಟಕ್ಕೂ ಸದಾ ದಾರಿದೀಪ.\n\nಅಮರ ಹುತಾತ್ಮರಿಗೆ ಕ್ರಾಂತಿಕಾರಿ ಕೆಂಪು ನಮನಗಳು! ✊`
+          ? `"${item.tribute_kn || item.tribute_en}"\n\nಯುವಜನರ ಶಿಕ್ಷಣ, ಉದ್ಯೋಗ, ಸಮಾನತೆ ಹಾಗೂ ಕೋಮು ಸೌಹಾರ್ದತೆಯ ರಕ್ಷಣೆಗಾಗಿ ಹೋರಾಡಿ ಹುತಾತ್ಮರಾದ ಧೀರ ಒಡನಾಡಿ. ಅವರ ತ್ಯಾಗ ಮತ್ತು ಬಲಿದಾನ ನಮ್ಮ ಪ್ರತಿಯೊಂದು ಹೋರಾಟಕ್ಕೂ ಸದಾ ದಾರಿದೀಪ.\n\nಅಮರ ಹುತಾತ್ಮರಿಗೆ ಕ್ರಾಂತಿಕಾರಿ ಕೆಂಪು ನಮನಗಳು!`
           : `"${item.tribute_en || item.tribute_kn}"\n\nImmortal martyr who laid down his life fighting for communal harmony, employment rights, and student welfare in Karnataka. Revolutionary homage to his ultimate sacrifice.`;
-        primaryActionText = isKn ? 'ಕ್ರಾಂತಿಕಾರಿ ನಮನಗಳು ✊' : 'Revolutionary Tribute ✊';
+        primaryActionText = isKn ? 'ಕ್ರಾಂತಿಕಾರಿ ನಮನಗಳು <i class="fa-solid fa-hand-fist"></i>' : 'Revolutionary Tribute <i class="fa-solid fa-hand-fist"></i>';
         primaryActionFn = () => {
           alert(isKn ? 'ಅಮರ ಹುತಾತ್ಮರ ತ್ಯಾಗಕ್ಕೆ ಕ್ರಾಂತಿಕಾರಿ ನಮನಗಳು!' : 'Revolutionary homage to our immortal martyrs!');
         };
@@ -1618,8 +1618,8 @@ function showToast(message) {
       if (item) {
         const isNational = item.tier === 'national' || (item.id && String(item.id).startsWith('nl'));
         categoryBadge = isNational
-          ? (isKn ? '🇮🇳 ಅಖಿಲ ಭಾರತ ನಾಯಕತ್ವ (All India Leadership)' : '🇮🇳 All India Leadership')
-          : (isKn ? '🚩 ರಾಜ್ಯ ನಾಯಕತ್ವ (State Leadership)' : '🚩 State Leadership');
+          ? (isKn ? '<i class="fa-solid fa-flag" style="color:var(--primary,#dc2626); margin-right:4px;"></i> ಅಖಿಲ ಭಾರತ ನಾಯಕತ್ವ (All India Leadership)' : '<i class="fa-solid fa-flag" style="color:var(--primary,#dc2626); margin-right:4px;"></i> All India Leadership')
+          : (isKn ? '<i class="fa-solid fa-flag" style="color:var(--primary,#dc2626); margin-right:4px;"></i> ರಾಜ್ಯ ನಾಯಕತ್ವ (State Leadership)' : '<i class="fa-solid fa-flag" style="color:var(--primary,#dc2626); margin-right:4px;"></i> State Leadership');
         title = isKn ? (item.name_kn || item.name_en) : (item.name_en || item.name_kn);
         date = isKn ? (item.role_kn || item.role_en) : (item.role_en || item.role_kn);
         extra = item.region ? `• ${item.region}` : '';
@@ -1627,7 +1627,7 @@ function showToast(message) {
         fullText = isKn
           ? `${title} — ${date}\n\n${item.region || (isNational ? 'ಡಿವೈಎಫ್ಐ ಅಖಿಲ ಭಾರತ ಕೇಂದ್ರ' : 'ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಮಿತಿ')} ಮುಂಚೂಣಿಯಲ್ಲಿ ನಿಂತು ಯುವಜನ ಚಳವಳಿ, ಉದ್ಯೋಗ ಹಕ್ಕು ಹೋರಾಟ, ಸಮಾನತೆ ಹಾಗೂ ಸಾಮಾಜಿಕ ನ್ಯಾಯವನ್ನು ಎತ್ತಿಹಿಡಿಯುತ್ತಿರುವ ನಾಯಕರು.`
           : `${title} — ${date}\n\nLeading the vanguard of progressive youth struggles, employment rights, and secular campaigns across ${item.region || (isNational ? 'DYFI All India Centre' : 'Karnataka State Committee')}.`;
-        primaryActionText = isKn ? 'ಸಂಪರ್ಕಿಸಿ ➔' : 'Get in Touch ➔';
+        primaryActionText = isKn ? 'ಸಂಪರ್ಕಿಸಿ <i class="fa-solid fa-arrow-right"></i>' : 'Get in Touch <i class="fa-solid fa-arrow-right"></i>';
         primaryActionFn = () => {
           modal.classList.remove('active');
           const contactSec = document.getElementById('contact');
@@ -1652,7 +1652,7 @@ function showToast(message) {
     }
 
     const modalDate = document.getElementById('contentModalDate');
-    if (modalDate) modalDate.textContent = `📅 ${date}`;
+    if (modalDate) modalDate.innerHTML = `<i class="fa-solid fa-calendar-days"></i> ${date}`;
 
     const modalExtra = document.getElementById('contentModalExtra');
     if (modalExtra) modalExtra.textContent = extra;

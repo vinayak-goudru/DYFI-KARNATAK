@@ -13,7 +13,8 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="images/logo.jpg">
 
-  <!-- Stylesheets -->
+  <!-- Stylesheets & Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="css/style.css">
 </head>
 
@@ -78,9 +79,12 @@
               <span class="dropdown-chevron">▼</span>
             </a>
             <ul class="dropdown-menu">
-              <li><a href="committees.html" class="dropdown-item" data-i18n="navDistrictCommittees">🚩 ಜಿಲ್ಲಾ ಸಮಿತಿಗಳು (District Committees)</a></li>
-              <li><a href="committees.html" class="dropdown-item" data-i18n="navTalukCommittees">🏛️ ತಾಲ್ಲೂಕು ಸಮಿತಿಗಳು (Taluk Committees)</a></li>
-              <li><a href="committees.html" class="dropdown-item" data-i18n="navAreaCommittees">👥 ಗ್ರಾಮ &amp; ಏರಿಯಾ ಸಮಿತಿಗಳು (Area Units)</a></li>
+              <li><a href="committees.html" class="dropdown-item" data-i18n="navDistrictCommittees"><i class="fa-solid fa-flag" style="color:#dc2626;"></i> ಜಿಲ್ಲಾ ಸಮಿತಿಗಳು
+                  (District Committees)</a></li>
+              <li><a href="committees.html" class="dropdown-item" data-i18n="navTalukCommittees"><i class="fa-solid fa-landmark" style="color:#ef4444;"></i> ತಾಲ್ಲೂಕು ಸಮಿತಿಗಳು
+                  (Taluk Committees)</a></li>
+              <li><a href="committees.html" class="dropdown-item" data-i18n="navAreaCommittees"><i class="fa-solid fa-users" style="color:#ef4444;"></i> ಗ್ರಾಮ &amp; ಏರಿಯಾ
+                  ಸಮಿತಿಗಳು (Area Units)</a></li>
             </ul>
           </li>
 
@@ -96,23 +100,23 @@
       <!-- Header Actions -->
       <div class="header-actions">
         <a href="#contact" class="btn-contact-top" data-i18n="navContactBtn">
-          <span>ಸಂಪರ್ಕಿಸಿ</span> ➔
+          <span>ಸಂಪರ್ಕಿಸಿ</span> <i class="fa-solid fa-arrow-right"></i>
         </a>
 
         <!-- Dark / Light Mode Toggle Button -->
         <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle Theme" title="Toggle Dark/Light Mode">
-          <span class="theme-icon" id="themeIcon">☀️</span>
+          <span class="theme-icon" id="themeIcon"><i class="fa-solid fa-sun"></i></span>
         </button>
 
         <!-- Language Switcher -->
         <button id="langToggleBtn" class="lang-toggle-btn" aria-label="Switch Language">
-          <span class="lang-icon">🌐</span>
+          <span class="lang-icon"><i class="fa-solid fa-globe"></i></span>
           <span class="lang-text">English</span>
         </button>
 
         <!-- Mobile Hamburger Toggle -->
         <button id="mobileToggleBtn" class="mobile-toggle-btn" aria-label="Open Mobile Menu">
-          ☰
+          <i class="fa-solid fa-bars"></i>
         </button>
       </div>
     </div>
@@ -132,7 +136,7 @@
 
     <div class="container hero-content">
       <div class="hero-badge-tag" data-i18n="heroTag">
-        ★ ಭಾರತ ಪ್ರಜಾಸತ್ತಾತ್ಮಕ ಯುವಜನ ಫೆಡರೇಶನ್ — ಕರ್ನಾಟಕ
+        <i class="fa-solid fa-star"></i> ಭಾರತ ಪ್ರಜಾಸತ್ತಾತ್ಮಕ ಯುವಜನ ಫೆಡರೇಶನ್ — ಕರ್ನಾಟಕ
       </div>
 
       <h1 class="hero-title" data-i18n="heroTitle">
@@ -146,7 +150,7 @@
 
       <div class="hero-btn-group">
         <a href="#contact" class="btn-primary" data-i18n="heroBtnJoin">
-          ಹೋರಾಟದಲ್ಲಿ ಕೈಜೋಡಿಸಿ »
+          ಹೋರಾಟದಲ್ಲಿ ಕೈಜೋಡಿಸಿ <i class="fa-solid fa-arrow-right"></i>
         </a>
         <a href="#about" class="btn-secondary" data-i18n="heroBtnMission">
           ನಮ್ಮ ಧ್ಯೇಯೋದ್ದೇಶಗಳು
@@ -155,8 +159,8 @@
     </div>
 
     <!-- Controls -->
-    <button class="carousel-prev" id="carouselPrev" aria-label="Previous Slide">❮</button>
-    <button class="carousel-next" id="carouselNext" aria-label="Next Slide">❯</button>
+    <button class="carousel-prev" id="carouselPrev" aria-label="Previous Slide"><i class="fa-solid fa-chevron-left"></i></button>
+    <button class="carousel-next" id="carouselNext" aria-label="Next Slide"><i class="fa-solid fa-chevron-right"></i></button>
 
     <div class="carousel-dots">
       <div class="dot active"></div>
@@ -185,7 +189,7 @@
         </p>
 
         <a href="#campaigns" class="btn-read-more" data-i18n="btnReadMore">
-          ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ ↗
+          ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ <i class="fa-solid fa-arrow-up-right-from-square"></i>
         </a>
       </div>
     </div>
@@ -198,25 +202,25 @@
     <div class="container">
       <div class="stats-grid">
         <div class="stat-card">
-          <div class="stat-icon">👥</div>
+          <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
           <div class="stat-number" data-target="60000+" data-suffix="+">0</div>
           <div class="stat-label" data-i18n="stat1">ಸಕ್ರಿಯ ಯುವ ಸದಸ್ಯರು</div>
         </div>
 
         <div class="stat-card">
-          <div class="stat-icon">🚩</div>
+          <div class="stat-icon"><i class="fa-solid fa-flag" style="color:#dc2626;"></i></div>
           <div class="stat-number" data-target="31" data-suffix="">0</div>
           <div class="stat-label" data-i18n="stat2">ಜಿಲ್ಲಾ ಸಮಿತಿಗಳು</div>
         </div>
 
         <div class="stat-card">
-          <div class="stat-icon">🩸</div>
+          <div class="stat-icon"><i class="fa-solid fa-droplet" style="color:#dc2626;"></i></div>
           <div class="stat-number" data-target="10000+" data-suffix="+">0</div>
           <div class="stat-label" data-i18n="stat3">ರಕ್ತದಾನ ನೆರವು ಪೂರೈಕೆ</div>
         </div>
 
         <div class="stat-card">
-          <div class="stat-icon">📢</div>
+          <div class="stat-icon"><i class="fa-solid fa-bullhorn" style="color:#f97316;"></i></div>
           <div class="stat-number" data-target="5000+" data-suffix="+">0</div>
           <div class="stat-label" data-i18n="stat4">ಸಾಮಾಜಿಕ ಚಳುವಳಿಗಳು</div>
         </div>
@@ -231,7 +235,7 @@
     <div class="container">
       <div class="section-header-row">
         <h2 class="section-title" data-i18n="campSectionTitle">ನಮ್ಮ <span class="highlight-red">ಅಭಿಯಾನಗಳು</span></h2>
-        <a href="#contact" class="btn-view-all" data-i18n="btnViewAll">ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ ↗</a>
+        <a href="#contact" class="btn-view-all" data-i18n="btnViewAll">ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
       </div>
 
       <div class="campaigns-grid">
@@ -250,7 +254,7 @@
               ಕರ್ನಾಟಕದ ಸರ್ಕಾರಿ ಇಲಾಖೆಗಳಲ್ಲಿ ಖಾಲಿ ಇರುವ 2.5 ಲಕ್ಷ ಹುದ್ದೆಗಳ ಭರ್ತಿ ಹಾಗೂ ಸ್ಥಳೀಯ ಯುವಕರಿಗೆ ಉದ್ಯೋಗ ಮೀಸಲಾತಿಗೆ
               ಆಗ್ರಹ.
             </p>
-            <a href="#contact" class="card-link">View Campaign →</a>
+            <a href="#contact" class="card-link">View Campaign <i class="fa-solid fa-arrow-right"></i></a>
           </div>
         </article>
 
@@ -268,7 +272,7 @@
             <p class="card-desc" data-i18n="camp2Desc">
               ದ್ವೇಷ ರಾಜಕಾರಣದ ವಿರುದ್ಧ ಶಾಂತಿ, ಸೌಹಾರ್ದತೆ ಮತ್ತು ಭ್ರಾತೃತ್ವ ಕಾಪಾಡಲು ರಾಜ್ಯದ ಎಲ್ಲಾ ಜಿಲ್ಲೆಗಳಲ್ಲಿ ಜಾಗೃತಿ ಜಾತಾಗಳು.
             </p>
-            <a href="#contact" class="card-link">View Campaign →</a>
+            <a href="#contact" class="card-link">View Campaign <i class="fa-solid fa-arrow-right"></i></a>
           </div>
         </article>
 
@@ -286,7 +290,7 @@
             <p class="card-desc" data-i18n="camp3Desc">
               ಶಿಕ್ಷಣದ ಖಾಸಗೀಕರಣ ತಡೆ, ವಿದ್ಯಾರ್ಥಿ ವೇತನ ಹಾಗೂ ಹಾಸ್ಟೆಲ್ ಸೌಲಭ್ಯಗಳ ಸಕಾಲಿಕ ಬಿಡುಗಡೆಗಾಗಿ ನಿರಂತರ ಪ್ರತಿಭಟನೆ.
             </p>
-            <a href="#contact" class="card-link">View Campaign →</a>
+            <a href="#contact" class="card-link">View Campaign <i class="fa-solid fa-arrow-right"></i></a>
           </div>
         </article>
       </div>
@@ -301,7 +305,7 @@
       <div class="section-header-row">
         <h2 class="section-title" data-i18n="stSectionTitle">ಅಧಿಕೃತ <span class="highlight-red">ಹೇಳಿಕೆಗಳು &amp;
             ಪ್ರಕಟಣೆಗಳು</span></h2>
-        <a href="#statements" class="btn-view-all" data-i18n="btnViewAll">ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ ↗</a>
+        <a href="#statements" class="btn-view-all" data-i18n="btnViewAll">ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
       </div>
       <div class="statements-grid" id="statementsContainer">
         <!-- Rendered dynamically from DyfiDataStore -->
@@ -324,7 +328,7 @@
             “ಹೋರಾಟವೇ ನಮ್ಮ ಹಾದಿ, ಸಮಾನತೆಯೇ ನಮ್ಮ ಗುರಿ — ಚೇ ಗುವಾರಾ”
           </p>
           <a href="#contact" class="btn-primary" data-i18n="btnMovement">
-            ಹೋರಾಟದಲ್ಲಿ ಕೈಜೋಡಿಸಿ ✊
+            ಹೋರಾಟದಲ್ಲಿ ಕೈಜೋಡಿಸಿ <i class="fa-solid fa-hand-fist"></i>
           </a>
         </div>
         <div class="quote-image-side">
@@ -342,7 +346,7 @@
       <div class="section-header-row">
         <h2 class="section-title" data-i18n="actSectionTitle">ಇತ್ತೀಚಿನ <span class="highlight-red">ಚಟುವಟಿಕೆಗಳು</span>
         </h2>
-        <a href="#activities" class="btn-view-all" data-i18n="btnViewAll">ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ ↗</a>
+        <a href="#activities" class="btn-view-all" data-i18n="btnViewAll">ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
       </div>
 
       <div class="activities-grid">
@@ -360,7 +364,7 @@
             <p class="card-desc" data-i18n="act1Desc">
               ಕರ್ನಾಟಕದ 31 ಜಿಲ್ಲೆಗಳಿಂದ ಸಹಸ್ರಾರು ಯುವ ಪ್ರತಿನಿಧಿಗಳು ಪಾಲ್ಗೊಂಡು ಯುವ ನೀತಿ ಕುರಿತು ಚರ್ಚಿಸಿದ ಐತಿಹಾಸಿಕ ಸಮಾವೇಶ.
             </p>
-            <a href="#contact" class="card-link">View Details →</a>
+            <a href="#contact" class="card-link">View Details <i class="fa-solid fa-arrow-right"></i></a>
           </div>
         </article>
 
@@ -378,7 +382,7 @@
             <p class="card-desc" data-i18n="act2Desc">
               ಉತ್ತರ ಕರ್ನಾಟಕ ಮತ್ತು ಮಲೆನಾಡು ಭಾಗದ ಪ್ರವಾಹ ಪೀಡಿತ ಗ್ರಾಮಗಳಲ್ಲಿ ಡಿವೈಎಫ್ಐ ಸ್ವಯಂಸೇವಕರಿಂದ ಪರಿಹಾರ ಸಾಮಗ್ರಿ ವಿತರಣೆ.
             </p>
-            <a href="#contact" class="card-link">View Details →</a>
+            <a href="#contact" class="card-link">View Details <i class="fa-solid fa-arrow-right"></i></a>
           </div>
         </article>
 
@@ -396,7 +400,7 @@
             <p class="card-desc" data-i18n="act3Desc">
               ಹಿಂದುಳಿದ ಪ್ರದೇಶಗಳ ಜನರಿಗಾಗಿ ನುರಿತ ವೈದ್ಯರ ಸಹಯೋಗದೊಂದಿಗೆ ಉಚಿತ ತಪಾಸಣೆ ಹಾಗೂ ಔಷಧ ವಿತರಣಾ ಶಿಬಿರಗಳು.
             </p>
-            <a href="#contact" class="card-link">View Details →</a>
+            <a href="#contact" class="card-link">View Details <i class="fa-solid fa-arrow-right"></i></a>
           </div>
         </article>
       </div>
@@ -446,7 +450,7 @@
     style="background-image: url('images/blood-donation-bg.jpg');">
     <div class="blood-overlay"></div>
     <div class="container blood-content">
-      <div class="blood-droplet-icon">🩸</div>
+      <div class="blood-droplet-icon"><i class="fa-solid fa-droplet" style="color: #dc2626;"></i></div>
 
       <h2 class="blood-title" data-i18n="bloodTitle">ರಕ್ತದ ಹನಿ — ಜೀವದ ಚಿಗುರು!</h2>
 
@@ -458,7 +462,7 @@
       <!-- Emergency Blood Donor Search Filter (DYFI Kerala Style) -->
       <div class="blood-search-box">
         <div class="blood-search-title">
-          <span>🩸</span>
+          <span><i class="fa-solid fa-droplet" style="color: #dc2626;"></i></span>
           <span data-i18n="bloodSearchHeading">ತುರ್ತು ರಕ್ತದಾನಿ ಹುಡುಕಾಟ (Emergency Blood Finder)</span>
         </div>
         <div class="blood-search-form">
@@ -484,7 +488,7 @@
             <option value="Kalaburagi">Kalaburagi (ಕಲಬುರಗಿ)</option>
             <option value="Shivamogga">Shivamogga (ಶಿವಮೊಗ್ಗ)</option>
           </select>
-          <button class="btn-primary" id="btnFindDonors" style="padding: 0.75rem 1.4rem;">ಹುಡುಕಿ / Search 🔍</button>
+          <button class="btn-primary" id="btnFindDonors" style="padding: 0.75rem 1.4rem;">ಹುಡುಕಿ / Search <i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
         <div class="blood-results-list" id="bloodResultsList"></div>
       </div>
@@ -493,12 +497,12 @@
         <div class="helpline-box">
           <div class="helpline-label" data-i18n="bloodHelplineLabel">24/7 ತುರ್ತು ರಾಜ್ಯ ರಕ್ತದಾನ ಸಹಾಯವಾಣಿ</div>
           <a href="tel:+919448123456" class="helpline-number">
-            <span>📞</span> +91 9448123456
+            <span><i class="fa-solid fa-phone"></i></span> +91 9448123456
           </a>
         </div>
 
         <button type="button" class="btn-blood-register" id="openBloodModalBtn" data-i18n="btnBloodReg">
-          ಸ್ವಯಂಸೇವಕ ರಕ್ತದಾನಿ ನೋಂದಣಿ ❤️
+          ಸ್ವಯಂಸೇವಕ ರಕ್ತದಾನಿ ನೋಂದಣಿ <i class="fa-solid fa-heart" style="color: #dc2626;"></i>
         </button>
       </div>
     </div>
@@ -615,7 +619,7 @@
     <div class="container">
       <div class="section-header-row">
         <h2 class="section-title" data-i18n="newsSectionTitle">ತಾಜಾ <span class="highlight-red">ಸುದ್ದಿಗಳು</span></h2>
-        <a href="#news" class="btn-view-all" data-i18n="btnViewAll">ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ ↗</a>
+        <a href="#news" class="btn-view-all" data-i18n="btnViewAll">ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
       </div>
 
       <div class="news-grid">
@@ -626,14 +630,14 @@
           </div>
           <div class="news-body">
             <div class="news-meta">
-              <span>📅 2026-08-18</span>
-              <span>👁 342 views</span>
+              <span><i class="fa-solid fa-calendar-days"></i> 2026-08-18</span>
+              <span><i class="fa-solid fa-eye"></i> 342 views</span>
             </div>
             <h3 class="news-title" data-i18n="news1Title">ಕರ್ನಾಟಕದಲ್ಲಿ ನಿರುದ್ಯೋಗ ಸಮೀಕ್ಷೆ ಬಿಡುಗಡೆ ಮಾಡಿದ ಡಿವೈಎಫ್ಐ</h3>
             <p class="news-excerpt" data-i18n="news1Desc">
               ಗ್ರಾಮೀಣ ಹಾಗೂ ನಗರ ಪ್ರದೇಶದ ಯುವಕರ ನೈಜ ಸ್ಥಿತಿಗತಿ ಬಿಂಬಿಸುವ ಸಮಗ್ರ ಉದ್ಯೋಗ ಸಮೀಕ್ಷಾ ವರದಿ ಬಿಡುಗಡೆ.
             </p>
-            <a href="#contact" class="btn-read-article">Read Article →</a>
+            <a href="#contact" class="btn-read-article">Read Article <i class="fa-solid fa-arrow-right"></i></a>
           </div>
         </article>
 
@@ -644,15 +648,15 @@
           </div>
           <div class="news-body">
             <div class="news-meta">
-              <span>📅 2026-08-12</span>
-              <span>👁 289 views</span>
+              <span><i class="fa-solid fa-calendar-days"></i> 2026-08-12</span>
+              <span><i class="fa-solid fa-eye"></i> 289 views</span>
             </div>
             <h3 class="news-title" data-i18n="news2Title">ಸರ್ಕಾರಿ ಆಸ್ಪತ್ರೆಗಳ ಉನ್ನತೀಕರಣಕ್ಕೆ ಆಗ್ರಹಿಸಿ ಜಿಲ್ಲಾಧಿಕಾರಿ ಕಚೇರಿ
               ಚಲೋ</h3>
             <p class="news-excerpt" data-i18n="news2Desc">
               ಬಡವರಿಗೆ ಗುಣಮಟ್ಟದ ಚಿಕಿತ್ಸೆ ದೊರೆಯುವಂತೆ ಜಿಲ್ಲಾ ಆಸ್ಪತ್ರೆಗಳಲ್ಲಿ ಸೌಲಭ್ಯ ಹೆಚ್ಚಿಸಲು ಆಗ್ರಹಿಸಿ ಹೋರಾಟ.
             </p>
-            <a href="#contact" class="btn-read-article">Read Article →</a>
+            <a href="#contact" class="btn-read-article">Read Article <i class="fa-solid fa-arrow-right"></i></a>
           </div>
         </article>
 
@@ -663,14 +667,14 @@
           </div>
           <div class="news-body">
             <div class="news-meta">
-              <span>📅 2026-07-28</span>
-              <span>👁 415 views</span>
+              <span><i class="fa-solid fa-calendar-days"></i> 2026-07-28</span>
+              <span><i class="fa-solid fa-eye"></i> 415 views</span>
             </div>
             <h3 class="news-title" data-i18n="news3Title">ಯುವ ಜನೋತ್ಸವ ಮತ್ತು ಕ್ರೀಡಾ ಕೂಟ ಯಶಸ್ವಿ ಸಮಾರೋಪ</h3>
             <p class="news-excerpt" data-i18n="news3Desc">
               ಯುವಜನರಲ್ಲಿ ಕ್ರೀಡಾ ಮನೋಭಾವ ಮತ್ತು ಸಾಂಸ್ಕೃತಿಕ ಒಗ್ಗಟ್ಟು ಬೆಳೆಸಲು ರಾಜ್ಯವ್ಯಾಪಿ ಯುವ ಉತ್ಸವ.
             </p>
-            <a href="#contact" class="btn-read-article">Read Article →</a>
+            <a href="#contact" class="btn-read-article">Read Article <i class="fa-solid fa-arrow-right"></i></a>
           </div>
         </article>
       </div>
@@ -691,14 +695,17 @@
       <div class="leadership-category-block">
         <div class="leadership-subtitle-wrap">
           <span class="leadership-sub-badge">ALL INDIA</span>
-          <h3 class="leadership-tier-title" data-i18n="nationalLeadTitle">🚩 ಅಖಿಲ ಭಾರತ / ರಾಷ್ಟ್ರೀಯ ನಾಯಕತ್ವ (National Leadership)</h3>
+          <h3 class="leadership-tier-title" data-i18n="nationalLeadTitle"><i class="fa-solid fa-flag" style="color:#dc2626;"></i> ಅಖಿಲ ಭಾರತ / ರಾಷ್ಟ್ರೀಯ ನಾಯಕತ್ವ (National
+            Leadership)</h3>
         </div>
         <div class="leadership-grid national-leaders-grid" id="nationalLeadersGrid">
           <!-- National Leader 1: All India President -->
           <div class="leader-card" onclick="openContentDetails('leader', 'nl1')" style="cursor: pointer;">
             <div class="leader-avatar-wrap">
-              <div class="leader-avatar-wrap placeholder-avatar" style="display:flex; align-items:center; justify-content:center; background:#1e293b; color:#94a3b8; font-size:2.4rem; border:3px solid #dc2626; width:100%; height:100%; border-radius:50%;">👤</div>
-              <span class="officer-zoom-hint">🔍</span>
+              <div class="leader-avatar-wrap placeholder-avatar"
+                style="display:flex; align-items:center; justify-content:center; background:#1e293b; color:#94a3b8; font-size:2.4rem; border:3px solid #dc2626; width:100%; height:100%; border-radius:50%;">
+                <i class="fa-solid fa-user"></i></div>
+              <span class="officer-zoom-hint"><i class="fa-solid fa-magnifying-glass"></i></span>
             </div>
             <h3 class="leader-name" data-i18n="nl1Name">Comrade A. A. Rahim</h3>
             <div class="leader-role" data-i18n="nl1Role">All India President</div>
@@ -708,8 +715,10 @@
           <!-- National Leader 2: All India General Secretary -->
           <div class="leader-card" onclick="openContentDetails('leader', 'nl2')" style="cursor: pointer;">
             <div class="leader-avatar-wrap">
-              <div class="leader-avatar-wrap placeholder-avatar" style="display:flex; align-items:center; justify-content:center; background:#1e293b; color:#94a3b8; font-size:2.4rem; border:3px solid #dc2626; width:100%; height:100%; border-radius:50%;">👤</div>
-              <span class="officer-zoom-hint">🔍</span>
+              <div class="leader-avatar-wrap placeholder-avatar"
+                style="display:flex; align-items:center; justify-content:center; background:#1e293b; color:#94a3b8; font-size:2.4rem; border:3px solid #dc2626; width:100%; height:100%; border-radius:50%;">
+                <i class="fa-solid fa-user"></i></div>
+              <span class="officer-zoom-hint"><i class="fa-solid fa-magnifying-glass"></i></span>
             </div>
             <h3 class="leader-name" data-i18n="nl2Name">Comrade Himagnoraj Bhattacharya</h3>
             <div class="leader-role" data-i18n="nl2Role">All India General Secretary</div>
@@ -722,13 +731,13 @@
       <div class="leadership-category-block">
         <div class="leadership-subtitle-wrap">
           <span class="leadership-sub-badge">KARNATAKA</span>
-          <h3 class="leadership-tier-title" data-i18n="stateLeadTitle">🚩 ಕರ್ನಾಟಕ ರಾಜ್ಯ ನಾಯಕತ್ವ (State Leadership)</h3>
+          <h3 class="leadership-tier-title" data-i18n="stateLeadTitle"><i class="fa-solid fa-flag" style="color:#dc2626;"></i> ಕರ್ನಾಟಕ ರಾಜ್ಯ ನಾಯಕತ್ವ (State Leadership)</h3>
         </div>
         <div class="leadership-grid state-leaders-grid" id="stateLeadersGrid">
           <div class="leader-card" onclick="openContentDetails('leader', 'l1')" style="cursor: pointer;">
             <div class="leader-avatar-wrap">
               <img src="images/lavitra_president.jpg" alt="State President" loading="lazy">
-              <span class="officer-zoom-hint">🔍</span>
+              <span class="officer-zoom-hint"><i class="fa-solid fa-magnifying-glass"></i></span>
             </div>
             <h3 class="leader-name" data-i18n="lead1Name">Comrade Lavitra Vastrad</h3>
             <div class="leader-role" data-i18n="lead1Role">State President</div>
@@ -738,7 +747,7 @@
           <div class="leader-card" onclick="openContentDetails('leader', 'l2')" style="cursor: pointer;">
             <div class="leader-avatar-wrap">
               <img src="images/santosh_bajal.jpg" alt="State General Secretary" loading="lazy">
-              <span class="officer-zoom-hint">🔍</span>
+              <span class="officer-zoom-hint"><i class="fa-solid fa-magnifying-glass"></i></span>
             </div>
             <h3 class="leader-name" data-i18n="lead2Name">Comrade Santosh Bajal</h3>
             <div class="leader-role" data-i18n="lead2Role">State General Secretary</div>
@@ -748,7 +757,7 @@
           <div class="leader-card" onclick="openContentDetails('leader', 'l3')" style="cursor: pointer;">
             <div class="leader-avatar-wrap">
               <img src="images/dilep.jpg" alt="State Treasurer" loading="lazy">
-              <span class="officer-zoom-hint">🔍</span>
+              <span class="officer-zoom-hint"><i class="fa-solid fa-magnifying-glass"></i></span>
             </div>
             <h3 class="leader-name" data-i18n="lead3Name">Comrade Dilip Bangalore</h3>
             <div class="leader-role" data-i18n="lead3Role">State Treasurer</div>
@@ -766,22 +775,24 @@
     <div class="container">
       <div class="network-teaser-card">
         <div class="network-teaser-info">
-          <div class="network-teaser-badge">★ 31 DISTRICTS ORGANIZATIONAL NETWORK</div>
+          <div class="network-teaser-badge"><i class="fa-solid fa-star"></i> 31 DISTRICTS ORGANIZATIONAL NETWORK</div>
           <h2 class="network-teaser-title">
             ಕರ್ನಾಟಕ <span class="highlight-red">ಸಮಿತಿಗಳು &amp; ಘಟಕಗಳು</span> (Committees &amp; Units)
           </h2>
           <p class="network-teaser-desc">
-            ಕರ್ನಾಟಕದ 31 ಜಿಲ್ಲಾ ಸಮಿತಿಗಳು, ನೂರಾರು ತಾಲ್ಲೂಕು ಸಮಿತಿಗಳು ಹಾಗೂ ಸಾವಿರಾರು ಗ್ರಾಮ ಮತ್ತು ಏರಿಯಾ ಘಟಕಗಳ ಸಮಗ್ರ ವಿವರಗಳು, ಚುನಾಯಿತ ಅಧ್ಯಕ್ಷರು ಮತ್ತು ಕಾರ್ಯದರ್ಶಿಗಳ ಸಂಪರ್ಕ ಮಾಹಿತಿ.
+            ಕರ್ನಾಟಕದ 31 ಜಿಲ್ಲಾ ಸಮಿತಿಗಳು, ನೂರಾರು ತಾಲ್ಲೂಕು ಸಮಿತಿಗಳು ಹಾಗೂ ಸಾವಿರಾರು ಗ್ರಾಮ ಮತ್ತು ಏರಿಯಾ ಘಟಕಗಳ ಸಮಗ್ರ ವಿವರಗಳು,
+            ಚುನಾಯಿತ ಅಧ್ಯಕ್ಷರು ಮತ್ತು ಕಾರ್ಯದರ್ಶಿಗಳ ಸಂಪರ್ಕ ಮಾಹಿತಿ.
           </p>
           <div class="network-teaser-stats">
-            <span class="network-stat-pill">🚩 31 ಜಿಲ್ಲಾ ಸಮಿತಿಗಳು</span>
-            <span class="network-stat-pill">🏛️ 220+ ತಾಲ್ಲೂಕು ಘಟಕಗಳು</span>
-            <span class="network-stat-pill">👥 5,000+ ಸ್ಥಳೀಯ ಏರಿಯಾ ಶಾಖೆಗಳು</span>
+            <span class="network-stat-pill"><i class="fa-solid fa-flag" style="color:#ef4444;"></i> 31 ಜಿಲ್ಲಾ ಸಮಿತಿಗಳು</span>
+            <span class="network-stat-pill"><i class="fa-solid fa-landmark" style="color:#ef4444;"></i> 220+ ತಾಲ್ಲೂಕು ಘಟಕಗಳು</span>
+            <span class="network-stat-pill"><i class="fa-solid fa-users" style="color:#ef4444;"></i> 5,000+ ಸ್ಥಳೀಯ ಏರಿಯಾ ಶಾಖೆಗಳು</span>
           </div>
         </div>
         <div>
-          <a href="committees.html" class="btn-primary" style="padding: 1rem 1.8rem; font-size: 1rem; box-shadow: 0 4px 20px rgba(220, 38, 38, 0.4);">
-            ಸಮಿತಿಗಳ ಸಂಪೂರ್ಣ ವಿವರ ವೀಕ್ಷಿಸಿ ➔
+          <a href="committees.html" class="btn-primary"
+            style="padding: 1rem 1.8rem; font-size: 1rem; box-shadow: 0 4px 20px rgba(220, 38, 38, 0.4);">
+            ಸಮಿತಿಗಳ ಸಂಪೂರ್ಣ ವಿವರ ವೀಕ್ಷಿಸಿ <i class="fa-solid fa-arrow-right"></i>
           </a>
         </div>
       </div>
@@ -795,17 +806,20 @@
     <div class="container">
       <div class="martyrs-teaser-card">
         <div class="network-teaser-info">
-          <div class="network-teaser-badge" style="background: rgba(220, 38, 38, 0.25); color: #fca5a5;">★ REVOLUTIONARY HOMAGE ★ ಕ್ರಾಂತಿಕಾರಿ ಪ್ರಣಾಮಗಳು</div>
+          <div class="network-teaser-badge" style="background: rgba(220, 38, 38, 0.25); color: #fca5a5;"><i class="fa-solid fa-star"></i> REVOLUTIONARY
+            HOMAGE <i class="fa-solid fa-star"></i> ಕ್ರಾಂತಿಕಾರಿ ಪ್ರಣಾಮಗಳು</div>
           <h2 class="network-teaser-title">
             ಹೋರಾಟದ <span class="highlight-red">ಅಮರ ಹುತಾತ್ಮರು</span> (Immortal Martyrs)
           </h2>
           <p class="network-teaser-desc">
-            ಯುವಜನರ ಹಕ್ಕುಗಳು, ಸಾಮಾಜಿಕ ನ್ಯಾಯ, ಸಮಾನತೆ ಮತ್ತು ಕೋಮು ಸೌಹಾರ್ದತೆಯ ಉದಾತ್ತ ಧ್ಯೇಯಕ್ಕಾಗಿ ತಮ್ಮ ಜೀವನವನ್ನೇ ಬಲಿದಾನ ಮಾಡಿದ ಕ್ರಾಂತಿಕಾರಿ ಹುತಾತ್ಮರ ಸ್ಮರಣೆ.
+            ಯುವಜನರ ಹಕ್ಕುಗಳು, ಸಾಮಾಜಿಕ ನ್ಯಾಯ, ಸಮಾನತೆ ಮತ್ತು ಕೋಮು ಸೌಹಾರ್ದತೆಯ ಉದಾತ್ತ ಧ್ಯೇಯಕ್ಕಾಗಿ ತಮ್ಮ ಜೀವನವನ್ನೇ ಬಲಿದಾನ ಮಾಡಿದ
+            ಕ್ರಾಂತಿಕಾರಿ ಹುತಾತ್ಮರ ಸ್ಮರಣೆ.
           </p>
         </div>
         <div>
-          <a href="martyrs.html" class="btn-secondary" style="border-color: #ef4444; color: #ef4444; padding: 1rem 1.8rem; font-size: 1rem; background: rgba(220, 38, 38, 0.1);">
-            ಅಮರ ಹುತಾತ್ಮರ ಸ್ಮರಣೆ ಪುಟ ವೀಕ್ಷಿಸಿ ➔
+          <a href="martyrs.html" class="btn-secondary"
+            style="border-color: #ef4444; color: #ef4444; padding: 1rem 1.8rem; font-size: 1rem; background: rgba(220, 38, 38, 0.1);">
+            ಅಮರ ಹುತಾತ್ಮರ ಸ್ಮರಣೆ ಪುಟ ವೀಕ್ಷಿಸಿ <i class="fa-solid fa-arrow-right"></i>
           </a>
         </div>
       </div>
@@ -823,7 +837,7 @@
         <!-- Contact Information -->
         <div class="contact-info-card">
           <div class="contact-item">
-            <div class="contact-icon">📍</div>
+            <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
             <div>
               <div class="contact-label" data-i18n="officeLabel">ರಾಜ್ಯ ಕೇಂದ್ರ ಕಚೇರಿ ವಿಳಾಸ</div>
               <div class="contact-val" data-i18n="officeVal">
@@ -834,7 +848,7 @@
           </div>
 
           <div class="contact-item">
-            <div class="contact-icon">📞</div>
+            <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
             <div>
               <div class="contact-label" data-i18n="phoneLabel">ದೂರವಾಣಿ / ಮೊಬೈಲ್</div>
               <div class="contact-val" data-i18n="phoneVal">+91 80 2287 4521 / +91 94481 23456</div>
@@ -842,7 +856,7 @@
           </div>
 
           <div class="contact-item">
-            <div class="contact-icon">✉️</div>
+            <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
             <div>
               <div class="contact-label" data-i18n="emailLabel">ಇಮೇಲ್ ವಿಳಾಸ</div>
               <div class="contact-val" data-i18n="emailVal"> dyfikar1980@gmail.com</div>
@@ -851,7 +865,7 @@
 
           <!-- District Units -->
           <div class="districts-pill-container" id="districts">
-            <h4 class="districts-title">🚩 ಕರ್ನಾಟಕದ 31 ಜಿಲ್ಲಾ ಘಟಕಗಳು (District Units):</h4>
+            <h4 class="districts-title"><i class="fa-solid fa-flag" style="color: #dc2626;"></i> ಕರ್ನಾಟಕದ 31 ಜಿಲ್ಲಾ ಘಟಕಗಳು (District Units):</h4>
             <div class="districts-tags">
               <span class="district-tag">ಬೆಂಗಳೂರು ನಗರ</span>
               <span class="district-tag">ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ</span>
@@ -911,7 +925,7 @@
             </div>
 
             <button type="submit" class="btn-submit-form" data-i18n="formSubmit">
-              ಸಂದೇಶ ಕಳುಹಿಸಿ 🚀
+              ಸಂದೇಶ ಕಳುಹಿಸಿ <i class="fa-solid fa-paper-plane"></i>
             </button>
           </form>
         </div>
@@ -935,13 +949,13 @@
           </p>
           <div class="footer-social-links">
             <a href="https://www.facebook.com/share/14nAFsBHkYR/" target="_blank" rel="noopener noreferrer"
-              class="social-icon-btn" aria-label="Facebook">f</a>
+              class="social-icon-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn"
-              aria-label="Instagram">📸</a>
+              aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
             <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn"
-              aria-label="YouTube">▶</a>
+              aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
             <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-icon-btn"
-              aria-label="X Twitter">𝕏</a>
+              aria-label="X Twitter"><i class="fa-brands fa-x-twitter"></i></a>
           </div>
         </div>
 
@@ -951,7 +965,8 @@
           <ul class="footer-links-list">
             <li class="footer-link-item"><a href="#home" data-i18n="navHome">ಮುಖಪುಟ</a></li>
             <li class="footer-link-item"><a href="#about" data-i18n="navAbout">ನಮ್ಮ ಬಗ್ಗೆ</a></li>
-            <li class="footer-link-item"><a href="committees.html" data-i18n="navCommittees">ಸಮಿತಿಗಳು &amp; ಘಟಕಗಳು</a></li>
+            <li class="footer-link-item"><a href="committees.html" data-i18n="navCommittees">ಸಮಿತಿಗಳು &amp; ಘಟಕಗಳು</a>
+            </li>
             <li class="footer-link-item"><a href="martyrs.html" data-i18n="navMartyrs">ಹುತಾತ್ಮರು</a></li>
             <li class="footer-link-item"><a href="#bloodDonation" data-i18n="navBlood">ರಕ್ತದಾನ ಸೇವೆ</a></li>
           </ul>
@@ -973,16 +988,16 @@
         <div>
           <div class="footer-col-title">ರಾಜ್ಯ ಕಚೇರಿ (State Office)</div>
           <div class="footer-contact-item">
-            <span class="footer-contact-icon">📍</span>
+            <span class="footer-contact-icon"><i class="fa-solid fa-location-dot"></i></span>
             <span>SFI-DYFI OFFICE, C/o: Amma Nilaya, #25, 1st Main Road, 11th Cross ,Sanmangiramanagara, Bengaluru-
               560027.</span>
           </div>
           <div class="footer-contact-item">
-            <span class="footer-contact-icon">📞</span>
+            <span class="footer-contact-icon"><i class="fa-solid fa-phone"></i></span>
             <span>+91 9449225636 / +91 9481261229</span>
           </div>
           <div class="footer-contact-item">
-            <span class="footer-contact-icon">✉️</span>
+            <span class="footer-contact-icon"><i class="fa-solid fa-envelope"></i></span>
             <span> dyfikar1980@gmail.com</span>
           </div>
         </div>
@@ -991,7 +1006,7 @@
       <div class="footer-bottom-bar">
         <span data-i18n="footerRights">© 2026 — ಡಿವೈಎಫ್ಐ ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಮಿತಿ. ಸರ್ವ ಹಕ್ಕುಗಳೂ ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ.</span>
         <a href="admin.html" target="_blank" class="admin-discrete-link" title="Authorized Staff Access (Ctrl+Shift+A)"
-          aria-label="Staff Login">🔒</a>
+          aria-label="Staff Login"><i class="fa-solid fa-lock"></i></a>
       </div>
     </div>
   </footer>
@@ -1007,7 +1022,7 @@
     <div class="modal-box">
       <div class="modal-header">
         <div class="modal-header-title">
-          <span style="color: #dc2626;">🚩</span>
+          <span style="color: #dc2626;"><i class="fa-solid fa-flag"></i></span>
           <span data-i18n="joinModalTitle">ಕ್ರಾಂತಿಯಲ್ಲಿ ಕೈಜೋಡಿಸಿ (Join The Revolution)</span>
         </div>
         <button class="modal-close-btn" id="closeJoinModal">&times;</button>
@@ -1050,7 +1065,7 @@
             </select>
           </div>
           <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 1rem;">
-            ನೋಂದಾಯಿಸಿ (Complete Registration) ➔
+            ನೋಂದಾಯಿಸಿ (Complete Registration) <i class="fa-solid fa-arrow-right"></i>
           </button>
         </form>
       </div>
@@ -1061,7 +1076,7 @@
     <div class="modal-box">
       <div class="modal-header">
         <div class="modal-header-title">
-          <span style="color: #dc2626;">🩸</span>
+          <span style="color: #dc2626;"><i class="fa-solid fa-droplet"></i></span>
           <span>ಸ್ವಯಂಸೇವಕ ರಕ್ತದಾನಿ ನೋಂದಣಿ (Donor Registration)</span>
         </div>
         <button class="modal-close-btn" id="closeBloodModal">&times;</button>
@@ -1123,7 +1138,7 @@
     <div class="modal-box district-modal-box">
       <div class="modal-header">
         <h3 class="modal-header-title" id="districtModalTitle">
-          <span>🚩</span> ಜಿಲ್ಲಾ ಮತ್ತು ತಾಲ್ಲೂಕು ಸಮಿತಿ ವಿವರ
+          <span><i class="fa-solid fa-flag" style="color:#dc2626;"></i></span> ಜಿಲ್ಲಾ ಮತ್ತು ತಾಲ್ಲೂಕು ಸಮಿತಿ ವಿವರ
         </h3>
         <button class="modal-close-btn" id="closeDistrictModal" aria-label="Close District Modal">&times;</button>
       </div>
@@ -1150,7 +1165,7 @@
     <div class="modal-box content-details-box">
       <div class="modal-header">
         <div class="modal-header-title" id="contentModalHeaderTitle">
-          <span id="contentModalCategoryBadge" class="content-badge">🚩 ಡಿವೈಎಫ್ಐ ಕರ್ನಾಟಕ</span>
+          <span id="contentModalCategoryBadge" class="content-badge"><i class="fa-solid fa-flag" style="color:#dc2626;"></i> ಡಿವೈಎಫ್ಐ ಕರ್ನಾಟಕ</span>
         </div>
         <button class="modal-close-btn" id="closeContentModal" aria-label="Close Details Modal">&times;</button>
       </div>
@@ -1166,7 +1181,7 @@
         <h2 class="content-modal-title" id="contentModalTitle"></h2>
         <div class="content-modal-desc" id="contentModalDesc"></div>
         <div class="content-modal-action-row" id="contentModalActions">
-          <button type="button" class="btn-primary" id="contentModalPrimaryBtn">ಭಾಗವಹಿಸಿ / Get Involved ➔</button>
+          <button type="button" class="btn-primary" id="contentModalPrimaryBtn">ಭಾಗವಹಿಸಿ / Get Involved <i class="fa-solid fa-arrow-right"></i></button>
           <button type="button" class="btn-secondary" id="contentModalCloseBtn">ಮುಚ್ಚಿ / Close</button>
         </div>
       </div>
@@ -1203,7 +1218,7 @@
       <li><a href="#home" class="mobile-nav-link" data-i18n="navHome">ಮುಖಪುಟ</a></li>
       <li><a href="#about" class="mobile-nav-link" data-i18n="navAbout">ನಮ್ಮ ಬಗ್ಗೆ</a></li>
       <li><a href="#leadership" class="mobile-nav-link" data-i18n="navLeadership">ರಾಜ್ಯ ನಾಯಕತ್ವ</a></li>
-      <li><a href="committees.html" class="mobile-nav-link" data-i18n="navDistricts">🚩 ಸಮಿತಿಗಳು &amp; ಘಟಕಗಳು</a></li>
+      <li><a href="committees.html" class="mobile-nav-link" data-i18n="navDistricts"><i class="fa-solid fa-flag" style="color:#ef4444;"></i> ಸಮಿತಿಗಳು &amp; ಘಟಕಗಳು</a></li>
       <li><a href="#campaigns" class="mobile-nav-link" data-i18n="navCampaigns">ಅಭಿಯಾನಗಳು</a></li>
       <li><a href="#activities" class="mobile-nav-link" data-i18n="navActivities">ಚಟುವಟಿಕೆಗಳು</a></li>
       <li><a href="#statements" class="mobile-nav-link" data-i18n="navStatements">ಹೇಳಿಕೆಗಳು</a></li>
@@ -1216,14 +1231,14 @@
 
     <div class="mobile-drawer-theme">
       <button id="mobileThemeToggleBtn" class="mobile-theme-btn" aria-label="Toggle Dark and Light Mode">
-        <span class="mobile-theme-icon" id="mobileThemeIcon">☀️</span>
+        <span class="mobile-theme-icon" id="mobileThemeIcon"><i class="fa-solid fa-sun"></i></span>
         <span id="mobileThemeText">Light Mode (ಬೆಳಕಿನ ಥೀಮ್)</span>
       </button>
     </div>
 
     <div class="mobile-drawer-footer">
       <a href="#contact" class="btn-primary" style="width: 100%; justify-content: center; font-size: 0.9rem;">
-        ಸಂಪರ್ಕಿಸಿ / Contact ➔
+        ಸಂಪರ್ಕಿಸಿ / Contact <i class="fa-solid fa-arrow-right"></i>
       </a>
     </div>
   </aside>

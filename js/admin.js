@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           <!-- Dropzone area (shown when no image is selected) -->
           <div class="upload-dropzone" id="${inputId}_dropzone" style="${hasImg ? 'display:none;' : ''}">
-            <span class="upload-dropzone-icon">📷</span>
+            <span class="upload-dropzone-icon"><i class="fa-solid fa-camera"></i></span>
             <span class="upload-dropzone-title">Click to Choose Photo from Device</span>
             <span class="upload-dropzone-subtitle">or drag and drop an image here (JPG, PNG, WEBP)</span>
           </div>
@@ -201,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <img src="${displayImg}" class="preview-thumb-img" id="${inputId}_previewImg" alt="Preview" onerror="this.src='${placeholderImg}'">
             <div class="preview-info">
               <div class="preview-status" id="${inputId}_status">
-                <span>✓</span> <span id="${inputId}_statusText">${hasImg ? 'Image Ready' : 'Selected'}</span>
+                <span><i class="fa-solid fa-circle-check"></i></span> <span id="${inputId}_statusText">${hasImg ? 'Image Ready' : 'Selected'}</span>
               </div>
               <div class="preview-name" id="${inputId}_fileName">${val ? (val.startsWith('data:') ? 'Uploaded Device Image' : val.split('/').pop()) : 'No file selected'}</div>
               <div class="preview-meta" id="${inputId}_meta">Optimized for website display</div>
@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <!-- Optional URL fallback toggle -->
           <div>
             <button type="button" class="url-fallback-toggle" id="${inputId}_toggleUrl">
-              🔗 Or enter image URL / existing path manually
+              <i class="fa-solid fa-link"></i> Or enter image URL / existing path manually
             </button>
             <div class="url-fallback-wrap" id="${inputId}_urlWrap">
               <input type="text" id="${inputId}_urlInput" class="form-control" placeholder="https://... or images/photo.jpg" value="${val.startsWith('data:') ? '' : val.replace(/"/g, '&quot;')}">
@@ -373,8 +373,8 @@ document.addEventListener('DOMContentLoaded', () => {
         <td>${t.text_kn}</td>
         <td>
           <div class="table-actions-cell">
-            <button class="btn btn-table-action btn-outline-warning" onclick="editTicker(${idx})">✏️ Edit</button>
-            <button class="btn btn-table-action btn-outline-danger" onclick="deleteTicker(${idx})">🗑️ Delete</button>
+            <button class="btn btn-table-action btn-outline-warning" onclick="editTicker(${idx})"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
+            <button class="btn btn-table-action btn-outline-danger" onclick="deleteTicker(${idx})"><i class="fa-solid fa-trash"></i> Delete</button>
           </div>
         </td>
       </tr>
@@ -498,8 +498,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
     DyfiDataStore.set(DYFI_DATA_KEYS.SITE_CONTENT, sc);
     const status = document.getElementById('scSaveStatus');
-    status.innerText = '✅ Saved! Changes are live on the website.';
-    setTimeout(() => { status.innerText = ''; }, 3500);
+    status.innerHTML = '<i class="fa-solid fa-circle-check" style="color:#22c55e;"></i> Saved! Changes are live on the website.';
+    setTimeout(() => { status.innerHTML = ''; }, 3500);
     showToast('Global Site Content Updated Successfully!');
   });
 
@@ -518,8 +518,8 @@ document.addEventListener('DOMContentLoaded', () => {
         <td>${n.date}</td>
         <td>
           <div class="table-actions-cell">
-            <button class="btn btn-table-action btn-outline-warning" onclick="editNews(${idx})">✏️ Edit</button>
-            <button class="btn btn-table-action btn-outline-danger" onclick="deleteNews(${idx})">🗑️ Delete</button>
+            <button class="btn btn-table-action btn-outline-warning" onclick="editNews(${idx})"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
+            <button class="btn btn-table-action btn-outline-danger" onclick="deleteNews(${idx})"><i class="fa-solid fa-trash"></i> Delete</button>
           </div>
         </td>
       </tr>
@@ -672,8 +672,8 @@ document.addEventListener('DOMContentLoaded', () => {
         <td><span class="badge-status-active">${c.status || 'Active'}</span></td>
         <td>
           <div class="table-actions-cell">
-            <button class="btn btn-table-action btn-outline-warning" onclick="editCampaign(${idx})">✏️ Edit</button>
-            <button class="btn btn-table-action btn-outline-danger" onclick="deleteCampaign(${idx})">🗑️ Delete</button>
+            <button class="btn btn-table-action btn-outline-warning" onclick="editCampaign(${idx})"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
+            <button class="btn btn-table-action btn-outline-danger" onclick="deleteCampaign(${idx})"><i class="fa-solid fa-trash"></i> Delete</button>
           </div>
         </td>
       </tr>
@@ -814,8 +814,8 @@ document.addEventListener('DOMContentLoaded', () => {
         <td>${s.date}</td>
         <td>
           <div class="table-actions-cell">
-            <button class="btn btn-table-action btn-outline-warning" onclick="editStatement(${idx})">✏️ Edit</button>
-            <button class="btn btn-table-action btn-outline-danger" onclick="deleteStatement(${idx})">🗑️ Delete</button>
+            <button class="btn btn-table-action btn-outline-warning" onclick="editStatement(${idx})"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
+            <button class="btn btn-table-action btn-outline-danger" onclick="deleteStatement(${idx})"><i class="fa-solid fa-trash"></i> Delete</button>
           </div>
         </td>
       </tr>
@@ -946,8 +946,8 @@ document.addEventListener('DOMContentLoaded', () => {
         <td>${m.district}</td>
         <td>
           <div class="table-actions-cell">
-            <button class="btn btn-table-action btn-outline-warning" onclick="editMartyr(${idx})">✏️ Edit</button>
-            <button class="btn btn-table-action btn-outline-danger" onclick="deleteMartyr(${idx})">🗑️ Delete</button>
+            <button class="btn btn-table-action btn-outline-warning" onclick="editMartyr(${idx})"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
+            <button class="btn btn-table-action btn-outline-danger" onclick="deleteMartyr(${idx})"><i class="fa-solid fa-trash"></i> Delete</button>
           </div>
         </td>
       </tr>
@@ -1093,12 +1093,12 @@ document.addEventListener('DOMContentLoaded', () => {
     tbody.innerHTML = list.map((l, idx) => {
       const isNational = l.tier === 'national' || (l.id && l.id.startsWith('nl'));
       const tierBadge = isNational
-        ? '<span class="badge" style="background:#b91c1c; color:#fff; font-size:0.75rem; padding:0.2rem 0.55rem; border-radius:4px; font-weight:700;">🇮🇳 National / All India</span>'
-        : '<span class="badge" style="background:#1e3a8a; color:#fff; font-size:0.75rem; padding:0.2rem 0.55rem; border-radius:4px; font-weight:700;">🚩 Karnataka State</span>';
+        ? '<span class="badge" style="background:#b91c1c; color:#fff; font-size:0.75rem; padding:0.2rem 0.55rem; border-radius:4px; font-weight:700;"><i class="fa-solid fa-flag"></i> National / All India</span>'
+        : '<span class="badge" style="background:#1e3a8a; color:#fff; font-size:0.75rem; padding:0.2rem 0.55rem; border-radius:4px; font-weight:700;"><i class="fa-solid fa-flag" style="color:var(--primary,#dc2626); margin-right:4px;"></i> Karnataka State</span>';
 
       const avatarHtml = l.photo
-        ? `<img src="${l.photo}" class="table-avatar" alt="Leader" onerror="this.outerHTML='<div class=\\'table-avatar placeholder-avatar\\' style=\\'display:inline-flex; align-items:center; justify-content:center; background:#1e293b; color:#94a3b8; font-size:1.1rem; width:44px; height:44px; border-radius:50%; border:2px solid rgba(220,38,38,0.3);\\'>👤</div>'">`
-        : `<div class="table-avatar placeholder-avatar" style="display:inline-flex; align-items:center; justify-content:center; background:#1e293b; color:#94a3b8; font-size:1.1rem; width:44px; height:44px; border-radius:50%; border:2px solid rgba(220,38,38,0.3);">👤</div>`;
+        ? `<img src="${l.photo}" class="table-avatar" alt="Leader" onerror="this.outerHTML='<div class=\\'table-avatar placeholder-avatar\\' style=\\'display:inline-flex; align-items:center; justify-content:center; background:#1e293b; color:#94a3b8; font-size:1.1rem; width:44px; height:44px; border-radius:50%; border:2px solid rgba(220,38,38,0.3);\\'><i class=\\'fa-solid fa-user\\'></i></div>'">`
+        : `<div class="table-avatar placeholder-avatar" style="display:inline-flex; align-items:center; justify-content:center; background:#1e293b; color:#94a3b8; font-size:1.1rem; width:44px; height:44px; border-radius:50%; border:2px solid rgba(220,38,38,0.3);"><i class="fa-solid fa-user"></i></div>`;
 
       return `
         <tr>
@@ -1117,8 +1117,8 @@ document.addEventListener('DOMContentLoaded', () => {
           </td>
           <td>
             <div class="table-actions-cell">
-              <button class="btn btn-table-action btn-outline-warning" onclick="editLeader(${idx})">✏️ Edit</button>
-              <button class="btn btn-table-action btn-outline-danger" onclick="deleteLeader(${idx})">🗑️ Delete</button>
+              <button class="btn btn-table-action btn-outline-warning" onclick="editLeader(${idx})"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
+              <button class="btn btn-table-action btn-outline-danger" onclick="deleteLeader(${idx})"><i class="fa-solid fa-trash"></i> Delete</button>
             </div>
           </td>
         </tr>
@@ -1139,8 +1139,8 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="form-group col-6">
             <label class="form-label">Leadership Level / Tier (ನಾಯಕತ್ವ ಹಂತ)</label>
             <select id="inpLTier" class="form-control" required>
-              <option value="national" ${isNational ? 'selected' : ''}>🇮🇳 All India / National Leadership (ರಾಷ್ಟ್ರೀಯ ನಾಯಕತ್ವ)</option>
-              <option value="state" ${!isNational ? 'selected' : ''}>🚩 Karnataka State Leadership (ರಾಜ್ಯ ನಾಯಕತ್ವ)</option>
+              <option value="national" ${isNational ? 'selected' : ''}>All India / National Leadership (ರಾಷ್ಟ್ರೀಯ ನಾಯಕತ್ವ)</option>
+              <option value="state" ${!isNational ? 'selected' : ''}>Karnataka State Leadership (ರಾಜ್ಯ ನಾಯಕತ್ವ)</option>
             </select>
           </div>
           <div class="form-group col-6">
@@ -1168,7 +1168,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <input type="text" id="inpLRoleKn" class="form-control" required value="${(item.role_kn || '').replace(/"/g, '&quot;')}" placeholder="ಉದಾ: ಅಖಿಲ ಭಾರತ ಅಧ್ಯಕ್ಷರು / ರಾಜ್ಯ ಅಧ್ಯಕ್ಷರು">
           </div>
         </div>
-        ${renderImagePickerHTML('inpLPhoto', 'Leader Photo (ಭಾವಚಿತ್ರ - ಐಚ್ಛಿಕ/Optional, ಖಾಲಿ ಬಿಟ್ಟರೆ 👤 ಕಾಣಿಸುತ್ತದೆ)', item.photo || '', '')}
+        ${renderImagePickerHTML('inpLPhoto', 'Leader Photo (ಭಾವಚಿತ್ರ - ಐಚ್ಛಿಕ/Optional, ಖಾಲಿ ಬಿಟ್ಟರೆ ಡೀಫಾಲ್ಟ್ ಐಕಾನ್ ಕಾಣಿಸುತ್ತದೆ)', item.photo || '', '')}
         <button type="submit" class="btn btn-primary btn-block">Update Leader Information</button>
       </form>
     `);
@@ -1211,8 +1211,8 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="form-group col-6">
             <label class="form-label">Leadership Level / Tier (ನಾಯಕತ್ವ ಹಂತ)</label>
             <select id="inpLTier" class="form-control" required>
-              <option value="national">🇮🇳 All India / National Leadership (ರಾಷ್ಟ್ರೀಯ ನಾಯಕತ್ವ)</option>
-              <option value="state" selected>🚩 Karnataka State Leadership (ರಾಜ್ಯ ನಾಯಕತ್ವ)</option>
+              <option value="national">All India / National Leadership (ರಾಷ್ಟ್ರೀಯ ನಾಯಕತ್ವ)</option>
+              <option value="state" selected>Karnataka State Leadership (ರಾಜ್ಯ ನಾಯಕತ್ವ)</option>
             </select>
           </div>
           <div class="form-group col-6">
@@ -1240,7 +1240,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <input type="text" id="inpLRoleKn" class="form-control" required placeholder="ಅಖಿಲ ಭಾರತ ಅಧ್ಯಕ್ಷರು / ರಾಜ್ಯ ಅಧ್ಯಕ್ಷರು">
           </div>
         </div>
-        ${renderImagePickerHTML('inpLPhoto', 'Leader Photo (ಭಾವಚಿತ್ರ - ಐಚ್ಛಿಕ/Optional, ಖಾಲಿ ಬಿಟ್ಟರೆ 👤 ಕಾಣಿಸುತ್ತದೆ)', '', '')}
+        ${renderImagePickerHTML('inpLPhoto', 'Leader Photo (ಭಾವಚಿತ್ರ - ಐಚ್ಛಿಕ/Optional, ಖಾಲಿ ಬಿಟ್ಟರೆ ಡೀಫಾಲ್ಟ್ ಐಕಾನ್ ಕಾಣಿಸುತ್ತದೆ)', '', '')}
         <button type="submit" class="btn btn-primary btn-block">Add Leader</button>
       </form>
     `);
@@ -1319,7 +1319,7 @@ document.addEventListener('DOMContentLoaded', () => {
       tbody.innerHTML = `
         <tr>
           <td colspan="5" style="text-align:center; padding: 2.5rem; color: #94a3b8;">
-            🚩 No district committees found matching your filter criteria.
+            <i class="fa-solid fa-flag" style="color:var(--primary,#dc2626); margin-right:6px;"></i> No district committees found matching your filter criteria.
           </td>
         </tr>
       `;
@@ -1331,8 +1331,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const taluksList = d.taluks_data || [];
       const talukCount = taluksList.length || d.taluks_count || 0;
       const unitsDisplay = d.units_count 
-        ? `<span class="units-pill-tag">🚩 ${d.units_count}</span>` 
-        : `<span class="units-pill-tag" style="opacity:0.6; border-style:dashed;">🚩 —</span>`;
+        ? `<span class="units-pill-tag"><i class="fa-solid fa-flag" style="color:#ef4444;"></i> ${d.units_count}</span>` 
+        : `<span class="units-pill-tag" style="opacity:0.6; border-style:dashed;"><i class="fa-solid fa-flag"></i> —</span>`;
 
       return `
         <tr>
@@ -1344,40 +1344,40 @@ document.addEventListener('DOMContentLoaded', () => {
           <td>
             <div class="leader-preview-cell">
               ${d.president_photo 
-                ? `<img src="${d.president_photo}" class="leader-preview-avatar" alt="President" onerror="this.onerror=null; this.outerHTML='<div class=\\'leader-preview-avatar leader-placeholder-avatar\\'>👤</div>';">` 
-                : `<div class="leader-preview-avatar leader-placeholder-avatar" title="No photo uploaded">👤</div>`}
+                ? `<img src="${d.president_photo}" class="leader-preview-avatar" alt="President" onerror="this.onerror=null; this.outerHTML='<div class=\\'leader-preview-avatar leader-placeholder-avatar\\'><i class=\\'fa-solid fa-user\\'></i></div>';">` 
+                : `<div class="leader-preview-avatar leader-placeholder-avatar" title="No photo uploaded"><i class="fa-solid fa-user"></i></div>`}
               <div class="leader-preview-meta">
                 <span class="leader-preview-name ${!d.president_kn && !d.president_en ? 'text-muted-blank' : ''}">
                   ${d.president_kn || d.president_en || '<em>(ಖಾಲಿ / Blank)</em>'}
                 </span>
-                <span class="leader-preview-role">🚩 ${d.president_post_kn || 'ಜಿಲ್ಲಾ ಅಧ್ಯಕ್ಷರು'}</span>
-                ${d.president_phone ? `<a href="tel:${d.president_phone}" class="leader-preview-phone">📞 ${d.president_phone}</a>` : `<span style="color:#64748b; font-size:0.75rem;">📞 —</span>`}
+                <span class="leader-preview-role"><i class="fa-solid fa-flag" style="font-size:0.8em; margin-right:3px;"></i> ${d.president_post_kn || 'ಜಿಲ್ಲಾ ಅಧ್ಯಕ್ಷರು'}</span>
+                ${d.president_phone ? `<a href="tel:${d.president_phone}" class="leader-preview-phone"><i class="fa-solid fa-phone"></i> ${d.president_phone}</a>` : `<span style="color:#64748b; font-size:0.75rem;"><i class="fa-solid fa-phone"></i> —</span>`}
               </div>
             </div>
           </td>
           <td>
             <div class="leader-preview-cell">
               ${d.secretary_photo 
-                ? `<img src="${d.secretary_photo}" class="leader-preview-avatar" alt="Secretary" onerror="this.onerror=null; this.outerHTML='<div class=\\'leader-preview-avatar leader-placeholder-avatar\\'>👤</div>';">` 
-                : `<div class="leader-preview-avatar leader-placeholder-avatar" title="No photo uploaded">👤</div>`}
+                ? `<img src="${d.secretary_photo}" class="leader-preview-avatar" alt="Secretary" onerror="this.onerror=null; this.outerHTML='<div class=\\'leader-preview-avatar leader-placeholder-avatar\\'><i class=\\'fa-solid fa-user\\'></i></div>';">` 
+                : `<div class="leader-preview-avatar leader-placeholder-avatar" title="No photo uploaded"><i class="fa-solid fa-user"></i></div>`}
               <div class="leader-preview-meta">
                 <span class="leader-preview-name ${!d.secretary_kn && !d.secretary_en ? 'text-muted-blank' : ''}">
                   ${d.secretary_kn || d.secretary_en || '<em>(ಖಾಲಿ / Blank)</em>'}
                 </span>
-                <span class="leader-preview-role">🚩 ${d.secretary_post_kn || 'ಜಿಲ್ಲಾ ಕಾರ್ಯದರ್ಶಿ'}</span>
-                ${d.secretary_phone ? `<a href="tel:${d.secretary_phone}" class="leader-preview-phone">📞 ${d.secretary_phone}</a>` : `<span style="color:#64748b; font-size:0.75rem;">📞 —</span>`}
+                <span class="leader-preview-role"><i class="fa-solid fa-flag" style="font-size:0.8em; margin-right:3px;"></i> ${d.secretary_post_kn || 'ಜಿಲ್ಲಾ ಕಾರ್ಯದರ್ಶಿ'}</span>
+                ${d.secretary_phone ? `<a href="tel:${d.secretary_phone}" class="leader-preview-phone"><i class="fa-solid fa-phone"></i> ${d.secretary_phone}</a>` : `<span style="color:#64748b; font-size:0.75rem;"><i class="fa-solid fa-phone"></i> —</span>`}
               </div>
             </div>
           </td>
           <td>
-            <span class="taluk-pill-tag">🏛️ ${talukCount} Taluks</span><br>
+            <span class="taluk-pill-tag"><i class="fa-solid fa-landmark"></i> ${talukCount} Taluks</span><br>
             ${unitsDisplay}
           </td>
           <td>
             <div class="table-actions-cell">
-              <button class="btn btn-table-action btn-outline-warning" onclick="editDistrict(${originalIndex})" title="Edit District Details">✏️ Edit</button>
-              <button class="btn btn-table-action btn-outline-primary" onclick="manageDistrictTaluks(${originalIndex})" title="Manage Taluks & Area Committees">🏛️ Taluks (${talukCount})</button>
-              <button class="btn btn-table-action btn-outline-danger" onclick="deleteDistrict(${originalIndex})" title="Delete District">🗑️</button>
+              <button class="btn btn-table-action btn-outline-warning" onclick="editDistrict(${originalIndex})" title="Edit District Details"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
+              <button class="btn btn-table-action btn-outline-primary" onclick="manageDistrictTaluks(${originalIndex})" title="Manage Taluks & Area Committees"><i class="fa-solid fa-landmark"></i> Taluks (${talukCount})</button>
+              <button class="btn btn-table-action btn-outline-danger" onclick="deleteDistrict(${originalIndex})" title="Delete District"><i class="fa-solid fa-trash"></i></button>
             </div>
           </td>
         </tr>
@@ -1403,7 +1403,7 @@ document.addEventListener('DOMContentLoaded', () => {
     openModal(title, `
       <form id="modalFormDistrictEdit">
         <!-- 1. GENERAL INFORMATION -->
-        <div class="form-section-divider">🚩 District General Information</div>
+        <div class="form-section-divider"><i class="fa-solid fa-flag" style="color:var(--primary,#dc2626); margin-right:6px;"></i> District General Information</div>
         <div class="form-row">
           <div class="form-group col-6">
             <label class="form-label">District Name (ಕನ್ನಡ)</label>
@@ -1433,7 +1433,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
 
         <!-- 2. DISTRICT PRESIDENT -->
-        <div class="form-section-divider">👤 District President (ಜಿಲ್ಲಾ ಅಧ್ಯಕ್ಷರು - ಐಚ್ಛಿಕ/Optional)</div>
+        <div class="form-section-divider"><i class="fa-solid fa-user" style="margin-right:6px;"></i> District President (ಜಿಲ್ಲಾ ಅಧ್ಯಕ್ಷರು - ಐಚ್ಛಿಕ/Optional)</div>
         <div class="form-row">
           <div class="form-group col-6">
             <label class="form-label">President Name (ಕನ್ನಡ)</label>
@@ -1465,7 +1465,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
 
         <!-- 3. DISTRICT SECRETARY -->
-        <div class="form-section-divider">👤 District Secretary (ಜಿಲ್ಲಾ ಕಾರ್ಯದರ್ಶಿ - ಐಚ್ಛಿಕ/Optional)</div>
+        <div class="form-section-divider"><i class="fa-solid fa-user" style="margin-right:6px;"></i> District Secretary (ಜಿಲ್ಲಾ ಕಾರ್ಯದರ್ಶಿ - ಐಚ್ಛಿಕ/Optional)</div>
         <div class="form-row">
           <div class="form-group col-6">
             <label class="form-label">Secretary Name (ಕನ್ನಡ)</label>
@@ -1497,7 +1497,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
 
         <!-- 4. OFFICE & AREA UNITS -->
-        <div class="form-section-divider">🏛️ Office Address &amp; Area Units Coverage</div>
+        <div class="form-section-divider"><i class="fa-solid fa-landmark" style="margin-right:6px;"></i> Office Address &amp; Area Units Coverage</div>
         <div class="form-row">
           <div class="form-group col-6">
             <label class="form-label">District Office Address (ಕನ್ನಡ)</label>
@@ -1529,7 +1529,7 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
         </div>
 
-        <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top: 1rem;">${isEdit ? '✓ Save District Committee Changes' : '+ Create District Committee'}</button>
+        <button type="submit" class="btn btn-primary btn-block btn-lg" style="margin-top: 1rem;">${isEdit ? '<i class="fa-solid fa-check"></i> Save District Committee Changes' : '<i class="fa-solid fa-plus"></i> Create District Committee'}</button>
       </form>
     `, true);
 
@@ -1716,14 +1716,14 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
 
           <!-- Existing Taluks List -->
-          <h4 style="margin: 1.2rem 0 0.6rem; font-size: 0.95rem; color: #fff;">🏛️ Existing Taluk Units in this District (${taluks.length})</h4>
+          <h4 style="margin: 1.2rem 0 0.6rem; font-size: 0.95rem; color: #fff;"><i class="fa-solid fa-landmark" style="margin-right:6px;"></i> Existing Taluk Units in this District (${taluks.length})</h4>
           <div class="taluk-admin-list">
             ${taluks.length === 0 ? '<div style="color:#94a3b8; font-style:italic; padding:1rem; text-align:center;">No taluk units added yet. Use the form above to add the first taluk.</div>' : ''}
             ${taluks.map((t, tIdx) => `
               <div class="taluk-admin-item">
                 <div class="taluk-admin-info">
                   <div class="taluk-admin-title">
-                    <span>🏛️</span>
+                    <span><i class="fa-solid fa-landmark"></i></span>
                     <span>${t.name_kn || t.name_en}</span>
                     ${t.name_en && t.name_en !== t.name_kn ? `<small style="color:#94a3b8; font-weight:normal;">(${t.name_en})</small>` : ''}
                     <span class="taluk-unit-tag" style="font-size:0.75rem; background:rgba(59,130,246,0.15); color:#60a5fa; padding:2px 8px; border-radius:4px;">${t.units_kn || 'ಸಕ್ರಿಯ ಘಟಕ'}</span>
@@ -1731,12 +1731,12 @@ document.addEventListener('DOMContentLoaded', () => {
                   <div class="taluk-admin-officers">
                     <span><strong>ಅಧ್ಯಕ್ಷರು:</strong> ${t.president_kn || t.president_en || '<span style="color:#64748b; font-style:italic;">(ಖಾಲಿ / Blank)</span>'}</span>
                     <span><strong>ಕಾರ್ಯದರ್ಶಿ:</strong> ${t.secretary_kn || t.secretary_en || '<span style="color:#64748b; font-style:italic;">(ಖಾಲಿ / Blank)</span>'}</span>
-                    ${t.phone ? `<span><a href="tel:${t.phone}" style="color:#94a3b8; text-decoration:none;">📞 ${t.phone}</a></span>` : `<span style="color:#64748b; font-size:0.8rem;">📞 —</span>`}
+                    ${t.phone ? `<span><a href="tel:${t.phone}" style="color:#94a3b8; text-decoration:none;"><i class="fa-solid fa-phone"></i> ${t.phone}</a></span>` : `<span style="color:#64748b; font-size:0.8rem;"><i class="fa-solid fa-phone"></i> —</span>`}
                   </div>
                 </div>
                 <div class="table-actions-cell">
-                  <button class="btn btn-table-action btn-outline-warning" onclick="editTalukInModal(${districtIndex}, ${tIdx})">✏️</button>
-                  <button class="btn btn-table-action btn-outline-danger" onclick="deleteTalukInModal(${districtIndex}, ${tIdx})">🗑️</button>
+                  <button class="btn btn-table-action btn-outline-warning" onclick="editTalukInModal(${districtIndex}, ${tIdx})"><i class="fa-solid fa-pen-to-square"></i></button>
+                  <button class="btn btn-table-action btn-outline-danger" onclick="deleteTalukInModal(${districtIndex}, ${tIdx})"><i class="fa-solid fa-trash"></i></button>
                 </div>
               </div>
             `).join('')}
@@ -1822,7 +1822,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('inpTPhone').value = t.phone || '';
       document.getElementById('inpTUnitsKn').value = t.units_kn || '';
 
-      document.getElementById('talukFormTitle').innerText = `✏️ Edit Taluk Unit: ${t.name_kn}`;
+      document.getElementById('talukFormTitle').innerHTML = `<i class="fa-solid fa-pen-to-square"></i> Edit Taluk Unit: ${t.name_kn}`;
       document.getElementById('btnSubmitTaluk').innerText = 'Update Taluk Unit';
       document.getElementById('btnCancelTalukEdit').style.display = 'inline-block';
       document.getElementById('talukFormContainer').scrollIntoView({ behavior: 'smooth' });
@@ -1857,15 +1857,15 @@ document.addEventListener('DOMContentLoaded', () => {
     tbody.innerHTML = list.map((g, idx) => `
       <tr>
         <td>
-          ${g.type === 'video' ? '🎬 Video Embed' : `<img src="${g.src}" class="table-thumb" alt="Gallery" onerror="this.src='images/gallery-1.jpg'">`}
+          ${g.type === 'video' ? '<i class="fa-solid fa-video"></i> Video Embed' : `<img src="${g.src}" class="table-thumb" alt="Gallery" onerror="this.src='images/gallery-1.jpg'">`}
         </td>
         <td><span class="badge-tag">${g.type.toUpperCase()}</span></td>
         <td>${g.category}</td>
         <td>${g.caption_en || g.caption_kn || 'Media'}</td>
         <td>
           <div class="table-actions-cell">
-            <button class="btn btn-table-action btn-outline-warning" onclick="editGallery(${idx})">✏️ Edit</button>
-            <button class="btn btn-table-action btn-outline-danger" onclick="deleteGallery(${idx})">🗑️ Delete</button>
+            <button class="btn btn-table-action btn-outline-warning" onclick="editGallery(${idx})"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
+            <button class="btn btn-table-action btn-outline-danger" onclick="deleteGallery(${idx})"><i class="fa-solid fa-trash"></i> Delete</button>
           </div>
         </td>
       </tr>
@@ -2061,7 +2061,7 @@ document.addEventListener('DOMContentLoaded', () => {
     tbody.innerHTML = filtered.map((d, idx) => `
       <tr>
         <td><strong>${d.name}</strong></td>
-        <td><a href="tel:${d.phone}" style="color:#60a5fa; text-decoration:none;">📞 ${d.phone}</a></td>
+        <td><a href="tel:${d.phone}" style="color:#60a5fa; text-decoration:none;"><i class="fa-solid fa-phone"></i> ${d.phone}</a></td>
         <td><span class="badge-tag" style="background:rgba(220,38,38,0.2); color:#f87171;">${d.group}</span></td>
         <td>${d.district}</td>
         <td>${d.date || 'Active'}</td>
@@ -2172,7 +2172,7 @@ document.addEventListener('DOMContentLoaded', () => {
     tbody.innerHTML = list.map((m, idx) => `
       <tr>
         <td><strong>${m.name}</strong></td>
-        <td><a href="tel:${m.phone}" style="color:#60a5fa; text-decoration:none;">📞 ${m.phone}</a></td>
+        <td><a href="tel:${m.phone}" style="color:#60a5fa; text-decoration:none;"><i class="fa-solid fa-phone"></i> ${m.phone}</a></td>
         <td>${m.district}</td>
         <td><div style="max-height:80px; overflow-y:auto; font-size:0.85rem;">${m.message}</div></td>
         <td>

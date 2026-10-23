@@ -3694,3 +3694,221 @@ img {
   background: rgba(239, 68, 68, 0.15);
   opacity: 0.9;
 }
+
+/* ========================================================
+   GLOBAL OVERFLOW: HIDDEN & CONTENT TRUNCATION SYSTEM
+   Enforces:
+   1) No uncontrolled overflow (horizontal or vertical)
+   2) Content is clamped / truncated never to show full text upfront
+   3) Crisp Font Awesome icon alignment
+   ======================================================== */
+
+/* 1. Global Viewport & Section Overflow Control */
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100vw;
+  width: 100%;
+}
+
+.container,
+.site-header,
+.hero-section,
+.about-overview-section,
+.campaigns-section,
+.statements-section,
+.quote-banner-section,
+.activities-section,
+.announcements-section,
+.blood-donation-section,
+.video-showcase-section,
+.gallery-section,
+.news-section,
+.leadership-section,
+.network-teaser-section,
+.martyrs-teaser-section,
+.contact-section,
+.site-footer,
+.announcement-ticker,
+.page-hero-banner,
+.martyrs-hero-banner {
+  overflow: hidden !important;
+}
+
+/* 2. All Cards & Modules Strict Overflow Hidden */
+.campaign-card,
+.news-card,
+.activity-card,
+.statement-card,
+.leader-card,
+.martyr-card,
+.district-card,
+.district-officer-card,
+.stat-card,
+.about-card,
+.contact-info-card,
+.network-teaser-card,
+.martyrs-teaser-card,
+.donor-result-card,
+.gallery-item,
+.quote-banner-box,
+.video-banner-box,
+.blood-search-box,
+.taluk-item,
+.preview-leader-item,
+.card-img-wrap,
+.news-img-wrap,
+.martyr-avatar-wrap,
+.leader-avatar-wrap,
+.officer-avatar-box,
+.ticker-scroll-window,
+.ticker-track,
+.district-modal-box,
+.content-modal-box,
+.modal-header,
+.modal-footer {
+  overflow: hidden !important;
+}
+
+/* 3. Vertical Clamping: Never Show Full Content (Multi-line Excerpts) */
+.card-desc,
+.news-excerpt,
+.activity-desc,
+.martyr-tribute,
+.network-teaser-desc,
+.hero-description,
+.about-card p,
+.about-overview-desc,
+.taluk-item-address,
+.video-desc {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  max-height: 4.8em !important;
+  word-break: break-word !important;
+}
+
+/* Multi-line Title Clamping: Max 2 lines */
+.card-title,
+.news-title,
+.activity-title,
+.statement-title,
+.quote-sub-motto,
+.quote-main-text,
+.video-banner-title {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  max-height: 2.85em !important;
+  word-break: break-word !important;
+}
+
+/* 4. Horizontal Truncation: Single Line Only (Never Spills or Shows Unbounded Text) */
+.leader-name,
+.leader-role,
+.leader-region,
+.martyr-name,
+.martyr-district,
+.district-name,
+.preview-name,
+.preview-post-badge,
+.preview-phone,
+.officer-badge,
+.officer-phone-btn,
+.taluk-item-name,
+.taluk-call-btn,
+.taluk-count-pill,
+.units-count-pill,
+.network-stat-pill,
+.taluk-mini-pill,
+.taluk-pill-tag,
+.units-pill-tag,
+.ticker-text,
+.hero-badge-tag,
+.badge-date,
+.badge-status,
+.statement-badge,
+.statement-date,
+.statement-ref,
+.contact-val,
+.contact-label,
+.donor-name,
+.donor-phone,
+.donor-place,
+.brand-title,
+.brand-subtitle,
+.officer-zoom-hint,
+.card-img-zoom-hint,
+.gallery-zoom-badge,
+.network-teaser-badge,
+.memorial-hero-badge,
+.tribute-counter-text,
+.districts-title,
+table td,
+table th {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  max-width: 100% !important;
+}
+
+/* Taluk Mini List: Single Row Constrained */
+.taluks-mini-list {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  overflow: hidden !important;
+  max-width: 100% !important;
+  gap: 0.35rem !important;
+}
+
+/* Table Cells Bounds */
+table {
+  table-layout: fixed !important;
+  width: 100% !important;
+  overflow: hidden !important;
+}
+
+table td, table th {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+/* 5. Font Awesome Icons Universal Alignment & Colors */
+i.fa-solid,
+i.fa-brands,
+i.fa-regular {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  vertical-align: middle !important;
+  line-height: 1 !important;
+}
+
+.icon-red {
+  color: var(--primary) !important;
+}
+
+.icon-blue {
+  color: #3b82f6 !important;
+}
+
+.icon-orange {
+  color: #f97316 !important;
+}
+
+.icon-green {
+  color: #10b981 !important;
+}
+
+.icon-gold {
+  color: #eab308 !important;
+}
+
+.icon-rose {
+  color: #f43f5e !important;
+}
+
