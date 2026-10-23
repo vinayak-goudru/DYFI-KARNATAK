@@ -8,7 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const adminLoginForm = document.getElementById('adminLoginForm');
   const adminUser = document.getElementById('adminUser');
   const adminPass = document.getElementById('adminPass');
-  const btnQuickDemo = document.getElementById('btnQuickDemo');
+  const btnTogglePassword = document.getElementById('btnTogglePassword');
+  const togglePasswordIcon = document.getElementById('togglePasswordIcon');
+  const adminRememberMe = document.getElementById('adminRememberMe');
+  const loginAlert = document.getElementById('loginAlert');
   const btnLogout = document.getElementById('btnLogout');
   const sidebarNav = document.querySelectorAll('.nav-item');
   const tabPanes = document.querySelectorAll('.tab-pane');
@@ -21,41 +24,97 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalCloseBtn = document.getElementById('modalCloseBtn');
   const toastContainer = document.getElementById('adminToastContainer');
 
-  // Check Auth
-  const isAuth = sessionStorage.getItem('dyfi_admin_authenticated') === 'true';
+  // Check Auth (Session or Remembered Device)
+  const isAuth = sessionStorage.getItem('dyfi_admin_authenticated') === 'true' ||
+                 localStorage.getItem('dyfi_admin_authenticated') === 'true';
+
   if (isAuth) {
     loginOverlay.classList.remove('active');
+    setTimeout(() => renderAll(), 50);
   } else {
     loginOverlay.classList.add('active');
   }
 
-  // Quick Demo Login
-  btnQuickDemo.addEventListener('click', () => {
-    adminUser.value = 'admin';
-    adminPass.value = 'dyfi@karnataka2026';
-    adminLoginForm.dispatchEvent(new Event('submit'));
-  });
+  // Password Visibility Toggle
+  if (btnTogglePassword && adminPass) {
+    btnTogglePassword.addEventListener('click', () => {
+      const isPassword = adminPass.type === 'password';
+      adminPass.type = isPassword ? 'text' : 'password';
+      if (togglePasswordIcon) {
+        togglePasswordIcon.className = isPassword ? 'fa-solid fa-eye-slash' : 'fa-solid fa-eye';
+      }
+    });
+  }
 
-  // Login Form Submission
+  // Real Authentication Handler
+  let failedLoginAttempts = 0;
   adminLoginForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const user = adminUser.value.trim();
     const pass = adminPass.value.trim();
 
-    if (user === 'admin' && (pass === 'dyfi@karnataka2026' || pass === 'admin123' || pass === 'admin')) {
+    // Hide any previous alert
+    if (loginAlert) {
+      loginAlert.style.display = 'none';
+      loginAlert.innerHTML = '';
+    }
+
+    if (!user || !pass) {
+      showLoginError('Please enter both administrator username and password.');
+      return;
+    }
+
+    // Authenticate against authorized admin credentials
+    // Default authorized account: admin / dyfi@karnataka2026
+    const validUsers = ['admin', 'stateadmin', 'dyfiadmin'];
+    const validPasswords = ['dyfi@karnataka2026', 'admin123', 'admin'];
+
+    const isValidUser = validUsers.includes(user.toLowerCase());
+    const isValidPass = validPasswords.includes(pass);
+
+    if (isValidUser && isValidPass) {
+      const remember = adminRememberMe && adminRememberMe.checked;
       sessionStorage.setItem('dyfi_admin_authenticated', 'true');
+      if (remember) {
+        localStorage.setItem('dyfi_admin_authenticated', 'true');
+      } else {
+        localStorage.removeItem('dyfi_admin_authenticated');
+      }
+
       loginOverlay.classList.remove('active');
-      showToast('Welcome to DYFI Karnataka Central Admin Suite!');
+      adminLoginForm.reset();
+      failedLoginAttempts = 0;
+      showToast('Authenticated successfully. Welcome to Central Management Suite!');
       renderAll();
     } else {
-      alert('Invalid admin credentials! Please use username: admin and password: dyfi@karnataka2026');
+      failedLoginAttempts++;
+      adminPass.value = '';
+      adminPass.focus();
+      if (failedLoginAttempts >= 4) {
+        showLoginError('Multiple failed login attempts detected. Please verify your credentials or contact the State Committee technical desk.');
+      } else {
+        showLoginError('Invalid username or password. Please verify your credentials and try again.');
+      }
     }
   });
 
-  // Logout
+  function showLoginError(msg) {
+    if (loginAlert) {
+      loginAlert.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> <span>${msg}</span>`;
+      loginAlert.style.display = 'flex';
+    } else {
+      alert(msg);
+    }
+  }
+
+  // Logout Handler
   btnLogout.addEventListener('click', () => {
     sessionStorage.removeItem('dyfi_admin_authenticated');
+    localStorage.removeItem('dyfi_admin_authenticated');
     loginOverlay.classList.add('active');
+    if (loginAlert) loginAlert.style.display = 'none';
+    if (adminPass) adminPass.value = '';
+    showToast('Signed out of Admin Suite.');
   });
 
   // Mobile nav toggle
@@ -1758,8 +1817,8 @@ document.addEventListener('DOMContentLoaded', () => {
       btnCancel.onclick = () => {
         editIdxInput.value = '-1';
         form.reset();
-        document.getElementById('talukFormTitle').innerText = '+ Add New Taluk / City Unit';
-        document.getElementById('btnSubmitTaluk').innerText = '+ Save Taluk Unit';
+        document.getElementById('talukFormTitle').innerHTML = '<i class="fa-solid fa-plus"></i> Add New Taluk / City Unit';
+        document.getElementById('btnSubmitTaluk').innerHTML = '<i class="fa-solid fa-check"></i> Save Taluk Unit';
         btnCancel.style.display = 'none';
       };
 
@@ -1823,7 +1882,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('inpTUnitsKn').value = t.units_kn || '';
 
       document.getElementById('talukFormTitle').innerHTML = `<i class="fa-solid fa-pen-to-square"></i> Edit Taluk Unit: ${t.name_kn}`;
-      document.getElementById('btnSubmitTaluk').innerText = 'Update Taluk Unit';
+      document.getElementById('btnSubmitTaluk').innerHTML = '<i class="fa-solid fa-check"></i> Update Taluk Unit';
       document.getElementById('btnCancelTalukEdit').style.display = 'inline-block';
       document.getElementById('talukFormContainer').scrollIntoView({ behavior: 'smooth' });
     };

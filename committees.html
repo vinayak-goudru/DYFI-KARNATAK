@@ -85,6 +85,23 @@
       color: #94a3b8;
       pointer-events: none;
     }
+    @media (max-width: 600px) {
+      .page-hero-banner {
+        padding: 2.5rem 0 2rem 0;
+      }
+      .page-hero-title {
+        font-size: 1.65rem;
+      }
+      .page-hero-subtitle {
+        font-size: 0.92rem;
+      }
+      .search-filter-wrapper {
+        margin: 1.25rem 0 0.75rem 0;
+      }
+      .search-input-box {
+        min-width: 100%;
+      }
+    }
   </style>
 </head>
 
@@ -402,7 +419,17 @@
       <li><a href="index.html#contact" class="mobile-nav-link" data-i18n="navContactBtn">ಸಂಪರ್ಕಿಸಿ</a></li>
     </ul>
 
-    <div class="mobile-drawer-theme">
+    <div class="mobile-drawer-controls">
+      <!-- Language Switcher in Mobile Drawer -->
+      <button id="mobileLangToggleBtn" class="mobile-lang-btn" aria-label="Switch Language">
+        <span class="mobile-lang-left">
+          <i class="fa-solid fa-globe" style="color: var(--primary);"></i>
+          <span id="mobileLangText">English (Switch to English)</span>
+        </span>
+        <i class="fa-solid fa-arrow-right-arrow-left" style="font-size: 0.85rem; color: #94a3b8;"></i>
+      </button>
+
+      <!-- Theme Switcher in Mobile Drawer -->
       <button id="mobileThemeToggleBtn" class="mobile-theme-btn" aria-label="Toggle Dark and Light Mode">
         <span class="mobile-theme-icon" id="mobileThemeIcon"><i class="fa-solid fa-sun"></i></span>
         <span id="mobileThemeText">Light Mode (ಬೆಳಕಿನ ಥೀಮ್)</span>

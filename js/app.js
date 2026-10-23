@@ -403,17 +403,27 @@ function applyTheme(theme) {
    ======================================================== */
 function initLanguageSwitcher() {
   const langBtn = document.getElementById('langToggleBtn');
-  if (!langBtn) return;
+  const mobileLangBtn = document.getElementById('mobileLangToggleBtn');
+  if (!langBtn && !mobileLangBtn) return;
   
   applyLanguage(currentLang);
   
-  langBtn.addEventListener('click', () => {
+  const handleToggle = () => {
     currentLang = currentLang === 'en' ? 'kn' : 'en';
     localStorage.setItem('dyfi_lang', currentLang);
     applyLanguage(currentLang);
-    renderDistrictCards();
+    if (typeof renderDistrictCards === 'function') {
+      renderDistrictCards();
+    }
     showToast(currentLang === 'kn' ? 'ಭಾಷೆಯನ್ನು ಕನ್ನಡಕ್ಕೆ ಬದಲಾಯಿಸಲಾಗಿದೆ' : 'Language switched to English');
-  });
+  };
+
+  if (langBtn) {
+    langBtn.addEventListener('click', handleToggle);
+  }
+  if (mobileLangBtn) {
+    mobileLangBtn.addEventListener('click', handleToggle);
+  }
 }
 
 function applyLanguage(lang) {
@@ -426,6 +436,11 @@ function applyLanguage(lang) {
   const langBtn = document.getElementById('langToggleBtn');
   if (langBtn) {
     langBtn.innerHTML = `<span class="lang-icon"><i class="fa-solid fa-globe"></i></span> <span class="lang-text">${data.langBtn}</span>`;
+  }
+
+  const mobileLangText = document.getElementById('mobileLangText');
+  if (mobileLangText) {
+    mobileLangText.textContent = lang === 'kn' ? 'English (Switch Language)' : 'ಕನ್ನಡಕ್ಕೆ ಬದಲಾಯಿಸಿ';
   }
   
   document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -963,7 +978,7 @@ function initGallery() {
 }
 
 /* ========================================================
-   9. CONTACT FORM
+   9. CONTACT FORM — FORMSPREE AJAX INTEGRATION
    ======================================================== */
 function initContactForm() {
   const form = document.getElementById('mainContactForm');
@@ -971,18 +986,115 @@ function initContactForm() {
   
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const btn = form.querySelector('.btn-submit-form');
+    const btn = form.querySelector('.btn-submit-form') || document.getElementById('btnSubmitContact');
     const originalText = btn.innerHTML;
+    const statusBox = document.getElementById('contactFormStatus');
     
-    btn.innerHTML = `<span><i class="fa-solid fa-spinner fa-spin"></i> ${currentLang === 'kn' ? 'ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ...' : 'Sending...'}</span>`;
+    // Clear previous status
+    if (statusBox) {
+      statusBox.style.display = 'none';
+      statusBox.className = 'contact-form-status';
+      statusBox.innerHTML = '';
+    }
+
+    const isKn = currentLang === 'kn';
+    btn.innerHTML = `<span><i class="fa-solid fa-spinner fa-spin"></i> ${isKn ? 'ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ...' : 'Sending...'}</span>`;
     btn.disabled = true;
-    
-    setTimeout(() => {
+
+    const formData = new FormData(form);
+
+    fetch('https://formspree.io/f/maeeygla', {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+    .then(async (response) => {
+      if (response.ok) {
+        // Also persist to local DyfiDataStore so admin panel can view enquiry in real time
+        try {
+          if (typeof DyfiDataStore !== 'undefined') {
+            const msgs = DyfiDataStore.get(DYFI_DATA_KEYS.MESSAGES) || [];
+            msgs.unshift({
+              id: 'msg_' + Date.now(),
+              name: formData.get('name') || '',
+              phone: formData.get('phone') || '',
+              district: formData.get('district') || '',
+              message: formData.get('message') || '',
+              date: new Date().toISOString().split('T')[0],
+              status: 'Unread'
+            });
+            DyfiDataStore.set(DYFI_DATA_KEYS.MESSAGES, msgs);
+          }
+        } catch (err) {
+          console.warn('Local store sync error:', err);
+        }
+
+        form.reset();
+
+        if (statusBox) {
+          statusBox.className = 'contact-form-status status-success success';
+          statusBox.innerHTML = `
+            <div class="status-content" style="display:flex; align-items:flex-start; gap:0.75rem;">
+              <i class="fa-solid fa-circle-check status-icon" style="font-size:1.4rem; color:#10b981; flex-shrink:0; margin-top:2px;"></i>
+              <div>
+                <strong style="display:block; font-size:1rem; margin-bottom:0.25rem;">${isKn ? 'ಸಂದೇಶ ಯಶಸ್ವಿಯಾಗಿ ತಲುಪಿದೆ!' : 'Message Sent Successfully!'}</strong>
+                <p style="margin:0; font-size:0.9rem; opacity:0.95;">${isKn ? 'ನಿಮ್ಮ ಸಂದೇಶವನ್ನು Formspree ಮೂಲಕ ಸ್ವೀಕರಿಸಲಾಗಿದೆ. ನಾವು ಶೀಘ್ರದಲ್ಲೇ ನಿಮ್ಮನ್ನು ಸಂಪರ್ಕಿಸುತ್ತೇವೆ.' : 'Thank you for contacting DYFI Karnataka. We have received your inquiry.'}</p>
+              </div>
+            </div>
+          `;
+          statusBox.style.display = 'block';
+          statusBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        showToast(isKn ? 'ನಿಮ್ಮ ಸಂದೇಶವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಕಳುಹಿಸಲಾಗಿದೆ!' : 'Your message has been sent successfully!');
+      } else {
+        const data = await response.json().catch(() => ({}));
+        let errorMsg = isKn ? 'ಸಂದೇಶ ಕಳುಹಿಸುವಲ್ಲಿ ದೋಷ ಉಂಟಾಗಿದೆ. ದಯವಿಟ್ಟು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.' : 'Oops! There was a problem submitting your form.';
+        if (data.errors && data.errors.length > 0) {
+          errorMsg = data.errors.map(err => err.message).join(', ');
+        }
+        
+        if (statusBox) {
+          statusBox.className = 'contact-form-status status-error error';
+          statusBox.innerHTML = `
+            <div class="status-content" style="display:flex; align-items:flex-start; gap:0.75rem;">
+              <i class="fa-solid fa-circle-exclamation status-icon" style="font-size:1.4rem; color:#ef4444; flex-shrink:0; margin-top:2px;"></i>
+              <div>
+                <strong style="display:block; font-size:1rem; margin-bottom:0.25rem;">${isKn ? 'ದೋಷ ಸಂಭವಿಸಿದೆ' : 'Submission Error'}</strong>
+                <p style="margin:0; font-size:0.9rem; opacity:0.95;">${errorMsg}</p>
+              </div>
+            </div>
+          `;
+          statusBox.style.display = 'block';
+          statusBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        showToast(isKn ? 'ದೋಷ: ಸಂದೇಶ ಕಳುಹಿಸಲಾಗಲಿಲ್ಲ' : 'Error submitting form');
+      }
+    })
+    .catch((error) => {
+      console.error('Formspree submit error:', error);
+      if (statusBox) {
+        statusBox.className = 'contact-form-status status-error error';
+        statusBox.innerHTML = `
+          <div class="status-content" style="display:flex; align-items:flex-start; gap:0.75rem;">
+            <i class="fa-solid fa-triangle-exclamation status-icon" style="font-size:1.4rem; color:#ef4444; flex-shrink:0; margin-top:2px;"></i>
+            <div>
+              <strong style="display:block; font-size:1rem; margin-bottom:0.25rem;">${isKn ? 'ನೆಟ್‌ವರ್ಕ್ ದೋಷ' : 'Network Error'}</strong>
+              <p style="margin:0; font-size:0.9rem; opacity:0.95;">${isKn ? 'ನೆಟ್‌ವರ್ಕ್ ಸಂಪರ್ಕ ಪರಿಶೀಲಿಸಿ ಅಥವಾ ನೇರವಾಗಿ dyfikar1980@gmail.com ಗೆ ಇಮೇಲ್ ಮಾಡಿ.' : 'Please check your internet connection or email directly to dyfikar1980@gmail.com'}</p>
+            </div>
+          </div>
+        `;
+        statusBox.style.display = 'block';
+        statusBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+      showToast(isKn ? 'ನೆಟ್‌ವರ್ಕ್ ದೋಷ ಉಂಟಾಗಿದೆ' : 'Network error submitting form');
+    })
+    .finally(() => {
       btn.innerHTML = originalText;
       btn.disabled = false;
-      form.reset();
-      showToast(currentLang === 'kn' ? 'ನಿಮ್ಮ ಸಂದೇಶವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಕಳುಹಿಸಲಾಗಿದೆ!' : 'Your message has been sent successfully!');
-    }, 900);
+    });
   });
 }
 
@@ -1489,30 +1601,7 @@ function showToast(message) {
     });
   }
 
-  // Hook into Contact Form submission to persist in DyfiDataStore
-  const mainContactForm = document.getElementById('mainContactForm');
-  if (mainContactForm) {
-    mainContactForm.addEventListener('submit', (e) => {
-      const name = mainContactForm.querySelector('input[type="text"]').value.trim();
-      const phone = mainContactForm.querySelector('input[type="tel"]').value.trim();
-      const district = mainContactForm.querySelector('select').value;
-      const message = mainContactForm.querySelector('textarea').value.trim();
-
-      if (typeof DyfiDataStore !== 'undefined') {
-        const msgs = DyfiDataStore.get(DYFI_DATA_KEYS.MESSAGES) || [];
-        msgs.unshift({
-          id: 'msg_' + Date.now(),
-          name,
-          phone,
-          district,
-          message,
-          date: new Date().toISOString().split('T')[0],
-          status: 'Unread'
-        });
-        DyfiDataStore.set(DYFI_DATA_KEYS.MESSAGES, msgs);
-      }
-    });
-  }
+  // Note: Contact Form submission and DyfiDataStore sync are handled cleanly in initContactForm()
 
   // Initial call on load
   setTimeout(() => {
@@ -1655,23 +1744,23 @@ function showToast(message) {
     if (modalDate) modalDate.innerHTML = `<i class="fa-solid fa-calendar-days"></i> ${date}`;
 
     const modalExtra = document.getElementById('contentModalExtra');
-    if (modalExtra) modalExtra.textContent = extra;
+    if (modalExtra) modalExtra.innerHTML = extra;
 
     const modalTitle = document.getElementById('contentModalTitle');
-    if (modalTitle) modalTitle.textContent = title;
+    if (modalTitle) modalTitle.innerHTML = title;
 
     const modalDesc = document.getElementById('contentModalDesc');
     if (modalDesc) modalDesc.innerHTML = `<p>${fullText.replace(/\n\n/g, '</p><p>').replace(/\n/g, '<br>')}</p>`;
 
     const primaryBtn = document.getElementById('contentModalPrimaryBtn');
     if (primaryBtn) {
-      primaryBtn.textContent = primaryActionText;
+      primaryBtn.innerHTML = primaryActionText;
       primaryBtn.onclick = primaryActionFn;
     }
 
     const closeBtn = document.getElementById('contentModalCloseBtn');
     if (closeBtn) {
-      closeBtn.textContent = isKn ? 'ಮುಚ್ಚಿ / Close' : 'Close';
+      closeBtn.innerHTML = `<i class="fa-solid fa-xmark"></i> ${isKn ? 'ಮುಚ್ಚಿ / Close' : 'Close'}`;
       closeBtn.onclick = () => modal.classList.remove('active');
     }
 

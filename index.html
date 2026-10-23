@@ -892,20 +892,22 @@
 
         <!-- Contact Form -->
         <div class="contact-form-card">
-          <form id="mainContactForm">
+          <div id="contactFormStatus" class="contact-form-status" style="display: none;"></div>
+          <form id="mainContactForm" action="https://formspree.io/f/maeeygla" method="POST">
+            <input type="hidden" name="_subject" value="DYFI Karnataka — New Website Contact Form Submission">
             <div class="form-group">
               <label class="form-label" data-i18n="formName">ನಿಮ್ಮ ಪೂರ್ಣ ಹೆಸರು</label>
-              <input type="text" class="form-input" required placeholder="Name">
+              <input type="text" name="name" class="form-input" required placeholder="Name">
             </div>
 
             <div class="form-group">
               <label class="form-label" data-i18n="formPhone">ಮೊಬೈಲ್ ಸಂಖ್ಯೆ</label>
-              <input type="tel" class="form-input" required placeholder="+91 9876543210">
+              <input type="tel" name="phone" class="form-input" required placeholder="+91 9876543210">
             </div>
 
             <div class="form-group">
               <label class="form-label" data-i18n="formDistrict">ನಿಮ್ಮ ಜಿಲ್ಲೆ</label>
-              <select class="form-select" required>
+              <select name="district" class="form-select" required>
                 <option value="">ಜಿಲ್ಲೆಯನ್ನು ಆಯ್ಕೆಮಾಡಿ (Select District)</option>
                 <option value="Bengaluru">Bengaluru (ಬೆಂಗಳೂರು)</option>
                 <option value="Dakshina Kannada">Dakshina Kannada (ದಕ್ಷಿಣ ಕನ್ನಡ)</option>
@@ -921,10 +923,10 @@
 
             <div class="form-group">
               <label class="form-label" data-i18n="formMsg">ನಿಮ್ಮ ಸಂದೇಶ ಅಥವಾ ಪ್ರಶ್ನೆ</label>
-              <textarea class="form-textarea" required placeholder="Write your message..."></textarea>
+              <textarea name="message" class="form-textarea" required placeholder="Write your message..."></textarea>
             </div>
 
-            <button type="submit" class="btn-submit-form" data-i18n="formSubmit">
+            <button type="submit" class="btn-submit-form" id="btnSubmitContact" data-i18n="formSubmit">
               ಸಂದೇಶ ಕಳುಹಿಸಿ <i class="fa-solid fa-paper-plane"></i>
             </button>
           </form>
@@ -1229,7 +1231,17 @@
       <li><a href="#contact" class="mobile-nav-link" data-i18n="navContactBtn">ಸಂಪರ್ಕಿಸಿ</a></li>
     </ul>
 
-    <div class="mobile-drawer-theme">
+    <div class="mobile-drawer-controls">
+      <!-- Language Switcher in Mobile Drawer -->
+      <button id="mobileLangToggleBtn" class="mobile-lang-btn" aria-label="Switch Language">
+        <span class="mobile-lang-left">
+          <i class="fa-solid fa-globe" style="color: var(--primary);"></i>
+          <span id="mobileLangText">English (Switch to English)</span>
+        </span>
+        <i class="fa-solid fa-arrow-right-arrow-left" style="font-size: 0.85rem; color: #94a3b8;"></i>
+      </button>
+
+      <!-- Theme Switcher in Mobile Drawer -->
       <button id="mobileThemeToggleBtn" class="mobile-theme-btn" aria-label="Toggle Dark and Light Mode">
         <span class="mobile-theme-icon" id="mobileThemeIcon"><i class="fa-solid fa-sun"></i></span>
         <span id="mobileThemeText">Light Mode (ಬೆಳಕಿನ ಥೀಮ್)</span>

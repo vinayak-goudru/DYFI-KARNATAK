@@ -2046,6 +2046,46 @@ img {
   transform: translateY(-2px);
 }
 
+.contact-form-status {
+  padding: 0.85rem 1.1rem;
+  border-radius: var(--radius-sm, 8px);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  line-height: 1.45;
+}
+
+.contact-form-status.success,
+.contact-form-status.status-success {
+  background: rgba(16, 185, 129, 0.15);
+  color: #065f46;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+}
+
+[data-theme="dark"] .contact-form-status.success,
+[data-theme="dark"] .contact-form-status.status-success {
+  background: rgba(16, 185, 129, 0.2);
+  color: #6ee7b7;
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+.contact-form-status.error,
+.contact-form-status.status-error {
+  background: rgba(220, 38, 38, 0.15);
+  color: #991b1b;
+  border: 1px solid rgba(220, 38, 38, 0.35);
+}
+
+[data-theme="dark"] .contact-form-status.error,
+[data-theme="dark"] .contact-form-status.status-error {
+  background: rgba(220, 38, 38, 0.2);
+  color: #fca5a5;
+  border-color: rgba(220, 38, 38, 0.4);
+}
+
 /* ========================================================
    FOOTER
    ======================================================== */
@@ -2353,16 +2393,21 @@ img {
 .mobile-drawer {
   position: fixed;
   top: 0;
-  right: -320px;
-  width: 300px;
-  height: 100%;
-  background: #0f172a;
-  z-index: 999;
-  padding: 1.5rem;
+  right: -340px;
+  width: min(320px, 86vw);
+  height: 100vh;
+  height: 100dvh;
+  max-height: 100vh;
+  background: var(--bg-surface, #0f172a);
+  z-index: 99999;
+  padding: 1.25rem 1.25rem 2.5rem 1.25rem;
   display: flex;
   flex-direction: column;
-  transition: right 0.3s ease;
-  box-shadow: -6px 0 24px rgba(0, 0, 0, 0.5);
+  transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: -6px 0 30px rgba(0, 0, 0, 0.6);
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
 }
 
 .mobile-drawer.active {
@@ -2373,39 +2418,92 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  margin-bottom: 1.5rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--border-main, rgba(255, 255, 255, 0.1));
+  margin-bottom: 0.85rem;
+  flex-shrink: 0;
 }
 
 .mobile-drawer-close {
-  color: #ffffff;
+  color: var(--text-heading, #ffffff);
   font-size: 1.6rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  line-height: 1;
+}
+
+.mobile-drawer-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding-bottom: 0.85rem;
+  margin-bottom: 0.65rem;
+  border-bottom: 1px solid var(--border-main, rgba(255, 255, 255, 0.1));
+  flex-shrink: 0;
+}
+
+.mobile-lang-btn,
+.mobile-theme-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0.9rem;
+  background: var(--pill-bg, rgba(255, 255, 255, 0.08));
+  border: 1px solid var(--border-main, rgba(255, 255, 255, 0.15));
+  border-radius: var(--radius-md, 10px);
+  color: var(--text-heading, #ffffff);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition, all 0.2s ease);
+}
+
+.mobile-lang-btn:hover,
+.mobile-theme-btn:hover {
+  background: rgba(220, 38, 38, 0.18);
+  border-color: var(--primary, #dc2626);
+}
+
+.mobile-lang-left {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
 }
 
 .mobile-nav-links {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-}
-
-.mobile-nav-link {
-  color: #e2e8f0;
-  font-size: 1.05rem;
-  font-weight: 600;
-  display: block;
+  gap: 0.45rem;
   padding: 0.5rem 0;
 }
 
-.mobile-nav-link:hover {
-  color: var(--accent-red);
+.mobile-nav-link {
+  color: var(--text-heading, #e2e8f0);
+  font-size: 1.02rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.4rem;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link.active {
+  color: var(--primary, #ef4444);
+  background: rgba(220, 38, 38, 0.1);
 }
 
 .mobile-drawer-footer {
-  margin-top: auto;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-main, rgba(255, 255, 255, 0.1));
+  flex-shrink: 0;
 }
 
 /* ========================================================
@@ -2451,9 +2549,9 @@ img {
     height: 36px;
     font-size: 1rem;
   }
-  .lang-toggle-btn {
-    padding: 0.35rem 0.65rem;
-    font-size: 0.78rem;
+  .site-header .lang-toggle-btn,
+  #langToggleBtn {
+    display: none !important;
   }
   .announcement-ticker .ticker-helpline {
     display: none;
@@ -2535,74 +2633,424 @@ img {
   .footer-top-grid {
     grid-template-columns: 1fr;
   }
+
+  /* 1. Leadership Section Mobile */
+  .leadership-section {
+    padding: 3.5rem 0;
+  }
+  .leadership-category-block {
+    margin-bottom: 2rem;
+  }
+  .leadership-subtitle-wrap {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .leadership-tier-title {
+    font-size: 1.15rem;
+    line-height: 1.35;
+  }
+  .national-leaders-grid,
+  .state-leaders-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.2rem;
+    max-width: 100% !important;
+  }
+  .leader-card {
+    padding: 1.35rem 1rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .leader-avatar-wrap {
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 0.85rem auto;
+  }
+
+  /* 2. Organizational Network Teaser & Martyrs Teaser Sections Mobile */
+  .network-teaser-section,
+  .martyrs-teaser-section {
+    padding: 3rem 0;
+  }
+  .network-teaser-card,
+  .martyrs-teaser-card {
+    padding: 2rem 1.35rem !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 1.5rem !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    border-radius: 14px !important;
+  }
+  .network-teaser-info {
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+  .network-teaser-title {
+    font-size: 1.55rem !important;
+    line-height: 1.35 !important;
+    margin-bottom: 0.65rem !important;
+  }
+  .network-teaser-desc {
+    font-size: 0.94rem !important;
+    line-height: 1.6 !important;
+    max-width: 100% !important;
+    margin-bottom: 1rem !important;
+  }
+  .network-teaser-stats {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.55rem !important;
+    width: 100% !important;
+    margin-top: 0.85rem !important;
+  }
+  .network-stat-pill {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    font-size: 0.86rem !important;
+    padding: 0.55rem 0.85rem !important;
+    justify-content: flex-start !important;
+    white-space: normal !important;
+  }
+  .network-teaser-card > div:last-child,
+  .martyrs-teaser-card > div:last-child {
+    width: 100% !important;
+  }
+  .network-teaser-card a.btn-primary,
+  .martyrs-teaser-card a.btn-secondary {
+    display: flex !important;
+    width: 100% !important;
+    justify-content: center !important;
+    text-align: center !important;
+    padding: 0.85rem 1.1rem !important;
+    font-size: 0.94rem !important;
+    box-sizing: border-box !important;
+    border-radius: 30px !important;
+  }
+
+  /* 3. Contact Section Mobile */
+  .contact-section {
+    padding: 3.5rem 0;
+  }
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.75rem !important;
+    width: 100% !important;
+  }
+  .contact-info-card,
+  .contact-form-card {
+    padding: 1.75rem 1.25rem !important;
+    border-radius: 14px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .contact-item {
+    gap: 0.85rem;
+    margin-bottom: 1.35rem;
+    align-items: flex-start;
+  }
+  .contact-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.05rem;
+    flex-shrink: 0;
+  }
+  .contact-label {
+    font-size: 0.78rem;
+    white-space: normal !important;
+  }
+  .contact-val {
+    font-size: 0.96rem;
+    line-height: 1.55;
+    white-space: normal !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    overflow: visible !important;
+  }
+  .districts-pill-container {
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px dashed var(--light-border);
+  }
+  .districts-title {
+    font-size: 0.92rem;
+    white-space: normal !important;
+    line-height: 1.4;
+    margin-bottom: 0.75rem;
+  }
+  .districts-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .district-tag {
+    font-size: 0.76rem;
+    padding: 0.25rem 0.65rem;
+  }
+  .contact-form-card .form-group {
+    margin-bottom: 1rem;
+  }
+  .contact-form-card .form-input,
+  .contact-form-card .form-select,
+  .contact-form-card .form-textarea {
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 16px;
+    padding: 0.75rem 0.9rem;
+  }
+  .contact-form-card button[type="submit"] {
+    width: 100%;
+    justify-content: center;
+    padding: 0.85rem;
+    font-size: 0.98rem;
+  }
+
+  /* 4. Gallery & Media Mobile */
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem;
+  }
+  .video-banner-box {
+    max-height: 300px;
+    border-radius: 12px;
+  }
+  .video-banner-overlay {
+    padding: 1.5rem 1.1rem;
+  }
+  .video-banner-title {
+    font-size: 1.25rem;
+  }
+
+  /* 5. Blood Donation Mobile */
+  .blood-search-box {
+    padding: 1.5rem 1.2rem;
+    border-radius: 14px;
+    margin-top: 1.8rem;
+  }
+  .blood-search-form {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem;
+  }
+  .blood-results-list {
+    grid-template-columns: 1fr !important;
+  }
 }
 
 @media (max-width: 480px) {
   .header-container {
-    padding: 0 0.85rem;
-    height: 62px;
+    padding: 0 0.75rem;
+    height: 60px;
+    gap: 0.4rem;
+  }
+  .brand-link {
+    min-width: 0;
+    flex: 1;
+    overflow: hidden;
   }
   .brand-logo-img {
-    width: 36px;
-    height: 36px;
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+  }
+  .brand-text-block {
+    min-width: 0;
+    overflow: hidden;
   }
   .brand-title {
-    font-size: 0.96rem;
+    font-size: 0.92rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .brand-subtitle {
-    font-size: 0.62rem;
+    font-size: 0.6rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .header-actions {
+    flex-shrink: 0;
+    gap: 0.35rem;
+  }
+  .lang-toggle-btn {
+    padding: 0.3rem 0.55rem;
+    font-size: 0.74rem;
+  }
+  .theme-toggle-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 0.9rem;
+  }
+  .mobile-toggle-btn {
+    width: 34px;
+    height: 34px;
+    font-size: 1.1rem;
+  }
+
+  /* Hero Section Mobile */
+  .hero-section {
+    padding: 2.5rem 0 2rem 0;
   }
   .hero-content {
-    padding: 1.8rem 0.75rem 1.8rem 0.75rem;
+    padding: 1.5rem 0.75rem;
+    border-radius: 14px;
   }
   .hero-badge-tag {
-    font-size: 0.74rem;
-    padding: 0.3rem 0.7rem;
-    margin-bottom: 0.9rem;
+    font-size: 0.72rem;
+    padding: 0.35rem 0.75rem;
+    margin-bottom: 0.85rem;
+    white-space: normal !important;
+    line-height: 1.35;
+    text-align: center;
+    max-width: 100%;
   }
   .hero-title {
-    font-size: 1.62rem;
-    line-height: 1.42;
-    padding-top: 0.25rem;
-    margin-bottom: 1rem;
+    font-size: 1.55rem;
+    line-height: 1.35;
+    padding-top: 0.2rem;
+    margin-bottom: 0.85rem;
   }
   .hero-description {
-    font-size: 0.88rem;
-    line-height: 1.58;
-    margin-bottom: 1.4rem;
+    font-size: 0.86rem;
+    line-height: 1.55;
+    margin-bottom: 1.25rem;
   }
   .main-headline {
-    font-size: 1.55rem;
+    font-size: 1.45rem;
     line-height: 1.35;
   }
   .section-title {
+    font-size: 1.45rem;
+  }
+
+  /* 2-column balanced stats on mobile */
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.65rem;
+    padding: 1rem 0.65rem;
+    border-radius: 12px;
+  }
+  .stat-card {
+    padding: 0.85rem 0.5rem;
+  }
+  .stat-number {
     font-size: 1.55rem;
   }
-  .stats-grid {
-    grid-template-columns: 1fr;
-    gap: 0.85rem;
-    padding: 1.25rem 0.75rem;
+  .stat-label {
+    font-size: 0.74rem;
   }
+
+  /* Horizontal Filter Bar with Smooth Touch Scrolling */
   .districts-filter-bar {
     justify-content: flex-start;
     overflow-x: auto;
     flex-wrap: nowrap;
-    padding-bottom: 0.5rem;
+    padding: 0.35rem 0.2rem 0.75rem 0.2rem;
     -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
+    scrollbar-width: none;
+    gap: 0.45rem;
+  }
+  .districts-filter-bar::-webkit-scrollbar {
+    display: none;
   }
   .district-filter-btn {
     white-space: nowrap;
     flex-shrink: 0;
-    font-size: 0.8rem;
-    padding: 0.4rem 0.85rem;
+    font-size: 0.78rem;
+    padding: 0.35rem 0.8rem;
   }
-  .modal-box {
-    margin: 1rem;
-    max-height: 90vh;
+
+  /* District Card Mobile */
+  .district-card {
+    padding: 1.1rem 0.95rem;
+  }
+  .district-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .district-stats-vertical {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+    justify-content: flex-start;
+    gap: 0.4rem;
+  }
+  .btn-open-district {
+    font-size: 0.82rem;
+    padding: 0.65rem 0.75rem;
+  }
+
+  /* Universal Modals Mobile Optimization */
+  .modal-box,
+  .district-modal-box,
+  .content-details-box {
+    margin: 0.5rem auto !important;
+    width: 95vw !important;
+    max-width: 95vw !important;
+    max-height: 92vh !important;
+    border-radius: 14px !important;
+  }
+  .modal-header {
+    padding: 1rem 1.1rem !important;
+  }
+  .modal-body,
+  .content-modal-body {
+    padding: 1rem 0.95rem !important;
+    max-height: calc(92vh - 120px) !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+  .content-modal-img-wrap {
+    max-height: 220px !important;
+    margin-bottom: 0.9rem !important;
+  }
+  .content-modal-img-wrap img {
+    max-height: 220px !important;
+  }
+  .content-modal-title {
+    font-size: 1.25rem !important;
+    line-height: 1.35 !important;
+  }
+  .content-modal-desc {
+    font-size: 0.9rem !important;
+    line-height: 1.6 !important;
+    margin-bottom: 1.25rem !important;
+  }
+  .content-modal-action-row {
+    flex-direction: column-reverse !important;
+    gap: 0.6rem !important;
+  }
+  .content-modal-action-row button {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 0.75rem 1rem !important;
+    font-size: 0.92rem !important;
   }
   .lightbox-overlay {
-    padding: 1rem;
+    padding: 0.75rem;
+  }
+
+  /* Extra compact mobile tuning for < 480px */
+  .network-teaser-card,
+  .martyrs-teaser-card {
+    padding: 1.4rem 1rem !important;
+  }
+  .network-teaser-title {
+    font-size: 1.32rem !important;
+  }
+  .network-teaser-desc {
+    font-size: 0.88rem !important;
+  }
+  .contact-info-card,
+  .contact-form-card {
+    padding: 1.35rem 0.95rem !important;
+  }
+  .gallery-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.85rem;
   }
 }
 
@@ -3822,19 +4270,15 @@ html, body {
 .taluk-call-btn,
 .taluk-count-pill,
 .units-count-pill,
-.network-stat-pill,
 .taluk-mini-pill,
 .taluk-pill-tag,
 .units-pill-tag,
 .ticker-text,
-.hero-badge-tag,
 .badge-date,
 .badge-status,
 .statement-badge,
 .statement-date,
 .statement-ref,
-.contact-val,
-.contact-label,
 .donor-name,
 .donor-phone,
 .donor-place,
@@ -3843,10 +4287,7 @@ html, body {
 .officer-zoom-hint,
 .card-img-zoom-hint,
 .gallery-zoom-badge,
-.network-teaser-badge,
-.memorial-hero-badge,
 .tribute-counter-text,
-.districts-title,
 table td,
 table th {
   overflow: hidden !important;

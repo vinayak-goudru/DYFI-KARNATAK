@@ -18,18 +18,33 @@
         <h2>DYFI KARNATAKA</h2>
         <p>State Committee Central Admin Suite</p>
       </div>
+      <div class="login-alert" id="loginAlert" style="display: none;"></div>
       <form id="adminLoginForm">
         <div class="form-group">
-          <label class="form-label">Admin Username</label>
-          <input type="text" id="adminUser" class="form-control" placeholder="Enter username (admin)" required autocomplete="username">
+          <label class="form-label" for="adminUser"><i class="fa-solid fa-user" style="margin-right: 6px; color: #94a3b8;"></i> Admin Username</label>
+          <input type="text" id="adminUser" class="form-control" placeholder="Enter administrator username" required autocomplete="username">
         </div>
         <div class="form-group">
-          <label class="form-label">Admin Password</label>
-          <input type="password" id="adminPass" class="form-control" placeholder="••••••••••••" required autocomplete="current-password">
+          <label class="form-label" for="adminPass"><i class="fa-solid fa-lock" style="margin-right: 6px; color: #94a3b8;"></i> Password</label>
+          <div class="password-field-wrapper">
+            <input type="password" id="adminPass" class="form-control" placeholder="Enter secure password" required autocomplete="current-password">
+            <button type="button" class="btn-toggle-password" id="btnTogglePassword" aria-label="Toggle password visibility" title="Show/Hide Password">
+              <i class="fa-solid fa-eye" id="togglePasswordIcon"></i>
+            </button>
+          </div>
         </div>
-        <button type="submit" class="btn btn-primary btn-block">Secure Login <i class="fa-solid fa-arrow-right"></i></button>
-        <button type="button" class="btn btn-demo btn-block" id="btnQuickDemo">Quick Demo Login (Pre-filled)</button>
-        <div class="login-hint">Default: <code>admin</code> / <code>dyfi@karnataka2026</code></div>
+        <div class="login-options-row">
+          <label class="login-remember-label">
+            <input type="checkbox" id="adminRememberMe">
+            <span>Keep me logged in on this browser</span>
+          </label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" id="btnLoginSubmit">
+          <i class="fa-solid fa-shield-halved"></i> Sign In to Admin Console
+        </button>
+        <div class="login-security-footer">
+          <i class="fa-solid fa-lock"></i> Authorized DYFI State Committee Personnel Only
+        </div>
       </form>
     </div>
   </div>
