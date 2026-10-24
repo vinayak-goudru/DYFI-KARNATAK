@@ -368,6 +368,8 @@
             <li class="footer-link-item"><a href="committees.html" data-i18n="navCommittees">ಸಮಿತಿಗಳು &amp; ಘಟಕಗಳು</a></li>
             <li class="footer-link-item"><a href="martyrs.html" data-i18n="navMartyrs">ಹುತಾತ್ಮರು</a></li>
             <li class="footer-link-item"><a href="index.html#bloodDonation" data-i18n="navBlood">ರಕ್ತದಾನ ಸೇವೆ</a></li>
+            <li class="footer-link-item"><a href="privacy-policy.html" onclick="if (window.openLegalModal) { openLegalModal('privacy'); return false; }" data-i18n="linkPrivacy">ಗೌಪ್ಯತಾ ನೀತಿ (Privacy Policy)</a></li>
+            <li class="footer-link-item"><a href="terms-conditions.html" onclick="if (window.openLegalModal) { openLegalModal('terms'); return false; }" data-i18n="linkTerms">ನಿಯಮಗಳು &amp; ಷರತ್ತುಗಳು (Terms &amp; Conditions)</a></li>
           </ul>
         </div>
 
@@ -402,6 +404,11 @@
       </div>
 
       <div class="footer-bottom-bar">
+        <div class="footer-legal-links">
+          <a href="privacy-policy.html" onclick="if (window.openLegalModal) { openLegalModal('privacy'); return false; }" data-i18n="linkPrivacy"><i class="fa-solid fa-shield-halved" style="color:var(--primary);"></i> ಗೌಪ್ಯತಾ ನೀತಿ (Privacy Policy)</a>
+          <span class="legal-bullet">•</span>
+          <a href="terms-conditions.html" onclick="if (window.openLegalModal) { openLegalModal('terms'); return false; }" data-i18n="linkTerms"><i class="fa-solid fa-scale-balanced" style="color:var(--primary);"></i> ನಿಯಮಗಳು &amp; ಷರತ್ತುಗಳು (Terms &amp; Conditions)</a>
+        </div>
         <span data-i18n="footerRights">© 2026 — ಡಿವೈಎಫ್ಐ ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಮಿತಿ. ಸರ್ವ ಹಕ್ಕುಗಳೂ ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ.</span>
         <a href="admin.html" target="_blank" class="admin-discrete-link" title="Authorized Staff Access (Ctrl+Shift+A)" aria-label="Staff Login"><i class="fa-solid fa-lock"></i></a>
       </div>
@@ -432,6 +439,8 @@
       <li><a href="martyrs.html" class="mobile-nav-link active" data-i18n="navMartyrs">ಹುತಾತ್ಮರು</a></li>
       <li><a href="index.html#bloodDonation" class="mobile-nav-link" data-i18n="navBlood">ರಕ್ತದಾನ ಸೇವೆ</a></li>
       <li><a href="index.html#contact" class="mobile-nav-link" data-i18n="navContactBtn">ಸಂಪರ್ಕಿಸಿ</a></li>
+      <li><a href="privacy-policy.html" onclick="if (window.openLegalModal) { openLegalModal('privacy'); document.getElementById('mobileDrawer').classList.remove('active'); document.getElementById('mobileDrawerOverlay').classList.remove('active'); return false; }" class="mobile-nav-link" data-i18n="linkPrivacy"><i class="fa-solid fa-shield-halved" style="color:var(--primary);"></i> ಗೌಪ್ಯತಾ ನೀತಿ</a></li>
+      <li><a href="terms-conditions.html" onclick="if (window.openLegalModal) { openLegalModal('terms'); document.getElementById('mobileDrawer').classList.remove('active'); document.getElementById('mobileDrawerOverlay').classList.remove('active'); return false; }" class="mobile-nav-link" data-i18n="linkTerms"><i class="fa-solid fa-scale-balanced" style="color:var(--primary);"></i> ನಿಯಮಗಳು &amp; ಷರತ್ತುಗಳು</a></li>
     </ul>
 
     <div class="mobile-drawer-controls">
@@ -457,6 +466,229 @@
       </a>
     </div>
   </aside>
+
+  <!-- ========================================================
+       LEGAL POLICIES MODAL (PRIVACY POLICY & TERMS)
+       ======================================================== -->
+  <div class="modal-overlay legal-modal-overlay" id="legalModal" role="dialog" aria-modal="true" aria-labelledby="legalModalMainTitle">
+    <div class="modal-box legal-modal-box">
+      <div class="modal-header legal-modal-header">
+        <div class="legal-header-titles">
+          <span class="legal-badge"><i class="fa-solid fa-scale-balanced"></i> DYFI Official Legal Charter</span>
+          <h2 class="legal-modal-title" id="legalModalMainTitle">ಗೌಪ್ಯತಾ ನೀತಿ (Privacy Policy)</h2>
+        </div>
+        <button class="modal-close" id="closeLegalModal" aria-label="Close Legal Window">&times;</button>
+      </div>
+
+      <!-- Legal Navigation Tabs -->
+      <div class="legal-tabs-bar">
+        <button class="legal-tab-btn active" id="legalTabPrivacyBtn" onclick="switchLegalTab('privacy')">
+          <i class="fa-solid fa-shield-halved"></i>
+          <span class="lang-kn">ಗೌಪ್ಯತಾ ನೀತಿ (Privacy Policy)</span>
+          <span class="lang-en">Privacy Policy</span>
+        </button>
+        <button class="legal-tab-btn" id="legalTabTermsBtn" onclick="switchLegalTab('terms')">
+          <i class="fa-solid fa-file-contract"></i>
+          <span class="lang-kn">ನಿಯಮಗಳು &amp; ಷರತ್ತುಗಳು (Terms &amp; Conditions)</span>
+          <span class="lang-en">Terms &amp; Conditions</span>
+        </button>
+      </div>
+
+      <!-- Legal Modal Body -->
+      <div class="legal-modal-body">
+        <!-- Content: Privacy Policy -->
+        <div id="legalPrivacyContent">
+          <!-- Clause 1 -->
+          <div class="legal-clause-card">
+            <div class="clause-header">
+              <span class="clause-num">1</span>
+              <h3 class="clause-title">
+                <span class="lang-kn">ಪರಿಚಯ ಮತ್ತು ಗೌಪ್ಯತೆಯ ಬದ್ಧತೆ</span>
+                <span class="lang-en">Introduction &amp; Our Commitment</span>
+              </h3>
+            </div>
+            <p class="clause-text lang-kn">
+              ಭಾರತ ಪ್ರಜಾಸತ್ತಾತ್ಮಕ ಯುವಜನ ಫೆಡರೇಶನ್ (DYFI) ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಮಿತಿಯು ಸಾರ್ವಜನಿಕರ, ಯುವ ಸದಸ್ಯರ ಹಾಗೂ ತುರ್ತು ರಕ್ತದಾನಿಗಳ ವೈಯಕ್ತಿಕ ಗೌಪ್ಯತೆಯನ್ನು ಸಂಪೂರ್ಣವಾಗಿ ಗೌರವಿಸುತ್ತದೆ. ನಮ್ಮ ಅಧಿಕೃತ ವೆಬ್‌ಸೈಟ್, ಮೊಬೈಲ್ ಪೋರ್ಟಲ್ ಹಾಗೂ ರಕ್ತದಾನ ಜಾಲವನ್ನು ಬಳಸುವಾಗ ನಿಮ್ಮ ಮಾಹಿತಿಯನ್ನು ಹೇಗೆ ಸಂಗ್ರಹಿಸಲಾಗುತ್ತದೆ ಮತ್ತು ಸಂರಕ್ಷಿಸಲಾಗುತ್ತದೆ ಎಂಬುದನ್ನು ಈ ನೀತಿಯು ಪಾರದರ್ಶಕವಾಗಿ ವಿವರಿಸುತ್ತದೆ.
+            </p>
+            <p class="clause-text lang-en">
+              The Democratic Youth Federation of India (DYFI) Karnataka State Committee is firmly dedicated to safeguarding the privacy, confidentiality, and security of all citizens, voluntary blood donors, and youth members. This privacy charter governs data collection, handling, and protection across our digital initiatives.
+            </p>
+          </div>
+
+          <!-- Clause 2 -->
+          <div class="legal-clause-card">
+            <div class="clause-header">
+              <span class="clause-num">2</span>
+              <h3 class="clause-title">
+                <span class="lang-kn">ನಾವು ಸಂಗ್ರಹಿಸುವ ಮಾಹಿತಿ</span>
+                <span class="lang-en">Information We Collect</span>
+              </h3>
+            </div>
+            <div class="lang-kn">
+              <p class="clause-text">ನಮ್ಮ ಸಾರ್ವಜನಿಕ ಸೇವೆಗಳಿಗಾಗಿ ಕೆಳಗಿನ ಅಗತ್ಯ ವಿವರಗಳನ್ನು ಮಾತ್ರ ಸಂಗ್ರಹಿಸಲಾಗುತ್ತದೆ:</p>
+              <ul class="clause-list">
+                <li><strong>ಸ್ವಯಂಪ್ರೇರಿತ ರಕ್ತದಾನಿ ನೋಂದಣಿ</strong>: ರಕ್ತದಾನಿಯ ಪೂರ್ಣ ಹೆಸರು, ಮೊಬೈಲ್ ಸಂಖ್ಯೆ, ರಕ್ತದ ಗುಂಪು (Blood Group), ಜಿಲ್ಲೆ ಮತ್ತು ತಾಲ್ಲೂಕು.</li>
+                <li><strong>ಸದಸ್ಯತ್ವ ನೋಂದಣಿ (Join the Movement)</strong>: ಹೆಸರು, ಮೊಬೈಲ್ ಸಂಖ್ಯೆ, ಇಮೇಲ್, ವಾಸಸ್ಥಳದ ಜಿಲ್ಲೆ, ವಿದ್ಯಾರ್ಹತೆ/ಉದ್ಯೋಗ ಮತ್ತು ಸಾಮಾಜಿಕ ಸೇವಾ ಆಸಕ್ತಿ.</li>
+                <li><strong>ಸಹಾಯವಾಣಿ &amp; ಸಂಪರ್ಕ ವಿಚಾರಣೆಗಳು</strong>: ಸಾರ್ವಜನಿಕ ಸಂಪರ್ಕ ನಮೂನೆ (Formspree) ಮೂಲಕ ಕಳುಹಿಸಲಾದ ಸಂದೇಶಗಳು, ಹೆಸರು ಮತ್ತು ಸಂಪರ್ಕ ಸಂಖ್ಯೆ.</li>
+                <li><strong>ಬ್ರೌಸರ್ ಆದ್ಯತೆಗಳು (Local Preferences)</strong>: ಬಳಕೆದಾರರ ಭಾಷಾ ಆಯ್ಕೆ (ಕನ್ನಡ/ಇಂಗ್ಲಿಷ್) ಮತ್ತು ಥೀಮ್ (ಡಾರ್ಕ್/ಲೈಟ್ ಮೋಡ್) ನೆನಪಿನಲ್ಲಿಡಲು ಬ್ರೌಸರ್‌ನ ಸುರಕ್ಷಿತ local storage ಬಳಸಲಾಗುತ್ತದೆ. ನಾವು ಯಾವುದೇ ವಾಣಿಜ್ಯ ಜಾಹೀರಾತು ಕುಕೀಗಳನ್ನು ಬಳಸುವುದಿಲ್ಲ.</li>
+              </ul>
+            </div>
+            <div class="lang-en">
+              <p class="clause-text">We collect only necessary information strictly required for humanitarian coordination and youth mobilization:</p>
+              <ul class="clause-list">
+                <li><strong>Voluntary Blood Donors</strong>: Full name, verified mobile number, blood group, district, and taluk/city to connect with emergency hospital cases.</li>
+                <li><strong>Membership Registration</strong>: Name, mobile number, district, educational/occupational background, and areas of progressive social interest.</li>
+                <li><strong>Contact Helpline Inquiries</strong>: Submitted messages, queries, and feedback transmitted via our encrypted helpline form.</li>
+                <li><strong>Local Storage Preferences</strong>: Safe, client-side preferences solely to retain your Language preference (Kannada/English) and Theme mode (Dark/Light). We do NOT deploy commercial ad trackers or cookies.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Clause 3 -->
+          <div class="legal-clause-card">
+            <div class="clause-header">
+              <span class="clause-num">3</span>
+              <h3 class="clause-title">
+                <span class="lang-kn">ಮಾಹಿತಿ ಬಳಕೆಯ ಉದ್ದೇಶ ಮತ್ತು ವಾಣಿಜ್ಯೇತರ ಭರವಸೆ</span>
+                <span class="lang-en">Ethical Usage &amp; Strict Non-Commercial Guarantee</span>
+              </h3>
+            </div>
+            <div class="legal-highlight-box">
+              <span class="lang-kn"><i class="fa-solid fa-lock" style="margin-right:6px;"></i> 100% ವಾಣಿಜ್ಯೇತರ ಭರವಸೆ: ನಿಮ್ಮ ಫೋನ್ ಸಂಖ್ಯೆ ಅಥವಾ ವೈಯಕ್ತಿಕ ವಿವರಗಳನ್ನು ಯಾವುದೇ ಜಾಹೀರಾತುದಾರರಿಗೆ, ಮಾರ್ಕೆಟಿಂಗ್ ಕಂಪನಿಗಳಿಗೆ ಅಥವಾ ತೃತೀಯ ಸಂಸ್ಥೆಗಳಿಗೆ ಮಾರಾಟ ಮಾಡಲಾಗುವುದಿಲ್ಲ ಅಥವಾ ಹಂಚಿಕೊಳ್ಳಲಾಗುವುದಿಲ್ಲ.</span>
+              <span class="lang-en"><i class="fa-solid fa-lock" style="margin-right:6px;"></i> 100% Non-Commercial Guarantee: We NEVER sell, lease, trade, or share your contact number or personal data with commercial advertisers, telemarketers, or external corporate brokers.</span>
+            </div>
+            <p class="clause-text lang-kn">
+              ಸಂಗ್ರಹಿಸಲಾದ ದತ್ತಾಂಶವನ್ನು ಕೇವಲ ಆಸ್ಪತ್ರೆಗಳಲ್ಲಿ ತುರ್ತು ರಕ್ತದ ಅಗತ್ಯವಿರುವ ರೋಗಿಗಳಿಗೆ ನೆರವಾಗಲು, ನೆರೆ ಪರಿಹಾರ ಹಾಗೂ ನೈಸರ್ಗಿಕ ವಿಕೋಪಗಳ ಸಂದರ್ಭದಲ್ಲಿ ಯುವ ಸ್ವಯಂಸೇವಕರನ್ನು ಸಂಘಟಿಸಲು ಮತ್ತು ನಿರುದ್ಯೋಗ, ಶಿಕ್ಷಣ ಹಕ್ಕುಗಳ ಕುರಿತ ಸಂಘಟನೆಯ ಅಧಿಕೃತ ಪ್ರಕಟಣೆಗಳನ್ನು ತಲುಪಿಸಲು ಮಾತ್ರ ಬಳಸಲಾಗುತ್ತದೆ.
+            </p>
+            <p class="clause-text lang-en">
+              Collected data is strictly mobilized to connect patients in acute medical emergencies with voluntary youth blood donors, organize disaster relief squads during monsoons, and notify members of official conventions and educational rights initiatives.
+            </p>
+          </div>
+
+          <!-- Clause 4 -->
+          <div class="legal-clause-card">
+            <div class="clause-header">
+              <span class="clause-num">4</span>
+              <h3 class="clause-title">
+                <span class="lang-kn">ಡೇಟಾ ಭದ್ರತೆ ಮತ್ತು ಬಳಕೆದಾರರ ಹಕ್ಕುಗಳು</span>
+                <span class="lang-en">Data Protection &amp; User Rights</span>
+              </h3>
+            </div>
+            <p class="clause-text lang-kn">
+              ವೆಬ್‌ಸೈಟ್‌ನ ಎಲ್ಲಾ ಸಂವಹನಗಳು HTTPS ಎನ್‌ಕ್ರಿಪ್ಶನ್ ಮೂಲಕ ಭದ್ರವಾಗಿವೆ. ರಕ್ತದಾನಿಗಳು ಅಥವಾ ನೋಂದಾಯಿತ ಸದಸ್ಯರು ತಮ್ಮ ವಿವರಗಳನ್ನು ತಿದ್ದುಪಡಿ ಮಾಡಲು ಅಥವಾ ರಕ್ತದಾನಿ ಪಟ್ಟಿಯಿಂದ ತಮ್ಮ ಹೆಸರನ್ನು ಶಾಶ್ವತವಾಗಿ ತೆಗೆದುಹಾಕಲು (Data Deletion) ನಮ್ಮ ರಾಜ್ಯ ಕಚೇರಿ ಸಹಾಯವಾಣಿ (+91 9449225636) ಅಥವಾ ಇಮೇಲ್ (<a href="mailto:dyfikar1980@gmail.com" style="color:var(--primary);">dyfikar1980@gmail.com</a>) ಸಂಪರ್ಕಿಸಬಹುದು.
+            </p>
+            <p class="clause-text lang-en">
+              All website transmissions are secured via TLS/HTTPS encryption. Any registered blood donor or member can request immediate updates, corrections, or permanent removal of their contact records from our public directory by reaching out to our State Secretariat helpline (+91 9449225636) or emailing <a href="mailto:dyfikar1980@gmail.com" style="color:var(--primary);">dyfikar1980@gmail.com</a>.
+            </p>
+          </div>
+        </div>
+
+        <!-- Content: Terms & Conditions -->
+        <div id="legalTermsContent" style="display: none;">
+          <!-- Clause 1 -->
+          <div class="legal-clause-card">
+            <div class="clause-header">
+              <span class="clause-num">1</span>
+              <h3 class="clause-title">
+                <span class="lang-kn">ನಿಯಮಾವಳಿಗಳ ಅಂಗೀಕಾರ ಮತ್ತು ಧ್ಯೇಯೋದ್ದೇಶಗಳು</span>
+                <span class="lang-en">Acceptance of Terms &amp; Constitutional Values</span>
+              </h3>
+            </div>
+            <p class="clause-text lang-kn">
+              ಈ ತಾಣವನ್ನು ವೀಕ್ಷಿಸುವ ಅಥವಾ ಬಳಸುವ ಮೂಲಕ, ನೀವು ಭಾರತೀಯ ಸಂವಿಧಾನದ ಜಾತ್ಯತೀತತೆ, ಸಮಾನತೆ, ಭ್ರಾತೃತ್ವ ಮತ್ತು ಪ್ರಜಾಸತ್ತಾತ್ಮಕ ಮೌಲ್ಯಗಳನ್ನು ಗೌರವಿಸಲು ಮತ್ತು ಈ ಎಲ್ಲಾ ನಿಯಮಗಳಿಗೆ ಬದ್ಧರಾಗಿರಲು ಒಪ್ಪುತ್ತೀರಿ. ಡಿವೈಎಫ್ಐ ಸಂಘಟನೆಯು ಯುವಜನರನ್ನು ಒಗ್ಗೂಡಿಸಿ ಪ್ರಗತಿಪರ ಸಮಾಜ ನಿರ್ಮಾಣಕ್ಕೆ ಶ್ರಮಿಸುತ್ತಿದೆ.
+            </p>
+            <p class="clause-text lang-en">
+              By accessing and using this official portal, you accept and agree to be bound by these Terms, adhering to the constitutional tenets of secularism, equality, social justice, and democratic participation championed by the Democratic Youth Federation of India.
+            </p>
+          </div>
+
+          <!-- Clause 2 -->
+          <div class="legal-clause-card">
+            <div class="clause-header">
+              <span class="clause-num">2</span>
+              <h3 class="clause-title">
+                <span class="lang-kn">ಸ್ವಯಂಪ್ರೇರಿತ ರಕ್ತದಾನ ನೀತಿ (ಉಚಿತ &amp; ಮಾನವೀಯ ಸೇವೆ)</span>
+                <span class="lang-en">Voluntary Blood Donation Policy (100% Free &amp; Non-Profit)</span>
+              </h3>
+            </div>
+            <div class="legal-highlight-box">
+              <span class="lang-kn"><i class="fa-solid fa-droplet" style="margin-right:6px;"></i> ಕಟ್ಟುನಿಟ್ಟಿನ ಎಚ್ಚರಿಕೆ: ರಕ್ತದಾನಕ್ಕೆ ಹಣ ಅಥವಾ ಯಾವುದೇ ಮಧ್ಯವರ್ತಿ ಶುಲ್ಕ ಪಡೆಯುವುದು ಅಥವಾ ನೀಡುವುದು ಭಾರತೀಯ ಕಾನೂನಿನಡಿ (Drugs &amp; Cosmetics Act) ಶಿಕ್ಷಾರ್ಹ ಅಪರಾಧ. ಡಿವೈಎಫ್ಐ ರಕ್ತದಾನ ಸೇವೆಯು ಸಂಪೂರ್ಣ ಉಚಿತವಾಗಿದೆ.</span>
+              <span class="lang-en"><i class="fa-solid fa-droplet" style="margin-right:6px;"></i> Critical Warning: Blood donation facilitated by DYFI is purely voluntary and 100% FREE. Commercial trade, selling, or asking for broker compensation for blood is strictly illegal under Indian law.</span>
+            </div>
+            <p class="clause-text lang-kn">
+              ಡಿವೈಎಫ್ಐ ರೋಗಿಗಳು ಮತ್ತು ಸ್ವಯಂಪ್ರೇರಿತ ರಕ್ತದಾನಿಗಳ ನಡುವೆ ಸಮನ್ವಯಕಾರನಾಗಿ ಸೇವೆ ಸಲ್ಲಿಸುತ್ತದೆ. ರಕ್ತ ವರ್ಗಾವಣೆ ಪ್ರಕ್ರಿಯೆಯನ್ನು ಪ್ರಮಾಣೀಕೃತ ಆಸ್ಪತ್ರೆಗಳು ಮತ್ತು ರಕ್ತನಿಧಿ ಕೇಂದ್ರಗಳಲ್ಲಿ ವೈದ್ಯರ ಮೇಲ್ವಿಚಾರಣೆಯಲ್ಲಿ ಮಾತ್ರ ನಡೆಸಬೇಕು.
+            </p>
+            <p class="clause-text lang-en">
+              DYFI acts solely as a non-profit volunteer facilitator bridging patients with voluntary donors. All blood collection, testing, and transfusion must occur exclusively under certified medical supervision at authorized hospitals and blood banks.
+            </p>
+          </div>
+
+          <!-- Clause 3 -->
+          <div class="legal-clause-card">
+            <div class="clause-header">
+              <span class="clause-num">3</span>
+              <h3 class="clause-title">
+                <span class="lang-kn">ಸಾರ್ವಜನಿಕ ನಡವಳಿಕೆ ನಿಯಮಾವಳಿಗಳು</span>
+                <span class="lang-en">Public Code of Conduct &amp; Prohibitions</span>
+              </h3>
+            </div>
+            <div class="lang-kn">
+              <p class="clause-text">ವೆಬ್‌ಸೈಟ್ ಸಂಪರ್ಕ ಫಾರಂಗಳು ಹಾಗೂ ಸಂವಹನಗಳಲ್ಲಿ ಈ ಕೆಳಗಿನವುಗಳನ್ನು ಕಟ್ಟುನಿಟ್ಟಾಗಿ ನಿಷೇಧಿಸಲಾಗಿದೆ:</p>
+              <ul class="clause-list">
+                <li>ದ್ವೇಷ ಭಾಷಣ, ಕೋಮುವಾದಿ ಪ್ರಚೋದನೆ ಅಥವಾ ಜಾತಿ ಆಧಾರಿತ ತಾರತಮ್ಯ ಮಾಡುವುದು.</li>
+                <li>ಯಾವುದೇ ವ್ಯಕ್ತಿಯ ಬಗ್ಗೆ ಸುಳ್ಳು, ಮಾನಹಾನಿಕರ ಅಥವಾ ಅವಹೇಳನಕಾರಿ ಮಾಹಿತಿ ಪ್ರಸಾರ ಮಾಡುವುದು.</li>
+                <li>ತಪ್ಪು ಅಥವಾ ವಂಚನೆಯ ದೂರವಾಣಿ ಸಂಖ್ಯೆಗಳನ್ನು ರಕ್ತದಾನಿ ಅಥವಾ ಸಂಪರ್ಕ ನಮೂನೆಯಲ್ಲಿ ನಮೂದಿಸುವುದು.</li>
+              </ul>
+            </div>
+            <div class="lang-en">
+              <p class="clause-text">Users interacting with portal forms, feedback, or volunteer registries must strictly refrain from:</p>
+              <ul class="clause-list">
+                <li>Posting hate speech, communal hatred, bigotry, or sectarian provocation.</li>
+                <li>Transmitting defamatory, abusive, fraudulent, or impersonated content.</li>
+                <li>Submitting fake or mischievous phone numbers to the emergency blood donor registry.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Clause 4 -->
+          <div class="legal-clause-card">
+            <div class="clause-header">
+              <span class="clause-num">4</span>
+              <h3 class="clause-title">
+                <span class="lang-kn">ಬೌದ್ಧಿಕ ಆಸ್ತಿ, ಮಾಧ್ಯಮ &amp; ನ್ಯಾಯವ್ಯಾಪ್ತಿ</span>
+                <span class="lang-en">Intellectual Property &amp; Jurisdiction</span>
+              </h3>
+            </div>
+            <p class="clause-text lang-kn">
+              ಡಿವೈಎಫ್ಐ ಲಾಂಛನ, ಅಧಿಕೃತ ಪ್ರಕಟಣೆಗಳು ಮತ್ತು ಪತ್ರಿಕಾ ಹೇಳಿಕೆಗಳು ಸಂಘಟನೆಯ ಬೌದ್ಧಿಕ ಆಸ್ತಿಯಾಗಿವೆ. ಇವುಗಳನ್ನು ಸಾರ್ವಜನಿಕ ಹಿತಾಸಕ್ತಿ ಮತ್ತು ಜಾಗೃತಿಗೆ ಬಳಸಬಹುದು ಆದರೆ ವಾಣಿಜ್ಯ ದುರ್ಬಳಕೆ ನಿಷೇಧಿಸಲಾಗಿದೆ. ಈ ನಿಯಮಾವಳಿಗಳಿಗೆ ಸಂಬಂಧಿಸಿದ ಯಾವುದೇ ಕಾನೂನು ವ್ಯಾಜ್ಯಗಳು ಬೆಂಗಳೂರು ನ್ಯಾಯಾಲಯದ ವ್ಯಾಪ್ತಿಗೆ ಒಳಪಟ್ಟಿರುತ್ತವೆ.
+            </p>
+            <p class="clause-text lang-en">
+              Official emblems, press releases, policy charters, and circulars are published for public education and progressive social organizing. Malicious distortion, misrepresentation, or unauthorized commercial exploitation is prohibited. All disputes shall be subject to the exclusive jurisdiction of the competent courts in Bengaluru, Karnataka, India.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Legal Modal Footer -->
+      <div class="legal-modal-footer">
+        <div class="legal-footer-info">
+          <i class="fa-solid fa-building-flag" style="color:var(--primary);"></i>
+          <span class="lang-kn">ಡಿವೈಎಫ್ಐ ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಮಿತಿ • ಅಧಿಕೃತ ಪ್ರಕಟಣೆ 2026</span>
+          <span class="lang-en">DYFI Karnataka State Committee • Official Publication 2026</span>
+        </div>
+        <div class="legal-footer-actions">
+          <a href="privacy-policy.html" target="_blank" class="btn btn-outline-primary btn-sm" id="legalModalFullPageLink">
+            <span class="lang-kn">ಪೂರ್ಣ ಪುಟದಲ್ಲಿ ಓದಿ <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+            <span class="lang-en">Open Full Page <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+          </a>
+          <button class="btn btn-primary btn-sm" onclick="closeLegalModal()">
+            <span class="lang-kn">ಮುಚ್ಚಿ / Close</span>
+            <span class="lang-en">Close</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Firebase Cloud Database SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>

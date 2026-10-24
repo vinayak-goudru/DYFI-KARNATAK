@@ -171,8 +171,13 @@ const i18nData = {
     footerDistricts: 'Key Districts',
     footerLegal: 'State Secretariat',
     footerTerms: 'Sampangiramanagara, Bengaluru - 560027',
-    footerPrivacy: 'Helpline: +91 9449225636 / +91 9481261229',
-    footerRights: '© 2026 — DYFI Karnataka State Committee. All Rights Reserved.'
+    footerRights: '© 2026 — DYFI Karnataka State Committee. All Rights Reserved.',
+    linkPrivacy: 'Privacy Policy',
+    linkTerms: 'Terms & Conditions',
+    legalModalBadge: 'Official Legal Charter',
+    legalModalTitle: 'DYFI Karnataka — Privacy Policy & Terms',
+    tabPrivacy: 'Privacy Policy',
+    tabTerms: 'Terms & Conditions'
   },
   
   kn: {
@@ -324,8 +329,13 @@ const i18nData = {
     footerDistricts: 'ಪ್ರಮುಖ ಜಿಲ್ಲೆಗಳು',
     footerLegal: 'ರಾಜ್ಯ ಸಚಿವಾಲಯ',
     footerTerms: 'ಸಂಪಂಗಿರಾಮನಗರ, ಬೆಂಗಳೂರು - 560027',
-    footerPrivacy: 'ಸಹಾಯವಾಣಿ: +91 9449225636 / +91 9481261229',
-    footerRights: '© 2026 — ಡಿವೈಎಫ್ಐ ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಮಿತಿ. ಸರ್ವ ಹಕ್ಕುಗಳೂ ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ.'
+    footerRights: '© 2026 — ಡಿವೈಎಫ್ಐ ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಮಿತಿ. ಸರ್ವ ಹಕ್ಕುಗಳೂ ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ.',
+    linkPrivacy: 'ಗೌಪ್ಯತಾ ನೀತಿ',
+    linkTerms: 'ನಿಯಮಗಳು & ಷರತ್ತುಗಳು',
+    legalModalBadge: 'ಅಧಿಕೃತ ನೀತಿ ಸಂಹಿತೆ',
+    legalModalTitle: 'ಡಿವೈಎಫ್ಐ ಕರ್ನಾಟಕ — ಗೌಪ್ಯತಾ ನೀತಿ ಮತ್ತು ನಿಯಮಗಳು',
+    tabPrivacy: 'ಗೌಪ್ಯತಾ ನೀತಿ',
+    tabTerms: 'ನಿಯಮಗಳು & ಷರತ್ತುಗಳು'
   }
 };
 
@@ -344,6 +354,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initContactForm();
   initMobileDrawer();
   initScrollEffects();
+  initLegalModals();
 });
 
 /* ========================================================
@@ -1963,3 +1974,97 @@ function showToast(message) {
       }
     });
   }
+
+  /* ========================================================
+     13. LEGAL POLICIES & TERMS MODAL LOGIC
+     ======================================================== */
+  window.openLegalModal = function(tab) {
+    const modal = document.getElementById('legalModal');
+    if (!modal) {
+      if (tab === 'terms') {
+        window.location.href = 'terms-conditions.html';
+      } else {
+        window.location.href = 'privacy-policy.html';
+      }
+      return;
+    }
+    window.switchLegalTab(tab || 'privacy');
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.closeLegalModal = function() {
+    const modal = document.getElementById('legalModal');
+    if (modal) {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  };
+
+  window.switchLegalTab = function(tab) {
+    const isKn = (typeof currentLang !== 'undefined' ? currentLang : localStorage.getItem('dyfi_lang')) === 'kn';
+    const tabPrivacyBtn = document.getElementById('legalTabPrivacyBtn');
+    const tabTermsBtn = document.getElementById('legalTabTermsBtn');
+    const privacyContent = document.getElementById('legalPrivacyContent');
+    const termsContent = document.getElementById('legalTermsContent');
+    const legalModalTitle = document.getElementById('legalModalMainTitle');
+    const fullPageLink = document.getElementById('legalModalFullPageLink');
+
+    if (tab === 'terms') {
+      if (tabPrivacyBtn) tabPrivacyBtn.classList.remove('active');
+      if (tabTermsBtn) tabTermsBtn.classList.add('active');
+      if (privacyContent) privacyContent.style.display = 'none';
+      if (termsContent) termsContent.style.display = 'block';
+      if (legalModalTitle) {
+        legalModalTitle.innerHTML = isKn 
+          ? '<i class="fa-solid fa-scale-balanced" style="color:var(--primary); margin-right:8px;"></i> ನಿಯಮಗಳು ಮತ್ತು ಷರತ್ತುಗಳು (Terms & Conditions)'
+          : '<i class="fa-solid fa-scale-balanced" style="color:var(--primary); margin-right:8px;"></i> Terms & Conditions';
+      }
+      if (fullPageLink) {
+        fullPageLink.href = 'terms-conditions.html';
+        fullPageLink.innerHTML = isKn 
+          ? '<span>ಪೂರ್ಣ ಪುಟದಲ್ಲಿ ಓದಿ</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>' 
+          : '<span>Open Full Page</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>';
+      }
+    } else {
+      if (tabPrivacyBtn) tabPrivacyBtn.classList.add('active');
+      if (tabTermsBtn) tabTermsBtn.classList.remove('active');
+      if (privacyContent) privacyContent.style.display = 'block';
+      if (termsContent) termsContent.style.display = 'none';
+      if (legalModalTitle) {
+        legalModalTitle.innerHTML = isKn 
+          ? '<i class="fa-solid fa-shield-halved" style="color:var(--primary); margin-right:8px;"></i> ಗೌಪ್ಯತಾ ನೀತಿ (Privacy Policy)'
+          : '<i class="fa-solid fa-shield-halved" style="color:var(--primary); margin-right:8px;"></i> Privacy Policy';
+      }
+      if (fullPageLink) {
+        fullPageLink.href = 'privacy-policy.html';
+        fullPageLink.innerHTML = isKn 
+          ? '<span>ಪೂರ್ಣ ಪುಟದಲ್ಲಿ ಓದಿ</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>' 
+          : '<span>Open Full Page</span> <i class="fa-solid fa-arrow-up-right-from-square"></i>';
+      }
+    }
+
+    const modalBody = document.querySelector('.legal-modal-body');
+    if (modalBody) modalBody.scrollTop = 0;
+  };
+
+  function initLegalModals() {
+    const closeBtn = document.getElementById('closeLegalModal');
+    const modal = document.getElementById('legalModal');
+    if (closeBtn && modal) {
+      closeBtn.addEventListener('click', window.closeLegalModal);
+    }
+    if (modal) {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          window.closeLegalModal();
+        }
+      });
+    }
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        window.closeLegalModal();
+      }
+    });
+  }
+
