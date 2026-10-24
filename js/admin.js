@@ -133,7 +133,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const activeNav = document.querySelector(`.nav-item[data-tab="${tabId}"]`);
     if (activeNav) {
-      topbarTitle.innerText = activeNav.querySelector('span:last-child').innerText;
+      const labelSpan = Array.from(activeNav.querySelectorAll('span')).find(s => !s.classList.contains('nav-icon') && !s.classList.contains('badge-count'));
+      topbarTitle.innerText = labelSpan ? labelSpan.innerText.trim() : activeNav.innerText.trim();
     }
     adminSidebar.classList.remove('open');
 
