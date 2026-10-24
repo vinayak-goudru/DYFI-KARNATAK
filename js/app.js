@@ -136,6 +136,9 @@ const i18nData = {
     joinModalSub: 'Become part of India\'s vanguard progressive democratic youth movement fighting for equality, education, and social harmony.',
     btnDownloadStatement: 'Download Statement PDF <i class="fa-solid fa-download"></i>',
     adminLink: 'Admin Portal',
+    committeesHeroTitle: 'Karnataka <span class="highlight-red">Committees &amp; Units</span>',
+    martyrsHeroTitle: 'Immortal <span class="highlight-red">Martyrs of Struggle</span>',
+    btnPayHomage: 'Pay Floral Homage <i class="fa-solid fa-spa"></i>',
     leadSectionTitle: 'State <span class="highlight-red">Leadership</span>',
     nationalLeadTitle: '<i class="fa-solid fa-flag" style="color:var(--primary,#dc2626); font-size:0.85em; margin-right:4px;"></i> All India / National Leadership',
     stateLeadTitle: '<i class="fa-solid fa-flag" style="color:var(--primary,#dc2626); font-size:0.85em; margin-right:4px;"></i> Karnataka State Leadership',
@@ -152,11 +155,11 @@ const i18nData = {
     
     contactTitle: 'Contact & <span class="highlight-red">District Network</span>',
     officeLabel: 'State Headquarters Address',
-    officeVal: 'DYFI Karnataka State Committee, No. 45, City Railway Station Road, Gandhinagar, Bengaluru - 560009.',
+    officeVal: 'SFI-DYFI OFFICE, C/o: Amma Nilaya, #25, 1st Main Road, 11th Cross, Sampangiramanagara, Bengaluru - 560027.',
     phoneLabel: 'Phone / Helpline',
-    phoneVal: '+91 80 2287 4521 / +91 94481 23456',
+    phoneVal: '+91 9449225636 / +91 9481261229',
     emailLabel: 'Email Address',
-    emailVal: 'dyfikarnataka@gmail.com',
+    emailVal: 'dyfikar1980@gmail.com',
     formName: 'Your Full Name',
     formPhone: 'Mobile Number',
     formDistrict: 'Your District',
@@ -167,8 +170,8 @@ const i18nData = {
     footerQuick: 'Quick Links',
     footerDistricts: 'Key Districts',
     footerLegal: 'State Secretariat',
-    footerTerms: 'Gandhinagar, Bengaluru - 560009',
-    footerPrivacy: 'Helpline: +91 9448123456',
+    footerTerms: 'Sampangiramanagara, Bengaluru - 560027',
+    footerPrivacy: 'Helpline: +91 9449225636 / +91 9481261229',
     footerRights: '© 2026 — DYFI Karnataka State Committee. All Rights Reserved.'
   },
   
@@ -286,6 +289,9 @@ const i18nData = {
     joinModalSub: 'ಯುವಜನರ ಹಕ್ಕುಗಳು, ಶಿಕ್ಷಣ ಮತ್ತು ಸಮಾನ ಸಮಾಜ ನಿರ್ಮಾಣದ ಐತಿಹಾಸಿಕ ಚಳವಳಿಯ ಭಾಗವಾಗಿ. ಸದಸ್ಯತ್ವಕ್ಕಾಗಿ ವಿವರಗಳನ್ನು ಭರ್ತಿ ಮಾಡಿ.',
     btnDownloadStatement: 'ಹೇಳಿಕೆ PDF ಡೌನ್‌ಲೋಡ್ <i class="fa-solid fa-download"></i>',
     adminLink: 'ಅಡ್ಮಿನ್ ಪೋರ್ಟಲ್',
+    committeesHeroTitle: 'ಕರ್ನಾಟಕ <span class="highlight-red">ಸಮಿತಿಗಳು &amp; ಘಟಕಗಳು</span>',
+    martyrsHeroTitle: 'ಹೋರಾಟದ <span class="highlight-red">ಅಮರ ಹುತಾತ್ಮರು</span>',
+    btnPayHomage: 'ಪುಷ್ಪ ನಮನ ಸಲ್ಲಿಸಿ <i class="fa-solid fa-spa"></i>',
     leadSectionTitle: 'ರಾಜ್ಯ <span class="highlight-red">ಮುಖಂಡರು</span>',
     nationalLeadTitle: '<i class="fa-solid fa-flag" style="color:var(--primary,#dc2626); font-size:0.85em; margin-right:4px;"></i> ಅಖಿಲ ಭಾರತ / ರಾಷ್ಟ್ರೀಯ ನಾಯಕತ್ವ',
     stateLeadTitle: '<i class="fa-solid fa-flag" style="color:var(--primary,#dc2626); font-size:0.85em; margin-right:4px;"></i> ಕರ್ನಾಟಕ ರಾಜ್ಯ ನಾಯಕತ್ವ',
@@ -302,11 +308,11 @@ const i18nData = {
     
     contactTitle: 'ಸಂಪರ್ಕಿಸಿ & <span class="highlight-red">ಜಿಲ್ಲಾ ಜಾಲ</span>',
     officeLabel: 'ರಾಜ್ಯ ಕೇಂದ್ರ ಕಚೇರಿ ವಿಳಾಸ',
-    officeVal: 'ಡಿವೈಎಫ್ಐ ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಮಿತಿ, ನಂ. 45, ಸಿಟಿ ರೈಲ್ವೆ ಸ್ಟೇಷನ್ ರಸ್ತೆ, ಗಾಂಧಿನಗರ, ಬೆಂಗಳೂರು - 560009.',
-    phoneLabel: 'ದೂರವಾಣಿ / ಮೊಬೈಲ್',
-    phoneVal: '+91 80 2287 4521 / +91 94481 23456',
+    officeVal: 'SFI-DYFI ಕಚೇರಿ, ಸಿ/ಓ: ಅಮ್ಮ ನಿಲಯ, #25, 1ನೇ ಮುಖ್ಯ ರಸ್ತೆ, 11ನೇ ಕ್ರಾಸ್, ಸಂಪಂಗಿರಾಮನಗರ, ಬೆಂಗಳೂರು - 560027.',
+    phoneLabel: 'ದೂರವಾಣಿ / ಸಹಾಯವಾಣಿ',
+    phoneVal: '+91 9449225636 / +91 9481261229',
     emailLabel: 'ಇಮೇಲ್ ವಿಳಾಸ',
-    emailVal: 'dyfikarnataka@gmail.com',
+    emailVal: 'dyfikar1980@gmail.com',
     formName: 'ನಿಮ್ಮ ಪೂರ್ಣ ಹೆಸರು',
     formPhone: 'ಮೊಬೈಲ್ ಸಂಖ್ಯೆ',
     formDistrict: 'ನಿಮ್ಮ ಜಿಲ್ಲೆ',
@@ -317,8 +323,8 @@ const i18nData = {
     footerQuick: 'ತ್ವರಿತ ಲಿಂಕ್‌ಗಳು',
     footerDistricts: 'ಪ್ರಮುಖ ಜಿಲ್ಲೆಗಳು',
     footerLegal: 'ರಾಜ್ಯ ಸಚಿವಾಲಯ',
-    footerTerms: 'ಗಾಂಧಿನಗರ, ಬೆಂಗಳೂರು - 560009',
-    footerPrivacy: 'ಸಹಾಯವಾಣಿ: +91 9448123456',
+    footerTerms: 'ಸಂಪಂಗಿರಾಮನಗರ, ಬೆಂಗಳೂರು - 560027',
+    footerPrivacy: 'ಸಹಾಯವಾಣಿ: +91 9449225636 / +91 9481261229',
     footerRights: '© 2026 — ಡಿವೈಎಫ್ಐ ಕರ್ನಾಟಕ ರಾಜ್ಯ ಸಮಿತಿ. ಸರ್ವ ಹಕ್ಕುಗಳೂ ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ.'
   }
 };
@@ -904,11 +910,11 @@ function initModals() {
               ? 'ನಿಮ್ಮ ವಿವರಗಳನ್ನು ಡಿವೈಎಫ್ಐ ಕರ್ನಾಟಕ ರಕ್ತದಾನಿ ಡೈರೆಕ್ಟರಿಗೆ ಸೇರಿಸಲಾಗಿದೆ. ತುರ್ತು ಸಂದರ್ಭದಲ್ಲಿ ಸಂಪರ್ಕಿಸಲಾಗುವುದು.' 
               : 'Your details have been successfully registered to the DYFI Karnataka Volunteer Blood Directory.'}
           </p>
-          <div style="background: #fef2f2; border: 1px dashed #ef4444; padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem;">
-            <p style="color: #991b1b; font-weight: 700; font-size: 0.85rem; margin-bottom: 0.2rem;">
+          <div style="background: rgba(220, 38, 38, 0.08); border: 1px dashed var(--primary); padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem;">
+            <p style="color: var(--primary); font-weight: 700; font-size: 0.85rem; margin-bottom: 0.2rem;">
               ${isKn ? 'ತುರ್ತು ರಕ್ತದ ನೆರವಿಗೆ ಸಂಪರ್ಕಿಸಿ:' : 'FOR IMMEDIATE BLOOD EMERGENCY:'}
             </p>
-            <p style="color: #dc2626; font-size: 1.2rem; font-weight: 800;">+91 9448123456</p>
+            <p style="color: var(--primary); font-size: 1.2rem; font-weight: 800;">+91 9449225636 / +91 9481261229</p>
           </div>
           <button type="button" class="btn-primary" style="width: 100%; justify-content: center;" onclick="document.getElementById('bloodModal').classList.remove('active')">
             ${isKn ? 'ಮುಚ್ಚಿ' : 'Close'}
@@ -1484,12 +1490,12 @@ function showToast(message) {
       });
 
       if (filtered.length === 0) {
-        resList.innerHTML = '<div style="grid-column: 1/-1; padding:1rem; text-align:center; color:#94a3b8; font-weight:600;">ಯಾವುದೇ ದಾನಿಗಳು ಕಂಡುಬಂದಿಲ್ಲ. ತುರ್ತು ಸಹಾಯವಾಣಿಗೆ ಕರೆ ಮಾಡಿ: +91 9448123456</div>';
+        resList.innerHTML = '<div style="grid-column: 1/-1; padding:1rem; text-align:center; color:#94a3b8; font-weight:600;">ಯಾವುದೇ ದಾನಿಗಳು ಕಂಡುಬಂದಿಲ್ಲ. ತುರ್ತು ಸಹಾಯವಾಣಿಗೆ ಕರೆ ಮಾಡಿ: +91 9449225636 / +91 9481261229</div>';
       } else {
         resList.innerHTML = filtered.map(d => `
           <div class="donor-result-card">
             <div>
-              <strong style="color:#0f172a; font-size:0.95rem;">${d.name}</strong><br>
+              <strong style="color:var(--text-heading); font-size:0.95rem;">${d.name}</strong><br>
               <small style="color:#64748b;">${d.district} • ${d.date || 'Active'}</small>
             </div>
             <div style="display:flex; align-items:center; gap:0.6rem;">

@@ -27,7 +27,7 @@ const DEFAULT_DYFI_DATA = {
     quoteText_en: 'The revolution is not an apple that falls when it is ripe. You have to make it fall.',
     quoteText_kn: 'ಕ್ರಾಂತಿಯು ಮಾಗಿದಾಗ ಉದುರುವ ಸೇಬಲ್ಲ, ಅದನ್ನು ನೀವೇ ಉದುರಿಸಬೇಕು.',
     quoteAuthor: 'Comrade Che Guevara',
-    officeAddress_en: 'SFI-DYFI OFFICE, C/o: Amma Nilaya, #25, 1st Main Road, 11th Cross, Sanmangiramanagara, Bengaluru - 560027.',
+    officeAddress_en: 'SFI-DYFI OFFICE, C/o: Amma Nilaya, #25, 1st Main Road, 11th Cross, Sampangiramanagara, Bengaluru - 560027.',
     officeAddress_kn: 'ಎಸ್.ಎಫ್.ಐ - ಡಿವೈಎಫ್ಐ ಕಚೇರಿ, ಸಿ/ಒ: ಅಮ್ಮ ನಿಲಯ, #25, 1ನೇ ಮುಖ್ಯ ರಸ್ತೆ, 11ನೇ ಕ್ರಾಸ್, ಸಂಪಂಗಿರಾಮನಗರ, ಬೆಂಗಳೂರು - 560027.',
     phone1: '+91 9449225636',
     phone2: '+91 9481261229',
@@ -88,8 +88,8 @@ const DEFAULT_DYFI_DATA = {
       image: 'images/blood-donation-bg.jpg',
       desc_en: 'Empowering local hospitals with over 5,000 ready voluntary donors during seasonal emergency periods.',
       desc_kn: 'ತುರ್ತು ಪರಿಸ್ಥಿತಿಗಳಲ್ಲಿ ರೋಗಿಗಳಿಗೆ ಉಚಿತ ಹಾಗೂ ತ್ವರಿತ ರಕ್ತ ಒದಗಿಸಲು 5,000ಕ್ಕೂ ಹೆಚ್ಚು ನೋಂದಾಯಿತ ಸ್ವಯಂಸೇವಕರ ನೆಟ್‌ವರ್ಕ್ ಕಾರ್ಯಾಚರಣೆ.',
-      full_en: 'To eliminate commercial exploitation and shortages in blood banks during critical medical emergencies, the DYFI Karnataka Health Cell announced the nationwide expansion of its verified Blood Volunteer Registry. Over 5,000 trained youth volunteers from government and private colleges have registered across 31 districts. Through a dedicated 24/7 central telephone hotline (+91 9448123456), patients and their families can obtain voluntary donors within 30 minutes without paying any mediator fees. The helpline has successfully coordinated over 450 emergency transfusions in coastal and northern Karnataka over the last quarter alone.',
-      full_kn: 'ತುರ್ತು ವೈದ್ಯಕೀಯ ಚಿಕಿತ್ಸೆ ಮತ್ತು ಅಪಘಾತಗಳ ಸಂದರ್ಭದಲ್ಲಿ ರೋಗಿಗಳಿಗೆ ಸಕಾಲದಲ್ಲಿ ರಕ್ತ ಒದಗಿಸುವ ಸದುದ್ದೇಶದಿಂದ ಡಿವೈಎಫ್ಐ ಕರ್ನಾಟಕ ಆರೋಗ್ಯ ಘಟಕವು ತನ್ನ ಡಿಜಿಟಲ್ ಸ್ವಯಂಪ್ರೇರಿತ ರಕ್ತದಾನ ಜಾಲವನ್ನು ರಾಜ್ಯಾದ್ಯಂತ ವಿಸ್ತರಿಸಿದೆ. ರಾಜ್ಯದ 31 ಜಿಲ್ಲೆಗಳಿಂದ 5,000ಕ್ಕೂ ಹೆಚ್ಚು ವಿದ್ಯಾರ್ಥಿಗಳು ಮತ್ತು ಯುವಜನರು ನೋಂದಣಿ ಮಾಡಿಕೊಂಡಿದ್ದಾರೆ. ದಿನದ 24 ಗಂಟೆಯೂ ಕಾರ್ಯಾಚರಿಸುವ ತುರ್ತು ಸಹಾಯವಾಣಿ (+91 9448123456) ಮೂಲಕ ಯಾವುದೇ ರೋಗಿಗೂ ಅರ್ಧ ಗಂಟೆಯೊಳಗೆ ಸಂಪೂರ್ಣ ಉಚಿತವಾಗಿ ರಕ್ತದಾನಿಗಳನ್ನು ಒದಗಿಸಲಾಗುತ್ತಿದೆ. ಕಳೆದ ಮೂರು ತಿಂಗಳಲ್ಲಿ ಕರಾವಳಿ ಮತ್ತು ಉತ್ತರ ಕರ್ನಾಟಕ ಭಾಗದಲ್ಲಿ 450ಕ್ಕೂ ಹೆಚ್ಚು ತುರ್ತು ರಕ್ತದಾನ ಪ್ರಕರಣಗಳನ್ನು ಈ ನೆಟ್‌ವರ್ಕ್ ಯಶಸ್ವಿಯಾಗಿ ನಿರ್ವಹಿಸಿದೆ.'
+      full_en: 'To eliminate commercial exploitation and shortages in blood banks during critical medical emergencies, the DYFI Karnataka Health Cell announced the nationwide expansion of its verified Blood Volunteer Registry. Over 5,000 trained youth volunteers from government and private colleges have registered across 31 districts. Through a dedicated 24/7 central telephone hotline (+91 9449225636), patients and their families can obtain voluntary donors within 30 minutes without paying any mediator fees. The helpline has successfully coordinated over 450 emergency transfusions in coastal and northern Karnataka over the last quarter alone.',
+      full_kn: 'ತುರ್ತು ವೈದ್ಯಕೀಯ ಚಿಕಿತ್ಸೆ ಮತ್ತು ಅಪಘಾತಗಳ ಸಂದರ್ಭದಲ್ಲಿ ರೋಗಿಗಳಿಗೆ ಸಕಾಲದಲ್ಲಿ ರಕ್ತ ಒದಗಿಸುವ ಸದುದ್ದೇಶದಿಂದ ಡಿವೈಎಫ್ಐ ಕರ್ನಾಟಕ ಆರೋಗ್ಯ ಘಟಕವು ತನ್ನ ಡಿಜಿಟಲ್ ಸ್ವಯಂಪ್ರೇರಿತ ರಕ್ತದಾನ ಜಾಲವನ್ನು ರಾಜ್ಯಾದ್ಯಂತ ವಿಸ್ತರಿಸಿದೆ. ರಾಜ್ಯದ 31 ಜಿಲ್ಲೆಗಳಿಂದ 5,000ಕ್ಕೂ ಹೆಚ್ಚು ವಿದ್ಯಾರ್ಥಿಗಳು ಮತ್ತು ಯುವಜನರು ನೋಂದಣಿ ಮಾಡಿಕೊಂಡಿದ್ದಾರೆ. ದಿನದ 24 ಗಂಟೆಯೂ ಕಾರ್ಯಾಚರಿಸುವ ತುರ್ತು ಸಹಾಯವಾಣಿ (+91 9449225636) ಮೂಲಕ ಯಾವುದೇ ರೋಗಿಗೂ ಅರ್ಧ ಗಂಟೆಯೊಳಗೆ ಸಂಪೂರ್ಣ ಉಚಿತವಾಗಿ ರಕ್ತದಾನಿಗಳನ್ನು ಒದಗಿಸಲಾಗುತ್ತಿದೆ. ಕಳೆದ ಮೂರು ತಿಂಗಳಲ್ಲಿ ಕರಾವಳಿ ಮತ್ತು ಉತ್ತರ ಕರ್ನಾಟಕ ಭಾಗದಲ್ಲಿ 450ಕ್ಕೂ ಹೆಚ್ಚು ತುರ್ತು ರಕ್ತದಾನ ಪ್ರಕರಣಗಳನ್ನು ಈ ನೆಟ್‌ವರ್ಕ್ ಯಶಸ್ವಿಯಾಗಿ ನಿರ್ವಹಿಸಿದೆ.'
     }
   ],
 
