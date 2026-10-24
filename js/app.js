@@ -1185,10 +1185,8 @@ function showToast(message) {
       const tickerTextEl = document.querySelector('.ticker-text');
       if (tickerTextEl && tickerData.length > 0) {
         const activeItems = tickerData.filter(t => t.active !== false);
-        const itemToUse = activeItems[0] || tickerData[0];
-        if (itemToUse) {
-          tickerTextEl.innerText = isKn ? itemToUse.text_kn : itemToUse.text_en;
-        }
+        const itemsToUse = activeItems.length > 0 ? activeItems : tickerData;
+        tickerTextEl.innerText = itemsToUse.map(t => isKn ? (t.text_kn || t.text_en) : (t.text_en || t.text_kn)).join('   ✦   ');
       }
     } catch (e) {
       console.warn('Ticker sync error:', e);
@@ -1233,15 +1231,14 @@ function showToast(message) {
           emailValEl.innerText = sc.email;
         }
 
-        // Update footer contact values too
-        const footerContactBox = document.querySelector('.footer-col:last-child');
-        if (footerContactBox) {
-          const items = footerContactBox.querySelectorAll('.footer-contact-item span:last-child');
-          if (items.length >= 3) {
-            items[0].innerText = isKn ? sc.officeAddress_kn : sc.officeAddress_en;
-            items[1].innerText = `${sc.phone1} / ${sc.phone2}`;
-            items[2].innerText = ` ${sc.email}`;
-          }
+        // Update footer contact values
+        const footerContactItems = document.querySelectorAll('.footer-contact-item span:last-child');
+        if (footerContactItems.length >= 3) {
+          footerContactItems[0].innerText = isKn ? sc.officeAddress_kn : sc.officeAddress_en;
+          footerContactItems[1].innerText = `${sc.phone1} / ${sc.phone2}`;
+          footerContactItems[2].innerText = ` ${sc.email}`;
+        }
+
         // Update Video Showcase Banner dynamically
         const vTitle = document.getElementById('videoBannerTitle');
         const vSub = document.getElementById('videoBannerSub');
@@ -1284,8 +1281,8 @@ function showToast(message) {
                 <span class="card-img-zoom-hint"><i class="fa-solid fa-magnifying-glass"></i> ${isKn ? 'ಪೂರ್ಣ ವೀಕ್ಷಿಸಿ' : 'View Full'}</span>
               </div>
               <div class="card-body">
-                <h3 class="card-title">${isKn ? a.title_kn : a.title_en}</h3>
-                <p class="card-desc">${isKn ? a.desc_kn : a.desc_en}</p>
+                <h3 class="card-title">${isKn ? (a.title_kn || a.title_en) : (a.title_en || a.title_kn)}</h3>
+                <p class="card-desc">${isKn ? (a.desc_kn || a.desc_en) : (a.desc_en || a.desc_kn)}</p>
                 <a href="javascript:void(0)" class="card-link" onclick="openContentDetails('activity', '${a.id || idx}'); event.stopPropagation();">${isKn ? 'ಪೂರ್ಣ ವಿವರ ವೀಕ್ಷಿಸಿ <i class="fa-solid fa-arrow-right"></i>' : 'View Details <i class="fa-solid fa-arrow-right"></i>'}</a>
               </div>
             </article>
@@ -1313,8 +1310,8 @@ function showToast(message) {
                 <span class="card-img-zoom-hint"><i class="fa-solid fa-magnifying-glass"></i> ${isKn ? 'ಪೂರ್ಣ ವೀಕ್ಷಿಸಿ' : 'View Full'}</span>
               </div>
               <div class="card-body">
-                <h3 class="card-title">${isKn ? c.title_kn : c.title_en}</h3>
-                <p class="card-desc">${isKn ? c.desc_kn : c.desc_en}</p>
+                <h3 class="card-title">${isKn ? (c.title_kn || c.title_en) : (c.title_en || c.title_kn)}</h3>
+                <p class="card-desc">${isKn ? (c.desc_kn || c.desc_en) : (c.desc_en || c.desc_kn)}</p>
                 <a href="javascript:void(0)" class="card-link" onclick="openContentDetails('campaign', '${c.id || idx}'); event.stopPropagation();">${isKn ? 'ಪೂರ್ಣ ವಿವರ ವೀಕ್ಷಿಸಿ <i class="fa-solid fa-arrow-right"></i>' : 'Read Full Details <i class="fa-solid fa-arrow-right"></i>'}</a>
               </div>
             </article>
@@ -1342,8 +1339,8 @@ function showToast(message) {
                   <span><i class="fa-solid fa-calendar-days"></i> ${n.date || '2026-10-15'}</span>
                   <span><i class="fa-solid fa-tag"></i> ${n.category || 'News'}</span>
                 </div>
-                <h3 class="news-title">${isKn ? n.title_kn : n.title_en}</h3>
-                <p class="news-excerpt">${isKn ? n.desc_kn : n.desc_en}</p>
+                <h3 class="news-title">${isKn ? (n.title_kn || n.title_en) : (n.title_en || n.title_kn)}</h3>
+                <p class="news-excerpt">${isKn ? (n.desc_kn || n.desc_en) : (n.desc_en || n.desc_kn)}</p>
                 <a href="javascript:void(0)" class="btn-read-article" onclick="openContentDetails('news', '${n.id || idx}'); event.stopPropagation();">${isKn ? 'ಪೂರ್ಣ ವಿವರ ಓದಿ <i class="fa-solid fa-arrow-right"></i>' : 'Read Full Story <i class="fa-solid fa-arrow-right"></i>'}</a>
               </div>
             </article>
@@ -1496,6 +1493,20 @@ function showToast(message) {
       renderDynamicDataStoreContent();
     }
   });
+
+  // Modern BroadcastChannel real-time sync across tabs
+  if (typeof BroadcastChannel !== 'undefined') {
+    try {
+      const liveSyncChannel = new BroadcastChannel('dyfi_live_sync_bus');
+      liveSyncChannel.onmessage = (e) => {
+        if (e && e.data && e.data.key) {
+          renderDynamicDataStoreContent();
+        }
+      };
+    } catch (err) {
+      console.debug('BroadcastChannel registration:', err);
+    }
+  }
 
   // Local event listener when updated within same tab
   window.addEventListener('dyfi_data_updated', () => {

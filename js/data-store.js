@@ -1570,8 +1570,18 @@ class DyfiDataStore {
   static set(key, value) {
     try {
       localStorage.setItem(key, JSON.stringify(value));
-      if (typeof window !== 'undefined' && typeof window.dispatchEvent === 'function' && typeof CustomEvent === 'function') {
-        window.dispatchEvent(new CustomEvent('dyfi_data_updated', { detail: { key, value } }));
+      if (typeof window !== 'undefined') {
+        if (typeof window.dispatchEvent === 'function' && typeof CustomEvent === 'function') {
+          window.dispatchEvent(new CustomEvent('dyfi_data_updated', { detail: { key, value } }));
+        }
+        try {
+          if (typeof BroadcastChannel !== 'undefined') {
+            if (!window._dyfiLiveBus) {
+              window._dyfiLiveBus = new BroadcastChannel('dyfi_live_sync_bus');
+            }
+            window._dyfiLiveBus.postMessage({ key, value });
+          }
+        } catch (bErr) {}
       }
       // Real-time Cloud Database synchronization (Firebase)
       if (typeof window !== 'undefined' && window.DyfiFirebase && window.DyfiFirebase.isAvailable()) {
@@ -1606,17 +1616,40 @@ class DyfiDataStore {
       }
     });
 
-    // Auto-sync from Firebase cloud if connected
+    // Setup BroadcastChannel receiver in all tabs
+    if (typeof window !== 'undefined' && typeof BroadcastChannel !== 'undefined') {
+      try {
+        if (!window._dyfiLiveBus) {
+          window._dyfiLiveBus = new BroadcastChannel('dyfi_live_sync_bus');
+        }
+        window._dyfiLiveBus.onmessage = (event) => {
+          if (event && event.data && event.data.key) {
+            localStorage.setItem(event.data.key, JSON.stringify(event.data.value));
+            window.dispatchEvent(new CustomEvent('dyfi_data_updated', { detail: event.data }));
+          }
+        };
+      } catch (bErr) {}
+    }
+
+    // Auto-sync from Firebase cloud & subscribe to real-time changes
     if (typeof window !== 'undefined' && window.DyfiFirebase) {
       setTimeout(() => {
         if (window.DyfiFirebase.isAvailable()) {
           Object.keys(DYFI_DATA_KEYS).forEach(async (k) => {
             const sk = DYFI_DATA_KEYS[k];
+            // 1. Initial cloud fetch
             const cloudPayload = await window.DyfiFirebase.getCollection(sk);
             if (cloudPayload) {
               localStorage.setItem(sk, JSON.stringify(cloudPayload));
               window.dispatchEvent(new CustomEvent('dyfi_data_updated', { detail: { key: sk, value: cloudPayload } }));
             }
+            // 2. Real-time live listener from Firebase
+            window.DyfiFirebase.onCollectionChange(sk, (liveData) => {
+              if (liveData) {
+                localStorage.setItem(sk, JSON.stringify(liveData));
+                window.dispatchEvent(new CustomEvent('dyfi_data_updated', { detail: { key: sk, value: liveData } }));
+              }
+            });
           });
         }
       }, 500);

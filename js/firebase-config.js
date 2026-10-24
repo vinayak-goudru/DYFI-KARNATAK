@@ -36,25 +36,56 @@ window.DyfiFirebase = {
           }
         }
         this.initialized = true;
-        console.log('✅ DYFI Karnataka - Firebase Database Connected Successfully');
-        this.updateStatusBadge(true);
+
+        if (this.db) {
+          this.probeCloudHealth();
+        }
       }
     } catch (err) {
       console.warn('Firebase init warning:', err);
-      this.updateStatusBadge(false);
+      this.updateStatusBadge(false, 'Local Storage Mode');
     }
+  },
+
+  probeCloudHealth() {
+    if (!this.db) return;
+    this.db.collection('dyfi_data').doc('__health__').get()
+      .then(() => {
+        this.cloudReady = true;
+        this.updateStatusBadge(true, 'Firebase Cloud Connected');
+        console.log('✅ Firebase Cloud Firestore is active & synced');
+      })
+      .catch((err) => {
+        this.cloudReady = false;
+        console.warn('Firebase status:', err.message);
+        if (err.code === 'permission-denied' || (err.message && err.message.includes('has not been used'))) {
+          this.updateStatusBadge(false, 'Click to Activate Firestore in Firebase Console');
+        } else {
+          this.updateStatusBadge(false, 'Local Storage Mode');
+        }
+      });
   },
 
   isAvailable() {
     return this.initialized && this.db !== null;
   },
 
-  updateStatusBadge(connected) {
+  updateStatusBadge(connected, customLabel) {
     const badge = document.getElementById('firebaseStatusBadge');
-    if (badge) {
-      badge.innerHTML = connected
-        ? '<span class="status-indicator online"><i class="fa-solid fa-cloud"></i> Firebase Cloud Connected</span>'
-        : '<span class="status-indicator offline"><i class="fa-solid fa-hard-drive"></i> Local Storage Mode</span>';
+    if (!badge) return;
+    if (connected) {
+      badge.style.background = 'rgba(34,197,94,0.12)';
+      badge.style.color = '#22c55e';
+      badge.style.border = '1px solid rgba(34,197,94,0.3)';
+      badge.innerHTML = `<i class="fa-solid fa-cloud" style="margin-right:6px;"></i> ${customLabel || 'Firebase Cloud Connected'}`;
+    } else {
+      const isNeedsEnable = customLabel && customLabel.includes('Firebase Console');
+      badge.style.background = isNeedsEnable ? 'rgba(245,158,11,0.15)' : 'rgba(148,163,184,0.12)';
+      badge.style.color = isNeedsEnable ? '#f59e0b' : '#94a3b8';
+      badge.style.border = isNeedsEnable ? '1px solid rgba(245,158,11,0.4)' : '1px solid rgba(148,163,184,0.3)';
+      badge.innerHTML = isNeedsEnable
+        ? `<a href="https://console.firebase.google.com/project/dyfikarnataka-7942d/firestore" target="_blank" style="color:#f59e0b; text-decoration:none;"><i class="fa-solid fa-triangle-exclamation" style="margin-right:6px;"></i> Activate Firestore in Firebase Console <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:0.8em;"></i></a>`
+        : `<i class="fa-solid fa-hard-drive" style="margin-right:6px;"></i> ${customLabel || 'Local Storage Mode'}`;
     }
   },
 
