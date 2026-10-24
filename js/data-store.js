@@ -15,7 +15,8 @@ const DYFI_DATA_KEYS = {
   BLOOD_DONORS: 'dyfi_kar_blood_donors',
   MESSAGES: 'dyfi_kar_messages',
   AUTH: 'dyfi_kar_admin_auth',
-  DISTRICTS: 'dyfi_kar_districts'
+  DISTRICTS: 'dyfi_kar_districts',
+  ACTIVITIES: 'dyfi_kar_activities'
 };
 
 const DEFAULT_DYFI_DATA = {
@@ -36,7 +37,13 @@ const DEFAULT_DYFI_DATA = {
     socialFb: 'https://www.facebook.com/share/14nAFsBHkYR/',
     socialInsta: 'https://instagram.com/dyfi_karnataka',
     socialYt: 'https://youtube.com/@dyfikarnataka',
-    socialX: 'https://twitter.com/dyfikarnataka'
+    socialX: 'https://twitter.com/dyfikarnataka',
+    videoTitle_en: 'Moments of Struggle: Highlights from State Youth Conventions',
+    videoTitle_kn: 'ಡಿವೈಎಫ್ಐ ಕರ್ನಾಟಕ ರಾಜ್ಯ ಯುವ ಸಮಾವೇಶದ ಪ್ರಮುಖ ಕ್ಷಣಗಳು',
+    videoSub_en: 'Live footage capturing thousands of energetic youth, college students, and progressive citizens demanding employment guarantee and public welfare.',
+    videoSub_kn: 'ಲಕ್ಷಾಂತರ ವಿದ್ಯಾರ್ಥಿಗಳು ಮತ್ತು ಯುವಜನರನ್ನು ಒಗ್ಗೂಡಿಸಿ ಉದ್ಯೋಗ ಮತ್ತು ಶಿಕ್ಷಣಕ್ಕಾಗಿ ನಡೆದ ಬೃಹತ್ ಸಮಾವೇಶದ ನೇರ ದೃಶ್ಯಾವಳಿಗಳು.',
+    videoThumb: 'images/hero-banner-1.jpg',
+    videoUrl: 'https://youtube.com/@dyfikarnataka'
   },
 
   ticker: [
@@ -90,6 +97,45 @@ const DEFAULT_DYFI_DATA = {
       desc_kn: 'ತುರ್ತು ಪರಿಸ್ಥಿತಿಗಳಲ್ಲಿ ರೋಗಿಗಳಿಗೆ ಉಚಿತ ಹಾಗೂ ತ್ವರಿತ ರಕ್ತ ಒದಗಿಸಲು 5,000ಕ್ಕೂ ಹೆಚ್ಚು ನೋಂದಾಯಿತ ಸ್ವಯಂಸೇವಕರ ನೆಟ್‌ವರ್ಕ್ ಕಾರ್ಯಾಚರಣೆ.',
       full_en: 'To eliminate commercial exploitation and shortages in blood banks during critical medical emergencies, the DYFI Karnataka Health Cell announced the nationwide expansion of its verified Blood Volunteer Registry. Over 5,000 trained youth volunteers from government and private colleges have registered across 31 districts. Through a dedicated 24/7 central telephone hotline (+91 9449225636), patients and their families can obtain voluntary donors within 30 minutes without paying any mediator fees. The helpline has successfully coordinated over 450 emergency transfusions in coastal and northern Karnataka over the last quarter alone.',
       full_kn: 'ತುರ್ತು ವೈದ್ಯಕೀಯ ಚಿಕಿತ್ಸೆ ಮತ್ತು ಅಪಘಾತಗಳ ಸಂದರ್ಭದಲ್ಲಿ ರೋಗಿಗಳಿಗೆ ಸಕಾಲದಲ್ಲಿ ರಕ್ತ ಒದಗಿಸುವ ಸದುದ್ದೇಶದಿಂದ ಡಿವೈಎಫ್ಐ ಕರ್ನಾಟಕ ಆರೋಗ್ಯ ಘಟಕವು ತನ್ನ ಡಿಜಿಟಲ್ ಸ್ವಯಂಪ್ರೇರಿತ ರಕ್ತದಾನ ಜಾಲವನ್ನು ರಾಜ್ಯಾದ್ಯಂತ ವಿಸ್ತರಿಸಿದೆ. ರಾಜ್ಯದ 31 ಜಿಲ್ಲೆಗಳಿಂದ 5,000ಕ್ಕೂ ಹೆಚ್ಚು ವಿದ್ಯಾರ್ಥಿಗಳು ಮತ್ತು ಯುವಜನರು ನೋಂದಣಿ ಮಾಡಿಕೊಂಡಿದ್ದಾರೆ. ದಿನದ 24 ಗಂಟೆಯೂ ಕಾರ್ಯಾಚರಿಸುವ ತುರ್ತು ಸಹಾಯವಾಣಿ (+91 9449225636) ಮೂಲಕ ಯಾವುದೇ ರೋಗಿಗೂ ಅರ್ಧ ಗಂಟೆಯೊಳಗೆ ಸಂಪೂರ್ಣ ಉಚಿತವಾಗಿ ರಕ್ತದಾನಿಗಳನ್ನು ಒದಗಿಸಲಾಗುತ್ತಿದೆ. ಕಳೆದ ಮೂರು ತಿಂಗಳಲ್ಲಿ ಕರಾವಳಿ ಮತ್ತು ಉತ್ತರ ಕರ್ನಾಟಕ ಭಾಗದಲ್ಲಿ 450ಕ್ಕೂ ಹೆಚ್ಚು ತುರ್ತು ರಕ್ತದಾನ ಪ್ರಕರಣಗಳನ್ನು ಈ ನೆಟ್‌ವರ್ಕ್ ಯಶಸ್ವಿಯಾಗಿ ನಿರ್ವಹಿಸಿದೆ.'
+    }
+  ],
+
+  activities: [
+    {
+      id: 'act1',
+      title_en: 'Bengaluru State Youth Convention',
+      title_kn: 'ಬೆಂಗಳೂರು ರಾಜ್ಯ ಮಟ್ಟದ ಯುವ ಸಮಾವೇಶ',
+      date: '2026-08-01',
+      badge: 'Activity',
+      image: 'images/hero-banner-2.jpg',
+      desc_en: 'Thousands of young delegates from all 31 Karnataka districts assembled to formulate proactive youth policies.',
+      desc_kn: 'ಕರ್ನಾಟಕದ 31 ಜಿಲ್ಲೆಗಳಿಂದ ಸಹಸ್ರಾರು ಯುವ ಪ್ರತಿನಿಧಿಗಳು ಪಾಲ್ಗೊಂಡು ಯುವ ನೀತಿ ಕುರಿತು ಚರ್ಚಿಸಿದ ಐತಿಹಾಸಿಕ ಸಮಾವೇಶ.',
+      full_en: 'Thousands of young delegates from all 31 Karnataka districts assembled in Bengaluru to formulate proactive youth policies, discuss unemployment solutions, and strengthen grassroots youth organizing.',
+      full_kn: 'ಬೆಂಗಳೂರಿನಲ್ಲಿ ನಡೆದ ರಾಜ್ಯ ಮಟ್ಟದ ಯುವ ಸಮಾವೇಶದಲ್ಲಿ ಕರ್ನಾಟಕದ 31 ಜಿಲ್ಲೆಗಳಿಂದ ಸಾವಿರಾರು ಯುವ ಪ್ರತಿನಿಧಿಗಳು ಭಾಗವಹಿಸಿ ಉದ್ಯೋಗ ನೀತಿ, ಶಿಕ್ಷಣ ಮತ್ತು ಯುವಜನರ ಭವಿಷ್ಯದ ಕುರಿತು ಮಹತ್ವದ ನಿರ್ಣಯಗಳನ್ನು ಕೈಗೊಂಡರು.'
+    },
+    {
+      id: 'act2',
+      title_en: 'Flood Relief & Rehabilitation Assistance',
+      title_kn: 'ಪ್ರವಾಹ ಸಂತ್ರಸ್ತರ ಪುನರ್ವಸತಿ ನೆರವು',
+      date: '2026-07-15',
+      badge: 'Activity',
+      image: 'images/hero-banner-3.jpg',
+      desc_en: 'DYFI volunteer squads deployed to distribute relief kits and rehabilitate flood-affected villages in North Karnataka.',
+      desc_kn: 'ಉತ್ತರ ಕರ್ನಾಟಕ ಮತ್ತು ಮಲೆನಾಡು ಭಾಗದ ಪ್ರವಾಹ ಪೀಡಿತ ಗ್ರಾಮಗಳಲ್ಲಿ ಡಿವೈಎಫ್ಐ ಸ್ವಯಂಸೇವಕರಿಂದ ಪರಿಹಾರ ಸಾಮಗ್ರಿ ವಿತರಣೆ.',
+      full_en: 'DYFI volunteer squads deployed across North Karnataka and Malenadu regions to distribute food, dry rations, medicines, and rebuild shelters for flood-affected families.',
+      full_kn: 'ಉತ್ತರ ಕರ್ನಾಟಕ ಹಾಗೂ ಮಲೆನಾಡು ಭಾಗದಲ್ಲಿ ನೆರೆ ಸಂತ್ರಸ್ತರಿಗೆ ನೆರವಾಗಲು ಡಿವೈಎಫ್ಐ ತಂಡಗಳು ಹಗಲಿರುಳು ಶ್ರಮಿಸಿ ಆಹಾರ, ಔಷಧ ಹಾಗೂ ಅಗತ್ಯ ಪರಿಹಾರ ಸಾಮಗ್ರಿಗಳನ್ನು ವಿತರಿಸಿ ಮನೆಗಳ ದುರಸ್ತಿ ಕಾರ್ಯ ಕೈಗೊಂಡವು.'
+    },
+    {
+      id: 'act3',
+      title_en: 'Free Public Health Diagnostics Camps',
+      title_kn: 'ಉಚಿತ ಸಾರ್ವಜನಿಕ ಆರೋಗ್ಯ ಮತ್ತು ತಪಾಸಣೆ ಶಿಬಿರ',
+      date: '2026-06-28',
+      badge: 'Activity',
+      image: 'images/gallery-1.jpg',
+      desc_en: 'Preventive wellness camps organized in underprivileged areas in collaboration with progressive doctors and institutions.',
+      desc_kn: 'ಹಿಂದುಳಿದ ಪ್ರದೇಶಗಳ ಜನರಿಗಾಗಿ ನುರಿತ ವೈದ್ಯರ ಸಹಯೋಗದೊಂದಿಗೆ ಉಚಿತ ತಪಾಸಣೆ ಹಾಗೂ ಔಷಧ ವಿತರಣಾ ಶಿಬಿರಗಳು.',
+      full_en: 'Preventive wellness camps organized across rural and working-class settlements providing free diagnostics, general checkups, and free essential medicines.',
+      full_kn: 'ಹಿಂದುಳಿದ ಬಡಾವಣೆಗಳು ಹಾಗೂ ಗ್ರಾಮೀಣ ಪ್ರದೇಶಗಳಲ್ಲಿ ನುರಿತ ವೈದ್ಯರ ಸಹಕಾರದೊಂದಿಗೆ ಉಚಿತ ಆರೋಗ್ಯ ತಪಾಸಣೆ, ರಕ್ತದೊತ್ತಡ, ಮಧುಮೇಹ ಪರೀಕ್ಷೆ ಹಾಗೂ ಉಚಿತ ಔಷಧ ವಿತರಣಾ ಶಿಬಿರಗಳನ್ನು ಆಯೋಜಿಸಲಾಯಿತು.'
     }
   ],
 
@@ -1527,6 +1573,10 @@ class DyfiDataStore {
       if (typeof window !== 'undefined' && typeof window.dispatchEvent === 'function' && typeof CustomEvent === 'function') {
         window.dispatchEvent(new CustomEvent('dyfi_data_updated', { detail: { key, value } }));
       }
+      // Real-time Cloud Database synchronization (Firebase)
+      if (typeof window !== 'undefined' && window.DyfiFirebase && window.DyfiFirebase.isAvailable()) {
+        window.DyfiFirebase.saveCollection(key, value).catch(err => console.warn('Cloud sync error:', err));
+      }
       return true;
     } catch (e) {
       console.error('Storage write failed for', key, e);
@@ -1551,9 +1601,26 @@ class DyfiDataStore {
           case DYFI_DATA_KEYS.BLOOD_DONORS: this.set(storageKey, DEFAULT_DYFI_DATA.bloodDonors); break;
           case DYFI_DATA_KEYS.MESSAGES: this.set(storageKey, DEFAULT_DYFI_DATA.messages); break;
           case DYFI_DATA_KEYS.DISTRICTS: this.set(storageKey, DEFAULT_DYFI_DATA.districts); break;
+          case DYFI_DATA_KEYS.ACTIVITIES: this.set(storageKey, DEFAULT_DYFI_DATA.activities); break;
         }
       }
     });
+
+    // Auto-sync from Firebase cloud if connected
+    if (typeof window !== 'undefined' && window.DyfiFirebase) {
+      setTimeout(() => {
+        if (window.DyfiFirebase.isAvailable()) {
+          Object.keys(DYFI_DATA_KEYS).forEach(async (k) => {
+            const sk = DYFI_DATA_KEYS[k];
+            const cloudPayload = await window.DyfiFirebase.getCollection(sk);
+            if (cloudPayload) {
+              localStorage.setItem(sk, JSON.stringify(cloudPayload));
+              window.dispatchEvent(new CustomEvent('dyfi_data_updated', { detail: { key: sk, value: cloudPayload } }));
+            }
+          });
+        }
+      }, 500);
+    }
 
     // Auto-normalize site content to ensure Kannada corrections take effect immediately
     const sc = this.get(DYFI_DATA_KEYS.SITE_CONTENT);
@@ -1606,6 +1673,7 @@ class DyfiDataStore {
     this.set(DYFI_DATA_KEYS.BLOOD_DONORS, DEFAULT_DYFI_DATA.bloodDonors);
     this.set(DYFI_DATA_KEYS.MESSAGES, DEFAULT_DYFI_DATA.messages);
     this.set(DYFI_DATA_KEYS.DISTRICTS, DEFAULT_DYFI_DATA.districts);
+    this.set(DYFI_DATA_KEYS.ACTIVITIES, DEFAULT_DYFI_DATA.activities);
     return true;
   }
 }

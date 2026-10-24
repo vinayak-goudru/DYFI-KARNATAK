@@ -346,7 +346,7 @@
         <a href="#activities" class="btn-view-all" data-i18n="btnViewAll">ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸಿ <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
       </div>
 
-      <div class="activities-grid">
+      <div class="activities-grid" id="activitiesGridContainer">
         <!-- Activity Card 1 -->
         <article class="campaign-card">
           <div class="card-img-wrap">
@@ -375,7 +375,7 @@
             </div>
           </div>
           <div class="card-body">
-            <h3 class="card-title" data-i18n="act1Title">ಪ್ರವಾಹ ಸಂತ್ರಸ್ತರ ಪುನರ್ವಸತಿ ನೆರವು</h3>
+            <h3 class="card-title" data-i18n="act2Title">ಪ್ರವಾಹ ಸಂತ್ರಸ್ತರ ಪುನರ್ವಸತಿ ನೆರವು</h3>
             <p class="card-desc" data-i18n="act2Desc">
               ಉತ್ತರ ಕರ್ನಾಟಕ ಮತ್ತು ಮಲೆನಾಡು ಭಾಗದ ಪ್ರವಾಹ ಪೀಡಿತ ಗ್ರಾಮಗಳಲ್ಲಿ ಡಿವೈಎಫ್ಐ ಸ್ವಯಂಸೇವಕರಿಂದ ಪರಿಹಾರ ಸಾಮಗ್ರಿ ವಿತರಣೆ.
             </p>
@@ -518,14 +518,14 @@
         <h2 class="section-title" style="color:#ffffff;" data-i18n="videoSectionTitle">ಯುವಜನ <span
             class="highlight-red">ರ‍್ಯಾಲಿಗಳು &amp; ವೀಡಿಯೋಗಳು</span></h2>
       </div>
-      <div class="video-banner-box">
+      <div class="video-banner-box" id="videoBannerBox">
         <div class="video-banner-media">
-          <img src="images/hero-banner-1.jpg" alt="State Convention Video Thumbnail">
+          <img src="images/hero-banner-1.jpg" alt="State Convention Video Thumbnail" id="videoBannerThumb">
           <div class="video-banner-overlay">
             <button class="video-play-btn" id="btnPlayMainVideo" aria-label="Play video">▶</button>
-            <h3 class="video-banner-title" data-i18n="videoMainTitle">ಡಿವೈಎಫ್ಐ ಕರ್ನಾಟಕ ರಾಜ್ಯ ಯುವ ಸಮಾವೇಶದ ಪ್ರಮುಖ ಕ್ಷಣಗಳು
+            <h3 class="video-banner-title" id="videoBannerTitle" data-i18n="videoMainTitle">ಡಿವೈಎಫ್ಐ ಕರ್ನಾಟಕ ರಾಜ್ಯ ಯುವ ಸಮಾವೇಶದ ಪ್ರಮುಖ ಕ್ಷಣಗಳು
             </h3>
-            <p class="video-banner-sub" data-i18n="videoMainSub">ಲಕ್ಷಾಂತರ ವಿದ್ಯಾರ್ಥಿಗಳು ಮತ್ತು ಯುವಜನರನ್ನು ಒಗ್ಗೂಡಿಸಿ
+            <p class="video-banner-sub" id="videoBannerSub" data-i18n="videoMainSub">ಲಕ್ಷಾಂತರ ವಿದ್ಯಾರ್ಥಿಗಳು ಮತ್ತು ಯುವಜನರನ್ನು ಒಗ್ಗೂಡಿಸಿ
               ಉದ್ಯೋಗ ಮತ್ತು ಶಿಕ್ಷಣಕ್ಕಾಗಿ ನಡೆದ ಬೃಹತ್ ಸಮಾವೇಶದ ನೇರ ದೃಶ್ಯಾವಳಿಗಳು.</p>
           </div>
         </div>
@@ -1249,6 +1249,12 @@
       </a>
     </div>
   </aside>
+
+  <!-- Firebase Cloud Database SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics-compat.js"></script>
+  <script src="js/firebase-config.js"></script>
 
   <!-- Application Script -->
   <script src="js/data-store.js"></script>

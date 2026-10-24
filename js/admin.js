@@ -140,6 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (triggerAdd) {
       setTimeout(() => {
         if (tabId === 'news') document.getElementById('btnOpenAddNews').click();
+        if (tabId === 'activities') document.getElementById('btnOpenAddActivity').click();
         if (tabId === 'statements') document.getElementById('btnOpenAddStatement').click();
         if (tabId === 'campaigns') document.getElementById('btnOpenAddCampaign').click();
         if (tabId === 'martyrs') document.getElementById('btnOpenAddMartyr').click();
@@ -411,6 +412,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const badgeDistricts = document.getElementById('badgeDistrictsCount');
     if (badgeDistricts) badgeDistricts.innerText = districts.length;
 
+    const activities = DyfiDataStore.get(DYFI_DATA_KEYS.ACTIVITIES) || [];
+    const badgeActivities = document.getElementById('badgeActivitiesCount');
+    if (badgeActivities) badgeActivities.innerText = activities.length;
+
     const statLeaders = document.getElementById('statLeaders');
     if (statLeaders) statLeaders.innerText = (DyfiDataStore.get(DYFI_DATA_KEYS.LEADERS) || []).length;
 
@@ -532,6 +537,21 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('scSocialInsta').value = sc.socialInsta || '';
     document.getElementById('scSocialYt').value = sc.socialYt || '';
     document.getElementById('scSocialX').value = sc.socialX || '';
+
+    // Video Streams Showcase
+    const vTEn = document.getElementById('scVideoTitleEn');
+    const vTKn = document.getElementById('scVideoTitleKn');
+    const vSEn = document.getElementById('scVideoSubEn');
+    const vSKn = document.getElementById('scVideoSubKn');
+    const vThumb = document.getElementById('scVideoThumb');
+    const vUrl = document.getElementById('scVideoUrl');
+
+    if (vTEn) vTEn.value = sc.videoTitle_en || '';
+    if (vTKn) vTKn.value = sc.videoTitle_kn || '';
+    if (vSEn) vSEn.value = sc.videoSub_en || '';
+    if (vSKn) vSKn.value = sc.videoSub_kn || '';
+    if (vThumb) vThumb.value = sc.videoThumb || 'images/hero-banner-1.jpg';
+    if (vUrl) vUrl.value = sc.videoUrl || '';
   }
 
   document.getElementById('formSiteContent').addEventListener('submit', (e) => {
@@ -553,7 +573,13 @@ document.addEventListener('DOMContentLoaded', () => {
       socialFb: document.getElementById('scSocialFb').value.trim(),
       socialInsta: document.getElementById('scSocialInsta').value.trim(),
       socialYt: document.getElementById('scSocialYt').value.trim(),
-      socialX: document.getElementById('scSocialX').value.trim()
+      socialX: document.getElementById('scSocialX').value.trim(),
+      videoTitle_en: document.getElementById('scVideoTitleEn') ? document.getElementById('scVideoTitleEn').value.trim() : '',
+      videoTitle_kn: document.getElementById('scVideoTitleKn') ? document.getElementById('scVideoTitleKn').value.trim() : '',
+      videoSub_en: document.getElementById('scVideoSubEn') ? document.getElementById('scVideoSubEn').value.trim() : '',
+      videoSub_kn: document.getElementById('scVideoSubKn') ? document.getElementById('scVideoSubKn').value.trim() : '',
+      videoThumb: document.getElementById('scVideoThumb') ? document.getElementById('scVideoThumb').value.trim() : 'images/hero-banner-1.jpg',
+      videoUrl: document.getElementById('scVideoUrl') ? document.getElementById('scVideoUrl').value.trim() : ''
     };
     DyfiDataStore.set(DYFI_DATA_KEYS.SITE_CONTENT, sc);
     const status = document.getElementById('scSaveStatus');
@@ -710,6 +736,179 @@ document.addEventListener('DOMContentLoaded', () => {
       showToast('News published successfully');
     };
   });
+
+  // Activities Manager
+  function renderActivities() {
+    const list = DyfiDataStore.get(DYFI_DATA_KEYS.ACTIVITIES) || [];
+    const tbody = document.getElementById('activitiesTableBody');
+    if (!tbody) return;
+    const badgeCount = document.getElementById('badgeActivitiesCount');
+    if (badgeCount) badgeCount.innerText = list.length;
+
+    tbody.innerHTML = list.map((a, idx) => `
+      <tr>
+        <td>
+          <strong>${a.title_en}</strong><br>
+          <span style="color:#f87171; font-size:0.85rem;">${a.title_kn}</span>
+        </td>
+        <td><span class="badge-tag">${a.badge || 'Activity'}</span></td>
+        <td>${a.date || '2026-08-01'}</td>
+        <td><img src="${a.image || 'images/hero-banner-2.jpg'}" class="table-thumb" alt="Activity" onerror="this.src='images/hero-banner-2.jpg'"></td>
+        <td>
+          <div class="table-actions-cell">
+            <button class="btn btn-table-action btn-outline-warning" onclick="editActivity(${idx})"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
+            <button class="btn btn-table-action btn-outline-danger" onclick="deleteActivity(${idx})"><i class="fa-solid fa-trash"></i> Delete</button>
+          </div>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  window.editActivity = function(index) {
+    const list = DyfiDataStore.get(DYFI_DATA_KEYS.ACTIVITIES) || [];
+    const item = list[index];
+    if (!item) return;
+
+    openModal('Edit Recent Activity', `
+      <form id="modalFormActivityEdit">
+        <div class="form-group">
+          <label class="form-label">Activity Title (English)</label>
+          <input type="text" id="inpActTitleEn" class="form-control" required value="${(item.title_en || '').replace(/"/g, '&quot;')}">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Activity Title (ಕನ್ನಡ)</label>
+          <input type="text" id="inpActTitleKn" class="form-control" required value="${(item.title_kn || '').replace(/"/g, '&quot;')}">
+        </div>
+        <div class="form-row">
+          <div class="form-group col-6">
+            <label class="form-label">Badge Tag (e.g. Activity, Convention, Relief)</label>
+            <input type="text" id="inpActBadge" class="form-control" required value="${(item.badge || 'Activity').replace(/"/g, '&quot;')}">
+          </div>
+          <div class="form-group col-6">
+            <label class="form-label">Event Date</label>
+            <input type="date" id="inpActDate" class="form-control" required value="${item.date || '2026-08-01'}">
+          </div>
+        </div>
+        ${renderImagePickerHTML('inpActImg', 'Activity Thumbnail Photo', item.image || 'images/hero-banner-2.jpg')}
+        <div class="form-group">
+          <label class="form-label">Short Summary (English)</label>
+          <textarea id="inpActDescEn" class="form-control" rows="2" required>${item.desc_en || ''}</textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Short Summary (ಕನ್ನಡ)</label>
+          <textarea id="inpActDescKn" class="form-control" rows="2" required>${item.desc_kn || ''}</textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Full Details (English - Optional)</label>
+          <textarea id="inpActFullEn" class="form-control" rows="3">${item.full_en || ''}</textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Full Details (ಕನ್ನಡ - Optional)</label>
+          <textarea id="inpActFullKn" class="form-control" rows="3">${item.full_kn || ''}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Update Activity</button>
+      </form>
+    `);
+
+    initImagePicker('inpActImg');
+
+    document.getElementById('modalFormActivityEdit').onsubmit = (e) => {
+      e.preventDefault();
+      item.title_en = document.getElementById('inpActTitleEn').value.trim();
+      item.title_kn = document.getElementById('inpActTitleKn').value.trim();
+      item.badge = document.getElementById('inpActBadge').value.trim() || 'Activity';
+      item.date = document.getElementById('inpActDate').value;
+      item.image = document.getElementById('inpActImg').value.trim() || 'images/hero-banner-2.jpg';
+      item.desc_en = document.getElementById('inpActDescEn').value.trim();
+      item.desc_kn = document.getElementById('inpActDescKn').value.trim();
+      item.full_en = document.getElementById('inpActFullEn').value.trim();
+      item.full_kn = document.getElementById('inpActFullKn').value.trim();
+
+      DyfiDataStore.set(DYFI_DATA_KEYS.ACTIVITIES, list);
+      closeModal();
+      renderActivities();
+      showToast('Activity updated successfully');
+    };
+  };
+
+  window.deleteActivity = function(index) {
+    if (confirm('Are you sure you want to delete this activity?')) {
+      const list = DyfiDataStore.get(DYFI_DATA_KEYS.ACTIVITIES) || [];
+      list.splice(index, 1);
+      DyfiDataStore.set(DYFI_DATA_KEYS.ACTIVITIES, list);
+      renderActivities();
+      showToast('Activity deleted');
+    }
+  };
+
+  const btnOpenAddActivity = document.getElementById('btnOpenAddActivity');
+  if (btnOpenAddActivity) {
+    btnOpenAddActivity.addEventListener('click', () => {
+      openModal('Add New Recent Activity', `
+        <form id="modalFormActivityAdd">
+          <div class="form-group">
+            <label class="form-label">Activity Title (English)</label>
+            <input type="text" id="inpActTitleEn" class="form-control" required placeholder="e.g. State Youth Convention">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Activity Title (ಕನ್ನಡ)</label>
+            <input type="text" id="inpActTitleKn" class="form-control" required placeholder="ಉದಾ: ರಾಜ್ಯ ಮಟ್ಟದ ಯುವ ಸಮಾವೇಶ">
+          </div>
+          <div class="form-row">
+            <div class="form-group col-6">
+              <label class="form-label">Badge Tag</label>
+              <input type="text" id="inpActBadge" class="form-control" value="Activity" required>
+            </div>
+            <div class="form-group col-6">
+              <label class="form-label">Event Date</label>
+              <input type="date" id="inpActDate" class="form-control" required value="${new Date().toISOString().split('T')[0]}">
+            </div>
+          </div>
+          ${renderImagePickerHTML('inpActImg', 'Activity Thumbnail Photo', 'images/hero-banner-2.jpg')}
+          <div class="form-group">
+            <label class="form-label">Short Summary (English)</label>
+            <textarea id="inpActDescEn" class="form-control" rows="2" required placeholder="Brief summary for homepage card..."></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Short Summary (ಕನ್ನಡ)</label>
+            <textarea id="inpActDescKn" class="form-control" rows="2" required placeholder="ಮುಖಪುಟದ ಕಾರ್ಡ್‌ಗೆ ಸಣ್ಣ ವಿವರಣೆ..."></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Full Details (English - Optional)</label>
+            <textarea id="inpActFullEn" class="form-control" rows="3" placeholder="Full comprehensive article or convention minutes..."></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Full Details (ಕನ್ನಡ - Optional)</label>
+            <textarea id="inpActFullKn" class="form-control" rows="3" placeholder="ಸಮಗ್ರ ವಿವರಣೆ ಅಥವಾ ಸಮಾವೇಶದ ವರದಿ..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Publish Activity</button>
+        </form>
+      `);
+
+      initImagePicker('inpActImg');
+
+      document.getElementById('modalFormActivityAdd').onsubmit = (e) => {
+        e.preventDefault();
+        const list = DyfiDataStore.get(DYFI_DATA_KEYS.ACTIVITIES) || [];
+        list.unshift({
+          id: 'act_' + Date.now(),
+          title_en: document.getElementById('inpActTitleEn').value.trim(),
+          title_kn: document.getElementById('inpActTitleKn').value.trim(),
+          badge: document.getElementById('inpActBadge').value.trim() || 'Activity',
+          date: document.getElementById('inpActDate').value,
+          image: document.getElementById('inpActImg').value.trim() || 'images/hero-banner-2.jpg',
+          desc_en: document.getElementById('inpActDescEn').value.trim(),
+          desc_kn: document.getElementById('inpActDescKn').value.trim(),
+          full_en: document.getElementById('inpActFullEn').value.trim(),
+          full_kn: document.getElementById('inpActFullKn').value.trim()
+        });
+        DyfiDataStore.set(DYFI_DATA_KEYS.ACTIVITIES, list);
+        closeModal();
+        renderActivities();
+        showToast('Activity published successfully');
+      };
+    });
+  }
 
   // Campaigns
   function renderCampaigns() {
@@ -2314,6 +2513,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderTicker();
     renderSiteContent();
     renderNews();
+    renderActivities();
     renderCampaigns();
     renderStatements();
     renderMartyrs();

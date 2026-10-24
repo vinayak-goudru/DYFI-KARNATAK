@@ -1242,10 +1242,58 @@ function showToast(message) {
             items[1].innerText = `${sc.phone1} / ${sc.phone2}`;
             items[2].innerText = ` ${sc.email}`;
           }
+        // Update Video Showcase Banner dynamically
+        const vTitle = document.getElementById('videoBannerTitle');
+        const vSub = document.getElementById('videoBannerSub');
+        const vThumb = document.getElementById('videoBannerThumb');
+        const vPlayBtn = document.getElementById('btnPlayMainVideo');
+
+        if (vTitle && (sc.videoTitle_en || sc.videoTitle_kn)) {
+          vTitle.innerText = isKn ? (sc.videoTitle_kn || sc.videoTitle_en) : (sc.videoTitle_en || sc.videoTitle_kn);
+        }
+        if (vSub && (sc.videoSub_en || sc.videoSub_kn)) {
+          vSub.innerText = isKn ? (sc.videoSub_kn || sc.videoSub_en) : (sc.videoSub_en || sc.videoSub_kn);
+        }
+        if (vThumb && sc.videoThumb) {
+          vThumb.src = sc.videoThumb;
+        }
+        if (vPlayBtn && sc.videoUrl) {
+          vPlayBtn.onclick = () => {
+            window.open(sc.videoUrl, '_blank');
+          };
         }
       }
     } catch (e) {
       console.warn('Site content sync error:', e);
+    }
+
+    // 2b. Render Recent Activities (Admin Dynamic)
+    try {
+      const actGrid = document.getElementById('activitiesGridContainer');
+      if (actGrid) {
+        const activities = DyfiDataStore.get(DYFI_DATA_KEYS.ACTIVITIES) || [];
+        if (activities.length > 0) {
+          actGrid.innerHTML = activities.map((a, idx) => `
+            <article class="campaign-card" onclick="openContentDetails('activity', '${a.id || idx}')" style="cursor: pointer;">
+              <div class="card-img-wrap" onclick="openContentDetails('activity', '${a.id || idx}'); event.stopPropagation();" title="${isKn ? 'ಪೂರ್ಣ ವಿವರ ವೀಕ್ಷಿಸಲು ಕ್ಲಿಕ್ ಮಾಡಿ' : 'Click to view full details'}">
+                <img src="${a.image || (idx === 0 ? 'images/hero-banner-2.jpg' : idx === 1 ? 'images/hero-banner-3.jpg' : 'images/gallery-1.jpg')}" alt="${a.title_en}" loading="lazy" onerror="this.onerror=null; this.src='images/hero-banner-2.jpg';">
+                <div class="card-badges">
+                  <span class="badge-date">${a.date || '2026-08-01'}</span>
+                  <span class="badge-status activity">${a.badge || 'Activity'}</span>
+                </div>
+                <span class="card-img-zoom-hint"><i class="fa-solid fa-magnifying-glass"></i> ${isKn ? 'ಪೂರ್ಣ ವೀಕ್ಷಿಸಿ' : 'View Full'}</span>
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">${isKn ? a.title_kn : a.title_en}</h3>
+                <p class="card-desc">${isKn ? a.desc_kn : a.desc_en}</p>
+                <a href="javascript:void(0)" class="card-link" onclick="openContentDetails('activity', '${a.id || idx}'); event.stopPropagation();">${isKn ? 'ಪೂರ್ಣ ವಿವರ ವೀಕ್ಷಿಸಿ <i class="fa-solid fa-arrow-right"></i>' : 'View Details <i class="fa-solid fa-arrow-right"></i>'}</a>
+              </div>
+            </article>
+          `).join('');
+        }
+      }
+    } catch (e) {
+      console.warn('Activities sync error:', e);
     }
 
     // 3. Render Campaigns (Admin Dynamic)
@@ -1642,7 +1690,26 @@ function showToast(message) {
       if (joinModal) joinModal.classList.add('active');
     };
 
-    if (type === 'campaign') {
+    if (type === 'activity') {
+      const list = (typeof DyfiDataStore !== 'undefined') ? DyfiDataStore.get(DYFI_DATA_KEYS.ACTIVITIES) || [] : [];
+      item = list.find(a => a.id === id || String(a.id) === String(id)) || list[id] || list[0];
+      if (item) {
+        categoryBadge = isKn ? '<i class="fa-solid fa-person-walking" style="color:var(--primary,#dc2626); margin-right:4px;"></i> ಇತ್ತೀಚಿನ ಚಟುವಟಿಕೆ (Recent Activity)' : '<i class="fa-solid fa-person-walking" style="color:var(--primary,#dc2626); margin-right:4px;"></i> Recent DYFI Activity';
+        title = isKn ? (item.title_kn || item.title_en) : (item.title_en || item.title_kn);
+        date = item.date || '2026-08-01';
+        extra = item.badge ? `• ${item.badge}` : '';
+        img = item.image || 'images/hero-banner-2.jpg';
+        fullText = isKn 
+          ? (item.full_kn || `${item.desc_kn}\n\nಕರ್ನಾಟಕ ರಾಜ್ಯದಾದ್ಯಂತ ಡಿವೈಎಫ್ಐ ನಡೆಸುತ್ತಿರುವ ನಿರಂತರ ಯುವಜನ ಜಾಗೃತಿ ಹಾಗೂ ಸಾಮಾಜಿಕ ಚಟುವಟಿಕೆಗಳು.`)
+          : (item.full_en || `${item.desc_en}\n\nComprehensive coverage of DYFI grassroots organizing, public initiatives, and community service in Karnataka.`);
+        primaryActionText = isKn ? 'ಸ್ಥಳೀಯ ಘಟಕ ಸಂಪರ್ಕಿಸಿ <i class="fa-solid fa-arrow-right"></i>' : 'Contact Local Unit <i class="fa-solid fa-arrow-right"></i>';
+        primaryActionFn = () => {
+          modal.classList.remove('active');
+          const contactSec = document.getElementById('contact');
+          if (contactSec) contactSec.scrollIntoView({ behavior: 'smooth' });
+        };
+      }
+    } else if (type === 'campaign') {
       const list = (typeof DyfiDataStore !== 'undefined') ? DyfiDataStore.get(DYFI_DATA_KEYS.CAMPAIGNS) || [] : [];
       item = list.find(c => c.id === id || String(c.id) === String(id)) || list[id] || list[0];
       if (item) {
